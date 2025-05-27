@@ -1,0 +1,10 @@
+[build]
+  command = "pnpm install --no-frozen-lockfile && pnpm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22.16.0"
+  NPM_FLAGS = "--version"
+  
+[functions]
+  node_bundler = "esbuild" 
