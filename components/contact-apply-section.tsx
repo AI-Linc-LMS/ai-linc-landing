@@ -55,16 +55,16 @@ export function ContactApplySection() {
     if (EMAILJS_PUBLIC_KEY) {
       // Initialize EmailJS with public key
       emailjs.init(EMAILJS_PUBLIC_KEY);
-      
+
       // Check if all required email configuration is available
-      const isConfigured = 
-        !!EMAILJS_SERVICE_ID && 
-        !!EMAILJS_APPLY_TEMPLATE_ID && 
-        !!EMAILJS_CONTACT_TEMPLATE_ID && 
+      const isConfigured =
+        !!EMAILJS_SERVICE_ID &&
+        !!EMAILJS_APPLY_TEMPLATE_ID &&
+        !!EMAILJS_CONTACT_TEMPLATE_ID &&
         RECIPIENT_EMAILS.length > 0;
-      
+
       setEmailConfigured(isConfigured);
-      
+
       if (!isConfigured) {
         console.warn("EmailJS configuration is incomplete. Email notifications will not work properly.");
       }
@@ -99,7 +99,7 @@ export function ContactApplySection() {
       if (!emailConfigured) {
         throw new Error("Email service is not properly configured. Please contact the administrator.");
       }
-      
+
       // Prepare the template parameters
       const templateParams = {
         name: values.name,
@@ -141,7 +141,7 @@ export function ContactApplySection() {
       if (!emailConfigured) {
         throw new Error("Email service is not properly configured. Please contact the administrator.");
       }
-      
+
       // Prepare the template parameters
       const templateParams = {
         name: values.name,
@@ -218,7 +218,7 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={applyForm.control}
                         name="email"
@@ -232,7 +232,7 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={applyForm.control}
                         name="contactNumber"
@@ -246,7 +246,7 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={applyForm.control}
                         name="graduationYear"
@@ -260,7 +260,7 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={applyForm.control}
                         name="isWorking"
@@ -291,7 +291,7 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={applyForm.control}
                         name="workDomain"
@@ -305,10 +305,10 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-3 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)] hover:shadow-[0_0_20px_rgba(11,197,234,0.7)]" 
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-3 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)] hover:shadow-[0_0_20px_rgba(11,197,234,0.7)]"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Submitting..." : "Submit Application"}
@@ -318,7 +318,7 @@ export function ContactApplySection() {
                 </CardContent>
               </Card>
             </TabsContent>
-            
+
             <TabsContent value="contact">
               <Card className="bg-gray-900/50 border-gray-800">
                 <CardHeader>
@@ -343,7 +343,7 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={contactForm.control}
                         name="email"
@@ -357,7 +357,7 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={contactForm.control}
                         name="contactNumber"
@@ -371,7 +371,7 @@ export function ContactApplySection() {
                           </FormItem>
                         )}
                       />
-                      
+
                       <FormField
                         control={contactForm.control}
                         name="message"
@@ -379,20 +379,20 @@ export function ContactApplySection() {
                           <FormItem>
                             <FormLabel>Query / Message</FormLabel>
                             <FormControl>
-                              <Textarea 
-                                placeholder="Type your message here..." 
+                              <Textarea
+                                placeholder="Type your message here..."
                                 className="min-h-32"
-                                {...field} 
+                                {...field}
                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
-                      
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-3 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)] hover:shadow-[0_0_20px_rgba(11,197,234,0.7)]" 
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-3 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)] hover:shadow-[0_0_20px_rgba(11,197,234,0.7)]"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Sending..." : "Send Message"}
