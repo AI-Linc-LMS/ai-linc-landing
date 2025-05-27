@@ -55,16 +55,16 @@ export function ContactApplySection() {
     if (EMAILJS_PUBLIC_KEY) {
       // Initialize EmailJS with public key
       emailjs.init(EMAILJS_PUBLIC_KEY);
-      
+
       // Check if all required email configuration is available
-      const isConfigured = 
-        !!EMAILJS_SERVICE_ID && 
-        !!EMAILJS_APPLY_TEMPLATE_ID && 
-        !!EMAILJS_CONTACT_TEMPLATE_ID && 
+      const isConfigured =
+        !!EMAILJS_SERVICE_ID &&
+        !!EMAILJS_APPLY_TEMPLATE_ID &&
+        !!EMAILJS_CONTACT_TEMPLATE_ID &&
         RECIPIENT_EMAILS.length > 0;
-      
+
       setEmailConfigured(isConfigured);
-      
+
       if (!isConfigured) {
         console.warn("EmailJS configuration is incomplete. Email notifications will not work properly.");
       }
@@ -99,7 +99,7 @@ export function ContactApplySection() {
       if (!emailConfigured) {
         throw new Error("Email service is not properly configured. Please contact the administrator.");
       }
-      
+
       // Prepare the template parameters
       const templateParams = {
         name: values.name,
@@ -141,7 +141,7 @@ export function ContactApplySection() {
       if (!emailConfigured) {
         throw new Error("Email service is not properly configured. Please contact the administrator.");
       }
-      
+
       // Prepare the template parameters
       const templateParams = {
         name: values.name,
@@ -306,7 +306,11 @@ export function ContactApplySection() {
                         )}
                       />
 
-                      <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      <Button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-3 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)] hover:shadow-[0_0_20px_rgba(11,197,234,0.7)]"
+                        disabled={isSubmitting}
+                      >
                         {isSubmitting ? "Submitting..." : "Submit Application"}
                       </Button>
                     </form>
@@ -386,7 +390,11 @@ export function ContactApplySection() {
                         )}
                       />
 
-                      <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      <Button
+                        type="submit"
+                        className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-3 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)] hover:shadow-[0_0_20px_rgba(11,197,234,0.7)]"
+                        disabled={isSubmitting}
+                      >
                         {isSubmitting ? "Sending..." : "Send Message"}
                       </Button>
                     </form>
