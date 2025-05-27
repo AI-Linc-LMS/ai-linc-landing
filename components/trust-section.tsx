@@ -41,7 +41,7 @@ export function TrustSection() {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* <div className="grid md:grid-cols-3 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ export function TrustSection() {
             <div className="text-lg font-semibold mb-2 text-white">Student Satisfaction</div>
             <p className="text-gray-300 text-sm">Our program consistently receives top ratings from our graduates.</p>
           </motion.div>
-        </div>
+        </div> */}
       </div>
 
       {/* Background glow effects */}

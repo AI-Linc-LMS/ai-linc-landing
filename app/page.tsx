@@ -33,7 +33,7 @@ export default function Home() {
         <CurriculumSection />
         <WorkIntegration />
         <InstructorsSection />
-        <CommunityNetwork />
+        {/* <CommunityNetwork /> */}
         <PlatformPreview />
         <CareerTransformation />
         <TrustSection />
