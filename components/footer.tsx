@@ -83,6 +83,26 @@ export function Footer() {
                   Pricing
                 </Link>
               </li>
+              <li>
+                <Link 
+                  href="#contact-apply" 
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors"
+                  onClick={() => {
+                    // Find the ContactApplySection component and set its tab to "apply"
+                    const contactApplySection = document.getElementById('contact-apply');
+                    if (contactApplySection) {
+                      // Use the DOM API to find and click the "Apply Now" tab trigger
+                      const applyTabTrigger = contactApplySection.querySelector('[value="apply"]');
+                      if (applyTabTrigger) {
+                        (applyTabTrigger as HTMLElement).click();
+                      }
+                      contactApplySection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  Apply Now
+                </Link>
+              </li>
             </ul>
           </motion.div>
           <motion.div variants={item}>
@@ -104,7 +124,22 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">
+                <Link 
+                  href="#contact-apply" 
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors"
+                  onClick={() => {
+                    // Find the ContactApplySection component and set its tab to "contact"
+                    const contactApplySection = document.getElementById('contact-apply');
+                    if (contactApplySection) {
+                      // Use the DOM API to find and click the "Contact Us" tab trigger
+                      const contactTabTrigger = contactApplySection.querySelector('[value="contact"]');
+                      if (contactTabTrigger) {
+                        (contactTabTrigger as HTMLElement).click();
+                      }
+                      contactApplySection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
                   Contact
                 </Link>
               </li>
