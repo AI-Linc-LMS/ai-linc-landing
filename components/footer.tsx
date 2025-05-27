@@ -42,10 +42,10 @@ export function Footer() {
               The 111-Day Program That Makes You 100X More Valuable in the AI Economy
             </p>
             <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
+              {/* <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
                 <Twitter className="size-5" />
                 <span className="sr-only">Twitter</span>
-              </Button>
+              </Button> */}
               <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
                 <Linkedin className="size-5" />
                 <span className="sr-only">LinkedIn</span>
@@ -54,10 +54,10 @@ export function Footer() {
                 <Instagram className="size-5" />
                 <span className="sr-only">Instagram</span>
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
+              {/* <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
                 <Github className="size-5" />
                 <span className="sr-only">GitHub</span>
-              </Button>
+              </Button> */}
             </div>
           </motion.div>
           <motion.div variants={item}>
