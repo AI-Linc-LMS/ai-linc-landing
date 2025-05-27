@@ -16,22 +16,22 @@ export function ResultsSection() {
     {
       title: "AI Prompt Engineer",
       description: "Design and optimize prompts for AI systems to generate specific outputs.",
-      salary: "$120K - $180K",
+      salary: "₹12L - ₹15L",
     },
     {
       title: "AI Application Developer",
       description: "Build applications that leverage AI capabilities for business solutions.",
-      salary: "$130K - $190K",
+      salary: "₹14L - ₹17L",
     },
     {
       title: "AI Product Manager",
       description: "Lead AI product development from conception to market launch.",
-      salary: "$140K - $200K",
+      salary: "₹15L - ₹18L",
     },
     {
       title: "AI Consultant",
       description: "Advise organizations on implementing AI solutions for business problems.",
-      salary: "$150K - $220K",
+      salary: "₹18L - ₹25L",
     },
   ]
 

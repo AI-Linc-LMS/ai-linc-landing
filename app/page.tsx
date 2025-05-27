@@ -16,6 +16,7 @@ import { TrustSection } from "@/components/trust-section"
 import { Footer } from "@/components/footer"
 import { ParticleBackground } from "@/components/particle-background"
 import { ThemeProvider } from "@/components/theme-provider"
+import { ContactApplySection } from "@/components/contact-apply-section"
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
         <CareerTransformation />
         <TrustSection />
         <PricingSection />
+        <ContactApplySection />
         <Footer />
       </main>
     </ThemeProvider>

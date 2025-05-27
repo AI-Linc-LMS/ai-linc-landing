@@ -65,7 +65,7 @@ export function ProgramStructure() {
                     </Badge>
                   </div>
                   <CardTitle className="text-xl font-semibold text-white">
-                    AI & Prompt Engineering Foundations
+                    AI & Product development with Agentic AI
                   </CardTitle>
                   <CardDescription className="text-foreground/80">
                     Master the fundamentals of AI and prompt engineering through intensive, hands-on learning modules
@@ -84,7 +84,7 @@ export function ProgramStructure() {
                     </li>
                     <li className="flex items-center">
                       <div className="size-2 bg-[#0BC5EA] rounded-full mr-2"></div>
-                      <span>AI tools & workflows</span>
+                      <span>AI tools (Cursor, Claude, Gpt, etc) & workflows</span>
                     </li>
                     <li className="flex items-center">
                       <div className="size-2 bg-[#0BC5EA] rounded-full mr-2"></div>
