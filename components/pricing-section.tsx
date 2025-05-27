@@ -83,8 +83,8 @@ export function PricingSection() {
                     </Badge>
                     <CardTitle className="text-3xl font-bold text-white">AI LINC 111-Day Program</CardTitle>
                     <div className="flex items-baseline">
-                      <span className="text-4xl font-bold text-white">$4,995</span>
-                      <span className="text-foreground/80 ml-2">USD</span>
+                      <span className="text-4xl font-bold text-white">₹1,20,000</span>
+                      {/* <span className="text-foreground/80 ml-2">USD</span> */}
                     </div>
                     <CardDescription className="text-foreground/80">
                       Flexible payment options available. Income share agreements for qualified applicants.
@@ -112,7 +112,7 @@ export function PricingSection() {
                     <Button className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]">
                       Apply Now - Limited Spots
                     </Button>
-                    <p className="text-center text-foreground/60 text-sm mt-4">Next cohort starts in 7 days</p>
+                    <p className="text-center text-foreground/60 text-sm mt-4">Next cohort starts in 10 June</p>
                   </CardFooter>
                 </Card>
               </motion.div>
@@ -185,11 +185,11 @@ export function PricingSection() {
                     </Badge>
                     <CardTitle className="text-3xl font-bold text-white">AI LINC 111-Day Program</CardTitle>
                     <div className="flex items-baseline">
-                      <span className="text-4xl font-bold text-white">$1,795</span>
-                      <span className="text-foreground/80 ml-2">USD / month</span>
+                      <span className="text-4xl font-bold text-white">₹46,667</span>
+                      <span className="text-foreground/80 ml-2">INR / month</span>
                     </div>
                     <CardDescription className="text-foreground/80">
-                      3 monthly payments. Total cost: $5,385. Save $390 with full payment.
+                      3 monthly payments. Total cost: ₹1,40,000. Save ₹30,000 with full payment.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>

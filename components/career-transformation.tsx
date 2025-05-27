@@ -37,28 +37,28 @@ export function CareerTransformation() {
     {
       title: "AI Prompt Engineer",
       company: "Tech Companies",
-      salary: "$120K - $180K",
+      salary: "₹12L - ₹15L",
       growth: "+85%",
       icon: Building,
     },
     {
       title: "AI Application Developer",
       company: "Software Companies",
-      salary: "$130K - $190K",
+      salary: "₹15L - ₹20L",
       growth: "+72%",
       icon: Building,
     },
     {
       title: "AI Product Manager",
       company: "Product Companies",
-      salary: "$140K - $200K",
+      salary: "₹18L - ₹20L",
       growth: "+65%",
       icon: Building,
     },
     {
       title: "AI Consultant",
       company: "Consulting Firms",
-      salary: "$150K - $220K",
+      salary: "₹20L - ₹25L",
       growth: "+90%",
       icon: Building,
     },
@@ -138,7 +138,7 @@ export function CareerTransformation() {
                     <DollarSign className="size-4 text-[#6B46C1] mr-2" />
                     <div className="text-sm font-medium">Average Salary</div>
                   </div>
-                  <div className="text-2xl font-bold mb-1">$65,000</div>
+                  <div className="text-2xl font-bold mb-1">₹8-12L</div>
                   <div className="text-xs text-foreground/60">Entry-level positions with limited growth</div>
                 </div>
               </CardContent>
@@ -190,7 +190,7 @@ export function CareerTransformation() {
                     <DollarSign className="size-4 text-[#0BC5EA] mr-2" />
                     <div className="text-sm font-medium">Average Salary</div>
                   </div>
-                  <div className="text-2xl font-bold mb-1">$150,000+</div>
+                  <div className="text-2xl font-bold mb-1">₹20-25L</div>
                   <div className="text-xs text-foreground/60">Premium positions with rapid growth potential</div>
                 </div>
               </CardContent>
@@ -280,19 +280,19 @@ export function CareerTransformation() {
 
                 {/* Salary labels */}
                 <div className="absolute top-[70%] left-[10%] text-xs text-white font-medium transform -translate-y-full">
-                  $65K
+                  ₹5L
                 </div>
                 <div className="absolute top-[55%] left-[30%] text-xs text-white font-medium transform -translate-y-full">
-                  $95K
+                  ₹8L
                 </div>
                 <div className="absolute top-[35%] left-[50%] text-xs text-white font-medium transform -translate-x-1/2 -translate-y-full">
-                  $135K
+                  ₹12L
                 </div>
                 <div className="absolute top-[20%] left-[70%] text-xs text-white font-medium transform -translate-y-full">
-                  $165K
+                  ₹18L
                 </div>
                 <div className="absolute top-[5%] left-[90%] text-xs text-white font-medium transform -translate-x-1/2 -translate-y-full">
-                  $200K+
+                  ₹25L+
                 </div>
 
                 {/* Connecting line */}
