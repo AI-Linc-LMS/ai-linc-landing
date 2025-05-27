@@ -104,6 +104,12 @@ export function Navbar() {
             <Button
               className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
               size="lg"
+              onClick={() => {
+                const contactApplySection = document.getElementById('contact-apply');
+                if (contactApplySection) {
+                  contactApplySection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               Apply Now
             </Button>
@@ -163,7 +169,15 @@ export function Navbar() {
               </Link>
               <Button
                 className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium w-full py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setTimeout(() => {
+                    const contactApplySection = document.getElementById('contact-apply');
+                    if (contactApplySection) {
+                      contactApplySection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 300);
+                }}
               >
                 Apply Now
               </Button>
