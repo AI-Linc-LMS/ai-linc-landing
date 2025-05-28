@@ -17,6 +17,7 @@ import { Footer } from "@/components/footer"
 import { ParticleBackground } from "@/components/particle-background"
 import { ThemeProvider } from "@/components/theme-provider"
 import { ContactApplySection } from "@/components/contact-apply-section"
+import { Suspense } from "react"
 
 export default function Home() {
   return (
@@ -38,7 +39,9 @@ export default function Home() {
         <CareerTransformation />
         <TrustSection />
         <PricingSection />
-        <ContactApplySection />
+        <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center">Loading...</div>}>
+          <ContactApplySection />
+        </Suspense>
         <Footer />
       </main>
     </ThemeProvider>
