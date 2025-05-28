@@ -6,32 +6,32 @@ import { ArrowRight } from "lucide-react"
 export function InstructorsSection() {
   const instructors = [
     {
-      name: "Dr. Sarah Chen",
-      role: "AI Research Lead",
-      company: "Former Google AI",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "Natural Language Processing",
-    },
-    {
-      name: "Michael Rodriguez",
-      role: "Senior AI Engineer",
-      company: "Meta AI",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "Prompt Engineering",
-    },
-    {
-      name: "Jennifer Park",
-      role: "AI Product Manager",
+      name: "Shubham Lal",
+      role: "SDE 2",
       company: "Microsoft",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "AI Product Development",
+      image: "/shubham_lal.jpg?height=300&width=300",
+      expertise: "AI Product Developer",
     },
     {
-      name: "David Okonkwo",
-      role: "AI Consultant",
-      company: "Former OpenAI",
-      image: "/placeholder.svg?height=300&width=300",
-      expertise: "AI Applications",
+      name: "Yamini Bandi",
+      role: "SDE 2",
+      company: "Amazon",
+      image: "/yamini_bandi.jpg?height=300&width=300",
+      expertise: "ML Engineer",
+    },
+    {
+      name: "Divyansh Dubey",
+      role: "Gen AI",
+      company: "Goggle",
+      image: "/Divyansh_dubey.jpg?height=300&width=300",
+      expertise: "⁠Prompt and GenAI expert",
+    },
+    {
+      name: "Abirami Sukumaran",
+      role: "Staff Developer Advocate",
+      company: "Goggle",
+      image: "/Abirami_sukumari.jpg?height=300&width=300",
+      expertise: "Cloud AI and Databases",
     },
   ]
 

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { toast } from "sonner"
 import emailjs from '@emailjs/browser'
+import { useSearchParams } from 'next/navigation'
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -46,6 +47,7 @@ const contactFormSchema = z.object({
 })
 
 export function ContactApplySection() {
+  const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState("apply")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [emailConfigured, setEmailConfigured] = useState(false)
@@ -70,6 +72,28 @@ export function ContactApplySection() {
       }
     }
   }, []);
+
+  // Check URL parameters for tab selection
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab === 'apply' || tab === 'contact') {
+      setActiveTab(tab);
+    }
+    
+    // Listen for custom event from PricingSection
+    const handleTabChange = (event: CustomEvent) => {
+      if (event.detail && event.detail.tab) {
+        setActiveTab(event.detail.tab);
+      }
+    };
+    
+    window.addEventListener('tabChange', handleTabChange as EventListener);
+    
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener('tabChange', handleTabChange as EventListener);
+    };
+  }, [searchParams]);
 
   const applyForm = useForm<z.infer<typeof applyFormSchema>>({
     resolver: zodResolver(applyFormSchema),

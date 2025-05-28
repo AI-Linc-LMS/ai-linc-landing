@@ -42,8 +42,8 @@ export function WorkIntegration() {
       skills: ["Data Visualization", "ML Integration", "Business Intelligence"],
       progress: 62,
       tasks: [
-        { id: 1, name: "Data Pipeline Architecture", status: "completed" },
-        { id: 2, name: "ML Model Integration", status: "completed" },
+        { id: 1, name: "Data Pipeline Setup", status: "completed" },
+        { id: 2, name: "AI Agentic Implementation", status: "completed" },
         { id: 3, name: "Dashboard Development", status: "in-progress" },
         { id: 4, name: "User Testing & Feedback", status: "planned" },
         { id: 5, name: "Documentation & Training", status: "planned" },
@@ -57,7 +57,7 @@ export function WorkIntegration() {
       progress: 40,
       tasks: [
         { id: 1, name: "Conversation Flow Design", status: "completed" },
-        { id: 2, name: "NLP Model Training", status: "in-progress" },
+        { id: 2, name: "No code development with ai ", status: "in-progress" },
         { id: 3, name: "Integration with CRM", status: "in-progress" },
         { id: 4, name: "User Testing & Refinement", status: "planned" },
         { id: 5, name: "Deployment & Monitoring", status: "planned" },
