@@ -135,7 +135,7 @@ export function CareerTransformation() {
 
                 <div className="mt-8 p-4 bg-background/30 rounded-lg">
                   <div className="flex items-center mb-2">
-                    <DollarSign className="size-4 text-[#6B46C1] mr-2" />
+                    <span className="text-[#6B46C1] mr-2 text-sm font-medium">₹</span>
                     <div className="text-sm font-medium">Average Salary</div>
                   </div>
                   <div className="text-2xl font-bold mb-1">₹8-12L</div>
@@ -187,7 +187,7 @@ export function CareerTransformation() {
 
                 <div className="mt-8 p-4 bg-background/30 rounded-lg">
                   <div className="flex items-center mb-2">
-                    <DollarSign className="size-4 text-[#0BC5EA] mr-2" />
+                    <span className="text-[#0BC5EA] mr-2 text-sm font-bold">₹</span>
                     <div className="text-sm font-medium">Average Salary</div>
                   </div>
                   <div className="text-2xl font-bold mb-1">₹20-25L</div>
