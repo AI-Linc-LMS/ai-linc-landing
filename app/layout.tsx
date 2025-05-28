@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
 
 export const metadata: Metadata = {
   title: 'ai-linc',
@@ -14,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
+      </body>
     </html>
   )
 }

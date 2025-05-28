@@ -25,6 +25,45 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Custom Scrollbar Styles to match website theme */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 32, 44, 0.8);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #0BC5EA, #6B46C1);
+  border-radius: 6px;
+  border: 2px solid rgba(26, 32, 44, 0.8);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #0BC5EA, #8B5CF6);
+  box-shadow: 0 0 10px rgba(11, 197, 234, 0.5);
+  transform: scale(1.05);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, #06B6D4, #7C3AED);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(26, 32, 44, 0.8);
+}
+
+/* Firefox scrollbar styles */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0BC5EA rgba(26, 32, 44, 0.8);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

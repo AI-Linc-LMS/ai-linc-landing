@@ -135,7 +135,7 @@ export function CareerTransformation() {
 
                 <div className="mt-8 p-4 bg-background/30 rounded-lg">
                   <div className="flex items-center mb-2">
-                    <DollarSign className="size-4 text-[#6B46C1] mr-2" />
+                    <span className="text-[#6B46C1] mr-2 text-sm font-medium">₹</span>
                     <div className="text-sm font-medium">Average Salary</div>
                   </div>
                   <div className="text-2xl font-bold mb-1">₹8-12L</div>
@@ -187,7 +187,7 @@ export function CareerTransformation() {
 
                 <div className="mt-8 p-4 bg-background/30 rounded-lg">
                   <div className="flex items-center mb-2">
-                    <DollarSign className="size-4 text-[#0BC5EA] mr-2" />
+                    <span className="text-[#0BC5EA] mr-2 text-sm font-bold">₹</span>
                     <div className="text-sm font-medium">Average Salary</div>
                   </div>
                   <div className="text-2xl font-bold mb-1">₹20-25L</div>
@@ -252,46 +252,41 @@ export function CareerTransformation() {
                 </div>
 
                 {/* Labels */}
-                <div className="absolute bottom-2 left-[10%] text-xs text-center text-foreground/60">
-                  Entry
-                  <br />
-                  Level
+                <div className="absolute bottom-2 left-[10%] text-[10px] md:text-xs text-center text-foreground/60 transform -translate-x-1/2">
+                  <div className="whitespace-nowrap">Entry</div>
+                  <div className="whitespace-nowrap">Level</div>
                 </div>
-                <div className="absolute bottom-2 left-[30%] text-xs text-center text-foreground/60">
-                  1 Year
-                  <br />
-                  After
+                <div className="absolute bottom-2 left-[30%] text-[10px] md:text-xs text-center text-foreground/60 transform -translate-x-1/2">
+                  <div className="whitespace-nowrap">1 Year</div>
+                  <div className="whitespace-nowrap">After</div>
                 </div>
-                <div className="absolute bottom-2 left-[50%] text-xs text-center text-foreground/60 transform -translate-x-1/2">
-                  2 Years
-                  <br />
-                  After
+                <div className="absolute bottom-2 left-[50%] text-[10px] md:text-xs text-center text-foreground/60 transform -translate-x-1/2">
+                  <div className="whitespace-nowrap">2 Years</div>
+                  <div className="whitespace-nowrap">After</div>
                 </div>
-                <div className="absolute bottom-2 left-[70%] text-xs text-center text-foreground/60">
-                  3 Years
-                  <br />
-                  After
+                <div className="absolute bottom-2 left-[70%] text-[10px] md:text-xs text-center text-foreground/60 transform -translate-x-1/2">
+                  <div className="whitespace-nowrap">3 Years</div>
+                  <div className="whitespace-nowrap">After</div>
                 </div>
-                <div className="absolute bottom-2 left-[90%] text-xs text-center text-foreground/60 transform -translate-x-1/2">
-                  5 Years
-                  <br />
-                  After
+                <div className="absolute bottom-2 left-[90%] text-[10px] md:text-xs text-center text-foreground/60 transform -translate-x-1/2">
+                  <div className="whitespace-nowrap">5 Years</div>
+                  <div className="whitespace-nowrap">After</div>
                 </div>
 
                 {/* Salary labels */}
-                <div className="absolute top-[70%] left-[10%] text-xs text-white font-medium transform -translate-y-full">
+                <div className="absolute top-[70%] left-[10%] text-[10px] md:text-xs text-white font-medium transform -translate-y-full -translate-x-1/2">
                   ₹5L
                 </div>
-                <div className="absolute top-[55%] left-[30%] text-xs text-white font-medium transform -translate-y-full">
+                <div className="absolute top-[55%] left-[30%] text-[10px] md:text-xs text-white font-medium transform -translate-y-full -translate-x-1/2">
                   ₹8L
                 </div>
-                <div className="absolute top-[35%] left-[50%] text-xs text-white font-medium transform -translate-x-1/2 -translate-y-full">
+                <div className="absolute top-[35%] left-[50%] text-[10px] md:text-xs text-white font-medium transform -translate-x-1/2 -translate-y-full">
                   ₹12L
                 </div>
-                <div className="absolute top-[20%] left-[70%] text-xs text-white font-medium transform -translate-y-full">
+                <div className="absolute top-[20%] left-[70%] text-[10px] md:text-xs text-white font-medium transform -translate-y-full -translate-x-1/2">
                   ₹18L
                 </div>
-                <div className="absolute top-[5%] left-[90%] text-xs text-white font-medium transform -translate-x-1/2 -translate-y-full">
+                <div className="absolute top-[5%] left-[90%] text-[10px] md:text-xs text-white font-medium transform -translate-x-1/2 -translate-y-full">
                   ₹25L+
                 </div>
 
@@ -315,25 +310,25 @@ export function CareerTransformation() {
                 </svg>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {careerPaths.map((path, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 * index }}
-                    className="bg-background/30 rounded-lg p-4"
+                    className="bg-background/30 rounded-lg p-3 sm:p-4"
                   >
-                    <div className="flex items-center mb-2">
-                      <div className="size-8 rounded-full bg-[#0BC5EA]/10 flex items-center justify-center mr-2">
-                        <path.icon className="size-4 text-[#0BC5EA]" />
+                    <div className="flex items-start mb-2">
+                      <div className="size-6 sm:size-8 rounded-full bg-[#0BC5EA]/10 flex items-center justify-center mr-2 flex-shrink-0 mt-0.5">
+                        <path.icon className="size-3 sm:size-4 text-[#0BC5EA]" />
                       </div>
-                      <div className="text-sm font-medium">{path.title}</div>
+                      <div className="text-xs sm:text-sm font-medium leading-tight">{path.title}</div>
                     </div>
-                    <div className="text-xs text-foreground/60 mb-1">{path.company}</div>
-                    <div className="flex justify-between items-center">
-                      <div className="text-sm font-bold">{path.salary}</div>
-                      <Badge variant="outline" className="bg-[#0BC5EA]/10 text-[#0BC5EA] border-[#0BC5EA]/30">
+                    <div className="text-[10px] sm:text-xs text-foreground/60 mb-2 ml-8 sm:ml-10">{path.company}</div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0 ml-8 sm:ml-10">
+                      <div className="text-xs sm:text-sm font-bold">{path.salary}</div>
+                      <Badge variant="outline" className="bg-[#0BC5EA]/10 text-[#0BC5EA] border-[#0BC5EA]/30 text-[10px] sm:text-xs px-1.5 py-0.5 w-fit">
                         {path.growth}
                       </Badge>
                     </div>
