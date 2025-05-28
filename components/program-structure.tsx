@@ -84,7 +84,7 @@ export function ProgramStructure() {
                     </li>
                     <li className="flex items-center">
                       <div className="size-2 bg-[#0BC5EA] rounded-full mr-2"></div>
-                      <span>AI tools (Cursor, Claude, Gpt, etc) & workflows</span>
+                      <span>AI tools (Cursor, Claude, GPT etc) & workflows</span>
                     </li>
                     <li className="flex items-center">
                       <div className="size-2 bg-[#0BC5EA] rounded-full mr-2"></div>
