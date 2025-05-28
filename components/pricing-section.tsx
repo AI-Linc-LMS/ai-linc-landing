@@ -42,6 +42,25 @@ export function PricingSection() {
     show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   }
 
+  // Function to handle Apply Now button click
+  const handleApplyClick = () => {
+    // Create URL with tab parameter
+    const contactApplySectionId = 'contact-apply';
+    const url = `#${contactApplySectionId}?tab=apply`;
+    
+    // Change URL and scroll to section
+    window.history.pushState({}, '', url);
+    
+    // Scroll to the contact-apply section
+    const contactApplySection = document.getElementById(contactApplySectionId);
+    if (contactApplySection) {
+      contactApplySection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Dispatch a custom event that the ContactApplySection component can listen for
+      window.dispatchEvent(new CustomEvent('tabChange', { detail: { tab: 'apply' } }));
+    }
+  };
+
   return (
     <section id="pricing" className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
@@ -109,7 +128,10 @@ export function PricingSection() {
                     </motion.div>
                   </CardContent>
                   <CardFooter className="flex flex-col">
-                    <Button className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]">
+                    <Button 
+                      className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]"
+                      onClick={handleApplyClick}
+                    >
                       Apply Now - Limited Spots
                     </Button>
                     <p className="text-center text-foreground/60 text-sm mt-4">Next cohort starts in 10 June</p>
@@ -159,7 +181,10 @@ export function PricingSection() {
                       </div>
                       <div>
                         <div className="font-semibold text-white">Need more information?</div>
-                        <div className="text-[#6B46C1]">Schedule a free consultation call</div>
+                       
+                        <button>
+                        <div className="text-[#6B46C1]" onClick={handleApplyClick}>Schedule a free consultation call</div>
+                        </button>
                       </div>
                     </div>
                   </CardContent>
@@ -211,7 +236,10 @@ export function PricingSection() {
                     </motion.div>
                   </CardContent>
                   <CardFooter className="flex flex-col">
-                    <Button className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]">
+                    <Button 
+                      className="w-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]"
+                      onClick={handleApplyClick}
+                    >
                       Apply Now - Limited Spots
                     </Button>
                     <p className="text-center text-foreground/60 text-sm mt-4">Next cohort starts in 7 days</p>
@@ -275,6 +303,7 @@ export function PricingSection() {
                     <Button
                       variant="outline"
                       className="w-full border-[#6B46C1]/30 text-[#6B46C1] hover:bg-[#6B46C1]/10"
+                      onClick={handleApplyClick}
                     >
                       Schedule a Consultation
                     </Button>

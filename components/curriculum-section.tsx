@@ -17,7 +17,7 @@ export function CurriculumSection() {
       topics: [
         "Understanding AI systems and capabilities",
         "Prompt engineering fundamentals",
-        "AI tools (Cursor, Claude, Gpt, etc) and workflows",
+        "AI tools (Cursor, Claude, GPT etc) and workflows",
         "Real-world AI applications",
       ],
     },
