@@ -64,11 +64,6 @@ body {
   scrollbar-color: #0BC5EA rgba(26, 32, 44, 0.8);
 }
 
-/* Smooth scrolling for the entire page */
-html {
-  scroll-behavior: smooth;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;

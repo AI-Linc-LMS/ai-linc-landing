@@ -6,8 +6,11 @@ import { Twitter, Linkedin, Instagram, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import { useLenis } from "@/hooks/use-lenis"
 
 export function Footer() {
+  const { scrollTo } = useLenis()
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -96,7 +99,7 @@ export function Footer() {
                       if (applyTabTrigger) {
                         (applyTabTrigger as HTMLElement).click();
                       }
-                      contactApplySection.scrollIntoView({ behavior: 'smooth' });
+                      scrollTo('#contact-apply', { duration: 1.5 })
                     }
                   }}
                 >
@@ -136,7 +139,7 @@ export function Footer() {
                       if (contactTabTrigger) {
                         (contactTabTrigger as HTMLElement).click();
                       }
-                      contactApplySection.scrollIntoView({ behavior: 'smooth' });
+                      scrollTo('#contact-apply', { duration: 1.5 })
                     }
                   }}
                 >
