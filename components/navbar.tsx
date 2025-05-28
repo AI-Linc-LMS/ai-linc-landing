@@ -17,8 +17,10 @@ import {
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
+import { useLenis } from "@/hooks/use-lenis"
 
 export function Navbar() {
+  const { scrollTo } = useLenis()
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -53,34 +55,9 @@ export function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Curriculum</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-2">
-                    <li className="row-span-3">
-                      <NavigationMenuLink asChild>
-                        <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                          href="#curriculum"
-                        >
-                          <div className="mb-2 mt-4 text-lg font-medium">AI LINC Curriculum</div>
-                          <p className="text-sm leading-tight text-muted-foreground">
-                            Our comprehensive curriculum is designed to build practical AI skills that are immediately
-                            applicable in the workplace.
-                          </p>
-                        </a>
-                      </NavigationMenuLink>
-                    </li>
-                    <ListItem href="#curriculum" title="AI Fundamentals">
-                      Core concepts and capabilities of modern AI systems
-                    </ListItem>
-                    <ListItem href="#curriculum" title="Prompt Engineering">
-                      Master the art of crafting effective prompts
-                    </ListItem>
-                    <ListItem href="#curriculum" title="AI Tools & Applications">
-                      Learn to use and integrate popular AI tools
-                    </ListItem>
-                  </ul>
-                </NavigationMenuContent>
+                <Link href="#curriculum" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Curriculum</NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="#instructors" legacyBehavior passHref>
@@ -105,10 +82,7 @@ export function Navbar() {
               className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
               size="lg"
               onClick={() => {
-                const contactApplySection = document.getElementById('contact-apply');
-                if (contactApplySection) {
-                  contactApplySection.scrollIntoView({ behavior: 'smooth' });
-                }
+                scrollTo('#contact-apply', { duration: 1.5 })
               }}
             >
               Apply Now
@@ -172,10 +146,7 @@ export function Navbar() {
                 onClick={() => {
                   setMobileMenuOpen(false);
                   setTimeout(() => {
-                    const contactApplySection = document.getElementById('contact-apply');
-                    if (contactApplySection) {
-                      contactApplySection.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    scrollTo('#contact-apply', { duration: 1.5 })
                   }, 300);
                 }}
               >

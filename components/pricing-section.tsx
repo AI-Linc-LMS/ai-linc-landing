@@ -6,8 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
+import { useLenis } from "@/hooks/use-lenis"
 
 export function PricingSection() {
+  const { scrollTo } = useLenis()
+  
   const features = [
     "21-day AI & Prompt Engineering Foundations",
     "90-day Guided Work Experience",
@@ -51,14 +54,11 @@ export function PricingSection() {
     // Change URL and scroll to section
     window.history.pushState({}, '', url);
     
-    // Scroll to the contact-apply section
-    const contactApplySection = document.getElementById(contactApplySectionId);
-    if (contactApplySection) {
-      contactApplySection.scrollIntoView({ behavior: 'smooth' });
-      
-      // Dispatch a custom event that the ContactApplySection component can listen for
-      window.dispatchEvent(new CustomEvent('tabChange', { detail: { tab: 'apply' } }));
-    }
+    // Scroll to the contact-apply section using Lenis
+    scrollTo('#contact-apply', { duration: 1.5 })
+    
+    // Dispatch a custom event that the ContactApplySection component can listen for
+    window.dispatchEvent(new CustomEvent('tabChange', { detail: { tab: 'apply' } }));
   };
 
   return (

@@ -11,6 +11,7 @@ export function InstructorsSection() {
       company: "Microsoft",
       image: "/shubham_lal.jpg?height=300&width=300",
       expertise: "AI Product Developer",
+      linkedin: "https://www.linkedin.com/in/shubhamlal/",
     },
     {
       name: "Yamini Bandi",
@@ -18,6 +19,7 @@ export function InstructorsSection() {
       company: "Amazon",
       image: "/yamini_bandi.jpg?height=300&width=300",
       expertise: "ML Engineer",
+      linkedin: "https://www.linkedin.com/in/yaminibandi/",
     },
     {
       name: "Divyansh Dubey",
@@ -25,6 +27,7 @@ export function InstructorsSection() {
       company: "Goggle",
       image: "/Divyansh_dubey.jpg?height=300&width=300",
       expertise: "⁠Prompt and GenAI expert",
+      linkedin: "https://www.linkedin.com/in/divyansh-dubey/",
     },
     {
       name: "Abirami Sukumaran",
@@ -32,6 +35,7 @@ export function InstructorsSection() {
       company: "Goggle",
       image: "/Abirami_sukumari.jpg?height=300&width=300",
       expertise: "Cloud AI and Databases",
+      linkedin: "https://www.linkedin.com/in/abiramisukumaran/",
     },
   ]
 
@@ -61,27 +65,33 @@ export function InstructorsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-[#1A202C] border border-[#0BC5EA]/20 rounded-xl overflow-hidden group hover:shadow-[0_0_30px_rgba(11,197,234,0.2)] transition-all duration-500"
             >
-              <div className="relative h-64 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] to-transparent z-10"></div>
-                <img
-                  src={instructor.image || "/placeholder.svg"}
-                  alt={instructor.name}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
-                  <div className="text-xs font-medium text-[#0BC5EA] mb-1">{instructor.company}</div>
-                  <h3 className="text-xl font-bold text-white mb-1">{instructor.name}</h3>
-                  <p className="text-gray-300 text-sm">{instructor.role}</p>
+              <a
+                href={instructor.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-[#1A202C] border border-[#0BC5EA]/20 rounded-xl overflow-hidden group hover:shadow-[0_0_30px_rgba(11,197,234,0.2)] transition-all duration-500 cursor-pointer"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1128] to-transparent z-10"></div>
+                  <img
+                    src={instructor.image || "/placeholder.svg"}
+                    alt={instructor.name}
+                    className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+                    <div className="text-xs font-medium text-[#0BC5EA] mb-1">{instructor.company}</div>
+                    <h3 className="text-xl font-bold text-white mb-1">{instructor.name}</h3>
+                    <p className="text-gray-300 text-sm">{instructor.role}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="p-4 flex items-center justify-between">
-                <div className="text-sm text-gray-300">{instructor.expertise}</div>
-                <div className="size-8 rounded-full bg-[#0BC5EA]/10 flex items-center justify-center group-hover:bg-[#0BC5EA]/20 transition-all duration-300">
-                  <ArrowRight className="size-4 text-[#0BC5EA]" />
+                <div className="p-4 flex items-center justify-between">
+                  <div className="text-sm text-gray-300">{instructor.expertise}</div>
+                  <div className="size-8 rounded-full bg-[#0BC5EA]/10 flex items-center justify-center group-hover:bg-[#0BC5EA]/20 transition-all duration-300">
+                    <ArrowRight className="size-4 text-[#0BC5EA]" />
+                  </div>
                 </div>
-              </div>
+              </a>
             </motion.div>
           ))}
         </div>

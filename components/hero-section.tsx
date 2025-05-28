@@ -4,9 +4,11 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { useLenis } from "@/hooks/use-lenis"
 import Image from "next/image"
 
 export function HeroSection() {
+  const { scrollTo } = useLenis()
   const [timeLeft, setTimeLeft] = useState({
     days: 7,
     hours: 23,
@@ -112,10 +114,7 @@ export function HeroSection() {
                 size="lg"
                 className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-8 py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]"
                 onClick={() => {
-                  const contactApplySection = document.getElementById('contact-apply');
-                  if (contactApplySection) {
-                    contactApplySection.scrollIntoView({ behavior: 'smooth' });
-                  }
+                  scrollTo('#contact-apply', { duration: 1.5 })
                 }}
               >
                 Apply Now - Limited Spots
