@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   title: 'ai-linc',
   description: 'A landing page for AI Linc',
   generator: 'Next.js',
+  icons: {
+    icon: '/vittee.svg',
+    shortcut: '/AL.png',
+    apple: '/Favicon.png',
+  },
 }
 
 export default function RootLayout({
