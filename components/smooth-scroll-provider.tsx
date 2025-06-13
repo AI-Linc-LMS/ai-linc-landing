@@ -11,6 +11,8 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
+    console.log('Initializing Lenis...')
+    
     // Initialize Lenis with basic configuration
     const lenis = new Lenis({
       duration: 1.2,
@@ -18,6 +20,12 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     })
 
     lenisRef.current = lenis
+    console.log('Lenis initialized:', lenis)
+
+    // Expose lenis instance globally immediately
+    // @ts-ignore
+    window.lenis = lenis
+    console.log('Lenis exposed globally')
 
     // Animation frame loop
     function raf(time: number) {
@@ -26,18 +34,14 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
     }
 
     requestAnimationFrame(raf)
+    console.log('Lenis animation loop started')
 
     // Cleanup
     return () => {
+      console.log('Cleaning up Lenis')
       lenis.destroy()
-    }
-  }, [])
-
-  // Expose lenis instance globally for programmatic scrolling
-  useEffect(() => {
-    if (lenisRef.current) {
       // @ts-ignore
-      window.lenis = lenisRef.current
+      window.lenis = null
     }
   }, [])
 

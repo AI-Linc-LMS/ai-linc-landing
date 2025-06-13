@@ -24,7 +24,7 @@ export function InstructorsSection() {
     {
       name: "Divyansh Dubey",
       role: "Gen AI",
-      company: "Goggle",
+      company: "Google",
       image: "/Divyansh_dubey.jpg?height=300&width=300",
       expertise: "⁠Prompt and GenAI expert",
       linkedin: "https://www.linkedin.com/in/divyansh-dubey/",
@@ -32,7 +32,7 @@ export function InstructorsSection() {
     {
       name: "Abirami Sukumaran",
       role: "Staff Developer Advocate",
-      company: "Goggle",
+      company: "Google",
       image: "/Abirami_sukumari.jpg?height=300&width=300",
       expertise: "Cloud AI and Databases",
       linkedin: "https://www.linkedin.com/in/abiramisukumaran/",

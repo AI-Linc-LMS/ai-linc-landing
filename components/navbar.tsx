@@ -82,7 +82,26 @@ export function Navbar() {
               className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
               size="lg"
               onClick={() => {
-                scrollTo('#contact-apply', { duration: 1.5 })
+                console.log('Navbar Apply Now button clicked!');
+                
+                // Try Lenis first
+                try {
+                  scrollTo('#contact-apply', { duration: 1.5 });
+                  console.log('Navbar Lenis scroll attempted');
+                } catch (error) {
+                  console.log('Navbar Lenis failed, using fallback:', error);
+                  // Fallback to native scroll
+                  const element = document.getElementById('contact-apply');
+                  if (element) {
+                    element.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                    console.log('Navbar native scroll used');
+                  } else {
+                    console.log('Navbar: Element not found!');
+                  }
+                }
               }}
             >
               Apply Now
@@ -146,7 +165,26 @@ export function Navbar() {
                 onClick={() => {
                   setMobileMenuOpen(false);
                   setTimeout(() => {
-                    scrollTo('#contact-apply', { duration: 1.5 })
+                    console.log('Mobile Apply Now button clicked!');
+                    
+                    // Try Lenis first
+                    try {
+                      scrollTo('#contact-apply', { duration: 1.5 });
+                      console.log('Mobile Lenis scroll attempted');
+                    } catch (error) {
+                      console.log('Mobile Lenis failed, using fallback:', error);
+                      // Fallback to native scroll
+                      const element = document.getElementById('contact-apply');
+                      if (element) {
+                        element.scrollIntoView({ 
+                          behavior: 'smooth',
+                          block: 'start'
+                        });
+                        console.log('Mobile native scroll used');
+                      } else {
+                        console.log('Mobile: Element not found!');
+                      }
+                    }
                   }, 300);
                 }}
               >
