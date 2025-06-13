@@ -114,7 +114,38 @@ export function HeroSection() {
                 size="lg"
                 className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-8 py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]"
                 onClick={() => {
-                  scrollTo('#contact-apply', { duration: 1.5 })
+                  console.log('=== HERO APPLY NOW BUTTON CLICKED ===');
+                  
+                  // Check if element exists
+                  const element = document.getElementById('contact-apply');
+                  console.log('Target element found:', !!element);
+                  if (element) {
+                    console.log('Element position:', element.getBoundingClientRect());
+                  }
+                  
+                  // Check if Lenis is available
+                  console.log('Window.lenis:', (window as any).lenis);
+                  console.log('ScrollTo function:', scrollTo);
+                  
+                  // Try Lenis first
+                  try {
+                    scrollTo('#contact-apply', { duration: 1.5 });
+                    console.log('✅ Lenis scroll attempted successfully');
+                  } catch (error) {
+                    console.log('❌ Lenis failed, using fallback:', error);
+                    // Fallback to native scroll
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                      });
+                      console.log('✅ Native scroll used');
+                    } else {
+                      console.log('❌ Element not found for native scroll!');
+                    }
+                  }
+                  
+                  console.log('=== END HERO BUTTON DEBUG ===');
                 }}
               >
                 Apply Now - Limited Spots
