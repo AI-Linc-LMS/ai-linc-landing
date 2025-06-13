@@ -47,6 +47,8 @@ export function PricingSection() {
 
   // Function to handle Apply Now button click
   const handleApplyClick = () => {
+    console.log('Pricing Apply Now button clicked!');
+    
     // Create URL with tab parameter
     const contactApplySectionId = 'contact-apply';
     const url = `#${contactApplySectionId}?tab=apply`;
@@ -54,8 +56,24 @@ export function PricingSection() {
     // Change URL and scroll to section
     window.history.pushState({}, '', url);
     
-    // Scroll to the contact-apply section using Lenis
-    scrollTo('#contact-apply', { duration: 1.5 })
+    // Try Lenis first
+    try {
+      scrollTo('#contact-apply', { duration: 1.5 });
+      console.log('Pricing Lenis scroll attempted');
+    } catch (error) {
+      console.log('Pricing Lenis failed, using fallback:', error);
+      // Fallback to native scroll
+      const element = document.getElementById('contact-apply');
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+        console.log('Pricing native scroll used');
+      } else {
+        console.log('Pricing: Element not found!');
+      }
+    }
     
     // Dispatch a custom event that the ContactApplySection component can listen for
     window.dispatchEvent(new CustomEvent('tabChange', { detail: { tab: 'apply' } }));
