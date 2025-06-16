@@ -76,6 +76,10 @@ export default function WorkshopRegistration() {
       console.log('API Response:', data) // Debug log
 
       if (!response.ok) {
+        if (response.status === 400) {
+          toast.error('You are already registered')
+          return
+        }
         throw new Error(data.message || 'Registration failed')
       }
 
