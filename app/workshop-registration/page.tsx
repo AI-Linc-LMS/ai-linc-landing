@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Linkedin, Award, Star } from "lucide-react"
+import { toast, Toaster } from "sonner"
 
 export default function WorkshopRegistration() {
   const [timeLeft, setTimeLeft] = useState({
@@ -17,6 +18,15 @@ export default function WorkshopRegistration() {
     minutes: 0,
     seconds: 0
   })
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone_number: "",
+    workshop_name: "No code development using Agentic AI"
+  })
+
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const targetDate = new Date("2025-06-22T12:30:00")
@@ -38,14 +48,56 @@ export default function WorkshopRegistration() {
     return () => clearInterval(interval)
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
+    setIsLoading(true)
+
+    try {
+      console.log('Submitting form data:', formData) // Debug log
+
+      const response = await fetch('https://be-app.ailinc.com/api/clients/1/workshop-registrations/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+      console.log('API Response:', data) // Debug log
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Registration failed')
+      }
+
+      toast.success('Registration successful! We will contact you soon.')
+      setFormData({
+        name: "",
+        email: "",
+        phone_number: "",
+        workshop_name: "No code development using Agentic AI"
+      })
+    } catch (error) {
+      console.error('Registration error:', error)
+      toast.error(error instanceof Error ? error.message : 'Registration failed. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <main className="relative min-h-screen bg-gradient-to-b from-[#0A1128] to-[#1A202C] text-white overflow-hidden">
+        <Toaster position="top-center" richColors />
         <Navbar />
         
         <div className="container mx-auto px-4 py-16">
@@ -189,6 +241,8 @@ export default function WorkshopRegistration() {
                       id="name"
                       type="text"
                       required
+                      value={formData.name}
+                      onChange={handleInputChange}
                       className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
                       placeholder="Enter your full name"
                     />
@@ -200,17 +254,21 @@ export default function WorkshopRegistration() {
                       id="email"
                       type="email"
                       required
+                      value={formData.email}
+                      onChange={handleInputChange}
                       className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
                       placeholder="Enter your email address"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number</label>
+                    <label htmlFor="phone_number" className="block text-sm font-medium mb-2">Phone Number</label>
                     <Input
-                      id="phone"
+                      id="phone_number"
                       type="tel"
                       required
+                      value={formData.phone_number}
+                      onChange={handleInputChange}
                       className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
                       placeholder="Enter your phone number"
                     />
@@ -218,9 +276,10 @@ export default function WorkshopRegistration() {
 
                   <Button 
                     type="submit"
-                    className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white"
+                    disabled={isLoading}
+                    className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white   cursor-pointer"
                   >
-                    Register Now
+                    {isLoading ? 'Registering...' : 'Register Now'}
                   </Button>
                 </form>
               </CardContent>
