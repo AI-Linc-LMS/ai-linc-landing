@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Linkedin } from "lucide-react"
+import { Linkedin, Award, Star } from "lucide-react"
 
 export default function WorkshopRegistration() {
   const [timeLeft, setTimeLeft] = useState({
@@ -84,23 +84,99 @@ export default function WorkshopRegistration() {
               </div>
 
               {/* Speakers */}
-              <div className="flex flex-wrap justify-center gap-6 mb-12">
-                <a href="https://www.linkedin.com/in/shubhamlal/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-background/30 rounded-lg p-3 hover:bg-background/50 transition-colors">
-                  <Linkedin className="text-[#0BC5EA]" />
-                  <span>Shubham Lal</span>
-                </a>
-                <a href="https://www.linkedin.com/in/yaminibandi/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-background/30 rounded-lg p-3 hover:bg-background/50 transition-colors">
-                  <Linkedin className="text-[#0BC5EA]" />
-                  <span>Yamini Bandi</span>
-                </a>
-                <a href="https://www.linkedin.com/in/divyansh-dubey/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-background/30 rounded-lg p-3 hover:bg-background/50 transition-colors">
-                  <Linkedin className="text-[#0BC5EA]" />
-                  <span>Divyansh Dubey</span>
-                </a>
-                <a href="https://www.linkedin.com/in/poorva-shrivastava-ceo/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-background/30 rounded-lg p-3 hover:bg-background/50 transition-colors">
-                  <Linkedin className="text-[#0BC5EA]" />
-                  <span>Poorva Shrivastava</span>
-                </a>
+              <div className="space-y-8 mb-12">
+                {/* Main Speaker */}
+                <div className="bg-gradient-to-r from-[#0BC5EA]/10 to-[#6B46C1]/10 rounded-xl p-6 border border-[#0BC5EA]/20">
+                  <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="flex-shrink-0">
+                      <div className="size-24 rounded-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] p-[2px]">
+                        <div className="size-full rounded-full bg-background/90 flex items-center justify-center">
+                          <Star className="size-12 text-[#0BC5EA]" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-center md:text-left">
+                      <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
+                      <p className="text-lg text-foreground/80 mb-3">Main Speaker</p>
+                      <p className="text-foreground/60 mb-4">Expert in No-Code Development & Agentic AI</p>
+                      <a 
+                        href="https://www.linkedin.com/in/shubhamlal/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center gap-2 bg-[#0BC5EA]/10 hover:bg-[#0BC5EA]/20 text-[#0BC5EA] px-4 py-2 rounded-lg transition-colors"
+                      >
+                        <Linkedin className="size-5" />
+                        <span>Connect on LinkedIn</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Other Speakers */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-background/30 rounded-xl p-6 border border-[#0BC5EA]/20 hover:border-[#0BC5EA]/40 transition-colors">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="size-16 rounded-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] p-[2px] mb-4">
+                        <div className="size-full rounded-full bg-background/90 flex items-center justify-center">
+                          <Award className="size-8 text-[#0BC5EA]" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Yamini Bandi</h3>
+                      <p className="text-foreground/60 mb-4">Brand Ambassador</p>
+                      <a 
+                        href="https://www.linkedin.com/in/yaminibandi/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center gap-2 text-[#0BC5EA] hover:text-[#0BC5EA]/80 transition-colors"
+                      >
+                        <Linkedin className="size-5" />
+                        <span>Connect</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="bg-background/30 rounded-xl p-6 border border-[#0BC5EA]/20 hover:border-[#0BC5EA]/40 transition-colors">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="size-16 rounded-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] p-[2px] mb-4">
+                        <div className="size-full rounded-full bg-background/90 flex items-center justify-center">
+                          <Award className="size-8 text-[#0BC5EA]" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Divyansh Dubey</h3>
+                      <p className="text-foreground/60 mb-4">Brand Ambassador</p>
+                      <a 
+                        href="https://www.linkedin.com/in/divyansh-dubey/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center gap-2 text-[#0BC5EA] hover:text-[#0BC5EA]/80 transition-colors"
+                      >
+                        <Linkedin className="size-5" />
+                        <span>Connect</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="bg-background/30 rounded-xl p-6 border border-[#0BC5EA]/20 hover:border-[#0BC5EA]/40 transition-colors">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="size-16 rounded-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] p-[2px] mb-4">
+                        <div className="size-full rounded-full bg-background/90 flex items-center justify-center">
+                          <Award className="size-8 text-[#0BC5EA]" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Poorva Shrivastava</h3>
+                      <p className="text-foreground/60 mb-4">CEO & Brand Ambassador</p>
+                      <a 
+                        href="https://www.linkedin.com/in/poorva-shrivastava-ceo/" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-flex items-center gap-2 text-[#0BC5EA] hover:text-[#0BC5EA]/80 transition-colors"
+                      >
+                        <Linkedin className="size-5" />
+                        <span>Connect</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
