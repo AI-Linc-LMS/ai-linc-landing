@@ -130,7 +130,7 @@ export default function WorkshopRegistration() {
           >
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
-                No code development using Agentic AI
+                Develop Products without writing code
               </h1>
               <p className="text-xl text-foreground/80 mb-8">
                 Develop tech products without single line of code
@@ -176,8 +176,8 @@ export default function WorkshopRegistration() {
                     <div className="text-center md:text-left">
                       <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
                       <p className="text-lg text-foreground/80 mb-1">SDE 2 at Microsoft</p>
-                      <p className="text-foreground/60 mb-1">Full Stack</p>
-                      <p className="text-foreground/60 mb-4">Data Science | AI</p>
+                      <p className="text-foreground/60 mb-1">Full Stack
+                     Data Science | AI</p>
                       <a
                         href="https://www.linkedin.com/in/shubhamlal/"
                         target="_blank"
@@ -258,7 +258,7 @@ export default function WorkshopRegistration() {
                       </div>
 
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Poorva Shrivastava</h3>
-                      <p className="text-foreground/60 mb-4">Chief Marketing Officer at AI LincS</p>
+                      <p className="text-foreground/60 mb-4">Chief Marketing Officer at AI Linc</p>
                       <a
                         href="https://www.linkedin.com/in/poorva-shrivastava-ceo/"
                         target="_blank"
