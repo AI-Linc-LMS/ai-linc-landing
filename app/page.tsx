@@ -56,7 +56,7 @@ function WebinarModal() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="max-w-lg w-full">
         <DialogHeader>
-          <DialogTitle>Webinar: "No code development using Agentic AI"</DialogTitle>
+          <DialogTitle>Webinar: "Develop Product without writing code"</DialogTitle>
           <DialogDescription>
             <div className="text-base font-medium mt-2 mb-1">Develop tech products without single line of code</div>
             <div className="text-sm mb-4">Sunday 12:30pm (22nd June 2025)</div>
