@@ -27,6 +27,7 @@ export default function WorkshopRegistration() {
   })
 
   const [isLoading, setIsLoading] = useState(false)
+  const [phoneError, setPhoneError] = useState("")
 
   useEffect(() => {
     const targetDate = new Date("2025-06-22T12:30:00")
@@ -50,6 +51,16 @@ export default function WorkshopRegistration() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
+    if (id === "phone_number") {
+      // Validate phone number: only digits, length 10
+      if (!/^\d{0,10}$/.test(value)) {
+        setPhoneError("Phone number must be numeric and up to 10 digits")
+      } else if (value.length === 10) {
+        setPhoneError("")
+      } else {
+        setPhoneError("Phone number must be 10 digits")
+      }
+    }
     setFormData(prev => ({
       ...prev,
       [id]: value
@@ -58,6 +69,11 @@ export default function WorkshopRegistration() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    // Phone validation before submit
+    if (formData.phone_number.length !== 10 || !/^\d{10}$/.test(formData.phone_number)) {
+      setPhoneError("Phone number must be exactly 10 digits")
+      return
+    }
     setIsLoading(true)
 
     try {
@@ -109,7 +125,7 @@ export default function WorkshopRegistration() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-4xl mx-auto z-10"
           >
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
@@ -153,8 +169,9 @@ export default function WorkshopRegistration() {
                     </div>
                     <div className="text-center md:text-left">
                       <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
-                      <p className="text-lg text-foreground/80 mb-3">Main Speaker</p>
-                      <p className="text-foreground/60 mb-4">Expert in No-Code Development & Agentic AI</p>
+                      <p className="text-lg text-foreground/80 mb-1">SDE 2 at Microsoft</p>
+                      <p className="text-foreground/60 mb-1">Full Stack</p>
+                      <p className="text-foreground/60 mb-4">Data Science | AI</p>
                       <a 
                         href="https://www.linkedin.com/in/shubhamlal/" 
                         target="_blank" 
@@ -276,11 +293,14 @@ export default function WorkshopRegistration() {
                       className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
                       placeholder="Enter your phone number"
                     />
+                    {phoneError && (
+                      <p className="text-red-500 text-xs mt-1">{phoneError}</p>
+                    )}
                   </div>
 
                   <Button 
                     type="submit"
-                    disabled={isLoading}
+                    disabled={isLoading || !!phoneError}
                     className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white   cursor-pointer"
                   >
                     {isLoading ? 'Registering...' : 'Register Now'}
@@ -294,8 +314,8 @@ export default function WorkshopRegistration() {
         <Footer />
 
         {/* Background glow effects */}
-        <div className="absolute top-1/4 right-1/3 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/3 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 right-1/3 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
+        <div className="absolute bottom-1/4 left-1/3 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
       </main>
     </ThemeProvider>
   )
