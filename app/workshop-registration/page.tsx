@@ -169,8 +169,9 @@ export default function WorkshopRegistration() {
                     </div>
                     <div className="text-center md:text-left">
                       <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
-                      <p className="text-lg text-foreground/80 mb-3">Main Speaker</p>
-                      <p className="text-foreground/60 mb-4">Expert in No-Code Development & Agentic AI</p>
+                      <p className="text-lg text-foreground/80 mb-1">SDE 2 at Microsoft</p>
+                      <p className="text-foreground/60 mb-1">Full Stack</p>
+                      <p className="text-foreground/60 mb-4">Data Science | AI</p>
                       <a 
                         href="https://www.linkedin.com/in/shubhamlal/" 
                         target="_blank" 
