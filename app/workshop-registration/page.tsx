@@ -27,6 +27,7 @@ export default function WorkshopRegistration() {
   })
 
   const [isLoading, setIsLoading] = useState(false)
+  const [phoneError, setPhoneError] = useState("")
 
   useEffect(() => {
     const targetDate = new Date("2025-06-22T12:30:00")
@@ -50,6 +51,16 @@ export default function WorkshopRegistration() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
+    if (id === "phone_number") {
+      // Validate phone number: only digits, length 10
+      if (!/^\d{0,10}$/.test(value)) {
+        setPhoneError("Phone number must be numeric and up to 10 digits")
+      } else if (value.length === 10) {
+        setPhoneError("")
+      } else {
+        setPhoneError("Phone number must be 10 digits")
+      }
+    }
     setFormData(prev => ({
       ...prev,
       [id]: value
@@ -58,6 +69,11 @@ export default function WorkshopRegistration() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    // Phone validation before submit
+    if (formData.phone_number.length !== 10 || !/^\d{10}$/.test(formData.phone_number)) {
+      setPhoneError("Phone number must be exactly 10 digits")
+      return
+    }
     setIsLoading(true)
 
     try {
@@ -276,11 +292,14 @@ export default function WorkshopRegistration() {
                       className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
                       placeholder="Enter your phone number"
                     />
+                    {phoneError && (
+                      <p className="text-red-500 text-xs mt-1">{phoneError}</p>
+                    )}
                   </div>
 
                   <Button 
                     type="submit"
-                    disabled={isLoading}
+                    disabled={isLoading || !!phoneError}
                     className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white   cursor-pointer"
                   >
                     {isLoading ? 'Registering...' : 'Register Now'}
