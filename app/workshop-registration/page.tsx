@@ -9,7 +9,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Linkedin, Award, Star } from "lucide-react"
-import { toast, Toaster } from "sonner"
+import { toast, Toaster } from "sonner";
+import Image from "next/image"
 
 export default function WorkshopRegistration() {
   const [timeLeft, setTimeLeft] = useState({
@@ -161,11 +162,16 @@ export default function WorkshopRegistration() {
                 <div className="bg-gradient-to-r from-[#0BC5EA]/10 to-[#6B46C1]/10 rounded-xl p-6 border border-[#0BC5EA]/20">
                   <div className="flex flex-col md:flex-row items-center gap-6">
                     <div className="flex-shrink-0">
-                      <div className="size-24 rounded-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] p-[2px]">
-                        <div className="size-full rounded-full bg-background/90 flex items-center justify-center">
-                          <Star className="size-12 text-[#0BC5EA]" />
-                        </div>
-                      </div>
+                    <div className="size-24 rounded-full overflow-hidden border-4 border-[#0BC5EA] p-1">
+  <Image
+    src="/shubham_lal.jpg"
+    alt="Shubham Lal"
+    width={96}
+    height={96}
+    className="object-cover w-full h-full rounded-full"
+/>
+</div>
+
                     </div>
                     <div className="text-center md:text-left">
                       <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
@@ -189,11 +195,16 @@ export default function WorkshopRegistration() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="bg-background/30 rounded-xl p-6 border border-[#0BC5EA]/20 hover:border-[#0BC5EA]/40 transition-colors">
                     <div className="flex flex-col items-center text-center">
-                      <div className="size-16 rounded-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] p-[2px] mb-4">
-                        <div className="size-full rounded-full bg-background/90 flex items-center justify-center">
-                          <Award className="size-8 text-[#0BC5EA]" />
-                        </div>
-                      </div>
+                    <div className="size-24 rounded-full overflow-hidden border-4 border-[#0BC5EA] p-1">
+  <Image
+    src="/yamini_bandi.jpg"
+    alt="Shubham Lal"
+    width={96}
+    height={96}
+    className="object-cover w-full h-full rounded-full"
+/>
+</div>
+
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Yamini Bandi</h3>
                       <p className="text-foreground/60 mb-4">Developer at Amazon</p>
                       <a 
@@ -210,11 +221,16 @@ export default function WorkshopRegistration() {
 
                   <div className="bg-background/30 rounded-xl p-6 border border-[#0BC5EA]/20 hover:border-[#0BC5EA]/40 transition-colors">
                     <div className="flex flex-col items-center text-center">
-                      <div className="size-16 rounded-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] p-[2px] mb-4">
-                        <div className="size-full rounded-full bg-background/90 flex items-center justify-center">
-                          <Award className="size-8 text-[#0BC5EA]" />
-                        </div>
-                      </div>
+                    <div className="size-24 rounded-full overflow-hidden border-4 border-[#0BC5EA] p-1">
+  <Image
+    src="/Divyansh_dubey.jpg"
+    alt="Shubham Lal"
+    width={96}
+    height={96}
+    className="object-cover w-full h-full rounded-full"
+/>
+</div>
+
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Divyansh Dubey</h3>
                       <p className="text-foreground/60 mb-4">Generative AI Engineer at Google </p>
                       <a 
@@ -231,11 +247,16 @@ export default function WorkshopRegistration() {
 
                   <div className="bg-background/30 rounded-xl p-6 border border-[#0BC5EA]/20 hover:border-[#0BC5EA]/40 transition-colors">
                     <div className="flex flex-col items-center text-center">
-                      <div className="size-16 rounded-full bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] p-[2px] mb-4">
-                        <div className="size-full rounded-full bg-background/90 flex items-center justify-center">
-                          <Award className="size-8 text-[#0BC5EA]" />
-                        </div>
-                      </div>
+                    <div className="size-24 rounded-full overflow-hidden border-4 border-[#0BC5EA] p-1">
+  <Image
+    src="/poorva.jpg"
+    alt="Shubham Lal"
+    width={96}
+    height={96}
+    className="object-cover w-full h-full rounded-full"
+/>
+</div>
+
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Poorva Shrivastava</h3>
                       <p className="text-foreground/60 mb-4">Chief Marketing Officer at AI LincS</p>
                       <a 
