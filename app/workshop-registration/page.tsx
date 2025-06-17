@@ -195,7 +195,7 @@ export default function WorkshopRegistration() {
                         </div>
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Yamini Bandi</h3>
-                      <p className="text-foreground/60 mb-4">Brand Ambassador</p>
+                      <p className="text-foreground/60 mb-4">Developer at Amazon</p>
                       <a 
                         href="https://www.linkedin.com/in/yaminibandi/" 
                         target="_blank" 
@@ -216,7 +216,7 @@ export default function WorkshopRegistration() {
                         </div>
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Divyansh Dubey</h3>
-                      <p className="text-foreground/60 mb-4">Brand Ambassador</p>
+                      <p className="text-foreground/60 mb-4">Generative AI Engineer at Google </p>
                       <a 
                         href="https://www.linkedin.com/in/divyansh-dubey/" 
                         target="_blank" 
@@ -237,7 +237,7 @@ export default function WorkshopRegistration() {
                         </div>
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Poorva Shrivastava</h3>
-                      <p className="text-foreground/60 mb-4">CEO & Brand Ambassador</p>
+                      <p className="text-foreground/60 mb-4">Chief Marketing Officer at AI LincS</p>
                       <a 
                         href="https://www.linkedin.com/in/poorva-shrivastava-ceo/" 
                         target="_blank" 
