@@ -76,7 +76,7 @@ export function Navbar() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/workshop-registration" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Register</NavigationMenuLink>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Webinar</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
