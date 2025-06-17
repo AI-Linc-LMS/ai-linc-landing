@@ -281,7 +281,7 @@ export default function WorkshopRegistration() {
                   <Button 
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white   cursor-pointer"
+                    className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white cursor-pointer"
                   >
                     {isLoading ? 'Registering...' : 'Register Now'}
                   </Button>
@@ -294,8 +294,8 @@ export default function WorkshopRegistration() {
         <Footer />
 
         {/* Background glow effects */}
-        <div className="absolute top-1/4 right-1/3 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-1/3 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 right-1/3 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-1/4 left-1/3 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl pointer-events-none"></div>
       </main>
     </ThemeProvider>
   )
