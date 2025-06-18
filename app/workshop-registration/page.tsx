@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Linkedin, Award, Star } from "lucide-react"
+import { Linkedin, Award, Star, Youtube, Instagram } from "lucide-react"
 import { toast, Toaster } from "sonner"
 import Image from "next/image"
 
@@ -346,21 +346,52 @@ export default function WorkshopRegistration() {
               <p className="text-foreground/80 mb-6">
                 Join our WhatsApp community for AI opportunities and updates:
               </p>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
                 <a
-                  href="https://chat.whatsapp.com/BLDoMZGFTO9ASOhPn2MJ3L"
+                  href="https://chat.whatsapp.com/your-whatsapp-group-link"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#25D366] hover:bg-[#25D366]/90 text-white px-6 py-3 rounded-lg text-center font-medium"
                 >
-                  Join WhatsApp Community
+                  Join AI Community
                 </a>
                 <Button
                   onClick={closeModal}
-                  className="bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white"
+                  className="bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white mt-4"
                 >
                   Close
                 </Button>
+                <div className="flex justify-center gap-4 mt-4">
+                  <a
+                    href="https://youtube.com/@ailinc772?si=BhOlO4fwHqGiAncC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#0BC5EA] hover:text-[#0BC5EA]/80 transition-colors"
+                    aria-label="Follow us on YouTube"
+                  >
+                    <Youtube className="size-6" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/ai-linc772/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#0BC5EA] hover:text-[#0BC5EA]/80 transition-colors"
+                    aria-label="Follow us on LinkedIn"
+                  >
+                    <Linkedin className="size-6" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/ai_lincc/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#0BC5EA] hover:text-[#0BC5EA]/80 transition-colors"
+                    aria-label="Follow us on Instagram"
+                  >
+                    <Instagram className="size-6" />
+
+                  </a>
+                </div>
+
               </div>
             </motion.div>
           </div>
