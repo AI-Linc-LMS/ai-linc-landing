@@ -348,7 +348,7 @@ export default function WorkshopRegistration() {
               </p>
               <div className="flex flex-col gap-2">
                 <a
-                  href="https://chat.whatsapp.com/your-whatsapp-group-link"
+                  href="https://chat.whatsapp.com/BLDoMZGFTO9ASOhPn2MJ3L"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#25D366] hover:bg-[#25D366]/90 text-white px-6 py-3 rounded-lg text-center font-medium"
