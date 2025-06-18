@@ -181,7 +181,7 @@ export default function WorkshopRegistration() {
                     </div>
                     <div className="text-center md:text-left">
                       <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
-                      <p className="text-lg text-foreground/80 mb-1 flex items-center gap-2">
+                      <p className="text-lg text-foreground/80 mb-1 flex items-center gap-2 mx-9 md:mx-0">
                         SDE 2 at  <Image src={MicrosoftLogo} alt="Microsoft Logo" width={64} height={64} />
                       </p>
                       <p className="text-foreground/60 mb-1">Full Stack Data Science | AI</p>
