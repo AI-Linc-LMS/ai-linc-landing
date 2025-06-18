@@ -9,7 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Linkedin, Award, Star } from "lucide-react"
-import { toast, Toaster } from "sonner";
+import { toast, Toaster } from "sonner"
 import Image from "next/image"
 
 export default function WorkshopRegistration() {
@@ -29,6 +29,7 @@ export default function WorkshopRegistration() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [phoneError, setPhoneError] = useState("")
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const targetDate = new Date("2025-06-22T12:30:00")
@@ -53,7 +54,6 @@ export default function WorkshopRegistration() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
     if (id === "phone_number") {
-      // Validate phone number: only digits, length 10
       if (!/^\d{0,10}$/.test(value)) {
         setPhoneError("Phone number must be numeric and up to 10 digits")
       } else if (value.length === 10) {
@@ -70,7 +70,6 @@ export default function WorkshopRegistration() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Phone validation before submit
     if (formData.phone_number.length !== 10 || !/^\d{10}$/.test(formData.phone_number)) {
       setPhoneError("Phone number must be exactly 10 digits")
       return
@@ -78,7 +77,7 @@ export default function WorkshopRegistration() {
     setIsLoading(true)
 
     try {
-      console.log('Submitting form data:', formData) // Debug log
+      console.log('Submitting form data:', formData)
 
       const response = await fetch('https://be-app.ailinc.com/api/clients/1/workshop-registrations/', {
         method: 'POST',
@@ -90,7 +89,7 @@ export default function WorkshopRegistration() {
       })
 
       const data = await response.json()
-      console.log('API Response:', data) // Debug log
+      console.log('API Response:', data)
 
       if (!response.ok) {
         if (response.status === 400) {
@@ -100,7 +99,7 @@ export default function WorkshopRegistration() {
         throw new Error(data.message || 'Registration failed')
       }
 
-      toast.success('Registration successful! We will contact you soon.')
+      setShowModal(true)
       setFormData({
         name: "",
         email: "",
@@ -113,6 +112,10 @@ export default function WorkshopRegistration() {
     } finally {
       setIsLoading(false)
     }
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
   }
 
   return (
@@ -133,7 +136,7 @@ export default function WorkshopRegistration() {
                 No code development using Agentic Ai
               </h1>
               <p className="text-xl text-foreground/80 mb-8">
-              Develop Products without writing code
+                Develop Products without writing code
               </p>
 
               {/* Countdown Timer */}
@@ -171,13 +174,11 @@ export default function WorkshopRegistration() {
                           className="object-cover w-full h-full rounded-full"
                         />
                       </div>
-
                     </div>
                     <div className="text-center md:text-left">
                       <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
                       <p className="text-lg text-foreground/80 mb-1">SDE 2 at Microsoft</p>
-                      <p className="text-foreground/60 mb-1">Full Stack
-                     Data Science | AI</p>
+                      <p className="text-foreground/60 mb-1">Full Stack Data Science | AI</p>
                       <a
                         href="https://www.linkedin.com/in/shubhamlal/"
                         target="_blank"
@@ -198,13 +199,12 @@ export default function WorkshopRegistration() {
                       <div className="size-24 rounded-full overflow-hidden border-4 border-[#0BC5EA] p-1">
                         <Image
                           src="/yamini_bandi.jpg"
-                          alt="Shubham Lal"
+                          alt="Yamini Bandi"
                           width={96}
                           height={96}
                           className="object-cover w-full h-full rounded-full"
                         />
                       </div>
-
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Yamini Bandi</h3>
                       <p className="text-foreground/60 mb-4">Developer at Amazon</p>
                       <a
@@ -224,15 +224,14 @@ export default function WorkshopRegistration() {
                       <div className="size-24 rounded-full overflow-hidden border-4 border-[#0BC5EA] p-1">
                         <Image
                           src="/Divyansh_dubey.jpg"
-                          alt="Shubham Lal"
+                          alt="Divyansh Dubey"
                           width={96}
                           height={96}
                           className="object-cover w-full h-full rounded-full"
                         />
                       </div>
-
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Divyansh Dubey</h3>
-                      <p className="text-foreground/60 mb-4">Generative AI Engineer at Google </p>
+                      <p className="text-foreground/60 mb-4">Generative AI Engineer at Google</p>
                       <a
                         href="https://www.linkedin.com/in/divyansh-dubey/"
                         target="_blank"
@@ -250,13 +249,12 @@ export default function WorkshopRegistration() {
                       <div className="size-24 rounded-full overflow-hidden border-4 border-[#0BC5EA] p-1">
                         <Image
                           src="/poorva_image.jpg"
-                          alt="Shubham Lal"
+                          alt="Poorva Shrivastava"
                           width={96}
                           height={96}
                           className="object-cover w-full h-full rounded-full"
                         />
                       </div>
-
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Poorva Shrivastava</h3>
                       <p className="text-foreground/60 mb-4">Chief Marketing Officer at AI Linc</p>
                       <a
@@ -322,7 +320,7 @@ export default function WorkshopRegistration() {
                   <Button
                     type="submit"
                     disabled={isLoading || !!phoneError}
-                    className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white   cursor-pointer"
+                    className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white cursor-pointer"
                   >
                     {isLoading ? 'Registering...' : 'Register Now'}
                   </Button>
@@ -332,6 +330,42 @@ export default function WorkshopRegistration() {
           </motion.div>
         </div>
 
+        {/* Registration Success Modal */}
+        {showModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-background/80 backdrop-blur-sm rounded-xl p-8 max-w-md w-full border border-[#0BC5EA]/30"
+            >
+              <h2 className="text-2xl font-bold text-[#0BC5EA] mb-4">Registration Successful!</h2>
+              <p className="text-foreground/80 mb-6">
+                Thank you for registering! You'll receive a confirmation email with further details soon.
+              </p>
+              <p className="text-foreground/80 mb-6">
+                Join our WhatsApp community for AI opportunities and updates:
+              </p>
+              <div className="flex flex-col gap-4">
+                <a
+                  href="https://chat.whatsapp.com/BLDoMZGFTO9ASOhPn2MJ3L"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#25D366] hover:bg-[#25D366]/90 text-white px-6 py-3 rounded-lg text-center font-medium"
+                >
+                  Join WhatsApp Community
+                </a>
+                <Button
+                  onClick={closeModal}
+                  className="bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white"
+                >
+                  Close
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+
         <Footer />
 
         {/* Background glow effects */}
@@ -340,4 +374,4 @@ export default function WorkshopRegistration() {
       </main>
     </ThemeProvider>
   )
-} 
+}
