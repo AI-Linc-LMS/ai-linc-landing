@@ -266,7 +266,7 @@ export default function WorkshopRegistration() {
                         />
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Poorva Shrivastava</h3>
-                      <p className="text-foreground/60 mb-4">CMO at AI Linc AI-LINC</p>
+                      <p className="text-foreground/60 mb-4">CMO at AI Linc </p>
                       <a
                         href="https://www.linkedin.com/in/poorva-shrivastava-ceo/"
                         target="_blank"
