@@ -1,5 +1,4 @@
 "use client"
-
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Input } from "@/components/ui/input"
@@ -11,6 +10,9 @@ import { Footer } from "@/components/footer"
 import { Linkedin, Youtube, Instagram } from "lucide-react"
 import { toast, Toaster } from "sonner"
 import Image from "next/image"
+import MicrosoftLogo from "../../public/Microsoft_logo.png" // Adjust path as needed
+import AmazonLogo from "../../public/amazun_logo.png" // Adjust path as needed
+import GoogleLogo from "../../public/Google.png" // Adjust path as needed
 
 export default function WorkshopRegistration() {
   const [timeLeft, setTimeLeft] = useState({
@@ -30,6 +32,7 @@ export default function WorkshopRegistration() {
   const [isLoading, setIsLoading] = useState(false)
   const [phoneError, setPhoneError] = useState("")
   const [showModal, setShowModal] = useState(false)
+  const [seatsLeft, setSeatsLeft] = useState(5) // Simulating limited seats
 
   useEffect(() => {
     const targetDate = new Date("2025-06-22T12:30:00")
@@ -106,6 +109,7 @@ export default function WorkshopRegistration() {
         phone_number: "",
         workshop_name: "No code development using Agentic AI"
       })
+      setSeatsLeft(prev => prev - 1) // Decrease seat count on successful registration
     } catch (error) {
       console.error('Registration error:', error)
       toast.error(error instanceof Error ? error.message : 'Registration failed. Please try again.')
@@ -177,7 +181,9 @@ export default function WorkshopRegistration() {
                     </div>
                     <div className="text-center md:text-left">
                       <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
-                      <p className="text-lg text-foreground/80 mb-1">SDE 2 at Microsoft</p>
+                      <p className="text-lg text-foreground/80 mb-1 flex items-center gap-2">
+                        SDE 2 at  <Image src={MicrosoftLogo} alt="Microsoft Logo" width={24} height={24} />Microsoft
+                      </p>
                       <p className="text-foreground/60 mb-1">Full Stack Data Science | AI</p>
                       <a
                         href="https://www.linkedin.com/in/shubhamlal/"
@@ -206,7 +212,9 @@ export default function WorkshopRegistration() {
                         />
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Yamini Bandi</h3>
-                      <p className="text-foreground/60 mb-4">Developer at Amazon</p>
+                      <p className="text-foreground/60 mb-4 flex items-center gap-2">
+                        SDE at  <Image src={AmazonLogo} alt="Amazon Logo" width={24} height={24} />Amazon
+                      </p>
                       <a
                         href="https://www.linkedin.com/in/yaminibandi/"
                         target="_blank"
@@ -231,7 +239,9 @@ export default function WorkshopRegistration() {
                         />
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Divyansh Dubey</h3>
-                      <p className="text-foreground/60 mb-4">Generative AI Engineer at Google</p>
+                      <p className="text-foreground/60 mb-4 flex items-center gap-2">
+                        Gen AI at  <Image src={GoogleLogo} alt="Amazon Logo" width={24} height={24} /> Google
+                      </p>
                       <a
                         href="https://www.linkedin.com/in/divyansh-dubey/"
                         target="_blank"
@@ -256,7 +266,7 @@ export default function WorkshopRegistration() {
                         />
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Poorva Shrivastava</h3>
-                      <p className="text-foreground/60 mb-4">Chief Marketing Officer at AI Linc</p>
+                      <p className="text-foreground/60 mb-4">CMO at AI Linc AI-LINC</p>
                       <a
                         href="https://www.linkedin.com/in/poorva-shrivastava-ceo/"
                         target="_blank"
@@ -274,6 +284,9 @@ export default function WorkshopRegistration() {
 
             <Card className="bg-background/30 border-[#0BC5EA]/30">
               <CardContent className="p-6">
+                {seatsLeft <= 3 && (
+                  <p className="text-red-500 font-bold mb-4">Only {seatsLeft} FREE seats left!</p>
+                )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">Full Name</label>
@@ -319,7 +332,7 @@ export default function WorkshopRegistration() {
 
                   <Button
                     type="submit"
-                    disabled={isLoading || !!phoneError}
+                    disabled={isLoading || !!phoneError || seatsLeft === 0}
                     className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white cursor-pointer"
                   >
                     {isLoading ? 'Registering...' : 'Register Now'}
