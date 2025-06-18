@@ -10,9 +10,9 @@ import { Footer } from "@/components/footer"
 import { Linkedin, Youtube, Instagram } from "lucide-react"
 import { toast, Toaster } from "sonner"
 import Image from "next/image"
-import MicrosoftLogo from "../../public/Microsoft_logo.png" // Adjust path as needed
-import AmazonLogo from "../../public/amazun_logo.png" // Adjust path as needed
-import GoogleLogo from "../../public/Google.png" // Adjust path as needed
+import MicrosoftLogo from "../../public/last_microsoft.png" // Adjust path as needed
+import AmazonLogo from "../../public/ama_no _bg.png" // Adjust path as needed
+import GoogleLogo from "../../public/no_bg_google.png" // Adjust path as needed
 
 export default function WorkshopRegistration() {
   const [timeLeft, setTimeLeft] = useState({
@@ -182,7 +182,7 @@ export default function WorkshopRegistration() {
                     <div className="text-center md:text-left">
                       <h3 className="text-2xl font-bold text-[#0BC5EA] mb-2">Shubham Lal</h3>
                       <p className="text-lg text-foreground/80 mb-1 flex items-center gap-2">
-                        SDE 2 at  <Image src={MicrosoftLogo} alt="Microsoft Logo" width={24} height={24} />Microsoft
+                        SDE 2 at  <Image src={MicrosoftLogo} alt="Microsoft Logo" width={64} height={64} />
                       </p>
                       <p className="text-foreground/60 mb-1">Full Stack Data Science | AI</p>
                       <a
@@ -213,7 +213,7 @@ export default function WorkshopRegistration() {
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Yamini Bandi</h3>
                       <p className="text-foreground/60 mb-4 flex items-center gap-2">
-                        SDE at  <Image src={AmazonLogo} alt="Amazon Logo" width={24} height={24} />Amazon
+                        SDE at  <Image src={AmazonLogo} alt="Amazon Logo" width={42} height={42} className="mt-1" />
                       </p>
                       <a
                         href="https://www.linkedin.com/in/yaminibandi/"
@@ -240,7 +240,7 @@ export default function WorkshopRegistration() {
                       </div>
                       <h3 className="text-xl font-bold text-[#0BC5EA] mb-2">Divyansh Dubey</h3>
                       <p className="text-foreground/60 mb-4 flex items-center gap-2">
-                        Gen AI at  <Image src={GoogleLogo} alt="Amazon Logo" width={24} height={24} /> Google
+                        Gen AI at  <Image src={GoogleLogo} alt="Amazon Logo" width={44} height={44} />
                       </p>
                       <a
                         href="https://www.linkedin.com/in/divyansh-dubey/"
