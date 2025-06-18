@@ -4,7 +4,7 @@ import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
 
 export const metadata: Metadata = {
   title: 'ai-linc',
-  description: 'A landing page for AI Linc',
+  description: 'No code development using Agentic Ai',
   generator: 'Next.js',
   icons: {
     icon: '/vittee.svg',
