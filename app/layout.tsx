@@ -49,7 +49,7 @@ export default function RootLayout({
         <meta property="og:image" content="https://ailinc.com/vittee.png" />
         <meta property="og:url" content="https://ailinc.com" />
         <meta property="og:type" content="website" />
-        
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="ai-linc" />
         <meta name="twitter:description" content="No code development using Agentic AI" />
