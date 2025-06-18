@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Linkedin, Award, Star, Youtube, Instagram } from "lucide-react"
+import { Linkedin, Youtube, Instagram } from "lucide-react"
 import { toast, Toaster } from "sonner"
 import Image from "next/image"
 
@@ -327,12 +327,46 @@ export default function WorkshopRegistration() {
                 </form>
               </CardContent>
             </Card>
+
+            {/* Bootcamp Benefits Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8 p-6 bg-background/30 rounded-xl border border-[#0BC5EA]/20 text-center"
+            >
+              <h2 className="text-2xl font-bold text-[#0BC5EA] mb-4">
+                Join the FREE Bootcamp
+              </h2>
+              <p className="text-lg text-foreground/80 mb-4">
+                Your AI skills will be assessed, and shortlisted candidates will get interview opportunities.
+              </p>
+              <h3 className="text-xl font-semibold text-white mb-4">What’s in it for you?</h3>
+              <ul className="space-y-3 text-foreground/80 max-w-md mx-auto">
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">✅</span>
+                  <span>Introduction to Agentic AI & No-Code Development</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">✅</span>
+                  <span>Overview of the AI Consulting Model</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">✅</span>
+                  <span>Skill Assessment & Placement Process</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">✅</span>
+                  <span>Real hiring opportunities – no more random job hunts!</span>
+                </li>
+              </ul>
+            </motion.div>
           </motion.div>
         </div>
 
         {/* Registration Success Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 ">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -388,10 +422,8 @@ export default function WorkshopRegistration() {
                     aria-label="Follow us on Instagram"
                   >
                     <Instagram className="size-6" />
-
                   </a>
                 </div>
-
               </div>
             </motion.div>
           </div>
@@ -399,7 +431,6 @@ export default function WorkshopRegistration() {
 
         <Footer />
 
-        {/* Background glow effects */}
         <div className="absolute top-1/4 right-1/3 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
         <div className="absolute bottom-1/4 left-1/3 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
       </main>

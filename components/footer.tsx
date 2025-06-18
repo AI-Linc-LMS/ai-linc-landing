@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Twitter, Linkedin, Instagram, Github } from "lucide-react"
+import { Twitter, Linkedin, Instagram, Github, Youtube } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
@@ -44,18 +44,43 @@ export function Footer() {
             <p className="text-foreground/60 mb-4">
               The 111-Day Program That Makes You 100X More Valuable in the AI Economy
             </p>
+            <p className="text-foreground/60 mb-4">
+              Follow us
+            </p>
             <div className="flex space-x-4">
-              {/* <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
-                <Twitter className="size-5" />
-                <span className="sr-only">Twitter</span>
-              </Button> */}
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
-                <Linkedin className="size-5" />
-                <span className="sr-only">LinkedIn</span>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]"
+                asChild
+              >
+                <Link href="https://youtube.com/@ailinc772?si=BhOlO4fwHqGiAncC" target="_blank" rel="noopener noreferrer">
+                  <Youtube className="size-5" />
+                  <span className="sr-only">YouTube</span>
+                </Link>
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
-                <Instagram className="size-5" />
-                <span className="sr-only">Instagram</span>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]"
+                asChild
+              >
+                <Link href="https://www.linkedin.com/company/ai-linc772/" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="size-5" />
+                  <span className="sr-only">Instagram</span>
+                </Link>
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]"
+                asChild
+              >
+                <Link href="https://www.instagram.com/ai_lincc/" target="_blank" rel="noopener noreferrer">
+                  <Instagram className="size-5" />
+                  <span className="sr-only">Instagram</span>
+                </Link>
               </Button>
               {/* <Button variant="ghost" size="icon" className="rounded-full hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA]">
                 <Github className="size-5" />
@@ -87,8 +112,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="#contact-apply" 
+                <Link
+                  href="#contact-apply"
                   className="text-foreground/60 hover:text-[#0BC5EA] transition-colors"
                   onClick={() => {
                     // Find the ContactApplySection component and set its tab to "apply"
@@ -127,8 +152,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link 
-                  href="#contact-apply" 
+                <Link
+                  href="#contact-apply"
                   className="text-foreground/60 hover:text-[#0BC5EA] transition-colors"
                   onClick={() => {
                     // Find the ContactApplySection component and set its tab to "contact"
