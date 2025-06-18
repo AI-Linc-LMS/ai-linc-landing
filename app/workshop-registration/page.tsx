@@ -332,12 +332,12 @@ export default function WorkshopRegistration() {
 
         {/* Registration Success Modal */}
         {showModal && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 ">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className="bg-background/80 backdrop-blur-sm rounded-xl p-8 max-w-md w-full border border-[#0BC5EA]/30"
+              className="bg-background/80 m-3 backdrop-blur-sm rounded-xl p-8 max-w-md w-full border border-[#0BC5EA]/30"
             >
               <h2 className="text-2xl font-bold text-[#0BC5EA] mb-4">Registration Successful!</h2>
               <p className="text-foreground/80 mb-6">
