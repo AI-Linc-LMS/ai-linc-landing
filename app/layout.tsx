@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: 'ai-linc',
     images: [
       {
-        url: 'https://ailinc.com/vittee.png',
+        url: 'https://ailinc.com/AL.png',
         width: 1200,
         height: 630,
         alt: 'ai-linc Logo',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ai-linc',
     description: 'No code development using Agentic AI',
-    images: ['https://ailinc.com/vittee.png'],
+    images: ['https://ailinc.com/AL.png'],
   },
 }
 
