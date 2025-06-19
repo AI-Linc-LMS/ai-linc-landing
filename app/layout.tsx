@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
-import Head from 'next/head'
 
 export const metadata: Metadata = {
   title: 'ai-linc',
@@ -42,20 +41,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        {/* Fallback OG and Twitter tags for reliability */}
-        <meta property="og:title" content="ai-linc" />
-        <meta property="og:description" content="No code development using Agentic AI" />
-        <meta property="og:image" content="https://ailinc.com/vittee.png" />
-        <meta property="og:url" content="https://ailinc.com" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="ai-linc" />
-        <meta name="twitter:description" content="No code development using Agentic AI" />
-        <meta name="twitter:image" content="https://ailinc.com/vittee.png" />
-      </Head>
-
       <body>
         <SmoothScrollProvider>
           {children}
