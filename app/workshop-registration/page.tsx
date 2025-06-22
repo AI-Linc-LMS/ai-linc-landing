@@ -27,7 +27,7 @@ export default function WorkshopRegistration() {
     email: "",
     phone_number: "",
     workshop_name: "No code development using Agentic AI",
-    session_no: "Session-02"
+    session_number: "Session-02"
   })
 
   const [isLoading, setIsLoading] = useState(false)
@@ -36,7 +36,7 @@ export default function WorkshopRegistration() {
   const [seatsLeft, setSeatsLeft] = useState(5) // Simulating limited seats
 
   useEffect(() => {
-    const targetDate = new Date("2025-06-22T12:30:00")
+    const targetDate = new Date("2025-06-28T12:30:00")
 
     const interval = setInterval(() => {
       const now = new Date()
@@ -109,7 +109,7 @@ export default function WorkshopRegistration() {
         email: "",
         phone_number: "",
         workshop_name: "No code development using Agentic AI",
-        session_no: "Session-02"
+        session_number: "Session-02"
       })
       setSeatsLeft(prev => prev - 1) // Decrease seat count on successful registration
     } catch (error) {
