@@ -26,7 +26,8 @@ export default function WorkshopRegistration() {
     name: "",
     email: "",
     phone_number: "",
-    workshop_name: "No code development using Agentic AI"
+    workshop_name: "No code development using Agentic AI",
+    session_no: "Session-02"
   })
 
   const [isLoading, setIsLoading] = useState(false)
@@ -107,7 +108,8 @@ export default function WorkshopRegistration() {
         name: "",
         email: "",
         phone_number: "",
-        workshop_name: "No code development using Agentic AI"
+        workshop_name: "No code development using Agentic AI",
+        session_no: "Session-02"
       })
       setSeatsLeft(prev => prev - 1) // Decrease seat count on successful registration
     } catch (error) {
@@ -395,7 +397,7 @@ export default function WorkshopRegistration() {
               </p>
               <div className="flex flex-col gap-2">
                 <a
-                  href="https://chat.whatsapp.com/BLDoMZGFTO9ASOhPn2MJ3L"
+                  href="https://chat.whatsapp.com/IpvvHEdW3bsC7f6K7cTAkK"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#25D366] hover:bg-[#25D366]/90 text-white px-6 py-3 rounded-lg text-center font-medium"
