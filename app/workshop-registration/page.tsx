@@ -26,7 +26,8 @@ export default function WorkshopRegistration() {
     name: "",
     email: "",
     phone_number: "",
-    workshop_name: "No code development using Agentic AI"
+    workshop_name: "No code development using Agentic AI",
+    session_no: "Session-02"
   })
 
   const [isLoading, setIsLoading] = useState(false)
@@ -107,7 +108,8 @@ export default function WorkshopRegistration() {
         name: "",
         email: "",
         phone_number: "",
-        workshop_name: "No code development using Agentic AI"
+        workshop_name: "No code development using Agentic AI",
+        session_no: "Session-02"
       })
       setSeatsLeft(prev => prev - 1) // Decrease seat count on successful registration
     } catch (error) {
