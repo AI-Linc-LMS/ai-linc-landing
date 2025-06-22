@@ -36,7 +36,7 @@ export default function WorkshopRegistration() {
   const [seatsLeft, setSeatsLeft] = useState(5) // Simulating limited seats
 
   useEffect(() => {
-    const targetDate = new Date("2025-06-22T12:30:00")
+    const targetDate = new Date("2025-06-28T12:30:00")
 
     const interval = setInterval(() => {
       const now = new Date()
