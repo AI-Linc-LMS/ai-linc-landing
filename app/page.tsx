@@ -60,9 +60,13 @@ function WebinarModal() {
           <DialogDescription>
             <div className="text-base font-medium mt-2 mb-1">Develop tech products without single line of code</div>
             <div className="text-sm mb-4">Sunday 12:30pm (22nd June 2025)</div>
-            <div className="font-semibold text-base mb-1">Starts In:</div>
+            {/* <div className="font-semibold text-base mb-1">Starts In:</div>
             <div className="font-mono text-lg mb-4">
               {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+            </div> */}
+            <div className="font-semibold text-lg mb-2">AI-Linc Scholarship Assessment <span className="font-normal">click below link:</span> </div>
+            <div className="text-sm mb-4 underline" ><a href="https://app.ailinc.com/ai-linc-scholarship-test">https://app.ailinc.com/ai-linc-scholarship-test</a>
+
             </div>
             <a
               href="/workshop-registration"
