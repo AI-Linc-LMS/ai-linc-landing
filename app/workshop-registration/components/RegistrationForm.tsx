@@ -1,0 +1,158 @@
+import { useState } from "react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { toast } from "sonner"
+
+interface FormData {
+  name: string
+  email: string
+  phone_number: string
+  workshop_name: string
+  session_number: string
+}
+
+interface RegistrationFormProps {
+  onSuccess: () => void
+  seatsLeft: number
+  setSeatsLeft: (value: number | ((prev: number) => number)) => void
+}
+
+export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: RegistrationFormProps) {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    phone_number: "",
+    workshop_name: "Practical implementation of Agentic AI",
+    session_number: "Session-02"
+  })
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [phoneError, setPhoneError] = useState("")
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target
+    if (id === "phone_number") {
+      if (!/^\d{0,10}$/.test(value)) {
+        setPhoneError("Phone number must be numeric and up to 10 digits")
+      } else if (value.length === 10) {
+        setPhoneError("")
+      } else {
+        setPhoneError("Phone number must be 10 digits")
+      }
+    }
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (formData.phone_number.length !== 10 || !/^\d{10}$/.test(formData.phone_number)) {
+      setPhoneError("Phone number must be exactly 10 digits")
+      return
+    }
+    setIsLoading(true)
+
+    try {
+      console.log('Submitting form data:', formData)
+
+      const response = await fetch('https://be-app.ailinc.com/api/clients/1/workshop-registrations/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+      console.log('API Response:', data)
+
+      if (!response.ok) {
+        if (response.status === 400) {
+          toast.error('You are already registered')
+          return
+        }
+        throw new Error(data.message || 'Registration failed')
+      }
+
+      onSuccess()
+      setFormData({
+        name: "",
+        email: "",
+        phone_number: "",
+        workshop_name: "No code development using Agentic AI",
+        session_number: "Session-02"
+      })
+      setSeatsLeft(prev => prev - 1) // Decrease seat count on successful registration
+    } catch (error) {
+      console.error('Registration error:', error)
+      toast.error(error instanceof Error ? error.message : 'Registration failed. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <Card className="bg-background/30 border-[#0BC5EA]/30">
+      <CardContent className="p-6">
+        {seatsLeft <= 3 && (
+          <p className="text-red-500 font-bold mb-4">Only {seatsLeft} FREE seats left!</p>
+        )}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-2">Full Name</label>
+            <Input
+              id="name"
+              type="text"
+              required
+              value={formData.name}
+              onChange={handleInputChange}
+              className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
+              placeholder="Enter your full name"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-2">Email Address</label>
+            <Input
+              id="email"
+              type="email"
+              required
+              value={formData.email}
+              onChange={handleInputChange}
+              className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
+              placeholder="Enter your email address"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="phone_number" className="block text-sm font-medium mb-2">Phone Number</label>
+            <Input
+              id="phone_number"
+              type="tel"
+              required
+              value={formData.phone_number}
+              onChange={handleInputChange}
+              className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
+              placeholder="Enter your phone number"
+            />
+            {phoneError && (
+              <p className="text-red-500 text-xs mt-1">{phoneError}</p>
+            )}
+          </div>
+
+          <Button
+            type="submit"
+            disabled={isLoading || !!phoneError || seatsLeft === 0}
+            className="w-full bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white cursor-pointer"
+          >
+            {isLoading ? 'Registering...' : 'Register Now'}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  )
+} 
