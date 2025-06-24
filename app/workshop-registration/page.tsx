@@ -10,6 +10,7 @@ import { SpeakersSection } from "./components/SpeakersSection"
 import { RegistrationForm } from "./components/RegistrationForm"
 import { BootcampBenefits } from "./components/BootcampBenefits"
 import { SuccessModal } from "./components/SuccessModal"
+import { RegistrationCount } from "./components/RegistrationCount"
 
 export default function WorkshopRegistration() {
   const [showModal, setShowModal] = useState(false)
@@ -43,6 +44,9 @@ export default function WorkshopRegistration() {
               <p className="text-xl text-foreground/80 mb-8">
                 Develop Products without writing code
               </p>
+
+              {/* Live Registration Count */}
+              <RegistrationCount className="mb-8" />
 
               {/* Countdown Timer */}
               <CountdownTimer />
