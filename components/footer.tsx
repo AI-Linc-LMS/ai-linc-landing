@@ -193,7 +193,7 @@ export function Footer() {
             <Link href="#" className="hover:text-[#0BC5EA] transition-colors">
               Terms of Service
             </Link>
-            <Link href="#" className="hover:text-[#0BC5EA] transition-colors">
+            <Link href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/terms" className="hover:text-[#0BC5EA] transition-colors">
               Privacy Policy
             </Link>
             <Link href="#" className="hover:text-[#0BC5EA] transition-colors">
