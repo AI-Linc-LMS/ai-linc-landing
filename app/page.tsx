@@ -64,10 +64,7 @@ function WebinarModal() {
             <div className="font-mono text-lg mb-4">
               {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
             </div>
-            <div className="font-semibold text-lg mb-2">AI-Linc Scholarship Assessment <span className="font-normal">click below link:</span> </div>
-            <div className="text-sm mb-4 underline" ><a href="https://app.ailinc.com/ai-linc-scholarship></a>
-
-            </div>
+            
             <a
               href="/workshop-registration"
               className="bg-gradient-to-r from-cyan-400 to-purple-500 text-white font-semibold px-5 py-2 rounded shadow hover:from-cyan-500 hover:to-purple-600 transition"
