@@ -65,7 +65,7 @@ function WebinarModal() {
               {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
             </div>
             <div className="font-semibold text-lg mb-2">AI-Linc Scholarship Assessment <span className="font-normal">click below link:</span> </div>
-            <div className="text-sm mb-4 underline" ><a href="https://app.ailinc.com/ai-linc-scholarship-test">https://app.ailinc.com/ai-linc-scholarship-test</a>
+            <div className="text-sm mb-4 underline" ><a href="https://app.ailinc.com/ai-linc-scholarship></a>
 
             </div>
             <a
