@@ -130,13 +130,11 @@ export function Footer() {
 
           {/* Column 5: Razorpay Policies */}
           <motion.div variants={item}>
-            <h3 className="text-lg font-semibold text-white mb-4">Policies (Created by Razorpay)</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Policies</h3>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/terms"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-foreground/60 hover:text-[#0BC5EA]"
                 >
                   Terms and Conditions
@@ -145,8 +143,6 @@ export function Footer() {
               <li>
                 <Link
                   href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-foreground/60 hover:text-[#0BC5EA]"
                 >
                   Privacy Policy
@@ -155,8 +151,6 @@ export function Footer() {
               <li>
                 <Link
                   href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/refund"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-foreground/60 hover:text-[#0BC5EA]"
                 >
                   Cancellations and Refunds
@@ -165,8 +159,6 @@ export function Footer() {
               <li>
                 <Link
                   href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/shipping"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-foreground/60 hover:text-[#0BC5EA]"
                 >
                   Shipping Policy
@@ -175,8 +167,6 @@ export function Footer() {
               <li>
                 <Link
                   href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/contact_us"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-foreground/60 hover:text-[#0BC5EA]"
                 >
                   Contact Us
@@ -192,11 +182,11 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center text-foreground/60 text-sm">
           <p>&copy; {new Date().getFullYear()} AI LINC. All rights reserved.</p>
           <div className="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0 mt-4 md:mt-0 text-center md:text-left">
-            <Link href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/terms" target="_blank" rel="noopener noreferrer" className="hover:text-[#0BC5EA]">Terms and Conditions</Link>
-            <Link href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-[#0BC5EA]">Privacy Policy</Link>
-            <Link href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/refund" target="_blank" rel="noopener noreferrer" className="hover:text-[#0BC5EA]">Cancellations and Refunds</Link>
-            <Link href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/shipping" target="_blank" rel="noopener noreferrer" className="hover:text-[#0BC5EA]">Shipping Policy</Link>
-            <Link href="https://merchant.razorpay.com/policy/QhQP3KrkBeMFEv/contact_us" target="_blank" rel="noopener noreferrer" className="hover:text-[#0BC5EA]">Contact Us</Link>
+            <Link href="/terms" className="hover:text-[#0BC5EA]">Terms and Conditions</Link>
+            <Link href="/privacy" className="hover:text-[#0BC5EA]">Privacy Policy</Link>
+            <Link href="/refund" className="hover:text-[#0BC5EA]">Cancellations and Refunds</Link>
+            <Link href="/shipping" className="hover:text-[#0BC5EA]">Shipping Policy</Link>
+            <Link href="/contact-us" className="hover:text-[#0BC5EA]">Contact Us</Link>
           </div>
         </div>
       </div>
