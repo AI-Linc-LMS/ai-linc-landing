@@ -23,7 +23,7 @@ import { Suspense } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { useEffect, useState } from "react"
 
-const WEBINAR_DATE = new Date("2025-06-28T00:00:00+05:30"); // IST timezone
+const WEBINAR_DATE = new Date("2025-06-28T12:30:00+05:30"); // IST timezone
 
 function WebinarModal() {
   const [open, setOpen] = useState(false);
