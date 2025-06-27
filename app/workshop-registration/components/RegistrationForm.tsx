@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { toast } from "sonner"
+import { PhoneInput } from "./PhoneInput"
 
 interface FormData {
   name: string
@@ -22,7 +23,7 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    phone_number: "",
+    phone_number: "+91 ", // Start with India's country code
     workshop_name: "Practical implementation of Agentic AI",
     session_number: "Session-02"
   })
@@ -32,27 +33,41 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
-    if (id === "phone_number") {
-      if (!/^\d{0,10}$/.test(value)) {
-        setPhoneError("Phone number must be numeric and up to 10 digits")
-      } else if (value.length === 10) {
-        setPhoneError("")
-      } else {
-        setPhoneError("Phone number must be 10 digits")
-      }
-    }
     setFormData(prev => ({
       ...prev,
       [id]: value
     }))
   }
 
+  const handlePhoneChange = (phoneNumber: string) => {
+    setFormData(prev => ({
+      ...prev,
+      phone_number: phoneNumber
+    }))
+    
+    // Validate phone number - extract just the number part for validation
+    const numberPart = phoneNumber.replace(/^\+\d+\s*/, '').replace(/\D/g, '')
+    if (numberPart.length === 0) {
+      setPhoneError("Phone number is required")
+    } else if (numberPart.length < 7) {
+      setPhoneError("Phone number is too short")
+    } else if (numberPart.length > 15) {
+      setPhoneError("Phone number is too long")
+    } else {
+      setPhoneError("")
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (formData.phone_number.length !== 10 || !/^\d{10}$/.test(formData.phone_number)) {
-      setPhoneError("Phone number must be exactly 10 digits")
+    
+    // Validate phone number before submission
+    const numberPart = formData.phone_number.replace(/^\+\d+\s*/, '').replace(/\D/g, '')
+    if (numberPart.length < 7 || numberPart.length > 15) {
+      setPhoneError("Please enter a valid phone number")
       return
     }
+    
     setIsLoading(true)
 
     try {
@@ -82,7 +97,7 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
       setFormData({
         name: "",
         email: "",
-        phone_number: "",
+        phone_number: "+91 ",
         workshop_name: "No code development using Agentic AI",
         session_number: "Session-02"
       })
@@ -129,19 +144,14 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
           </div>
 
           <div>
-            <label htmlFor="phone_number" className="block text-sm font-medium mb-2">Phone Number</label>
-            <Input
-              id="phone_number"
-              type="tel"
-              required
+            <label className="block text-sm font-medium mb-2">Phone Number</label>
+            <PhoneInput
               value={formData.phone_number}
-              onChange={handleInputChange}
-              className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
+              onChange={handlePhoneChange}
+              error={phoneError}
+              required
               placeholder="Enter your phone number"
             />
-            {phoneError && (
-              <p className="text-red-500 text-xs mt-1">{phoneError}</p>
-            )}
           </div>
 
           <Button
