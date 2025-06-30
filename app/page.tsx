@@ -63,7 +63,7 @@ function WebinarModal() {
           <DialogTitle>Webinar: "Develop Product without writing code"</DialogTitle>
           <DialogDescription>
             <div className="text-base font-medium mt-2 mb-1">Develop tech products without single line of code</div>
-            <div className="text-sm mb-4">Sunday 12:30pm (6 January 2025)</div>
+            <div className="text-sm mb-4">Sunday 12:30pm (6 July 2025)</div>
             <div className="font-semibold text-base mb-1">Starts In:</div>
             <div className="font-mono text-lg mb-4">
               {timeLeft.days.toString().padStart(2, '0')}d {timeLeft.hours.toString().padStart(2, '0')}h {timeLeft.minutes.toString().padStart(2, '0')}m {timeLeft.seconds.toString().padStart(2, '0')}s
