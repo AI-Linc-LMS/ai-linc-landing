@@ -2,6 +2,9 @@
 
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
+import { WhoWeAreSection } from "@/components/who-we-are-section"
+import { WhatWeDoSection } from "@/components/what-we-do-section"
+import { HowWeDoItSection } from "@/components/how-we-do-it-section"
 import { ProgramStructure } from "@/components/program-structure"
 import { ProgramJourney } from "@/components/program-journey"
 import { KeyUsps } from "@/components/key-usps"
@@ -14,7 +17,8 @@ import { CommunityNetwork } from "@/components/community-network"
 import { PlatformPreview } from "@/components/platform-preview"
 import { CareerTransformation } from "@/components/career-transformation"
 import { PricingSection } from "@/components/pricing-section"
-import { TrustSection } from "@/components/trust-section"
+import { ClientTalentSuccessSection } from "@/components/client-talent-success-section"
+import { LetsWorkTogetherSection } from "@/components/lets-work-together-section"
 import { Footer } from "@/components/footer"
 import { ParticleBackground } from "@/components/particle-background"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -95,8 +99,11 @@ export default function Home() {
         <ParticleBackground />
         <Navbar />
         <HeroSection />
-        <ProgramStructure />
-        <ProgramJourney />
+        <WhoWeAreSection />
+        <WhatWeDoSection />
+        <HowWeDoItSection />
+        {/* <ProgramStructure /> */}
+        {/* <ProgramJourney /> */}
         <KeyUsps />
         <AiLearningAcceleration />
         <ResultsSection />
@@ -106,11 +113,12 @@ export default function Home() {
         {/* <CommunityNetwork /> */}
         <PlatformPreview />
         <CareerTransformation />
-        <TrustSection />
+        <ClientTalentSuccessSection />
         <PricingSection />
         <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center">Loading...</div>}>
           <ContactApplySection />
         </Suspense>
+        <LetsWorkTogetherSection />
         <Footer />
       </main>
     </ThemeProvider>
