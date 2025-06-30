@@ -104,17 +104,17 @@ export function HeroSection() {
               variants={item}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent"
             >
-              Master AI Skills with Work Experience That Matters
+              Deploying the Next Generation of AI Talent into High-Impact Roles
             </motion.h1>
             <motion.p variants={item} className="text-xl text-foreground/80 mb-8 max-w-xl mx-auto md:mx-0">
-              The 111-Day Program That Makes You 100X More Valuable in the AI Economy
+              We connect top AI professionals to roles that matter — full-time, part-time, freelance, or startup-backed.
             </motion.p>
-            <motion.div variants={item}>
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-8 py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]"
                 onClick={() => {
-                  console.log('=== HERO APPLY NOW BUTTON CLICKED ===');
+                  console.log('=== HIRE AI TALENT BUTTON CLICKED ===');
                   
                   // Check if element exists
                   const element = document.getElementById('contact-apply');
@@ -145,10 +145,51 @@ export function HeroSection() {
                     }
                   }
                   
-                  console.log('=== END HERO BUTTON DEBUG ===');
+                  console.log('=== END HIRE AI TALENT BUTTON DEBUG ===');
                 }}
               >
-                Apply Now - Limited Spots
+                Hire AI Talent
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-[#0BC5EA]/50 text-[#0BC5EA] hover:bg-[#0BC5EA]/10 font-medium px-8 py-6 text-lg rounded-md transition-all duration-300 hover:border-[#0BC5EA] hover:shadow-[0_0_20px_rgba(11,197,234,0.3)]"
+                onClick={() => {
+                  console.log('=== JOIN TALENT POOL BUTTON CLICKED ===');
+                  
+                  // Check if element exists
+                  const element = document.getElementById('contact-apply');
+                  console.log('Target element found:', !!element);
+                  if (element) {
+                    console.log('Element position:', element.getBoundingClientRect());
+                  }
+                  
+                  // Check if Lenis is available
+                  console.log('Window.lenis:', (window as any).lenis);
+                  console.log('ScrollTo function:', scrollTo);
+                  
+                  // Try Lenis first
+                  try {
+                    scrollTo('#contact-apply', { duration: 1.5 });
+                    console.log('✅ Lenis scroll attempted successfully');
+                  } catch (error) {
+                    console.log('❌ Lenis failed, using fallback:', error);
+                    // Fallback to native scroll
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                      });
+                      console.log('✅ Native scroll used');
+                    } else {
+                      console.log('❌ Element not found for native scroll!');
+                    }
+                  }
+                  
+                  console.log('=== END JOIN TALENT POOL BUTTON DEBUG ===');
+                }}
+              >
+                Join the Talent Pool
               </Button>
             </motion.div>
           </motion.div>
