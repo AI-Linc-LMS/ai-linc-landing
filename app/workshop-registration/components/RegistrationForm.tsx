@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -11,6 +11,7 @@ interface FormData {
   phone_number: string
   workshop_name: string
   session_number: string
+  referal_code: string
 }
 
 interface RegistrationFormProps {
@@ -25,11 +26,25 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
     email: "",
     phone_number: "+91 ", // Start with India's country code
     workshop_name: "Practical implementation of Agentic AI",
-    session_number: "Session-02"
+    session_number: "Session-03",
+    referal_code: ""
   })
 
   const [isLoading, setIsLoading] = useState(false)
   const [phoneError, setPhoneError] = useState("")
+
+  // Fetch referral code from URL on component mount
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const referralFromUrl = urlParams.get('referral') || urlParams.get('ref') || urlParams.get('referral_code')
+    
+    if (referralFromUrl) {
+      setFormData(prev => ({
+        ...prev,
+        referal_code: referralFromUrl
+      }))
+    }
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
@@ -98,8 +113,9 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
         name: "",
         email: "",
         phone_number: "+91 ",
-        workshop_name: "No code development using Agentic AI",
-        session_number: "Session-02"
+        workshop_name: "Practical implementation of Agentic AI",
+        session_number: "Session-02",
+        referal_code: ""
       })
       setSeatsLeft(prev => prev - 1) // Decrease seat count on successful registration
     } catch (error) {
@@ -151,6 +167,18 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
               error={phoneError}
               required
               placeholder="Enter your phone number"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="referal_code" className="block text-sm font-medium mb-2">Referral Code (Optional)</label>
+            <Input
+              id="referal_code"
+              type="text"
+              value={formData.referal_code}
+              onChange={handleInputChange}
+              className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
+              placeholder="Enter referral code if you have one"
             />
           </div>
 
