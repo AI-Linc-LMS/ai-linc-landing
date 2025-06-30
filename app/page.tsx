@@ -27,7 +27,7 @@ import { Suspense } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { useEffect, useState } from "react"
 
-const WEBINAR_DATE = new Date("2025-06-28T12:30:00+05:30"); // IST timezone
+const WEBINAR_DATE = new Date("2025-07-06T12:30:00+05:30"); // IST timezone
 
 function WebinarModal() {
   const [open, setOpen] = useState(false);
@@ -41,16 +41,20 @@ function WebinarModal() {
     function updateCountdown() {
       const now = new Date();
       const diff = WEBINAR_DATE.getTime() - now.getTime();
+      
       if (diff <= 0) {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
+      
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
       setTimeLeft({ days, hours, minutes, seconds });
     }
+    
     updateCountdown();
     const timer = setInterval(updateCountdown, 1000);
     return () => clearInterval(timer);
@@ -63,20 +67,20 @@ function WebinarModal() {
           <DialogTitle>Webinar: "Develop Product without writing code"</DialogTitle>
           <DialogDescription>
             <div className="text-base font-medium mt-2 mb-1">Develop tech products without single line of code</div>
-            <div className="text-sm mb-4">Saturday 12:30pm (28 June 2025)</div>
-            {/* <div className="font-semibold text-base mb-1">Starts In:</div> */}
-            {/* <div className="font-mono text-lg mb-4">
-              {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
-            </div> */}
+            <div className="text-sm mb-4">Sunday 12:30pm (6 July 2025)</div>
+            <div className="font-semibold text-base mb-1">Starts In:</div>
+            <div className="font-mono text-lg mb-4">
+              {timeLeft.days.toString().padStart(2, '0')}d {timeLeft.hours.toString().padStart(2, '0')}h {timeLeft.minutes.toString().padStart(2, '0')}m {timeLeft.seconds.toString().padStart(2, '0')}s
+            </div>
             
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <a
                 href="https://app.ailinc.com/assessment/ai-linc-scholarship-test-2"
                 className="text-cyan-400 hover:text-cyan-300 underline text-sm"
               >
                 Click here for assessment scholarship
               </a>
-            </div>
+            </div> */}
             
             <a
               href="/workshop-registration"
