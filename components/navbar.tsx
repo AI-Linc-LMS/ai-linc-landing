@@ -55,6 +55,11 @@ export function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
+                <Link href="/courses" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Courses</NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
                 <Link href="/#curriculum" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Curriculum</NavigationMenuLink>
                 </Link>
@@ -116,6 +121,13 @@ export function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Program
+              </Link>
+              <Link
+                href="/courses"
+                className="text-foreground/80 hover:text-foreground transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Courses
               </Link>
               <Link
                 href="/#curriculum"
