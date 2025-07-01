@@ -15,6 +15,8 @@ import { ComparisonTable } from "./components/comparison-table"
 import { CtaSection } from "./components/cta-section"
 import { SyllabusSection } from "./components/syllabus-section"
 import { FinalCtaSection } from "./components/final-cta-section"
+import { InstructorsSection } from "@/components/instructors-section"
+import { PlatformPreview } from "@/components/platform-preview"
 
 export default function CoursesPage() {
   return (
@@ -31,6 +33,8 @@ export default function CoursesPage() {
         <ComparisonTable />
         <CtaSection />
         <SyllabusSection />
+        <PlatformPreview />
+        <InstructorsSection />
         <FinalCtaSection />
 
         <Footer />
