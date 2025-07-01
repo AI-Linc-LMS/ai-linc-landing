@@ -59,14 +59,14 @@ export function LetsWorkTogetherSection() {
                 viewport={{ once: true }}
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 justify-center items-center"
               >
-                <Button
+                {/* <Button
                   size="lg"
                   className="bg-gradient-to-r from-[#0BC5EA] to-[#06B6D4] hover:from-[#06B6D4] hover:to-[#0891B2] text-white font-semibold px-8 sm:px-10 lg:px-12 py-3 sm:py-4 lg:py-5 text-base sm:text-lg lg:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group w-full sm:w-auto"
                 >
                   <Users className="size-5 sm:size-6 mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300" />
                   Get in Touch
                   <ArrowRight className="size-5 sm:size-6 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300" />
-                </Button>
+                </Button> */}
 
                 <Button
                   size="lg"
