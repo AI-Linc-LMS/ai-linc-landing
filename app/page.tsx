@@ -12,9 +12,7 @@ import { AiLearningAcceleration } from "@/components/ai-learning-acceleration"
 import { ResultsSection } from "@/components/results-section"
 import { CurriculumSection } from "@/components/curriculum-section"
 import { WorkIntegration } from "@/components/work-integration"
-import { InstructorsSection } from "@/components/instructors-section"
 import { CommunityNetwork } from "@/components/community-network"
-import { PlatformPreview } from "@/components/platform-preview"
 import { CareerTransformation } from "@/components/career-transformation"
 import { PricingSection } from "@/components/pricing-section"
 import { ClientTalentSuccessSection } from "@/components/client-talent-success-section"
@@ -134,9 +132,7 @@ export default function Home() {
         {/* <ResultsSection /> */}
         <CurriculumSection />
         <WorkIntegration />
-        <InstructorsSection />
         {/* <CommunityNetwork /> */}
-        <PlatformPreview />
         <CareerTransformation />
         <ClientTalentSuccessSection />
         {/* <PricingSection /> */}
