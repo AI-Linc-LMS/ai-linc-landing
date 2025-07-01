@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 // Import all the new components
 import { HeroSection } from "./components/hero-section"
+import { WebinarSection } from "./components/webinar-section"
 import { AssessmentSection } from "./components/assessment-section"
 import { PostAssessmentSection } from "./components/post-assessment-section"
 import { ProgramsSection } from "./components/programs-section"
@@ -23,6 +24,7 @@ export default function CoursesPage() {
         <Navbar />
         
         <HeroSection />
+        <WebinarSection />
         <AssessmentSection />
         <PostAssessmentSection />
         <ProgramsSection />
