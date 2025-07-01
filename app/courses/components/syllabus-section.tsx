@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { BookOpen, Code, Brain, Rocket, Users, Trophy, Target, Star } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { BookOpen, Code, Brain, Rocket, Users, Trophy, Target, Star, ArrowRight } from "lucide-react"
+import Link from "next/link"
 
 const syllabusData = [
   {
@@ -171,7 +173,7 @@ export function SyllabusSection() {
         </div>
 
         {/* Additional Features */}
-        <div className="mt-12 md:mt-16">
+        <div className="mb-12 md:mb-16">
           <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12 px-2">
             🎯 Additional Support & Features
           </h3>
@@ -189,6 +191,23 @@ export function SyllabusSection() {
               )
             })}
           </div>
+        </div>
+
+        {/* Detailed Course Button */}
+        <div className="text-center">
+          <Link href="/courses/detailed-syllabus">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-8 py-4 text-lg font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300"
+            >
+              <BookOpen className="w-6 h-6 mr-3" />
+              View Detailed Course Syllabus
+              <ArrowRight className="w-6 h-6 ml-3" />
+            </Button>
+          </Link>
+          <p className="text-gray-400 mt-4 text-sm">
+            Get comprehensive week-by-week breakdown with learning outcomes, tools, and skills
+          </p>
         </div>
       </div>
     </section>
