@@ -12,9 +12,7 @@ import { AiLearningAcceleration } from "@/components/ai-learning-acceleration"
 import { ResultsSection } from "@/components/results-section"
 import { CurriculumSection } from "@/components/curriculum-section"
 import { WorkIntegration } from "@/components/work-integration"
-import { InstructorsSection } from "@/components/instructors-section"
 import { CommunityNetwork } from "@/components/community-network"
-import { PlatformPreview } from "@/components/platform-preview"
 import { CareerTransformation } from "@/components/career-transformation"
 import { PricingSection } from "@/components/pricing-section"
 import { ClientTalentSuccessSection } from "@/components/client-talent-success-section"
@@ -22,11 +20,11 @@ import { LetsWorkTogetherSection } from "@/components/lets-work-together-section
 import { Footer } from "@/components/footer"
 import { ParticleBackground } from "@/components/particle-background"
 import { ThemeProvider } from "@/components/theme-provider"
-import { ContactApplySection } from "@/components/contact-apply-section"
 import { RegistrationCount } from "@/app/workshop-registration/components/RegistrationCount"
-import { Suspense } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { useEffect, useState } from "react"
+import { RegistrationForm } from "@/app/workshop-registration/components/RegistrationForm"
+import { SuccessModal } from "@/app/workshop-registration/components/SuccessModal"
 
 const WEBINAR_DATE = new Date("2025-07-06T12:30:00+05:30"); // IST timezone
 
@@ -117,9 +115,18 @@ function WebinarModal() {
 }
 
 export default function Home() {
+  const [seatsLeft, setSeatsLeft] = useState(47); // Initialize with current seats
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       <WebinarModal />
+      {showSuccessModal && (
+        <SuccessModal 
+          showModal={showSuccessModal} 
+          onClose={() => setShowSuccessModal(false)} 
+        />
+      )}
       <main className="relative min-h-screen bg-gradient-to-b from-[#0A1128] to-[#1A202C] text-white overflow-hidden">
         <ParticleBackground />
         <Navbar />
@@ -134,15 +141,35 @@ export default function Home() {
         {/* <ResultsSection /> */}
         <CurriculumSection />
         <WorkIntegration />
-        <InstructorsSection />
         {/* <CommunityNetwork /> */}
-        <PlatformPreview />
         <CareerTransformation />
         <ClientTalentSuccessSection />
         {/* <PricingSection /> */}
-        <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center">Loading...</div>}>
-          <ContactApplySection />
-        </Suspense>
+        <section id="registration" className="py-20 relative overflow-hidden">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-[#0BC5EA] bg-clip-text text-transparent">
+                Register for Free Workshop
+              </h2>
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                Join our exclusive workshop and start your AI journey today. Limited seats available!
+              </p>
+            </div>
+            <div className="max-w-md mx-auto">
+              <RegistrationForm 
+                onSuccess={() => {
+                  setShowSuccessModal(true);
+                }} 
+                seatsLeft={seatsLeft} 
+                setSeatsLeft={setSeatsLeft} 
+              />
+            </div>
+          </div>
+          
+          {/* Background glow effects */}
+          <div className="absolute top-1/3 right-1/4 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 left-1/4 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
+        </section>
         <LetsWorkTogetherSection />
         <Footer />
       </main>

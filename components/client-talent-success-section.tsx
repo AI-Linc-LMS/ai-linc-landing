@@ -5,14 +5,54 @@ import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+// Import company logos from react-icons
+import { 
+  SiGoogle, 
+  SiAmazon, 
+  SiMeta, 
+  SiSpotify, 
+  SiAdobe, 
+  SiSalesforce, 
+  SiNetflix, 
+  SiUber, 
+  SiAirbnb, 
+  SiTesla, 
+  SiOpenai, 
+  SiAnthropic, 
+  SiHuggingface, 
+  SiDatabricks 
+} from "react-icons/si"
+// Import additional icons from other icon sets
+import { FaMicrosoft } from "react-icons/fa"
 
 export function ClientTalentSuccessSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
-  // Client companies that trust us for recruitment
+  // Custom IBM component since no icon is available
+  const IBMIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current`} style={style}>
+      IBM
+    </div>
+  )
+
+  // Client companies that trust us for recruitment with their logos
   const clientCompanies = [
-    "Microsoft", "Google", "Amazon", "Meta", "Spotify", "Adobe", "IBM", "Salesforce", 
-    "Netflix", "Uber", "Airbnb", "Tesla", "OpenAI", "Anthropic", "Hugging Face", "Databricks"
+    { name: "Microsoft", icon: FaMicrosoft, color: "#00BCF2" },
+    { name: "Google", icon: SiGoogle, color: "#4285F4" },
+    { name: "Amazon", icon: SiAmazon, color: "#FF9900" },
+    { name: "Meta", icon: SiMeta, color: "#1877F2" },
+    { name: "Spotify", icon: SiSpotify, color: "#1DB954" },
+    { name: "Adobe", icon: SiAdobe, color: "#FF0000" },
+    { name: "IBM", icon: IBMIcon, color: "#054ADA" },
+    { name: "Salesforce", icon: SiSalesforce, color: "#00A1E0" },
+    { name: "Netflix", icon: SiNetflix, color: "#E50914" },
+    { name: "Uber", icon: SiUber, color: "#000000" },
+    { name: "Airbnb", icon: SiAirbnb, color: "#FF5A5F" },
+    { name: "Tesla", icon: SiTesla, color: "#CC0000" },
+    { name: "OpenAI", icon: SiOpenai, color: "#412991" },
+    { name: "Anthropic", icon: SiAnthropic, color: "#D4A574" },
+    { name: "Hugging Face", icon: SiHuggingface, color: "#FFD21E" },
+    { name: "Databricks", icon: SiDatabricks, color: "#FF3621" }
   ]
 
   // Testimonials from deployed talent
@@ -139,11 +179,15 @@ export function ClientTalentSuccessSection() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                   viewport={{ once: true }}
-                  className="text-center"
+                  className="text-center group"
                 >
-                  <div className="h-12 sm:h-14 lg:h-16 flex items-center justify-center px-2">
-                    <span className="text-sm sm:text-base lg:text-lg font-semibold text-foreground/60 hover:text-[#0BC5EA] transition-colors duration-300 cursor-default text-center">
-                      {company}
+                  <div className="h-12 sm:h-14 lg:h-16 flex flex-col items-center justify-center px-2 gap-1">
+                    <company.icon 
+                      className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 transition-all duration-300 group-hover:scale-110" 
+                      style={{ color: company.color }}
+                    />
+                    <span className="text-xs sm:text-sm font-medium text-foreground/60 group-hover:text-[#0BC5EA] transition-colors duration-300 cursor-default text-center">
+                      {company.name}
                     </span>
                   </div>
                 </motion.div>
