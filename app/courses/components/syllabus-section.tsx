@@ -1,36 +1,36 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Code, Brain, Rocket, Users, Trophy, Target, Star, ArrowRight } from "lucide-react"
+import { BookOpen, Code, Brain, Rocket, Users, Trophy, Target, Star, ArrowRight, Briefcase, Award, Monitor } from "lucide-react"
 import Link from "next/link"
 
 const syllabusData = [
   {
     phase: "Phase 1",
-    title: "No-Code AI Product Development",
+    title: "AI Product in 21 Days",
     duration: "Weeks 1-3",
     icon: Brain,
     color: "from-blue-500 to-cyan-500",
     topics: [
-      "Introduction to Agentic AI and its significance",
-      "Prompt Engineering fundamentals with Claude, ChatGPT",
-      "Building with No-Code AI Tools (Glide, Zapier, Airtable)",
-      "Creative product ideation and UI-driven app creation",
-      "Final demos and product thinking with AI storyboarding"
+      "Develop an AI product without writing code within 3 weeks",
+      "Advanced Prompt Engineering with Claude, GPT-4, and custom AI agents",
+      "Zero-code AI product development using Glide, Zapier, and AI workflows",
+      "AI-driven product ideation and intelligent UI generation",
+      "Via prompts and Agentic AI - autonomous product demos"
     ]
   },
   {
     phase: "Phase 2", 
-    title: "MERN Stack + AI Integration",
+    title: "Work Experience & Full-Stack Development",
     duration: "Weeks 4-16",
     icon: Code,
     color: "from-purple-500 to-pink-500",
     topics: [
-      "Web Development Fundamentals (HTML, CSS, JavaScript)",
-      "React.js development with hooks and state management",
-      "Node.js and Express.js backend development",
-      "MongoDB database design and integration",
-      "Full-stack project development with AI assistance"
+      "Foster work experience with program managers from Microsoft, Amazon and Google",
+      "Continue to develop coding skills with resource materials on platform",
+      "AI-assisted web development with intelligent code generation",
+      "Full-stack AI applications with machine learning model integration",
+      "Launch final product that creates impact and brings opportunities"
     ]
   }
 ]
@@ -38,50 +38,60 @@ const syllabusData = [
 const weeklyBreakdown = [
   {
     weeks: "Weeks 1-3",
-    title: "No-Code AI Foundation",
-    description: "Master AI tools and build products without coding",
-    highlights: ["Prompt Engineering", "Glide & Zapier", "AI Product MVPs"]
+    title: "AI Product in 21 Days",
+    description: "Develop an AI product without writing code within 3 weeks via prompts and Agentic AI",
+    highlights: ["AI Agent Engineering", "Intelligent Automation", "AI Product Strategy"]
   },
   {
     weeks: "Weeks 4-7",
-    title: "Web Development Basics",
-    description: "HTML, CSS, JavaScript fundamentals with AI assistance",
-    highlights: ["Responsive Design", "DOM Manipulation", "Modern JavaScript"]
+    title: "Work Experience Foundation",
+    description: "Foster work experience with program managers from Microsoft, Amazon and Google",
+    highlights: ["MAANG Mentorship", "Real Project Work", "Industry Standards"]
   },
   {
     weeks: "Weeks 8-10",
-    title: "React Development",
-    description: "Component-driven UI development and state management",
-    highlights: ["React Hooks", "API Integration", "Component Architecture"]
+    title: "Full-Stack Development",
+    description: "Continue to develop coding skills with resource materials on platform",
+    highlights: ["AI-Powered Coding", "Smart Development", "Intelligent Components"]
   },
   {
     weeks: "Weeks 11-14",
-    title: "Backend & Database",
-    description: "Node.js, Express, MongoDB with AI-powered development",
-    highlights: ["REST APIs", "Authentication", "Database Design"]
+    title: "AI-Powered Backend Systems",
+    description: "Advanced backend development with AI-driven development and smart databases",
+    highlights: ["Intelligent APIs", "AI Authentication", "Smart Database Design"]
   },
   {
     weeks: "Weeks 15-16",
-    title: "Full-Stack Projects",
-    description: "Real-world project development and deployment",
-    highlights: ["Client Projects", "Deployment", "Portfolio Building"]
+    title: "Final Product Launch",
+    description: "Launch the final product that can create impact and bring opportunities",
+    highlights: ["Product Launch", "Impact Creation", "Career Opportunities"]
   }
 ]
 
-const additionalFeatures = [
+const learningComponents = [
   {
-    title: "AI-Powered Learning",
-    description: "Claude, ChatGPT, and Copilot integration throughout",
-    icon: Brain
+    title: "AI Linc Platform",
+    description: "Async learning of the concepts, auto-evaluated grades and progress reports",
+    icon: Monitor
   },
   {
-    title: "Real Client Projects",
-    description: "Work on actual projects in weeks 15-16",
+    title: "Live Training Sessions",
+    description: "Foster your learning experience by working Microsoft, Amazon and Google AI Devs Online or at HYD/Pune Centers",
     icon: Users
   },
   {
-    title: "Career-Ready Portfolio",
-    description: "Build deployable projects for your resume",
+    title: "Mentor Sessions",
+    description: "Understand the gap with industry experts and veterans",
+    icon: Target
+  },
+  {
+    title: "Mocks and Soft-Skills",
+    description: "Get interviewed by same people who interviews for MAANG",
+    icon: Star
+  },
+  {
+    title: "PM Sessions",
+    description: "Simulate the same work experience as tech companies",
     icon: Trophy
   }
 ]
@@ -92,17 +102,17 @@ export function SyllabusSection() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">
-            📚 16-Week Learning Journey
+            🤖 16-Week AI-Powered Development Journey
           </h2>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-2">
-            From No-Code AI Product Development to Full-Stack MERN Development with AI Integration
+            From AI Product Creation in 21 Days to Industry Work Experience with MAANG Leaders
           </p>
           <div className="flex items-center justify-center gap-4 mt-6">
             <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 text-lg">
-              111 Days Total
+              111 Days of AI Mastery
             </Badge>
             <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 text-lg">
-              2 Phases
+              2 AI-Driven Phases
             </Badge>
           </div>
         </div>
@@ -160,7 +170,7 @@ export function SyllabusSection() {
         {/* Weekly Breakdown */}
         <div className="mb-12 md:mb-16">
           <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12 px-2">
-            🗓️ Weekly Breakdown
+            🧠 AI-Enhanced Weekly Progression
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {weeklyBreakdown.map((period, index) => (
@@ -184,20 +194,20 @@ export function SyllabusSection() {
           </div>
         </div>
 
-        {/* Additional Features */}
+        {/* Learning Components */}
         <div className="mb-12 md:mb-16">
           <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12 px-2">
-            🎯 What Makes This Program Special
+            ⚡ Revolutionary Learning Experience
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-            {additionalFeatures.map((feature, index) => {
-              const Icon = feature.icon
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {learningComponents.map((component, index) => {
+              const Icon = component.icon
               return (
                 <Card key={index} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-700 text-center hover:border-gray-600 transition-all duration-300">
                   <CardContent className="p-4 md:p-6">
                     <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400 mx-auto mb-3 md:mb-4" />
-                    <h4 className="text-lg sm:text-xl font-semibold mb-2">{feature.title}</h4>
-                    <p className="text-sm sm:text-base text-gray-300">{feature.description}</p>
+                    <h4 className="text-lg sm:text-xl font-semibold mb-2">{component.title}</h4>
+                    <p className="text-sm sm:text-base text-gray-300">{component.description}</p>
                   </CardContent>
                 </Card>
               )
@@ -210,15 +220,18 @@ export function SyllabusSection() {
           <Link href="/courses/detailed-syllabus">
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-8 py-4 text-lg font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300"
+              className=" w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 mx-auto sm:w-auto"
             >
-              <BookOpen className="w-6 h-6 mr-3" />
-              View Detailed Week-by-Week Syllabus
-              <ArrowRight className="w-6 h-6 ml-3" />
+              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <span className="text-xs sm:text-sm md:text-base">
+                <span className="hidden sm:inline">Explore AI-Powered Week-by-Week Curriculum</span>
+                <span className="sm:hidden">Explore AI Curriculum</span>
+              </span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
             </Button>
           </Link>
           <p className="text-gray-400 mt-4 text-sm">
-            Get comprehensive week-by-week breakdown with learning outcomes, tools, and skills
+            Discover comprehensive AI-driven learning outcomes, intelligent tools, and next-gen development skills
           </p>
         </div>
       </div>
