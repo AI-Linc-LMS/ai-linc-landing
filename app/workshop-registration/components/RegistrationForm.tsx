@@ -177,6 +177,7 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
               type="text"
               value={formData.referal_code}
               onChange={handleInputChange}
+              disabled
               className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
               placeholder="Enter referral code if you have one"
             />
