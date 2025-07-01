@@ -17,11 +17,11 @@ export function AssessmentSection() {
         <div className="text-center mb-12 md:mb-16">
           <Badge variant="outline" className="text-cyan-400 border-cyan-400 mb-4">
             <CheckCircle className="w-4 h-4 mr-2" />
-            Step 1
+            Step 2
           </Badge>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">Take the Free Assessment</h2>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
-            Begin with a short, smart test designed to assess your aptitude, reasoning, and tech readiness.
+            After attending the webinar, take our smart assessment to evaluate your aptitude, reasoning, and tech readiness.
           </p>
         </div>
 
@@ -43,9 +43,12 @@ export function AssessmentSection() {
           <p className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 px-4">
             <span className="text-green-400 font-semibold">No hidden fees. No commitment. Just clarity.</span>
           </p>
+          <a href="https://app.ailinc.com/assessment/ai-linc-scholarship-test-2">
           <Button size="lg" className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-sm sm:text-base px-6 sm:px-8">
             Take Free Assessment
           </Button>
+          </a>
+         
         </div>
       </div>
     </section>
