@@ -130,8 +130,8 @@ export default function Home() {
         {/* <ProgramStructure /> */}
         {/* <ProgramJourney /> */}
         <KeyUsps />
-        <AiLearningAcceleration />
-        <ResultsSection />
+        {/* <AiLearningAcceleration /> */}
+        {/* <ResultsSection /> */}
         <CurriculumSection />
         <WorkIntegration />
         <InstructorsSection />
@@ -139,7 +139,7 @@ export default function Home() {
         <PlatformPreview />
         <CareerTransformation />
         <ClientTalentSuccessSection />
-        <PricingSection />
+        {/* <PricingSection /> */}
         <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center">Loading...</div>}>
           <ContactApplySection />
         </Suspense>
