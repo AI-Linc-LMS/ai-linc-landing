@@ -32,6 +32,7 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
 
   const [isLoading, setIsLoading] = useState(false)
   const [phoneError, setPhoneError] = useState("")
+  const [isReferralFromUrl, setIsReferralFromUrl] = useState(false)
 
   // Fetch referral code from URL on component mount
   useEffect(() => {
@@ -43,6 +44,7 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
         ...prev,
         referal_code: referralFromUrl
       }))
+      setIsReferralFromUrl(true)
     }
   }, [])
 
@@ -177,7 +179,7 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
               type="text"
               value={formData.referal_code}
               onChange={handleInputChange}
-              disabled
+              disabled={isReferralFromUrl}
               className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
               placeholder="Enter referral code if you have one"
             />
