@@ -17,11 +17,11 @@ export function AssessmentSection() {
         <div className="text-center mb-12 md:mb-16">
           <Badge variant="outline" className="text-cyan-400 border-cyan-400 mb-4">
             <CheckCircle className="w-4 h-4 mr-2" />
-            Step 1
+            Step 2
           </Badge>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">Take the Free Assessment</h2>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
-            Begin with a short, smart test designed to assess your aptitude, reasoning, and tech readiness.
+            After attending the webinar, take our smart assessment to evaluate your aptitude, reasoning, and tech readiness.
           </p>
         </div>
 
