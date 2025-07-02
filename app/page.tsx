@@ -103,7 +103,7 @@ function WebinarModal() {
                 href="/workshop-registration"
                 className="inline-block w-full text-center bg-gradient-to-r from-cyan-400 to-purple-500 text-white font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-lg shadow-lg hover:from-cyan-500 hover:to-purple-600 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-bounce text-xs sm:text-sm md:text-base"
               >
-                🎯 Apply Now - Limited Seats!
+                🎯 Register for free!
               </a>
             </div>
           </DialogDescription>

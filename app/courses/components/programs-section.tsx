@@ -1,8 +1,13 @@
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { CheckCircle, Star, Trophy, Rocket } from "lucide-react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { CheckCircle, Star, Trophy, Rocket, GraduationCap, Calendar } from "lucide-react"
 
 const nanodegreeFeatures = [
   "100+ hours of video content on AI, MERN, and more",
@@ -21,6 +26,51 @@ const flagshipFeatures = [
 ]
 
 export function ProgramsSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedProgram, setSelectedProgram] = useState<'nanodegree' | 'flagship' | null>(null)
+  const router = useRouter()
+
+  const handleProgramSelection = (program: 'nanodegree' | 'flagship') => {
+    setSelectedProgram(program)
+    setIsModalOpen(true)
+  }
+
+  const handleAssessment = () => {
+    const url = 'https://app.ailinc.com/assessment/ai-linc-scholarship-test-2'
+
+    // Try to open in new tab immediately (before closing modal)
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+
+    if (newWindow) {
+      // Successfully opened in new tab
+      newWindow.focus()
+      setIsModalOpen(false)
+    } else {
+      // Popup was blocked, ask user or redirect in same window
+      const userChoice = confirm(
+        'Popup blocked! Would you like to open the assessment in the same tab? Click OK to continue or Cancel to stay here.'
+      )
+
+      if (userChoice) {
+        window.location.href = url
+      }
+      setIsModalOpen(false)
+    }
+  }
+
+  const handleWebinarRegistration = () => {
+    setIsModalOpen(false)
+
+    try {
+      // Use Next.js router for internal navigation
+      router.push('/workshop-registration')
+    } catch (error) {
+      console.error('Router navigation failed:', error)
+      // Fallback to window.location
+      window.location.href = '/workshop-registration'
+    }
+  }
+
   return (
     <section className="py-16 md:py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -54,9 +104,9 @@ export function ProgramsSection() {
                   </div>
                 ))}
               </div>
-              
+
               <Separator className="bg-gray-700" />
-              
+
               <div className="space-y-2">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
                   <span className="text-base sm:text-lg font-semibold">Price:</span>
@@ -67,8 +117,11 @@ export function ProgramsSection() {
                   <span className="text-sm sm:text-lg text-green-400">₹499 (fully refundable within 7 days)</span>
                 </div>
               </div>
-              
-              <Button className="w-full bg-green-600 hover:bg-green-700 text-sm sm:text-base py-2 sm:py-3">
+
+              <Button
+                className="w-full bg-green-600 hover:bg-green-700 text-sm sm:text-base py-2 sm:py-3"
+                onClick={() => handleProgramSelection('nanodegree')}
+              >
                 Choose Nanodegree
               </Button>
             </CardContent>
@@ -97,9 +150,9 @@ export function ProgramsSection() {
                   </div>
                 ))}
               </div>
-              
+
               <Separator className="bg-gray-700" />
-              
+
               <div className="space-y-2">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
                   <span className="text-base sm:text-lg font-semibold">Price:</span>
@@ -111,8 +164,11 @@ export function ProgramsSection() {
                 </div>
                 <p className="text-xs sm:text-sm text-gray-400">(based on your assessment)</p>
               </div>
-              
-              <Button className="w-full bg-yellow-600 hover:bg-yellow-700 text-sm sm:text-base py-2 sm:py-3">
+
+              <Button
+                className="w-full bg-yellow-600 hover:bg-yellow-700 text-sm sm:text-base py-2 sm:py-3"
+                onClick={() => handleProgramSelection('flagship')}
+              >
                 Choose Flagship
               </Button>
             </CardContent>
@@ -138,6 +194,43 @@ export function ProgramsSection() {
           </div>
         </div>
       </div>
+
+      {/* Program Selection Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-md sm:max-w-lg">
+          <DialogHeader className="text-center pb-4">
+            <DialogTitle className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+              {selectedProgram === 'nanodegree' ? '🟢 Nanodegree Program' : '🟡 Flagship Program'}
+            </DialogTitle>
+            <DialogDescription className="text-base sm:text-lg text-muted-foreground">
+              We'd like you to take the assessment first for us to check your eligibility
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 pt-4">
+            <Button
+              className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              onClick={handleAssessment}
+            >
+              <GraduationCap className="w-5 h-5 mr-2" />
+              Take Assessment First
+            </Button>
+
+            <Button
+              variant="outline"
+              className="w-full border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
+              onClick={handleWebinarRegistration}
+            >
+              <Calendar className="w-5 h-5 mr-2" />
+              Register for Upcoming Webinar
+            </Button>
+
+            <p className="text-xs sm:text-sm text-center text-gray-400 mt-4">
+              Join our webinar to get to know more about the program before making a decision
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   )
 } 
