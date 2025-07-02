@@ -17,6 +17,7 @@ import { SyllabusSection } from "./components/syllabus-section"
 import { FinalCtaSection } from "./components/final-cta-section"
 import { InstructorsSection } from "@/components/instructors-section"
 import { PlatformPreview } from "@/components/platform-preview"
+import { CareerTransformation } from "@/components/career-transformation"
 
 export default function CoursesPage() {
   return (
@@ -35,6 +36,7 @@ export default function CoursesPage() {
         <SyllabusSection />
         <PlatformPreview />
         <InstructorsSection />
+        <CareerTransformation />
         <FinalCtaSection />
 
         <Footer />
