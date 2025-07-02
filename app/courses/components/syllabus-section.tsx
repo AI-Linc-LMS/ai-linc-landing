@@ -7,8 +7,51 @@ import Link from "next/link"
 const syllabusData = [
   {
     phase: "Phase 1",
-    title: "AI Product in 21 Days",
-    duration: "Weeks 1-3",
+    title: "AI product in 21 days",
+    duration: "Days 1-21",
+    icon: Brain,
+    color: "from-blue-500 to-cyan-500",
+    description: "Develop an AI product without writing code within 3 weeks. Via prompts and Agentic AI"
+  },
+  {
+    phase: "Phase 2", 
+    title: "Work exp. 90 days",
+    duration: "Days 22-111",
+    icon: Briefcase,
+    color: "from-purple-500 to-pink-500",
+    description: "Foster your work experience by working with a program manager from Microsoft, Amazon and Google"
+  },
+  {
+    phase: "Phase 3",
+    title: "Full-stack dev code",
+    duration: "Ongoing",
+    icon: Code,
+    color: "from-green-500 to-teal-500",
+    description: "Continue to develop your coding skills with our resource materials on platform"
+  },
+  {
+    phase: "Phase 4",
+    title: "Final product",
+    duration: "Final Stage",
+    icon: Rocket,
+    color: "from-orange-500 to-red-500",
+    description: "Launch the final product that can create impact and bring opportunities"
+  },
+  {
+    phase: "Phase 5",
+    title: "Profile launching",
+    duration: "Career Ready",
+    icon: Award,
+    color: "from-pink-500 to-purple-500",
+    description: "Make your profile ready for AI Job listings"
+  }
+]
+
+const detailedSyllabusData = [
+  {
+    phase: "Phase 1",
+    title: "AI product in 21 days",
+    duration: "Days 1-21",
     icon: Brain,
     color: "from-blue-500 to-cyan-500",
     topics: [
@@ -21,16 +64,58 @@ const syllabusData = [
   },
   {
     phase: "Phase 2", 
-    title: "Work Experience & Full-Stack Development",
-    duration: "Weeks 4-16",
-    icon: Code,
+    title: "Work exp. 90 days",
+    duration: "Days 22-111",
+    icon: Briefcase,
     color: "from-purple-500 to-pink-500",
     topics: [
       "Foster work experience with program managers from Microsoft, Amazon and Google",
+      "Real-world project management and collaboration skills",
+      "Industry-standard development practices and methodologies",
+      "Professional communication and team dynamics",
+      "Mentorship from MAANG company veterans"
+    ]
+  },
+  {
+    phase: "Phase 3",
+    title: "Full-stack dev code",
+    duration: "Ongoing Development",
+    icon: Code,
+    color: "from-green-500 to-teal-500",
+    topics: [
       "Continue to develop coding skills with resource materials on platform",
       "AI-assisted web development with intelligent code generation",
       "Full-stack AI applications with machine learning model integration",
-      "Launch final product that creates impact and brings opportunities"
+      "Modern frameworks: React, Next.js, Node.js, and AI APIs",
+      "Database design and management with AI optimization"
+    ]
+  },
+  {
+    phase: "Phase 4",
+    title: "Final product",
+    duration: "Product Launch Phase",
+    icon: Rocket,
+    color: "from-orange-500 to-red-500",
+    topics: [
+      "Launch the final product that can create impact and bring opportunities",
+      "Product deployment and scaling strategies",
+      "User feedback integration and iterative development",
+      "Performance optimization and monitoring",
+      "Portfolio development and project presentation"
+    ]
+  },
+  {
+    phase: "Phase 5",
+    title: "Profile launching",
+    duration: "Career Preparation",
+    icon: Award,
+    color: "from-pink-500 to-purple-500",
+    topics: [
+      "Make your profile ready for AI Job listings",
+      "Resume optimization for AI and tech roles",
+      "Interview preparation and mock sessions",
+      "LinkedIn and professional network building",
+      "Job application strategies and career guidance"
     ]
   }
 ]
@@ -126,7 +211,7 @@ export function SyllabusSection() {
           <div className="md:hidden absolute left-6 top-0 w-0.5 h-full bg-gradient-to-b from-cyan-400 to-purple-400"></div>
 
           <div className="space-y-8 md:space-y-12">
-            {syllabusData.map((phase, index) => {
+            {detailedSyllabusData.map((phase, index) => {
               const Icon = phase.icon
               const isEven = index % 2 === 0
               
@@ -173,7 +258,7 @@ export function SyllabusSection() {
             🧠 AI-Enhanced Weekly Progression
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {weeklyBreakdown.map((period, index) => (
+            {weeklyBreakdown.slice(0, 3).map((period, index) => (
               <Card key={index} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-700 hover:border-gray-600 transition-all duration-300">
                 <CardContent className="p-4 md:p-6">
                   <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white mb-3">
@@ -192,6 +277,28 @@ export function SyllabusSection() {
               </Card>
             ))}
           </div>
+          {weeklyBreakdown.length > 3 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6 max-w-2xl mx-auto">
+              {weeklyBreakdown.slice(3).map((period, index) => (
+                <Card key={index + 3} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-700 hover:border-gray-600 transition-all duration-300">
+                  <CardContent className="p-4 md:p-6">
+                    <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white mb-3">
+                      {period.weeks}
+                    </Badge>
+                    <h4 className="text-lg sm:text-xl font-semibold mb-2">{period.title}</h4>
+                    <p className="text-sm sm:text-base text-gray-300 mb-4">{period.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {period.highlights.map((highlight, idx) => (
+                        <Badge key={idx} variant="outline" className="border-cyan-400/50 text-cyan-300 text-xs">
+                          {highlight}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Learning Components */}
@@ -200,7 +307,7 @@ export function SyllabusSection() {
             ⚡ Revolutionary Learning Experience
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {learningComponents.map((component, index) => {
+            {learningComponents.slice(0, 3).map((component, index) => {
               const Icon = component.icon
               return (
                 <Card key={index} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-700 text-center hover:border-gray-600 transition-all duration-300">
@@ -213,6 +320,22 @@ export function SyllabusSection() {
               )
             })}
           </div>
+          {learningComponents.length > 3 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6 max-w-2xl mx-auto">
+              {learningComponents.slice(3).map((component, index) => {
+                const Icon = component.icon
+                return (
+                  <Card key={index + 3} className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-700 text-center hover:border-gray-600 transition-all duration-300">
+                    <CardContent className="p-4 md:p-6">
+                      <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400 mx-auto mb-3 md:mb-4" />
+                      <h4 className="text-lg sm:text-xl font-semibold mb-2">{component.title}</h4>
+                      <p className="text-sm sm:text-base text-gray-300">{component.description}</p>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          )}
         </div>
 
         {/* Detailed Course Button */}
