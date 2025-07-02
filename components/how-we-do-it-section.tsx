@@ -208,7 +208,7 @@ export function HowWeDoItSection() {
               <p className="text-xl text-foreground/90 font-semibold mb-8 max-w-4xl mx-auto">
                 This is your gateway to becoming an AI Expert, a consultant, freelancer, or product founder — faster than you imagined.
               </p>
-              
+              <a href="/courses">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)] hover:scale-105"
@@ -223,7 +223,8 @@ export function HowWeDoItSection() {
                 }}
               >
                 Start Your AI Journey Today
-              </Button>
+              </Button></a>
+             
             </div>
           </div>
         </motion.div>
