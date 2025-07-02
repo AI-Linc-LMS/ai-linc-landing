@@ -50,9 +50,9 @@ const hireTalentFormSchema = z.object({
   phone: z.string().min(10, "Please enter a valid phone number"),
   roleType: z.string().min(1, "Please select a role type"),
   experienceLevel: z.string().min(1, "Please select experience level"),
-  budgetRange: z.string().min(1, "Please select budget range"),
+  budgetRange: z.string().min(1, "Please enter your budget range"),
   timeline: z.string().min(1, "Please select timeline"),
-  requirements: z.string().min(10, "Please provide more details about your requirements"),
+  requirements: z.string().optional(),
 })
 
 type HireTalentFormData = z.infer<typeof hireTalentFormSchema>
@@ -280,24 +280,11 @@ export function HireTalentModal({ open, onOpenChange }: HireTalentModalProps) {
                   <FormItem>
                     <FormLabel className="flex items-center gap-2">
                       <DollarSign className="w-4 h-4" />
-                      Budget Range *
+                      Budget Range (₹) *
                     </FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select budget range" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="under-50k">Under $50K</SelectItem>
-                        <SelectItem value="50k-100k">$50K - $100K</SelectItem>
-                        <SelectItem value="100k-150k">$100K - $150K</SelectItem>
-                        <SelectItem value="150k-200k">$150K - $200K</SelectItem>
-                        <SelectItem value="200k-plus">$200K+</SelectItem>
-                        <SelectItem value="equity-based">Equity-based</SelectItem>
-                        <SelectItem value="discuss">Prefer to discuss</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <FormControl>
+                      <Input placeholder="e.g., ₹5,00,000 - ₹10,00,000 per year" {...field} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -340,7 +327,7 @@ export function HireTalentModal({ open, onOpenChange }: HireTalentModalProps) {
                 <FormItem>
                   <FormLabel className="flex items-center gap-2">
                     <MessageSquare className="w-4 h-4" />
-                    Project Requirements & Skills Needed *
+                    Project Requirements & Skills Needed
                   </FormLabel>
                   <FormControl>
                     <Textarea 
