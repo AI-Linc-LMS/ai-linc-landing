@@ -269,8 +269,6 @@ function FlipCard({ phase, index }: { phase: any; index: number }) {
     <div 
       ref={cardRef}
       className={`relative flex items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       {/* Timeline Icon */}
       <div className="absolute left-3 md:left-1/2 md:transform md:-translate-x-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-gray-900 border-4 border-cyan-400 flex items-center justify-center z-10">
@@ -280,18 +278,20 @@ function FlipCard({ phase, index }: { phase: any; index: number }) {
       {/* Flip Card Container */}
       <div className={`ml-12 md:ml-0 w-full md:w-5/12 ${isEven ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
         <div 
-          className="relative h-[400px] md:h-[450px] transition-transform duration-700 ease-in-out cursor-pointer"
+          className="relative h-[400px] md:h-[450px] transition-transform duration-700 ease-in-out"
           style={{
             transformStyle: 'preserve-3d',
             transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
           }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           {/* Front Side */}
           <div 
             className="absolute inset-0"
             style={{ backfaceVisibility: 'hidden' }}
           >
-            <Card className="bg-gray-900/50 border-gray-700 hover:border-gray-600 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 h-full">
+            <Card className="bg-gray-900/50 border-gray-700 hover:border-gray-600 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 h-full cursor-pointer">
               <CardHeader className="pb-3">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
                   <Badge className={`bg-gradient-to-r ${phase.color} text-white text-xs sm:text-sm w-fit`}>
@@ -327,7 +327,7 @@ function FlipCard({ phase, index }: { phase: any; index: number }) {
               transform: 'rotateY(180deg)' 
             }}
           >
-            <Card className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 border-cyan-400/50 h-full shadow-lg shadow-cyan-500/20">
+            <Card className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 border-cyan-400/50 h-full shadow-lg shadow-cyan-500/20 cursor-pointer">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between mb-2">
                   <Badge className={`bg-gradient-to-r ${phase.color} text-white text-xs sm:text-sm`}>
