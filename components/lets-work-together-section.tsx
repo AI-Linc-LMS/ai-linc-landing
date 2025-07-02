@@ -1,10 +1,14 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Users, Rocket } from "lucide-react"
+import { ContactFormModal } from "@/components/contact-form-modal"
 
 export function LetsWorkTogetherSection() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+
   return (
     <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -71,6 +75,7 @@ export function LetsWorkTogetherSection() {
                 <Button
                   size="lg"
                   variant="outline"
+                  onClick={() => setIsContactModalOpen(true)}
                   className="border-2 border-[#6B46C1] text-[#6B46C1] hover:bg-[#6B46C1] hover:text-white font-semibold px-8 sm:px-10 lg:px-12 py-3 sm:py-4 lg:py-5 text-base sm:text-lg lg:text-xl rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group w-full sm:w-auto"
                 >
                   <Rocket className="size-5 sm:size-6 mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300" />
@@ -100,6 +105,12 @@ export function LetsWorkTogetherSection() {
       {/* Background glow effects */}
       <div className="absolute top-1/3 left-1/4 size-72 sm:size-96 lg:size-[30rem] bg-[#0BC5EA]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/3 right-1/4 size-72 sm:size-96 lg:size-[30rem] bg-[#6B46C1]/10 rounded-full blur-3xl"></div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal 
+        open={isContactModalOpen} 
+        onOpenChange={setIsContactModalOpen} 
+      />
     </section>
   )
 } 

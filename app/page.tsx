@@ -132,18 +132,19 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <WhoWeAreSection />
-        <WhatWeDoSection />
+        <ClientTalentSuccessSection />
+        
         <HowWeDoItSection />
         {/* <ProgramStructure /> */}
         {/* <ProgramJourney /> */}
         <KeyUsps />
         {/* <AiLearningAcceleration /> */}
         {/* <ResultsSection /> */}
-        <CurriculumSection />
+        {/* <CurriculumSection /> */}
         <WorkIntegration />
         {/* <CommunityNetwork /> */}
         <CareerTransformation />
-        <ClientTalentSuccessSection />
+        
         {/* <PricingSection /> */}
         <section id="registration" className="py-20 relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
