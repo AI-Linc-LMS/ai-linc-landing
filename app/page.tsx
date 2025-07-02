@@ -13,7 +13,6 @@ import { ResultsSection } from "@/components/results-section"
 import { CurriculumSection } from "@/components/curriculum-section"
 import { WorkIntegration } from "@/components/work-integration"
 import { CommunityNetwork } from "@/components/community-network"
-import { CareerTransformation } from "@/components/career-transformation"
 import { PricingSection } from "@/components/pricing-section"
 import { ClientTalentSuccessSection } from "@/components/client-talent-success-section"
 import { LetsWorkTogetherSection } from "@/components/lets-work-together-section"
@@ -143,7 +142,6 @@ export default function Home() {
         {/* <CurriculumSection /> */}
         <WorkIntegration />
         {/* <CommunityNetwork /> */}
-        <CareerTransformation />
         
         {/* <PricingSection /> */}
         <section id="registration" className="py-20 relative overflow-hidden">
