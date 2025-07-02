@@ -126,6 +126,7 @@ export function WhatWeDoSection() {
               <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
                 Discover our job-ready AI talents and comprehensive services designed to accelerate your success
               </p>
+              <a href="/courses">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)] hover:scale-105"
@@ -141,7 +142,8 @@ export function WhatWeDoSection() {
                 }}
               >
                 Explore AI Linc Services
-              </Button>
+              </Button></a>
+              
             </div>
           </div>
         </motion.div>

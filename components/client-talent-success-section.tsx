@@ -24,6 +24,7 @@ import {
 } from "react-icons/si"
 // Import additional icons from other icon sets
 import { FaMicrosoft } from "react-icons/fa"
+import { WhatWeDoSection } from "./what-we-do-section"
 
 export function ClientTalentSuccessSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -195,6 +196,7 @@ export function ClientTalentSuccessSection() {
             </div>
           </div>
         </motion.div>
+        <WhatWeDoSection />
 
         {/* Talent Success Stories */}
         <motion.div
