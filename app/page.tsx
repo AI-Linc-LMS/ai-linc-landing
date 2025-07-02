@@ -22,7 +22,7 @@ import { ParticleBackground } from "@/components/particle-background"
 import { ThemeProvider } from "@/components/theme-provider"
 import { RegistrationCount } from "@/app/workshop-registration/components/RegistrationCount"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { RegistrationForm } from "@/app/workshop-registration/components/RegistrationForm"
 import { SuccessModal } from "@/app/workshop-registration/components/SuccessModal"
 import { useLenis } from "@/hooks/use-lenis"
@@ -217,7 +217,9 @@ export default function Home() {
           <div className="absolute bottom-1/3 left-1/4 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
         </section>
         <LetsWorkTogetherSection />
-        <ContactApplySection />
+        <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+          <ContactApplySection />
+        </Suspense>
         <Footer />
       </main>
     </ThemeProvider>
