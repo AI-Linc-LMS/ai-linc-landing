@@ -16,6 +16,7 @@ import { CommunityNetwork } from "@/components/community-network"
 import { PricingSection } from "@/components/pricing-section"
 import { ClientTalentSuccessSection } from "@/components/client-talent-success-section"
 import { LetsWorkTogetherSection } from "@/components/lets-work-together-section"
+import { ContactApplySection } from "@/components/contact-apply-section"
 import { Footer } from "@/components/footer"
 import { ParticleBackground } from "@/components/particle-background"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -24,6 +25,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { useEffect, useState } from "react"
 import { RegistrationForm } from "@/app/workshop-registration/components/RegistrationForm"
 import { SuccessModal } from "@/app/workshop-registration/components/SuccessModal"
+import { useLenis } from "@/hooks/use-lenis"
 
 const WEBINAR_DATE = new Date("2025-07-06T12:30:00+05:30"); // IST timezone
 
@@ -116,6 +118,51 @@ function WebinarModal() {
 export default function Home() {
   const [seatsLeft, setSeatsLeft] = useState(47); // Initialize with current seats
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const { scrollTo } = useLenis()
+
+  // Handle hash-based navigation from other pages
+  useEffect(() => {
+    const handleHashNavigation = () => {
+      const hash = window.location.hash
+      
+      if (hash) {
+        // Remove the hash from URL
+        window.history.replaceState(null, '', window.location.pathname)
+        
+        // Handle contact form triggers
+        if (hash === '#contact-apply-contact') {
+          setTimeout(() => {
+            const section = document.getElementById("contact-apply")
+            const trigger = section?.querySelector('[value="contact"]')
+            trigger && (trigger as HTMLElement).click()
+            scrollTo("#contact-apply", { duration: 1.5 })
+          }, 1000) // Wait for components to mount
+        } else if (hash === '#contact-apply-apply') {
+          setTimeout(() => {
+            const section = document.getElementById("contact-apply")
+            const trigger = section?.querySelector('[value="apply"]')
+            trigger && (trigger as HTMLElement).click()
+            scrollTo("#contact-apply", { duration: 1.5 })
+          }, 1000) // Wait for components to mount
+        } else {
+          // Handle regular section scrolling
+          setTimeout(() => {
+            scrollTo(hash, { duration: 1.5 })
+          }, 1000) // Wait for components to mount
+        }
+      }
+    }
+
+    // Handle hash on initial load
+    handleHashNavigation()
+    
+    // Handle hash changes (if someone manually changes the hash)
+    window.addEventListener('hashchange', handleHashNavigation)
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashNavigation)
+    }
+  }, [scrollTo])
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
@@ -170,6 +217,7 @@ export default function Home() {
           <div className="absolute bottom-1/3 left-1/4 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
         </section>
         <LetsWorkTogetherSection />
+        <ContactApplySection />
         <Footer />
       </main>
     </ThemeProvider>
