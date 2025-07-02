@@ -24,6 +24,7 @@ import {
 } from "react-icons/si"
 // Import additional icons from other icon sets
 import { FaMicrosoft } from "react-icons/fa"
+import { WhatWeDoSection } from "./what-we-do-section"
 
 export function ClientTalentSuccessSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -134,7 +135,7 @@ export function ClientTalentSuccessSection() {
   }
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+    <section id="success-stories" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -195,6 +196,7 @@ export function ClientTalentSuccessSection() {
             </div>
           </div>
         </motion.div>
+        <WhatWeDoSection />
 
         {/* Talent Success Stories */}
         <motion.div

@@ -7,7 +7,7 @@ const assessmentFeatures = [
   { icon: Target, title: "Aptitude + Reasoning Evaluation", desc: "Comprehensive skill assessment" },
   { icon: BookOpen, title: "Placement Readiness Report", desc: "Detailed analysis of your readiness" },
   { icon: Users, title: "LinkedIn Profile Review", desc: "Professional profile optimization" },
-  { icon: Award, title: "AI Linc Certificate", desc: "Certificate of Participation (₹49 only)" }
+  { icon: Award, title: "AI Linc Certificate", desc: "Certificate of Appreciation (₹49 only)" }
 ]
 
 export function AssessmentSection() {

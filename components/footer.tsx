@@ -7,9 +7,37 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { useLenis } from "@/hooks/use-lenis"
+import { useRouter, usePathname } from "next/navigation"
 
 export function Footer() {
   const { scrollTo } = useLenis()
+  const router = useRouter()
+  const pathname = usePathname()
+
+  // Function to handle navigation to sections
+  const navigateToSection = (sectionId: string, duration: number = 1.5) => {
+    if (pathname === '/') {
+      // Already on home page, just scroll
+      scrollTo(`#${sectionId}`, { duration })
+    } else {
+      // Navigate to home page first, then scroll
+      router.push(`/#${sectionId}`)
+    }
+  }
+
+  // Function to handle contact/apply form navigation
+  const navigateToContactForm = (formType: "contact" | "apply") => {
+    if (pathname === '/') {
+      // Already on home page, trigger form and scroll
+      const section = document.getElementById("contact-apply")
+      const trigger = section?.querySelector(`[value="${formType}"]`)
+      trigger && (trigger as HTMLElement).click()
+      scrollTo("#contact-apply", { duration: 1.5 })
+    } else {
+      // Navigate to home page with hash to trigger form
+      router.push(`/#contact-apply-${formType}`)
+    }
+  }
 
   const container = {
     hidden: { opacity: 0 },
@@ -47,10 +75,38 @@ export function Footer() {
               Bridging the gap between AI talent and opportunity. We assess, elevate, and deploy professionals into high-impact AI roles.
             </p>
             <ul className="space-y-2 text-sm sm:text-base">
-              <li><Link href="#who-we-are" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Who We Are</Link></li>
-              <li><Link href="#what-we-do" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">What We Do</Link></li>
-              <li><Link href="#how-we-do-it" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">How We Do It</Link></li>
-              <li><Link href="#success-stories" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Success Stories</Link></li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("who-we-are")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Who We Are
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("what-we-do")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  What We Do
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("how-we-do-it")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  How We Do It
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("success-stories")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Success Stories
+                </button>
+              </li>
             </ul>
           </motion.div>
 
@@ -61,23 +117,45 @@ export function Footer() {
               Access our curated pool of AI-ready professionals for your organization.
             </p>
             <ul className="space-y-2 text-sm sm:text-base">
-              <li><Link href="#talent-pool" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Browse Talent Pool</Link></li>
-              <li><Link href="#hiring-process" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Hiring Process</Link></li>
-              <li><Link href="#enterprise-solutions" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Enterprise Solutions</Link></li>
-              <li><Link href="#pricing-for-employers" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Pricing for Employers</Link></li>
               <li>
-                <Link
-                  href="#contact-apply"
-                  className="text-[#0BC5EA] font-semibold hover:text-[#06B6D4] transition-colors"
-                  onClick={() => {
-                    const section = document.getElementById("contact-apply")
-                    const trigger = section?.querySelector('[value="contact"]')
-                    trigger && (trigger as HTMLElement).click()
-                    scrollTo("#contact-apply", { duration: 1.5 })
-                  }}
+                <button
+                  onClick={() => navigateToSection("success-stories")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Browse Talent Pool
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("how-we-do-it")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Hiring Process
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("what-we-do")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Enterprise Solutions
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToContactForm("contact")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Pricing for Employers
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToContactForm("contact")}
+                  className="text-[#0BC5EA] font-semibold hover:text-[#06B6D4] transition-colors text-left"
                 >
                   Get in Touch →
-                </Link>
+                </button>
               </li>
             </ul>
           </motion.div>
@@ -89,23 +167,45 @@ export function Footer() {
               Transform your career and get deployed into high-impact AI roles.
             </p>
             <ul className="space-y-2 text-sm sm:text-base">
-              <li><Link href="#ai-readiness-assessment" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">AI Readiness Assessment</Link></li>
-              <li><Link href="#role-simulations" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Live Role Simulations</Link></li>
-              <li><Link href="#upskilling-program" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Personalized Upskilling</Link></li>
-              <li><Link href="#deployment-process" className="text-foreground/60 hover:text-[#0BC5EA] transition-colors">Deployment Process</Link></li>
               <li>
-                <Link
-                  href="#contact-apply"
-                  className="text-[#6B46C1] font-semibold hover:text-[#8B5CF6] transition-colors"
-                  onClick={() => {
-                    const section = document.getElementById("contact-apply")
-                    const trigger = section?.querySelector('[value="apply"]')
-                    trigger && (trigger as HTMLElement).click()
-                    scrollTo("#contact-apply", { duration: 1.5 })
-                  }}
+                <button
+                  onClick={() => navigateToSection("how-we-do-it")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  AI Readiness Assessment
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("how-we-do-it")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Live Role Simulations
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("how-we-do-it")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Personalized Upskilling
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToSection("work-integration")}
+                  className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
+                >
+                  Deployment Process
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => navigateToContactForm("apply")}
+                  className="text-[#6B46C1] font-semibold hover:text-[#8B5CF6] transition-colors text-left"
                 >
                   Apply Now →
-                </Link>
+                </button>
               </li>
             </ul>
           </motion.div>
@@ -113,12 +213,12 @@ export function Footer() {
           {/* Column 4: Connect & Subscribe */}
           <motion.div variants={item} className="space-y-4">
             <h3 className="text-lg sm:text-xl font-semibold text-white mb-3">Stay Connected</h3>
-            
+
             {/* Social Links */}
             <div className="space-y-3">
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start p-3 hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA] transition-colors" 
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA] transition-colors"
                 asChild
               >
                 <Link href="https://www.linkedin.com/company/ai-linc772/" target="_blank" rel="noopener noreferrer">
@@ -126,24 +226,14 @@ export function Footer() {
                   LinkedIn
                 </Link>
               </Button>
-              
-              <Button 
-                variant="ghost" 
-                className="w-full justify-start p-3 hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA] transition-colors" 
-                asChild
+
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA] transition-colors"
+                onClick={() => navigateToContactForm("contact")}
               >
-                <Link
-                  href="#contact-apply"
-                  onClick={() => {
-                    const section = document.getElementById("contact-apply")
-                    const trigger = section?.querySelector('[value="contact"]')
-                    trigger && (trigger as HTMLElement).click()
-                    scrollTo("#contact-apply", { duration: 1.5 })
-                  }}
-                >
-                  <Mail className="size-5 mr-3" />
-                  Contact
-                </Link>
+                <Mail className="size-5 mr-3" />
+                Contact
               </Button>
             </div>
 

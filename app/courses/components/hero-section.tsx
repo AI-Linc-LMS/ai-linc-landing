@@ -16,10 +16,14 @@ export function HeroSection() {
         </p>
         <Button 
           size="lg" 
-          className="bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-500 hover:to-purple-600 text-white font-semibold px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base"
+          className="bg-gradient-to-r from-cyan-400 to-purple-500 hover:from-cyan-500 hover:to-purple-600 text-white font-semibold px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base transition-all duration-300 ease-in-out transform hover:scale-105"
+          onClick={() => {
+            const nextSection = document.querySelector('section:nth-of-type(2)');
+            nextSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
         >
           Start Your Journey
-          <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+          <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1" />
         </Button>
       </div>
     </section>
