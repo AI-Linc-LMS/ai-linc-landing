@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Code, Brain, Rocket, Users, Trophy, Target, Star, ArrowRight, Briefcase, Award, Monitor } from "lucide-react"
+import { BookOpen, Code, Brain, Rocket, Users, Trophy, Target, Star, ArrowRight, Briefcase, Award, Monitor, Clock, CheckCircle, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import { useRef, useEffect, useState } from "react"
+import { motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion"
 
 const syllabusData = [
   {
@@ -60,7 +62,20 @@ const detailedSyllabusData = [
       "Zero-code AI product development using Glide, Zapier, and AI workflows",
       "AI-driven product ideation and intelligent UI generation",
       "Via prompts and Agentic AI - autonomous product demos"
-    ]
+    ],
+    backContent: {
+      title: "Phase 1 Outcomes",
+      achievements: [
+        "Build 3 AI products without coding",
+        "Master prompt engineering techniques",
+        "Create autonomous AI workflows",
+        "Generate intelligent UI/UX designs",
+        "Deploy AI-powered applications"
+      ],
+      tools: ["Claude AI", "GPT-4", "Glide", "Zapier", "Bubble"],
+      duration: "21 Days",
+      difficulty: "Beginner to Intermediate"
+    }
   },
   {
     phase: "Phase 2", 
@@ -74,7 +89,20 @@ const detailedSyllabusData = [
       "Industry-standard development practices and methodologies",
       "Professional communication and team dynamics",
       "Mentorship from MAANG company veterans"
-    ]
+    ],
+    backContent: {
+      title: "Phase 2 Outcomes",
+      achievements: [
+        "90 days of real work experience",
+        "MAANG-level project management skills",
+        "Industry-standard methodologies",
+        "Professional portfolio development",
+        "Mentorship from tech leaders"
+      ],
+      tools: ["Jira", "Slack", "GitHub", "Figma", "Azure DevOps"],
+      duration: "90 Days",
+      difficulty: "Intermediate to Advanced"
+    }
   },
   {
     phase: "Phase 3",
@@ -88,7 +116,20 @@ const detailedSyllabusData = [
       "Full-stack AI applications with machine learning model integration",
       "Modern frameworks: React, Next.js, Node.js, and AI APIs",
       "Database design and management with AI optimization"
-    ]
+    ],
+    backContent: {
+      title: "Phase 3 Outcomes",
+      achievements: [
+        "Full-stack development mastery",
+        "AI-integrated applications",
+        "Modern framework expertise",
+        "Database optimization skills",
+        "Production-ready projects"
+      ],
+      tools: ["React", "Next.js", "Node.js", "Python", "TensorFlow"],
+      duration: "Ongoing",
+      difficulty: "Advanced"
+    }
   },
   {
     phase: "Phase 4",
@@ -102,7 +143,20 @@ const detailedSyllabusData = [
       "User feedback integration and iterative development",
       "Performance optimization and monitoring",
       "Portfolio development and project presentation"
-    ]
+    ],
+    backContent: {
+      title: "Phase 4 Outcomes",
+      achievements: [
+        "Launch production-ready product",
+        "Implement scaling strategies",
+        "User feedback integration",
+        "Performance optimization",
+        "Professional portfolio"
+      ],
+      tools: ["AWS", "Vercel", "Docker", "Analytics", "Monitoring"],
+      duration: "Final Stage",
+      difficulty: "Expert"
+    }
   },
   {
     phase: "Phase 5",
@@ -116,7 +170,20 @@ const detailedSyllabusData = [
       "Interview preparation and mock sessions",
       "LinkedIn and professional network building",
       "Job application strategies and career guidance"
-    ]
+    ],
+    backContent: {
+      title: "Phase 5 Outcomes",
+      achievements: [
+        "AI-optimized resume",
+        "Interview readiness",
+        "Professional networking",
+        "Job application mastery",
+        "Career guidance"
+      ],
+      tools: ["LinkedIn", "Resume AI", "Mock Interviews", "Career Portal"],
+      duration: "Career Ready",
+      difficulty: "Professional"
+    }
   }
 ]
 
@@ -181,9 +248,160 @@ const learningComponents = [
   }
 ]
 
-export function SyllabusSection() {
+// Flip Card Component
+function FlipCard({ phase, index }: { phase: any; index: number }) {
+  const [isFlipped, setIsFlipped] = useState(false)
+  const cardRef = useRef(null)
+
+  const Icon = phase.icon
+  const isEven = index % 2 === 0
+
+  // Handle hover interactions
+  const handleMouseEnter = () => {
+    setIsFlipped(true)
+  }
+
+  const handleMouseLeave = () => {
+    setIsFlipped(false)
+  }
+
   return (
-    <section className="py-16 md:py-20 px-4">
+    <div 
+      ref={cardRef}
+      className={`relative flex items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Timeline Icon */}
+      <div className="absolute left-3 md:left-1/2 md:transform md:-translate-x-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-gray-900 border-4 border-cyan-400 flex items-center justify-center z-10">
+        <Icon className="w-3 h-3 md:w-6 md:h-6 text-cyan-400" />
+      </div>
+
+      {/* Flip Card Container */}
+      <div className={`ml-12 md:ml-0 w-full md:w-5/12 ${isEven ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
+        <div 
+          className="relative h-[400px] md:h-[450px] transition-transform duration-700 ease-in-out cursor-pointer"
+          style={{
+            transformStyle: 'preserve-3d',
+            transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
+          }}
+        >
+          {/* Front Side */}
+          <div 
+            className="absolute inset-0"
+            style={{ backfaceVisibility: 'hidden' }}
+          >
+            <Card className="bg-gray-900/50 border-gray-700 hover:border-gray-600 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 h-full">
+              <CardHeader className="pb-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
+                  <Badge className={`bg-gradient-to-r ${phase.color} text-white text-xs sm:text-sm w-fit`}>
+                    {phase.phase}
+                  </Badge>
+                  <span className="text-xs sm:text-sm text-gray-400">{phase.duration}</span>
+                </div>
+                <CardTitle className="text-lg sm:text-xl md:text-2xl">{phase.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-1 sm:space-y-2">
+                  {phase.topics.map((topic: string, topicIndex: number) => (
+                    <li key={topicIndex} className="flex items-start">
+                      <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
+                      <span className="text-sm sm:text-base text-gray-300">{topic}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 text-center">
+                  <Badge variant="outline" className="border-cyan-400/50 text-cyan-300 text-xs animate-pulse">
+                    Hover to see outcomes
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Back Side */}
+          <div 
+            className="absolute inset-0"
+            style={{ 
+              backfaceVisibility: 'hidden',
+              transform: 'rotateY(180deg)' 
+            }}
+          >
+            <Card className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 border-cyan-400/50 h-full shadow-lg shadow-cyan-500/20">
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between mb-2">
+                  <Badge className={`bg-gradient-to-r ${phase.color} text-white text-xs sm:text-sm`}>
+                    {phase.backContent.title}
+                  </Badge>
+                  <Badge variant="outline" className="border-cyan-400/50 text-cyan-300 text-xs">
+                    {phase.backContent.difficulty}
+                  </Badge>
+                </div>
+                <CardTitle className="text-lg sm:text-xl md:text-2xl text-cyan-300">
+                  Outcomes & Tools
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="text-sm font-semibold text-cyan-300 mb-2 flex items-center">
+                    <CheckCircle className="w-4 h-4 mr-2" />
+                    Key Achievements
+                  </h4>
+                  <ul className="space-y-1">
+                    {phase.backContent.achievements.map((achievement: string, idx: number) => (
+                      <li key={idx} className="flex items-start text-sm">
+                        <TrendingUp className="w-3 h-3 text-green-400 mt-0.5 mr-2 flex-shrink-0" />
+                        <span className="text-gray-300">{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="text-sm font-semibold text-cyan-300 mb-2 flex items-center">
+                    <Monitor className="w-4 h-4 mr-2" />
+                    Tools & Technologies
+                  </h4>
+                  <div className="flex flex-wrap gap-1">
+                    {phase.backContent.tools.map((tool: string, idx: number) => (
+                      <Badge key={idx} variant="outline" className="border-cyan-400/30 text-cyan-300 text-xs">
+                        {tool}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-2 border-t border-gray-700">
+                  <div className="flex items-center text-sm text-gray-400">
+                    <Clock className="w-4 h-4 mr-1" />
+                    {phase.backContent.duration}
+                  </div>
+                  <Badge className="bg-gradient-to-r from-green-500 to-teal-500 text-white text-xs">
+                    Interactive Learning
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function SyllabusSection() {
+  const sectionRef = useRef(null)
+  const controls = useAnimation()
+  const isInView = useInView(sectionRef, { once: true })
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible")
+    }
+  }, [controls, isInView])
+
+  return (
+    <section className="py-16 md:py-20 px-4" ref={sectionRef}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">
@@ -197,12 +415,15 @@ export function SyllabusSection() {
               111 Days of AI Mastery
             </Badge>
             <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 text-lg">
-              2 AI-Driven Phases
+              Hover Flip Cards
             </Badge>
           </div>
+          <p className="text-sm text-gray-400 mt-4 px-2">
+            💡 Hover over cards to explore detailed outcomes & tools
+          </p>
         </div>
 
-        {/* Main Phases Timeline */}
+        {/* Main Phases Timeline with Flip Cards */}
         <div className="relative mb-12 md:mb-16">
           {/* Desktop Timeline Line */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 to-purple-400"></div>
@@ -211,44 +432,9 @@ export function SyllabusSection() {
           <div className="md:hidden absolute left-6 top-0 w-0.5 h-full bg-gradient-to-b from-cyan-400 to-purple-400"></div>
 
           <div className="space-y-8 md:space-y-12">
-            {detailedSyllabusData.map((phase, index) => {
-              const Icon = phase.icon
-              const isEven = index % 2 === 0
-              
-              return (
-                <div key={index} className={`relative flex items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                  {/* Timeline Icon */}
-                  <div className="absolute left-3 md:left-1/2 md:transform md:-translate-x-1/2 w-6 h-6 md:w-12 md:h-12 rounded-full bg-gray-900 border-4 border-cyan-400 flex items-center justify-center z-10">
-                    <Icon className="w-3 h-3 md:w-6 md:h-6 text-cyan-400" />
-                  </div>
-
-                  {/* Content Card */}
-                  <div className={`ml-12 md:ml-0 w-full md:w-5/12 ${isEven ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
-                    <Card className="bg-gray-900/50 border-gray-700 hover:border-gray-600 transition-all duration-300">
-                      <CardHeader className="pb-3">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 gap-2">
-                          <Badge className={`bg-gradient-to-r ${phase.color} text-white text-xs sm:text-sm w-fit`}>
-                            {phase.phase}
-                          </Badge>
-                          <span className="text-xs sm:text-sm text-gray-400">{phase.duration}</span>
-                        </div>
-                        <CardTitle className="text-lg sm:text-xl md:text-2xl">{phase.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-1 sm:space-y-2">
-                          {phase.topics.map((topic, topicIndex) => (
-                            <li key={topicIndex} className="flex items-start">
-                              <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 mr-2 sm:mr-3 flex-shrink-0"></span>
-                              <span className="text-sm sm:text-base text-gray-300">{topic}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              )
-            })}
+            {detailedSyllabusData.map((phase, index) => (
+              <FlipCard key={index} phase={phase} index={index} />
+            ))}
           </div>
         </div>
 
