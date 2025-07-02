@@ -50,7 +50,7 @@ export function WhoWeAreSection() {
   }
 
   return (
-    <section className="py-16 sm:py-20 relative overflow-hidden">
+    <section id="who-we-are" className="py-16 sm:py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left side - Text content */}

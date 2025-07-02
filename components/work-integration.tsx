@@ -82,7 +82,7 @@ export function WorkIntegration() {
   }
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section id="work-integration" className="py-16 sm:py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

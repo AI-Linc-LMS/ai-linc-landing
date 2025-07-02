@@ -5,10 +5,14 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useLenis } from "@/hooks/use-lenis"
+import { HireTalentModal } from "@/components/hire-talent-modal"
+import { ContactFormModal } from "@/components/contact-form-modal"
 import Image from "next/image"
 
 export function HeroSection() {
   const { scrollTo } = useLenis()
+  const [isHireTalentModalOpen, setIsHireTalentModalOpen] = useState(false)
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [timeLeft, setTimeLeft] = useState({
     days: 7,
     hours: 23,
@@ -113,40 +117,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-8 py-6 text-lg rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)]"
-                onClick={() => {
-                  console.log('=== HIRE AI TALENT BUTTON CLICKED ===');
-                  
-                  // Check if element exists
-                  const element = document.getElementById('contact-apply');
-                  console.log('Target element found:', !!element);
-                  if (element) {
-                    console.log('Element position:', element.getBoundingClientRect());
-                  }
-                  
-                  // Check if Lenis is available
-                  console.log('Window.lenis:', (window as any).lenis);
-                  console.log('ScrollTo function:', scrollTo);
-                  
-                  // Try Lenis first
-                  try {
-                    scrollTo('#contact-apply', { duration: 1.5 });
-                    console.log('✅ Lenis scroll attempted successfully');
-                  } catch (error) {
-                    console.log('❌ Lenis failed, using fallback:', error);
-                    // Fallback to native scroll
-                    if (element) {
-                      element.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                      });
-                      console.log('✅ Native scroll used');
-                    } else {
-                      console.log('❌ Element not found for native scroll!');
-                    }
-                  }
-                  
-                  console.log('=== END HIRE AI TALENT BUTTON DEBUG ===');
-                }}
+                onClick={() => setIsHireTalentModalOpen(true)}
               >
                 Hire AI Talent
               </Button>
@@ -154,40 +125,7 @@ export function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="border-[#0BC5EA]/50 text-[#0BC5EA] hover:bg-[#0BC5EA]/10 font-medium px-8 py-6 text-lg rounded-md transition-all duration-300 hover:border-[#0BC5EA] hover:shadow-[0_0_20px_rgba(11,197,234,0.3)]"
-                onClick={() => {
-                  console.log('=== JOIN TALENT POOL BUTTON CLICKED ===');
-                  
-                  // Check if element exists
-                  const element = document.getElementById('contact-apply');
-                  console.log('Target element found:', !!element);
-                  if (element) {
-                    console.log('Element position:', element.getBoundingClientRect());
-                  }
-                  
-                  // Check if Lenis is available
-                  console.log('Window.lenis:', (window as any).lenis);
-                  console.log('ScrollTo function:', scrollTo);
-                  
-                  // Try Lenis first
-                  try {
-                    scrollTo('#contact-apply', { duration: 1.5 });
-                    console.log('✅ Lenis scroll attempted successfully');
-                  } catch (error) {
-                    console.log('❌ Lenis failed, using fallback:', error);
-                    // Fallback to native scroll
-                    if (element) {
-                      element.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                      });
-                      console.log('✅ Native scroll used');
-                    } else {
-                      console.log('❌ Element not found for native scroll!');
-                    }
-                  }
-                  
-                  console.log('=== END JOIN TALENT POOL BUTTON DEBUG ===');
-                }}
+                onClick={() => setIsContactModalOpen(true)}
               >
                 Join the Talent Pool
               </Button>
@@ -301,6 +239,16 @@ export function HeroSection() {
       {/* Background glow effects */}
       <div className="absolute top-1/4 left-1/4 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/4 right-1/4 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
+
+      {/* Modals */}
+      <HireTalentModal 
+        open={isHireTalentModalOpen} 
+        onOpenChange={setIsHireTalentModalOpen} 
+      />
+      <ContactFormModal 
+        open={isContactModalOpen} 
+        onOpenChange={setIsContactModalOpen} 
+      />
     </section>
   )
 }
