@@ -207,7 +207,7 @@ export default function Home() {
         
         <HowWeDoItSection />
         {/* <ProgramStructure /> */}
-        {/* <ProgramJourney /> */}
+        <ProgramJourney />
         <KeyUsps />
         {/* <AiLearningAcceleration /> */}
         {/* <ResultsSection /> */}
