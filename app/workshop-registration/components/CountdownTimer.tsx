@@ -36,22 +36,33 @@ export function CountdownTimer() {
   }, [])
 
   return (
-    <div className="flex justify-center gap-4 mb-8">
-      <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
-        <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.days}</div>
-        <div className="text-sm text-foreground/60">Days</div>
+    <div className="mb-8">
+      {/* Workshop Date */}
+      <div className="text-center mb-6">
+        <div className="text-yellow-400 font-semibold text-lg mb-2">
+          📅 Sunday, July 6, 2025 at 12:30 PM IST
+        </div>
+        <div className="font-semibold text-orange-400">⏰ Workshop Starts In:</div>
       </div>
-      <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
-        <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.hours}</div>
-        <div className="text-sm text-foreground/60">Hours</div>
-      </div>
-      <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
-        <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.minutes}</div>
-        <div className="text-sm text-foreground/60">Minutes</div>
-      </div>
-      <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
-        <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.seconds}</div>
-        <div className="text-sm text-foreground/60">Seconds</div>
+
+      {/* Countdown Timer */}
+      <div className="flex justify-center gap-4">
+        <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
+          <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.days}</div>
+          <div className="text-sm text-foreground/60">Days</div>
+        </div>
+        <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
+          <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.hours}</div>
+          <div className="text-sm text-foreground/60">Hours</div>
+        </div>
+        <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
+          <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.minutes}</div>
+          <div className="text-sm text-foreground/60">Minutes</div>
+        </div>
+        <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
+          <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.seconds}</div>
+          <div className="text-sm text-foreground/60">Seconds</div>
+        </div>
       </div>
     </div>
   )
