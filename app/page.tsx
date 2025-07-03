@@ -118,7 +118,32 @@ function WebinarModal() {
 export default function Home() {
   const [seatsLeft, setSeatsLeft] = useState(47); // Initialize with current seats
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const { scrollTo } = useLenis()
+
+  // Timer for registration section
+  useEffect(() => {
+    function updateCountdown() {
+      const now = new Date();
+      const diff = WEBINAR_DATE.getTime() - now.getTime();
+      
+      if (diff <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      setTimeLeft({ days, hours, minutes, seconds });
+    }
+    
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Handle hash-based navigation from other pages
   useEffect(() => {
@@ -197,10 +222,38 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-[#0BC5EA] bg-clip-text text-transparent">
                 Register for Free Workshop
               </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
                 Join our exclusive workshop and start your AI journey today. Limited seats available!
               </p>
+              
+              {/* Workshop Date and Timer */}
+              <div className="max-w-md mx-auto mb-8 p-6 bg-gradient-to-r from-[#0BC5EA]/10 to-[#6B46C1]/10 rounded-xl border border-[#0BC5EA]/20">
+                <div className="text-yellow-400 font-semibold text-lg mb-4">
+                  📅 Sunday, July 6, 2025 at 12:30 PM IST
+                </div>
+                
+                <div className="font-semibold text-orange-400 mb-3">⏰ Workshop Starts In:</div>
+                <div className="grid grid-cols-4 gap-3 text-center">
+                  <div className="bg-black/30 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-[#0BC5EA]">{timeLeft.days.toString().padStart(2, '0')}</div>
+                    <div className="text-xs text-gray-400">Days</div>
+                  </div>
+                  <div className="bg-black/30 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-[#0BC5EA]">{timeLeft.hours.toString().padStart(2, '0')}</div>
+                    <div className="text-xs text-gray-400">Hours</div>
+                  </div>
+                  <div className="bg-black/30 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-[#0BC5EA]">{timeLeft.minutes.toString().padStart(2, '0')}</div>
+                    <div className="text-xs text-gray-400">Min</div>
+                  </div>
+                  <div className="bg-black/30 rounded-lg p-3">
+                    <div className="text-2xl font-bold text-[#0BC5EA]">{timeLeft.seconds.toString().padStart(2, '0')}</div>
+                    <div className="text-xs text-gray-400">Sec</div>
+                  </div>
+                </div>
+              </div>
             </div>
+            
             <div className="max-w-md mx-auto">
               <RegistrationForm 
                 onSuccess={() => {
