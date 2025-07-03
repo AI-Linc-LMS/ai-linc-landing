@@ -50,8 +50,8 @@ export function Navbar() {
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="/#program" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Program</NavigationMenuLink>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
@@ -60,25 +60,25 @@ export function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/#curriculum" legacyBehavior passHref>
+                <Link href="/courses" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Curriculum</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/#instructors" legacyBehavior passHref>
+                <Link href="/courses" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Instructors</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-              <NavigationMenuItem>
+              {/* <NavigationMenuItem>
                 <Link href="/#community" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Community</NavigationMenuLink>
                 </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
+              </NavigationMenuItem> */}
+              {/* <NavigationMenuItem>
                 <Link href="/#pricing" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Pricing</NavigationMenuLink>
                 </Link>
-              </NavigationMenuItem>
+              </NavigationMenuItem> */}
               <NavigationMenuItem>
                 <Link href="/workshop-registration" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Webinar</NavigationMenuLink>
@@ -120,7 +120,7 @@ export function Navbar() {
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Program
+                Home
               </Link>
               <Link
                 href="/courses"
@@ -150,13 +150,13 @@ export function Navbar() {
               >
                 Community
               </Link>
-              <Link
+              {/* <Link
                 href="/#pricing"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Pricing
-              </Link>
+              </Link> */}
               <Link
                 href="/workshop-registration"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
