@@ -217,9 +217,9 @@ export default function Home() {
           <div className="absolute bottom-1/3 left-1/4 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
         </section>
         <LetsWorkTogetherSection />
-        <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+        {/* <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
           <ContactApplySection />
-        </Suspense>
+        </Suspense> */}
         <Footer />
       </main>
     </ThemeProvider>

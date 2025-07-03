@@ -106,47 +106,8 @@ export function WhatWeDoSection() {
           ))}
         </motion.div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="bg-gradient-to-r from-card/30 to-card/10 backdrop-blur-sm border border-[#0BC5EA]/20 rounded-2xl p-8 sm:p-12 relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute top-0 right-0 size-64 bg-gradient-to-bl from-[#0BC5EA]/10 to-transparent rounded-bl-full"></div>
-            <div className="absolute bottom-0 left-0 size-64 bg-gradient-to-tr from-[#6B46C1]/10 to-transparent rounded-tr-full"></div>
-            
-            <div className="relative z-10">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-white">
-                Ready to Transform Your AI Journey?
-              </h3>
-              <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
-                Discover our job-ready AI talents and comprehensive services designed to accelerate your success
-              </p>
-              <a href="/courses">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-semibold px-8 py-6 text-lg rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(11,197,234,0.5)] hover:shadow-[0_0_30px_rgba(11,197,234,0.7)] hover:scale-105"
-                onClick={() => {
-                  // For now, scroll to contact section. Later can be updated to navigate to a dedicated services page
-                  const element = document.getElementById('contact-apply');
-                  if (element) {
-                    element.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }
-                }}
-              >
-                Explore AI Linc Services
-              </Button></a>
-              
-            </div>
-          </div>
-        </motion.div>
+       
+       
       </div>
 
       {/* Background glow effects */}
