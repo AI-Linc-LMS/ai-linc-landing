@@ -6,13 +6,13 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useLenis } from "@/hooks/use-lenis"
 import { HireTalentModal } from "@/components/hire-talent-modal"
-import { ContactFormModal } from "@/components/contact-form-modal"
+import { WebinarRegistrationModal } from "@/components/webinar-registration-modal"
 import Image from "next/image"
 
 export function HeroSection() {
   const { scrollTo } = useLenis()
   const [isHireTalentModalOpen, setIsHireTalentModalOpen] = useState(false)
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+  const [isWebinarModalOpen, setIsWebinarModalOpen] = useState(false)
   const [timeLeft, setTimeLeft] = useState({
     days: 7,
     hours: 23,
@@ -125,7 +125,7 @@ export function HeroSection() {
                 size="lg"
                 variant="outline"
                 className="border-[#0BC5EA]/50 text-[#0BC5EA] hover:bg-[#0BC5EA]/10 font-medium px-8 py-6 text-lg rounded-md transition-all duration-300 hover:border-[#0BC5EA] hover:shadow-[0_0_20px_rgba(11,197,234,0.3)]"
-                onClick={() => setIsContactModalOpen(true)}
+                onClick={() => setIsWebinarModalOpen(true)}
               >
                 Join the Talent Pool
               </Button>
@@ -245,9 +245,9 @@ export function HeroSection() {
         open={isHireTalentModalOpen} 
         onOpenChange={setIsHireTalentModalOpen} 
       />
-      <ContactFormModal 
-        open={isContactModalOpen} 
-        onOpenChange={setIsContactModalOpen} 
+      <WebinarRegistrationModal 
+        open={isWebinarModalOpen} 
+        onOpenChange={setIsWebinarModalOpen} 
       />
     </section>
   )
