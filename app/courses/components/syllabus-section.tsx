@@ -190,33 +190,33 @@ const detailedSyllabusData = [
 const weeklyBreakdown = [
   {
     weeks: "Weeks 1-3",
-    title: "AI Product in 21 Days",
-    description: "Develop an AI product without writing code within 3 weeks via prompts and Agentic AI",
-    highlights: ["AI Agent Engineering", "Intelligent Automation", "AI Product Strategy"]
+    title: "AI Product Genesis: Zero-to-Hero in 21 Days",
+    description: "Unleash your inner AI architect! Transform ideas into intelligent products using conversational AI agents and prompt engineering wizardry - no traditional coding required",
+    highlights: ["Neural Agent Orchestration", "Cognitive Automation Mastery", "AI Product Alchemy"]
   },
   {
     weeks: "Weeks 4-7",
-    title: "Work Experience Foundation",
-    description: "Foster work experience with program managers from Microsoft, Amazon and Google",
-    highlights: ["MAANG Mentorship", "Real Project Work", "Industry Standards"]
+    title: "Silicon Valley Simulation Lab",
+    description: "Step into the minds of MAANG titans! Experience authentic tech company workflows guided by Microsoft, Amazon, and Google program managers in our immersive work simulation",
+    highlights: ["MAANG DNA Infusion", "Real-World AI Projects", "Tech Giant Methodologies"]
   },
   {
     weeks: "Weeks 8-10",
-    title: "Full-Stack Development",
-    description: "Continue to develop coding skills with resource materials on platform",
-    highlights: ["AI-Powered Coding", "Smart Development", "Intelligent Components"]
+    title: "AI-Augmented Development Mastery",
+    description: "Evolve into a cyborg developer! Harness AI copilots and intelligent code generation to build sophisticated applications at superhuman speed",
+    highlights: ["AI-Assisted Code Evolution", "Intelligent Development Ecosystem", "Smart Component Architecture"]
   },
   {
     weeks: "Weeks 11-14",
-    title: "AI-Powered Backend Systems",
-    description: "Advanced backend development with AI-driven development and smart databases",
-    highlights: ["Intelligent APIs", "AI Authentication", "Smart Database Design"]
+    title: "Neural Backend Engineering",
+    description: "Architect the brain of tomorrow's applications! Design self-learning backend systems with AI-driven APIs, intelligent databases, and autonomous scaling mechanisms",
+    highlights: ["Self-Healing API Networks", "Cognitive Authentication Systems", "Adaptive Database Intelligence"]
   },
   {
     weeks: "Weeks 15-16",
-    title: "Final Product Launch",
-    description: "Launch the final product that can create impact and bring opportunities",
-    highlights: ["Product Launch", "Impact Creation", "Career Opportunities"]
+    title: "AI Product Constellation Launch",
+    description: "Ignite your digital legacy! Deploy your AI-powered creation into the wild, creating ripple effects that attract opportunities and transform careers",
+    highlights: ["Stellar Product Deployment", "Impact Amplification Engine", "Career Trajectory Acceleration"]
   }
 ]
 
