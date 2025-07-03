@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { CheckCircle, Star, Trophy, Rocket, GraduationCap, Calendar } from "lucide-react"
+import { CheckCircle, Star, Trophy, Rocket, GraduationCap, Calendar, Sparkles, ArrowRight, Clock, Users } from "lucide-react"
 
 const nanodegreeFeatures = [
   "100+ hours of video content on AI, MERN, and more",
@@ -27,11 +27,9 @@ const flagshipFeatures = [
 
 export function ProgramsSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [selectedProgram, setSelectedProgram] = useState<'nanodegree' | 'flagship' | null>(null)
   const router = useRouter()
 
-  const handleProgramSelection = (program: 'nanodegree' | 'flagship') => {
-    setSelectedProgram(program)
+  const handleProgramSelection = () => {
     setIsModalOpen(true)
   }
 
@@ -120,7 +118,7 @@ export function ProgramsSection() {
 
               <Button
                 className="w-full bg-green-600 hover:bg-green-700 text-sm sm:text-base py-2 sm:py-3"
-                onClick={() => handleProgramSelection('nanodegree')}
+                onClick={handleProgramSelection}
               >
                 Choose Nanodegree
               </Button>
@@ -167,7 +165,7 @@ export function ProgramsSection() {
 
               <Button
                 className="w-full bg-yellow-600 hover:bg-yellow-700 text-sm sm:text-base py-2 sm:py-3"
-                onClick={() => handleProgramSelection('flagship')}
+                onClick={handleProgramSelection}
               >
                 Choose Flagship
               </Button>
@@ -195,39 +193,127 @@ export function ProgramsSection() {
         </div>
       </div>
 
-      {/* Program Selection Modal */}
+      {/* Enhanced Program Selection Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-md sm:max-w-lg">
-          <DialogHeader className="text-center pb-4">
-            <DialogTitle className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-              {selectedProgram === 'nanodegree' ? '🟢 Nanodegree Program' : '🟡 Flagship Program'}
+        <DialogContent className="max-w-md sm:max-w-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50 shadow-2xl">
+          <DialogHeader className="text-center pb-6 relative">
+            <div className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-purple-500/20 rounded-full blur-xl"></div>
+            <div className="absolute -top-2 -right-2 w-16 h-16 bg-gradient-to-br from-yellow-400/20 to-pink-500/20 rounded-full blur-lg"></div>
+
+            <DialogTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent relative z-10">
+              <Sparkles className="w-8 h-8 inline mr-3 text-cyan-400" />
+              Ready to Transform Your Career?
             </DialogTitle>
-            <DialogDescription className="text-base sm:text-lg text-muted-foreground">
-              We'd like you to take the assessment first for us to check your eligibility
+            <DialogDescription className="text-base sm:text-lg text-slate-300 mt-4 relative z-10">
+              Choose your next step to unlock your potential in AI and tech
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-4 pt-4">
-            <Button
-              className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={handleAssessment}
-            >
-              <GraduationCap className="w-5 h-5 mr-2" />
-              Take Assessment First
-            </Button>
+          <div className="space-y-6 pt-4">
+            {/* Assessment Option */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-600/20 rounded-xl blur-sm group-hover:blur-none transition-all duration-300"></div>
+              <Card className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg">
+                        <GraduationCap className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-cyan-400">Take Assessment</h3>
+                        <p className="text-sm text-slate-400">Evaluate your current skills</p>
+                      </div>
+                    </div>
+                    <Badge className="bg-cyan-500/20 text-cyan-400 border-cyan-500/30">
+                      <Clock className="w-3 h-3 mr-1" />
+                      30 mins
+                    </Badge>
+                  </div>
 
-            <Button
-              variant="outline"
-              className="w-full border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
-              onClick={handleWebinarRegistration}
-            >
-              <Calendar className="w-5 h-5 mr-2" />
-              Register for Upcoming Webinar
-            </Button>
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center text-sm text-slate-300">
+                      <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                      Check your eligibility for both programs
+                    </div>
+                    <div className="flex items-center text-sm text-slate-300">
+                      <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                      Get personalized program recommendations
+                    </div>
+                    <div className="flex items-center text-sm text-slate-300">
+                      <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                      Unlock potential scholarship opportunities
+                    </div>
+                  </div>
 
-            <p className="text-xs sm:text-sm text-center text-gray-400 mt-4">
-              Join our webinar to get to know more about the program before making a decision
-            </p>
+                  <Button
+                    className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
+                    onClick={handleAssessment}
+                  >
+                    Start Assessment Now
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Webinar Option */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-600/20 rounded-xl blur-sm group-hover:blur-none transition-all duration-300"></div>
+              <Card className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg">
+                        <Calendar className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-purple-400">Join Webinar</h3>
+                        <p className="text-sm text-slate-400">Learn more before deciding</p>
+                      </div>
+                    </div>
+                    <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30">
+                      <Users className="w-3 h-3 mr-1" />
+                      Live
+                    </Badge>
+                  </div>
+
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center text-sm text-slate-300">
+                      <Star className="w-4 h-4 text-yellow-400 mr-2" />
+                      Deep dive into program curriculum
+                    </div>
+                    <div className="flex items-center text-sm text-slate-300">
+                      <Star className="w-4 h-4 text-yellow-400 mr-2" />
+                      Meet industry experts and mentors
+                    </div>
+                    <div className="flex items-center text-sm text-slate-300">
+                      <Star className="w-4 h-4 text-yellow-400 mr-2" />
+                      Get your questions answered live
+                    </div>
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    className="w-full border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 group bg-transparent"
+                    onClick={handleWebinarRegistration}
+                  >
+                    Register for Webinar
+                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Bottom Info */}
+            <div className="text-center pt-4 border-t border-slate-700/50">
+              <p className="text-sm text-slate-400 mb-2">
+                💡 <strong>Pro Tip:</strong> Take the assessment for the best program match
+              </p>
+              <p className="text-xs text-slate-500">
+                Both options help you make an informed decision about your AI career journey
+              </p>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
