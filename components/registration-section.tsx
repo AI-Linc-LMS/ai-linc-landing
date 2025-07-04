@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { RegistrationForm } from "@/app/workshop-registration/components/RegistrationForm"
+import { RegistrationCount } from "@/app/workshop-registration/components/RegistrationCount"
 import { useCountdown } from "@/hooks/use-countdown"
 
 const WEBINAR_DATE = new Date("2025-07-06T12:30:00+05:30"); // IST timezone
@@ -40,9 +41,12 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
           <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
             Register for Free Workshop
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Transform your career with our exclusive AI workshop. Join industry experts and unlock your potential in the world of artificial intelligence.
           </p>
+          
+          {/* Live Registration Count */}
+          <RegistrationCount className="mb-8" />
         </div>
 
         {/* Main Content Grid */}
@@ -52,9 +56,9 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
             <div className="text-center lg:text-left">
               <h3 className="text-2xl font-bold text-white mb-6">What You'll Get</h3>
             </div>
-            
+
             {benefits.map((benefit, index) => (
-              <div 
+              <div
                 key={index}
                 className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-white/5 to-[#0BC5EA]/5 border border-white/10 hover:border-[#0BC5EA]/30 transition-all duration-300 hover:transform hover:scale-105"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -75,7 +79,7 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
               {/* Animated background elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#0BC5EA]/10 rounded-full blur-2xl animate-pulse"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#6B46C1]/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-              
+
               <div className="relative z-10">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-400/20 rounded-full mb-3">
@@ -86,7 +90,7 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                     📅 Sunday, July 6, 2025 at 12:30 PM IST
                   </div>
                 </div>
-                
+
                 <div className="text-center mb-4">
                   <div className="font-semibold text-orange-400 mb-3">⏰ Workshop Starts In:</div>
                   <div className="grid grid-cols-4 gap-2">
@@ -105,13 +109,13 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                 </div>
               </div>
             </div>
-            
+
             {/* Registration Form */}
             <div className="bg-gradient-to-br from-white/5 to-[#0BC5EA]/5 rounded-2xl p-6 border border-white/10 backdrop-blur-sm">
-              <RegistrationForm 
+              <RegistrationForm
                 onSuccess={onSuccess}
-                seatsLeft={seatsLeft} 
-                setSeatsLeft={setSeatsLeft} 
+                seatsLeft={seatsLeft}
+                setSeatsLeft={setSeatsLeft}
               />
             </div>
           </div>
@@ -121,11 +125,11 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
             <div className="text-center lg:text-left">
               <h3 className="text-2xl font-bold text-white mb-6">Join Thousands</h3>
             </div>
-            
+
             {/* Stats Cards */}
             <div className="grid grid-cols-2 gap-4">
               {stats.map((stat, index) => (
-                <div 
+                <div
                   key={index}
                   className="p-4 rounded-xl bg-gradient-to-br from-white/5 to-[#0BC5EA]/5 border border-white/10 hover:border-[#0BC5EA]/30 transition-all duration-300 hover:transform hover:scale-105 text-center"
                   style={{ animationDelay: `${index * 0.15}s` }}
@@ -168,12 +172,12 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
           </div>
         </div>
       </div>
-      
+
       {/* Enhanced Background Effects */}
       <div className="absolute top-1/4 left-1/4 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 right-1/4 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-[800px] bg-gradient-to-r from-[#0BC5EA]/3 to-[#6B46C1]/3 rounded-full blur-3xl"></div>
-      
+
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-4 h-4 bg-[#0BC5EA]/30 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
       <div className="absolute top-40 right-20 w-6 h-6 bg-[#6B46C1]/30 rounded-full animate-bounce" style={{ animationDelay: '1.5s' }}></div>
