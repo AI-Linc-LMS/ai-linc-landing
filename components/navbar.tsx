@@ -60,7 +60,7 @@ export function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/courses" legacyBehavior passHref>
+                <Link href="/courses#curriculum" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Curriculum</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -130,14 +130,14 @@ export function Navbar() {
                 Courses
               </Link>
               <Link
-                href="/#curriculum"
+                href="/courses#curriculum"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Curriculum
               </Link>
               <Link
-                href="/#instructors"
+                href="/courses#instructors"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
