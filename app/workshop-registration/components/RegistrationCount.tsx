@@ -17,16 +17,25 @@ export function RegistrationCount({ className = "" }: RegistrationCountProps) {
       setIsLoading(true)
       setError(null)
 
-      const response = await fetch('https://be-app.ailinc.com/api/clients/1/workshop-registrations/')
+      const response = await fetch('https://be-app.ailinc.com/api/clients/1/workshop-registrations/count/' )
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
       const data = await response.json()
+      console.log('API Response:', data) // Debug log to see what we're getting
 
-      // Count the total registrations
-      const count = Array.isArray(data) ? data.length : 0
+      // Check if the response has a registrations_count property
+      let count = 0
+      if (data && typeof data.registrations_count === 'number') {
+        count = data.registrations_count
+      } else if (Array.isArray(data)) {
+        count = data.length
+      } else if (typeof data === 'number') {
+        count = data
+      }
+      
       setRegistrationCount(count)
     } catch (err) {
       console.error('Error fetching registration count:', err)
