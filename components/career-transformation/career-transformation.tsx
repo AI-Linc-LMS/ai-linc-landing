@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion"
 import { Briefcase, Award } from "lucide-react"
-import { SkillsCard } from "./career-transformation/skills-card"
-import { SalaryTrajectory } from "./career-transformation/salary-trajectory"
-import { IndustryPlacement } from "./career-transformation/industry-placement"
-import { BEFORE_SKILLS, AFTER_SKILLS } from "./career-transformation/data"
+import { SkillsCard } from "./skills-card"
+import { SalaryTrajectory } from "./salary-trajectory"
+import { IndustryPlacement } from "./industry-placement"
+import { BEFORE_SKILLS, AFTER_SKILLS } from "./data"
 
 export function CareerTransformation() {
   return (
@@ -64,4 +64,4 @@ export function CareerTransformation() {
       <div className="absolute bottom-1/3 right-1/4 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
     </section>
   )
-}
+} 
