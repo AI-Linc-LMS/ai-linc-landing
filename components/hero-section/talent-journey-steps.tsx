@@ -17,15 +17,13 @@ export function TalentJourneySteps({
 }: TalentJourneyStepsProps) {
   const handleStepClick = (step: any, index: number) => {
     onProcessClick(index)
-    
+
     // Handle navigation based on step
     if (step.action) {
       step.action()
     } else if (step.id === 0) {
-      // Free Webinar - open webinar modal
       onWebinarOpen()
     } else if (step.id === 1) {
-      // Assessment Test - redirect to assessment link
       window.open("https://app.ailinc.com/assessment/ai-linc-scholarship-test-2", "_blank")
     }
   }
@@ -40,20 +38,37 @@ export function TalentJourneySteps({
         return (
           <motion.div
             key={step.id}
-            className={`relative p-4 rounded-xl border transition-all duration-500 cursor-pointer group ${isActive
-              ? `${step.bgColor} border-white/30 scale-105 shadow-lg`
-              : isCompleted
+            className={`relative p-4 rounded-xl border transition-all duration-500 cursor-pointer group ${
+              isActive
+                ? `${step.bgColor} border-white/30 scale-105 shadow-lg`
+                : isCompleted
                 ? 'bg-green-500/10 border-green-500/30'
                 : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'
-              }`}
+            }`}
             onClick={() => handleStepClick(step, index)}
             whileHover={{ scale: 1.02 }}
             layout
           >
-            <div className="flex items-center gap-4">
-              <div className={`relative flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-white/20 shadow-lg' :
-                isCompleted ? 'bg-green-500/20' : 'bg-white/10'
-                }`}>
+            {/* Click-safe overlay fix */}
+            {isActive && (
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-[#0BC5EA]/10 to-[#6B46C1]/10 rounded-xl pointer-events-none z-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
+
+            <div className="relative z-10 flex items-center gap-4">
+              <div
+                className={`relative flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  isActive
+                    ? 'bg-white/20 shadow-lg'
+                    : isCompleted
+                    ? 'bg-green-500/20'
+                    : 'bg-white/10'
+                }`}
+              >
                 {isCompleted ? (
                   <CheckCircle className="w-7 h-7 text-green-400" />
                 ) : (
@@ -70,16 +85,26 @@ export function TalentJourneySteps({
 
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-1">
-                  <div className={`text-lg font-semibold ${isActive ? 'text-white' :
-                    isCompleted ? 'text-green-400' : 'text-gray-400'
-                    }`}>
+                  <div
+                    className={`text-lg font-semibold ${
+                      isActive
+                        ? 'text-white'
+                        : isCompleted
+                        ? 'text-green-400'
+                        : 'text-gray-400'
+                    }`}
+                  >
                     {step.title}
                   </div>
                   <div className="text-xs text-gray-500 bg-gray-500/20 px-2 py-1 rounded-full">
                     {step.duration}
                   </div>
                 </div>
-                <div className={`text-sm mb-2 ${isActive ? 'text-gray-300' : 'text-gray-500'}`}>
+                <div
+                  className={`text-sm mb-2 ${
+                    isActive ? 'text-gray-300' : 'text-gray-500'
+                  }`}
+                >
                   {step.description}
                 </div>
                 {isActive && (
@@ -98,12 +123,15 @@ export function TalentJourneySteps({
                   {isActive && (
                     <Button
                       size="sm"
-                      className="bg-[#0BC5EA] hover:bg-[#0BC5EA]/80 text-white h-7 px-3 text-xs"
+                      className="bg-[#0BC5EA] hover:bg-[#0BC5EA]/80 text-white h-7 px-3 text-xs relative z-10"
                       onClick={(e) => {
+                        e.preventDefault()
                         e.stopPropagation()
                         if (step.id === 1) {
-                          // Assessment Test - redirect to assessment link
-                          window.open("https://app.ailinc.com/assessment/ai-linc-scholarship-test-2", "_blank")
+                          window.open(
+                            "https://app.ailinc.com/assessment/ai-linc-scholarship-test-2",
+                            "_blank"
+                          )
                         } else if (step.action) {
                           step.action()
                         } else {
@@ -117,18 +145,9 @@ export function TalentJourneySteps({
                 </div>
               </div>
             </div>
-
-            {isActive && (
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#0BC5EA]/10 to-[#6B46C1]/10 rounded-xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-            )}
           </motion.div>
         )
       })}
     </div>
   )
-} 
+}
