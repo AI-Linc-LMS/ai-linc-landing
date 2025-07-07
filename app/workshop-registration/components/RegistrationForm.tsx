@@ -26,7 +26,7 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
     email: "",
     phone_number: "+91 ", // Start with India's country code
     workshop_name: "Practical implementation of Agentic AI",
-    session_number: "Session-03",
+    session_number: "Session-04",
     referal_code: ""
   })
 
