@@ -5,7 +5,7 @@ import { RegistrationCount } from "@/app/workshop-registration/components/Regist
 import { useEffect, useState } from "react"
 import { useCountdown } from "@/hooks/use-countdown"
 
-const WEBINAR_DATE = new Date("2025-07-06T12:30:00+05:30"); // IST timezone
+const WEBINAR_DATE = new Date("2025-07-20T12:30:00+05:30"); // IST timezone
 
 export function WebinarModal() {
   const [open, setOpen] = useState(false);
@@ -26,13 +26,13 @@ export function WebinarModal() {
             <div className="text-xs sm:text-sm md:text-base font-medium bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent text-center">
               Develop tech products without single line of code
             </div>
-            <div className="text-xs sm:text-sm text-yellow-400 font-semibold text-center">📅 Sunday 12:30pm (6 July 2025)</div>
-            
+            <div className="text-xs sm:text-sm text-yellow-400 font-semibold text-center">📅 Sunday 12:30pm (20 July 2025)</div>
+
             {/* Registration Count */}
             <div className="my-2 sm:my-3">
               <RegistrationCount className="scale-75 sm:scale-100" />
             </div>
-            
+
             <div className="font-semibold text-xs sm:text-sm md:text-base text-orange-400 text-center">⏰ Starts In:</div>
             <div className="font-mono text-sm sm:text-base md:text-lg bg-gradient-to-r from-red-400 to-orange-500 bg-clip-text text-transparent font-bold">
               <div className="grid grid-cols-4 gap-1 sm:gap-2 text-center">
@@ -54,7 +54,7 @@ export function WebinarModal() {
                 </div>
               </div>
             </div>
-            
+
             <div className="pt-2 sm:pt-3">
               <a
                 href="/workshop-registration"
