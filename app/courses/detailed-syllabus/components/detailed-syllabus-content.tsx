@@ -5,13 +5,18 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { 
-  ChevronDown, 
-  ChevronRight, 
-  Clock, 
-  BookOpen, 
-  Code, 
-  Brain, 
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  ChevronDown,
+  ChevronRight,
+  Clock,
+  BookOpen,
+  Code,
+  Brain,
   Lightbulb,
   Target,
   CheckCircle,
@@ -20,7 +25,11 @@ import {
   Zap,
   Trophy,
   ArrowLeft,
-  Home
+  Home,
+  Phone,
+  Mail,
+  User,
+  MessageCircle
 } from "lucide-react"
 import Link from "next/link"
 
@@ -357,13 +366,46 @@ export function DetailedSyllabusContent() {
   const [activePhase, setActivePhase] = useState(0)
   const [activeWeek, setActiveWeek] = useState(0)
   const [expandedWeeks, setExpandedWeeks] = useState<number[]>([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    preferredTime: "",
+    message: "",
+    course: "Product Development Using Agentic AI"
+  })
 
   const toggleWeekExpansion = (weekIndex: number) => {
-    setExpandedWeeks(prev => 
-      prev.includes(weekIndex) 
+    setExpandedWeeks(prev =>
+      prev.includes(weekIndex)
         ? prev.filter(w => w !== weekIndex)
         : [...prev, weekIndex]
     )
+  }
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Handle form submission here
+    console.log("Form submitted:", formData)
+    // You can add API call here to submit the form
+    setIsModalOpen(false)
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      preferredTime: "",
+      message: "",
+      course: "Product Development Using Agentic AI"
+    })
+  }
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }))
   }
 
   return (
@@ -438,19 +480,17 @@ export function DetailedSyllabusContent() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                     >
-                      <Card 
-                        className={`cursor-pointer transition-all duration-300 ${
-                          activePhase === index 
-                            ? 'bg-gradient-to-r ' + phase.color + ' border-transparent shadow-lg shadow-cyan-500/25' 
+                      <Card
+                        className={`cursor-pointer transition-all duration-300 ${activePhase === index
+                            ? 'bg-gradient-to-r ' + phase.color + ' border-transparent shadow-lg shadow-cyan-500/25'
                             : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
-                        }`}
+                          }`}
                         onClick={() => setActivePhase(index)}
                       >
                         <CardContent className="p-6">
                           <div className="flex items-center">
-                            <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${
-                              activePhase === index ? 'bg-white/20' : 'bg-gray-700'
-                            }`}>
+                            <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${activePhase === index ? 'bg-white/20' : 'bg-gray-700'
+                              }`}>
                               <Icon className="w-6 h-6" />
                             </div>
                             <div>
@@ -496,7 +536,7 @@ export function DetailedSyllabusContent() {
                       transition={{ duration: 0.3, delay: weekIndex * 0.1 }}
                     >
                       <Card className="bg-gray-800/50 border-gray-700 overflow-hidden">
-                        <CardHeader 
+                        <CardHeader
                           className="cursor-pointer hover:bg-gray-700/50 transition-colors"
                           onClick={() => toggleWeekExpansion(weekIndex)}
                         >
@@ -510,10 +550,9 @@ export function DetailedSyllabusContent() {
                                 <p className="text-sm text-gray-400">Week {week.week}</p>
                               </div>
                             </div>
-                            <ChevronDown 
-                              className={`w-5 h-5 transition-transform duration-200 ${
-                                expandedWeeks.includes(weekIndex) ? 'rotate-180' : ''
-                              }`}
+                            <ChevronDown
+                              className={`w-5 h-5 transition-transform duration-200 ${expandedWeeks.includes(weekIndex) ? 'rotate-180' : ''
+                                }`}
                             />
                           </div>
                         </CardHeader>
@@ -625,14 +664,134 @@ export function DetailedSyllabusContent() {
                 Join thousands of students who have transformed their careers with our comprehensive AI development program
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600">
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
+                  onClick={() => window.location.href = '/workshop-registration'}
+                >
                   <Users className="w-5 h-5 mr-2" />
                   Enroll Now
                 </Button>
-                <Button size="lg" variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Schedule a Call
-                </Button>
+                <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                  <DialogTrigger asChild>
+                    <Button size="lg" variant="outline" className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10">
+                      <Calendar className="w-5 h-5 mr-2" />
+                      Schedule a Call
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[600px] bg-gray-900 border-gray-700">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl font-bold text-center mb-2">
+                        Schedule a Call with Our Team
+                      </DialogTitle>
+                      <p className="text-gray-400 text-center">
+                        Get personalized guidance about our AI development program
+                      </p>
+                    </DialogHeader>
+                    <form onSubmit={handleFormSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="name" className="text-sm font-medium flex items-center">
+                            <User className="w-4 h-4 mr-2" />
+                            Full Name *
+                          </Label>
+                          <Input
+                            id="name"
+                            type="text"
+                            placeholder="Enter your full name"
+                            value={formData.name}
+                            onChange={(e) => handleInputChange('name', e.target.value)}
+                            className="bg-gray-800 border-gray-600 text-white"
+                            required
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="email" className="text-sm font-medium flex items-center">
+                            <Mail className="w-4 h-4 mr-2" />
+                            Email Address *
+                          </Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            value={formData.email}
+                            onChange={(e) => handleInputChange('email', e.target.value)}
+                            className="bg-gray-800 border-gray-600 text-white"
+                            required
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="phone" className="text-sm font-medium flex items-center">
+                            <Phone className="w-4 h-4 mr-2" />
+                            Phone Number *
+                          </Label>
+                          <Input
+                            id="phone"
+                            type="tel"
+                            placeholder="Enter your phone number"
+                            value={formData.phone}
+                            onChange={(e) => handleInputChange('phone', e.target.value)}
+                            className="bg-gray-800 border-gray-600 text-white"
+                            required
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="preferredTime" className="text-sm font-medium flex items-center">
+                            <Clock className="w-4 h-4 mr-2" />
+                            Preferred Time *
+                          </Label>
+                          <Select value={formData.preferredTime} onValueChange={(value) => handleInputChange('preferredTime', value)}>
+                            <SelectTrigger className="bg-gray-800 border-gray-600 text-white">
+                              <SelectValue placeholder="Select preferred time" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-800 border-gray-600">
+                              <SelectItem value="morning">Morning (9 AM - 12 PM)</SelectItem>
+                              <SelectItem value="afternoon">Afternoon (12 PM - 5 PM)</SelectItem>
+                              <SelectItem value="evening">Evening (5 PM - 8 PM)</SelectItem>
+                              <SelectItem value="flexible">Flexible</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="message" className="text-sm font-medium flex items-center">
+                          <MessageCircle className="w-4 h-4 mr-2" />
+                          Message (Optional)
+                        </Label>
+                        <Textarea
+                          id="message"
+                          placeholder="Tell us about your background and what you'd like to discuss..."
+                          value={formData.message}
+                          onChange={(e) => handleInputChange('message', e.target.value)}
+                          className="bg-gray-800 border-gray-600 text-white min-h-[100px]"
+                          rows={4}
+                        />
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                        <Button
+                          type="submit"
+                          className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
+                        >
+                          <Calendar className="w-4 h-4 mr-2" />
+                          Schedule Call
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          onClick={() => setIsModalOpen(false)}
+                          className="flex-1 border-gray-600 text-gray-300 hover:bg-gray-700"
+                        >
+                          Cancel
+                        </Button>
+                      </div>
+                    </form>
+                  </DialogContent>
+                </Dialog>
               </div>
             </CardContent>
           </Card>
