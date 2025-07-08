@@ -55,12 +55,20 @@ export function WebinarModal() {
               </div>
             </div>
 
-            <div className="pt-2 sm:pt-3">
+            <div className="pt-2 sm:pt-3 space-y-2">
               <a
                 href="/workshop-registration"
                 className="inline-block w-full text-center bg-gradient-to-r from-cyan-400 to-purple-500 text-white font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-lg shadow-lg hover:from-cyan-500 hover:to-purple-600 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-bounce text-xs sm:text-sm md:text-base"
               >
                 🎯 Register for free!
+              </a>
+              <a
+                href="https://app.ailinc.com/assessment/ai-linc-scholarship-test-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block w-full text-center bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold px-3 sm:px-6 py-2 sm:py-3 rounded-lg shadow-lg hover:from-green-500 hover:to-blue-600 hover:shadow-xl hover:scale-105 transition-all duration-300 text-xs sm:text-sm md:text-base"
+              >
+                📝 Take Assessment Test
               </a>
             </div>
           </DialogDescription>
