@@ -18,9 +18,12 @@ import {
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLenis } from "@/hooks/use-lenis"
+import { useRouter, usePathname } from "next/navigation"
 
 export function Navbar() {
   const { scrollTo } = useLenis()
+  const router = useRouter()
+  const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -31,6 +34,23 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Function to handle navigation to contact/apply form
+  const navigateToApply = () => {
+    if (pathname === '/') {
+      // Already on home page, scroll to registration section
+      scrollTo("#registration", { duration: 1.5 })
+    } else {
+      // Navigate to home page with hash to scroll to registration section
+      router.push("/#registration")
+    }
+  }
+
+  // Function to handle mobile menu apply navigation
+  const handleMobileApplyClick = () => {
+    setMobileMenuOpen(false)
+    navigateToApply()
+  }
 
   return (
     <header
@@ -88,14 +108,13 @@ export function Navbar() {
           </NavigationMenu>
 
           <div className="hidden md:block">
-            <Link href="/#contact-apply">
-              <Button
-                className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
-                size="lg"
-              >
-                Apply Now
-              </Button>
-            </Link>
+            <Button
+              className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
+              size="lg"
+              onClick={navigateToApply}
+            >
+              Apply Now
+            </Button>
           </div>
 
           <button className="md:hidden text-foreground" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -167,7 +186,7 @@ export function Navbar() {
               <Link href="/#contact-apply">
                 <Button
                   className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium w-full py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={handleMobileApplyClick}
                 >
                   Apply Now
                 </Button>
