@@ -35,6 +35,9 @@ export function AssessmentCard({ itemVariants, onStartTest, onWhyTest }: Assessm
             <h2 className="text-xl font-bold text-white">
               Attempt all Questions to
             </h2>
+            <p className="text-base text-white/80 mt-1 mb-2">
+              Completed the AI Linc No-Code Bootcamp? Now prove your skills. Take this assessment to showcase your strengths and project readiness.
+            </p>
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-sm text-gray-300">
                 <span className="w-2 h-2 bg-orange-400 rounded-full"></span>
