@@ -83,7 +83,10 @@ export function BenefitsSection({ containerVariants, itemVariants }: BenefitsSec
                   {/* Colored Accent Under Title */}
                   <div className={`h-1 w-10 md:w-12 rounded-full mb-2 z-10 relative ${accentColors[index]}`}></div>
                   <p className="text-gray-300 text-left text-sm md:text-base z-10 relative max-w-full md:max-w-[70%]">
+                    {/* On mobile, limit text width for better layout */}
+                    <span className="block md:inline max-w-[90vw]">
                     {benefit.description}
+                    </span>
                   </p>
                   {/* Tilted Image in Bottom Right (absolute on md+, static below text on mobile) */}
                   <img 
@@ -95,7 +98,7 @@ export function BenefitsSection({ containerVariants, itemVariants }: BenefitsSec
                   <img
                     src={benefitImages[index]}
                     alt={benefit.title}
-                    className="block md:hidden w-full mt-2 object-contain rounded-xl z-0 shadow-lg rotate-[-6deg]"
+                    className="block md:hidden w-3/4 max-w-[220px] max-h-[120px] mx-auto mt-4 object-contain rounded-xl z-0 shadow-lg rotate-[-6deg]"
                     style={{ pointerEvents: 'none' }}
                   />
                 </CardContent>
