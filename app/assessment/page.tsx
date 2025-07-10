@@ -38,7 +38,13 @@ export default function AssessmentPage() {
     setIsChooseTestModalOpen(true);
   }
 
-  const handleChooseTest = (url: string) => {
+  const handleChooseTest = (baseUrl: string) => {
+    let url = baseUrl;
+    if (referralParam) {
+      // Append referral as ?ref=... or &ref=... depending on URL
+      const hasQuery = url.includes('?');
+      url += (hasQuery ? '&' : '?') + 'ref=' + encodeURIComponent(referralParam);
+    }
     window.open(url, '_blank');
     setIsChooseTestModalOpen(false);
   }
