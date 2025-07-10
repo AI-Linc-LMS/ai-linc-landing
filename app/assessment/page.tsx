@@ -47,7 +47,12 @@ function AssessmentPageContent({
   }
 
   const handleStartTest = () => {
-    setIsChooseTestModalOpen(true);
+    let url = 'https://app.ailinc.com/assessment/ai-linc-scholarship-test-2';
+    if (referralParam) {
+      const hasQuery = url.includes('?');
+      url += (hasQuery ? '&' : '?') + 'ref=' + encodeURIComponent(referralParam);
+    }
+    window.open(url, '_blank');
   }
 
   const handleChooseTest = (baseUrl: string) => {
@@ -115,20 +120,7 @@ function AssessmentPageContent({
         onClose={() => setIsWhyTestModalOpen(false)}
         onStartTest={handleStartTest}
       />
-      {/* Choose Test Modal */}
-      <Dialog open={isChooseTestModalOpen} onOpenChange={setIsChooseTestModalOpen}>
-        <DialogContent>
-          <DialogTitle>Choose Your Assessment</DialogTitle>
-          <div className="flex flex-col gap-4 mt-4">
-            <Button onClick={() => handleChooseTest('https://app.ailinc.com/assessment/ai-linc-scholarship-test-2')} className="bg-blue-600 hover:bg-blue-700 text-white">
-              AI-Linc Scholarship Test 2
-            </Button>
-            <Button onClick={() => handleChooseTest('https://app.ailinc.com/assessment/ai-linc-scholarship-test')} className="bg-purple-600 hover:bg-purple-700 text-white">
-              AI-Linc Scholarship Test 1
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Choose Test Modal removed: now Start Assessment opens the 2nd test directly */}
     </main>
   )
 }
