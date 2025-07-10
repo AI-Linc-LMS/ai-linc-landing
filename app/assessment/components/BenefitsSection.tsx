@@ -74,18 +74,30 @@ export function BenefitsSection({ containerVariants, itemVariants }: BenefitsSec
               className="perspective-1000"
             >
               <Card className="bg-[#181F2A] border border-[#2A3651] shadow-xl rounded-2xl overflow-hidden h-full transition-all duration-300 hover:shadow-2xl hover:border-blue-400 relative group">
-                <CardContent className="p-6 space-y-4 flex flex-col items-center justify-center">
+                <CardContent className="p-4 md:p-6 flex flex-col items-start justify-start relative min-h-[220px] md:space-y-4 space-y-2">
                   {/* Gradient Glow Behind Image */}
-                  <div className={`absolute top-6 left-1/2 -translate-x-1/2 w-40 h-24 rounded-2xl blur-2xl opacity-40 z-0 ${accentColors[index]}`}></div>
-                  <img src={benefitImages[index]} alt={benefit.title} className="w-36 h-28 object-contain rounded-xl mb-2  p-2 z-10 relative shadow-lg group-hover:scale-105 transition-transform duration-300" />
-                  <h3 className="text-2xl font-extrabold text-center text-white z-10 relative">
+                  <div className={`hidden md:block absolute top-6 left-8 w-40 h-24 rounded-2xl blur-2xl opacity-40 z-0 ${accentColors[index]}`}></div>
+                  <h3 className="text-xl md:text-2xl font-extrabold text-left text-white z-10 relative">
                     {benefit.title}
                   </h3>
                   {/* Colored Accent Under Title */}
-                  <div className={`h-1 w-12 mx-auto rounded-full mb-2 z-10 relative ${accentColors[index]}`}></div>
-                  <p className="text-gray-300 text-center text-base z-10 relative">
+                  <div className={`h-1 w-10 md:w-12 rounded-full mb-2 z-10 relative ${accentColors[index]}`}></div>
+                  <p className="text-gray-300 text-left text-sm md:text-base z-10 relative max-w-full md:max-w-[70%]">
                     {benefit.description}
                   </p>
+                  {/* Tilted Image in Bottom Right (absolute on md+, static below text on mobile) */}
+                  <img 
+                    src={benefitImages[index]} 
+                    alt={benefit.title} 
+                    className="hidden md:block absolute right-4 bottom-4 w-32 md:w-40 lg:w-44 max-w-[60%] object-contain rounded-xl z-0 shadow-lg rotate-[-10deg] group-hover:scale-105 transition-transform duration-300" 
+                    style={{ pointerEvents: 'none' }}
+                  />
+                  <img
+                    src={benefitImages[index]}
+                    alt={benefit.title}
+                    className="block md:hidden w-full mt-2 object-contain rounded-xl z-0 shadow-lg rotate-[-6deg]"
+                    style={{ pointerEvents: 'none' }}
+                  />
                 </CardContent>
               </Card>
             </motion.div>
