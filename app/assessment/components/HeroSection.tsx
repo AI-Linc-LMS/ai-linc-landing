@@ -2,6 +2,14 @@
 
 import { motion, Variants } from "framer-motion"
 import { Zap } from "lucide-react"
+import { 
+  SiGoogle, 
+  SiAmazon, 
+  SiMeta, 
+  SiNetflix, 
+  SiApple 
+} from "react-icons/si"
+import { FaMicrosoft } from "react-icons/fa"
 
 interface HeroSectionProps {
   containerVariants: Variants
@@ -10,12 +18,12 @@ interface HeroSectionProps {
 
 export function HeroSection({ containerVariants, itemVariants }: HeroSectionProps) {
   const companyLogos = [
-    { name: "Microsoft", color: "bg-blue-600", initial: "MS" },
-    { name: "Apple", color: "bg-gray-800", initial: "🍎" },
-    { name: "Amazon", color: "bg-orange-500", initial: "A" },
-    { name: "Netflix", color: "bg-red-600", initial: "N" },
-    { name: "Meta", color: "bg-blue-500", initial: "M" },
-    { name: "Google", color: "bg-green-500", initial: "G" }
+    { name: "Microsoft", icon: FaMicrosoft, color: "#00BCF2" },
+    { name: "Apple", icon: SiApple, color: "#A2AAAD" },
+    { name: "Amazon", icon: SiAmazon, color: "#FF9900" },
+    { name: "Netflix", icon: SiNetflix, color: "#E50914" },
+    { name: "Meta", icon: SiMeta, color: "#1877F2" },
+    { name: "Google", icon: SiGoogle, color: "#4285F4" }
   ]
 
   return (
@@ -36,13 +44,16 @@ export function HeroSection({ containerVariants, itemVariants }: HeroSectionProp
           {companyLogos.map((company, index) => (
             <motion.div
               key={index}
-              className={`${company.color} rounded-lg p-4 flex items-center justify-center h-16 w-16 mx-auto cursor-pointer transform transition-transform hover:scale-110`}
+              className="rounded-lg p-4 flex flex-col items-center justify-center h-20 w-20 mx-auto cursor-pointer transform transition-transform hover:scale-110 bg-card group"
               variants={itemVariants}
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-white font-bold text-sm">
-                {company.initial}
+              <company.icon className="w-8 h-8" style={{ color: company.color }} />
+              <span
+                className="mt-2 text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center"
+              >
+                {company.name}
               </span>
             </motion.div>
           ))}
