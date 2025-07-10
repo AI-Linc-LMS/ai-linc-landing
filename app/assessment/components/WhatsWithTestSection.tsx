@@ -31,6 +31,12 @@ export function WhatsWithTestSection({ containerVariants, itemVariants }: WhatsW
     }
   ]
 
+  const accentColors = [
+    "bg-gradient-to-r from-green-400 to-green-600",
+    "bg-gradient-to-r from-blue-400 to-blue-600",
+    "bg-gradient-to-r from-purple-400 to-purple-600"
+  ];
+
   return (
     <section className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -55,22 +61,24 @@ export function WhatsWithTestSection({ containerVariants, itemVariants }: WhatsW
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ scale: 1.02 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.15 }}
+              whileHover={{ scale: 1.04, boxShadow: "0 8px 32px 0 rgba(0,0,0,0.25)", zIndex: 2 }}
             >
-              <Card className="bg-white/5 backdrop-blur-lg border-white/10 h-full">
-                <CardContent className="p-6 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <motion.div
-                      whileHover={{ scale: 1.2, rotate: 15 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <feature.icon className={`w-6 h-6 ${feature.color}`} />
-                    </motion.div>
-                    <h3 className="text-lg font-bold text-white">
-                      {feature.title}
-                    </h3>
+              <Card className={`shadow-xl rounded-2xl overflow-hidden h-full transition-all duration-300 hover:shadow-2xl relative group border ${index === 0 ? 'bg-[#182A1F] border-green-700' : index === 1 ? 'bg-[#18213A] border-blue-700' : 'bg-[#221A2A] border-purple-700'}`}>
+                <CardContent className="p-4 md:p-6 flex flex-col items-start justify-start relative min-h-[220px] md:space-y-4 space-y-2">
+                  {/* Icon with Glow */}
+                  <div className={`relative mb-2`}>
+                    <div className={`absolute -top-2 -left-2 w-12 h-12 rounded-full blur-xl opacity-40 z-0 ${accentColors[index]}`}></div>
+                    <feature.icon className={`w-9 h-9 md:w-10 md:h-10 z-10 relative ${feature.color}`} />
                   </div>
-                  <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">
+                  <h3 className="text-lg md:text-xl font-extrabold text-left text-white z-10 relative">
+                    {feature.title}
+                  </h3>
+                  {/* Colored Accent Under Title */}
+                  <div className={`h-1 w-10 md:w-12 rounded-full mb-2 z-10 relative ${accentColors[index]}`}></div>
+                  <p className="text-gray-300 text-left text-sm md:text-base z-10 relative max-w-full md:max-w-[90%] whitespace-pre-line">
                     {feature.description}
                   </p>
                 </CardContent>

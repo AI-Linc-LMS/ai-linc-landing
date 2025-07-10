@@ -133,7 +133,7 @@ export function WhyTestModal({ isOpen, onClose, onStartTest }: WhyTestModalProps
           </div>
 
           {/* Call to Action */}
-          <div className="flex justify-center gap-4 pt-4">
+          {/* <div className="flex justify-center gap-4 pt-4">
             <Button 
               variant="outline" 
               onClick={onClose}
@@ -148,7 +148,7 @@ export function WhyTestModal({ isOpen, onClose, onStartTest }: WhyTestModalProps
             >
               Start Assessment Now
             </Button>
-          </div>
+          </div> */}
         </div>
       </DialogContent>
     </Dialog>
