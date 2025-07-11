@@ -100,7 +100,7 @@ export function WhyTestModal({ isOpen, onClose, onStartTest }: WhyTestModalProps
           </div>
 
           {/* Assessment Details */}
-          <div className="bg-gray-800 rounded-lg p-6 space-y-4">
+          {/* <div className="bg-gray-800 rounded-lg p-6 space-y-4">
             <h3 className="text-xl font-semibold text-white mb-4">What You'll Be Tested On:</h3>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -122,15 +122,15 @@ export function WhyTestModal({ isOpen, onClose, onStartTest }: WhyTestModalProps
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Success Stories */}
-          <div className="bg-green-900/20 border border-green-700 rounded-lg p-4">
+          {/* <div className="bg-green-900/20 border border-green-700 rounded-lg p-4">
             <h3 className="font-semibold text-green-400 mb-2">Success Stories</h3>
             <p className="text-green-300 text-sm">
               "After taking this assessment, I got interviews with 3 companies and landed a role at a fintech startup with 40% salary hike!" - Priya S., AI Engineer
             </p>
-          </div>
+          </div> */}
 
           {/* Call to Action */}
           {/* <div className="flex justify-center gap-4 pt-4">
