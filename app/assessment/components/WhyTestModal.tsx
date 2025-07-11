@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, TrendingUp, Users, Award, Target, Briefcase } from "lucide-react"
 import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 interface WhyTestModalProps {
   isOpen: boolean
@@ -20,6 +21,29 @@ export function WhyTestModal({ isOpen, onClose, onStartTest }: WhyTestModalProps
       setIsStarting(false)
     }
   }, [isOpen])
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100
+      }
+    }
+  }
 
   const benefits = [
     {
@@ -64,43 +88,72 @@ export function WhyTestModal({ isOpen, onClose, onStartTest }: WhyTestModalProps
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] bg-gray-900 border-gray-700 text-white overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center text-blue-400">
-            Why Take This Assessment?
-          </DialogTitle>
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <DialogTitle className="text-2xl font-bold text-center text-blue-400">
+              Why Take This Assessment?
+            </DialogTitle>
+          </motion.div>
         </DialogHeader>
 
-        <div className="space-y-6">
+        <motion.div 
+          className="space-y-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Introduction */}
-          <div className="text-center space-y-4">
+          <motion.div 
+            className="text-center space-y-4"
+            variants={itemVariants}
+          >
             <p className="text-lg text-gray-300">
               This isn't just another test – it's your gateway to exciting career opportunities in AI and technology.
             </p>
-            <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-4">
+            <motion.div 
+              className="bg-blue-900/30 border border-blue-700 rounded-lg p-4"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
               <p className="text-blue-300 font-semibold">
                 🚀 Over 80% of our assessment takers get interview calls within 2 weeks!
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Benefits Grid */}
           <div className="grid md:grid-cols-2 gap-6">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="bg-gray-800 border-gray-700">
-                <CardContent className="p-4 space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <benefit.icon className="w-5 h-5 text-white" />
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
+                <Card className="bg-gray-800 border-gray-700 h-full transform transition-all duration-200 hover:border-blue-500">
+                  <CardContent className="p-4 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <motion.div 
+                        className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center"
+                        whileHover={{ rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <benefit.icon className="w-5 h-5 text-white" />
+                      </motion.div>
+                      <h3 className="font-semibold text-white">{benefit.title}</h3>
                     </div>
-                    <h3 className="font-semibold text-white">{benefit.title}</h3>
-                  </div>
-                  <p className="text-gray-300 text-sm">{benefit.description}</p>
-                </CardContent>
-              </Card>
+                    <p className="text-gray-300 text-sm">{benefit.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
 
           {/* Assessment Details */}
-          <div className="bg-gray-800 rounded-lg p-6 space-y-4">
+          {/* <div className="bg-gray-800 rounded-lg p-6 space-y-4">
             <h3 className="text-xl font-semibold text-white mb-4">What You'll Be Tested On:</h3>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -122,15 +175,15 @@ export function WhyTestModal({ isOpen, onClose, onStartTest }: WhyTestModalProps
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Success Stories */}
-          <div className="bg-green-900/20 border border-green-700 rounded-lg p-4">
+          {/* <div className="bg-green-900/20 border border-green-700 rounded-lg p-4">
             <h3 className="font-semibold text-green-400 mb-2">Success Stories</h3>
             <p className="text-green-300 text-sm">
               "After taking this assessment, I got interviews with 3 companies and landed a role at a fintech startup with 40% salary hike!" - Priya S., AI Engineer
             </p>
-          </div>
+          </div> */}
 
           {/* Call to Action */}
           {/* <div className="flex justify-center gap-4 pt-4">
@@ -149,7 +202,7 @@ export function WhyTestModal({ isOpen, onClose, onStartTest }: WhyTestModalProps
               Start Assessment Now
             </Button>
           </div> */}
-        </div>
+        </motion.div>
       </DialogContent>
     </Dialog>
   )
