@@ -43,7 +43,7 @@ export function AssessmentSection() {
           <p className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 px-4">
             <span className="text-green-400 font-semibold">No hidden fees. No commitment. Just clarity.</span>
           </p>
-            <a href="https://app.ailinc.com/assessment/ai-linc-scholarship-test-2" target="_blank" rel="noopener noreferrer">
+            <a href="/assessment" target="_blank" rel="noopener noreferrer">
             <Button size="lg" className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-sm sm:text-base px-6 sm:px-8">
             Take Free Assessment
             </Button>
