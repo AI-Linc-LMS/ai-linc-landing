@@ -24,7 +24,7 @@ export function TalentJourneySteps({
     } else if (step.id === 0) {
       onWebinarOpen()
     } else if (step.id === 1) {
-      window.open("https://app.ailinc.com/assessment/ai-linc-scholarship-test-2", "_blank")
+      window.open("/assessment", "_blank")
     }
   }
 
@@ -129,7 +129,7 @@ export function TalentJourneySteps({
                         e.stopPropagation()
                         if (step.id === 1) {
                           window.open(
-                            "https://app.ailinc.com/assessment/ai-linc-scholarship-test-2",
+                            "/assessment",
                             "_blank"
                           )
                         } else if (step.action) {

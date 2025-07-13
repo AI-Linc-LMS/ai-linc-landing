@@ -8,7 +8,7 @@ export function useProgramHandlers() {
   const handleProgramSelection = () => setIsModalOpen(true)
 
   const handleAssessment = () => {
-    const url = 'https://app.ailinc.com/assessment/ai-linc-scholarship-test-2'
+    const url = '/assessment'
     const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
 
     if (newWindow) {

@@ -10,8 +10,8 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { 
-  Calendar, 
+import {
+  Calendar,
   ExternalLink,
   GraduationCap,
   Award
@@ -31,7 +31,7 @@ export function WebinarRegistrationModal({ open, onOpenChange }: WebinarRegistra
   }
 
   const handleAssessmentClick = () => {
-    window.open("https://app.ailinc.com/assessment/ai-linc-scholarship-test-2", "_blank")
+    window.open("/assessment", "_blank")
   }
 
   const features = [
@@ -103,7 +103,7 @@ export function WebinarRegistrationModal({ open, onOpenChange }: WebinarRegistra
                 Register for Workshop
               </span>
             </Button>
-            
+
             <Button
               onClick={handleAssessmentClick}
               size="lg"
@@ -116,7 +116,7 @@ export function WebinarRegistrationModal({ open, onOpenChange }: WebinarRegistra
                 <ExternalLink className="w-4 h-4" />
               </span>
             </Button>
-            
+
             <p className="text-xs text-muted-foreground text-center">
               Assessment opens in a new tab • Free • No credit card required
             </p>
