@@ -31,11 +31,11 @@ export default function CoursesPage() {
         <ProgramsSection />
         <ComparisonTable />
         <CtaSection />
-        <SyllabusSection />
+        {/* <SyllabusSection />
         <PlatformPreview />
         <InstructorsSection />
         <CareerTransformation />
-        <FinalCtaSection />
+        <FinalCtaSection /> */}
 
         <Footer />
       </main>
