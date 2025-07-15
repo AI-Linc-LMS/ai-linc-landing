@@ -25,13 +25,13 @@ export const talentJourney: TalentJourneyStep[] = [
   },
   {
     id: 1,
-    title: "Assessment Test",
+    title: "Access placement eligibility",
     description: "AI-powered skill evaluation & matching",
     icon: FileText,
     color: "from-purple-500 to-pink-500",
     bgColor: "bg-purple-500/10",
-    metrics: "98% accuracy",
-    details: "Access placement eligibility\nGet certificate & LinkedIn profile review\nQualify for industry referrals",
+    metrics: "Quality for industry referrals",
+    details: "Get certificate \n LinkedIn profile review\nQualify for industry referrals",
     duration: "30 min",
     nextStep: "Take Test",
     action: () => window.location.href = "/assessment"
