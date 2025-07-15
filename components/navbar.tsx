@@ -110,7 +110,7 @@ export function Navbar() {
                 size="lg"
                 onClick={navigateToApply}
               >
-               Hire Now
+               Get Hired
               </Button>
             </div>
 
@@ -185,7 +185,7 @@ export function Navbar() {
                     className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium w-full py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
                     onClick={handleMobileApplyClick}
                   >
-                   Hire Now
+                   Get Hired
                   </Button>
                 </Link>
               </div>
