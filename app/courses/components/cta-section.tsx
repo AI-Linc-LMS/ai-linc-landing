@@ -80,7 +80,14 @@ export function CtaSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const router = useRouter()
 
-  const handleProgramSelection = () => setIsModalOpen(true)
+  const handleProgramSelection = () => {
+    try {
+      router.push('/flagship-course')
+    } catch (error) {
+      console.error('Router navigation failed:', error)
+      window.location.href = '/flagship-course'
+    }
+  }
 
   const handleAssessment = () => {
     const url = '/assessment'
