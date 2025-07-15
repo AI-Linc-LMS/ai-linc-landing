@@ -12,38 +12,39 @@ import { TalentJourneyStep, KeyMetric, LiveActivity, SuccessStory } from "./type
 export const talentJourney: TalentJourneyStep[] = [
   {
     id: 0,
-    title: "Free Webinar",
-    description: "Learn AI skills & career opportunities",
+    title: " Deploy Your First AI App: Live No-Code AI Workshop",
+    description: "",
     icon: Video,
     color: "from-blue-500 to-cyan-500",
     bgColor: "bg-blue-500/10",
     metrics: "5K+ attendees",
-    details: "Interactive sessions with industry experts",
+    details: "Includes: Certificate and access to AI resources for FREE ",
     duration: "60 min",
     nextStep: "Register Now",
     action: () => window.location.href = "/workshop-registration"
   },
   {
     id: 1,
-    title: "Assessment Test",
+    title: "Access placement eligibility",
     description: "AI-powered skill evaluation & matching",
     icon: FileText,
     color: "from-purple-500 to-pink-500",
     bgColor: "bg-purple-500/10",
-    metrics: "98% accuracy",
-    details: "Comprehensive technical & soft skills assessment",
-    duration: "45 min",
-    nextStep: "Take Test"
+    metrics: "Quality for industry referrals",
+    details: "Get certificate \n LinkedIn profile review\nQualify for industry referrals",
+    duration: "30 min",
+    nextStep: "Take Test",
+    action: () => window.location.href = "/assessment"
   },
   {
     id: 2,
-    title: "Deployment",
-    description: "Match with high-impact roles",
+    title: "Get Hired",
+    description: "Match with high-impact roles and direct placement in top companies",
     icon: Rocket,
     color: "from-green-500 to-emerald-500",
     bgColor: "bg-green-500/10",
     metrics: "< 48hr match",
-    details: "Direct placement in top companies",
+    details: "Schedule a 1-1 call with industry expert to understand gaps and plan of action",
     duration: "Ongoing",
     nextStep: "Get Placed"
   }

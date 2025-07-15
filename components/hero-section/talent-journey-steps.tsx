@@ -8,12 +8,14 @@ interface TalentJourneyStepsProps {
   activeProcess: number
   onProcessClick: (index: number) => void
   onWebinarOpen: () => void
+  onContactModalOpen: () => void  // New prop for opening contact modal
 }
 
 export function TalentJourneySteps({
   activeProcess,
   onProcessClick,
-  onWebinarOpen
+  onWebinarOpen,
+  onContactModalOpen  // Add to destructured props
 }: TalentJourneyStepsProps) {
   const handleStepClick = (step: any, index: number) => {
     onProcessClick(index)
@@ -23,6 +25,8 @@ export function TalentJourneySteps({
       step.action()
     } else if (step.id === 0) {
       onWebinarOpen()
+    } else if (step.id === 2) {  // Assuming the "Get Hired" step is index 2
+      onContactModalOpen()
     } else if (step.id === 1) {
       window.open("/assessment", "_blank")
     }
@@ -113,35 +117,43 @@ export function TalentJourneySteps({
                     animate={{ opacity: 1, height: 'auto' }}
                     className="text-xs text-gray-400 mb-2"
                   >
-                    {step.details}
+                    <ul className="list-disc list-inside space-y-1">
+                      {step.details.split('\n').map((detail, index) => (
+                        <li key={index}>{detail}</li>
+                      ))}
+                    </ul>
                   </motion.div>
                 )}
                 <div className="flex items-center justify-between">
                   <div className="text-xs text-[#0BC5EA] font-medium">
                     {step.metrics}
                   </div>
-                  {isActive && (
-                    <Button
-                      size="sm"
-                      className="bg-[#0BC5EA] hover:bg-[#0BC5EA]/80 text-white h-7 px-3 text-xs relative z-10"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        if (step.id === 1) {
-                          window.open(
-                            "/assessment",
-                            "_blank"
-                          )
-                        } else if (step.action) {
-                          step.action()
-                        } else {
-                          onWebinarOpen()
-                        }
-                      }}
-                    >
-                      {step.nextStep} <ChevronRight className="w-3 h-3 ml-1" />
-                    </Button>
-                  )}
+                  <Button
+                    size="sm"
+                    className={`${
+                      isActive 
+                        ? 'bg-[#0BC5EA] hover:bg-[#0BC5EA]/80 text-white' 
+                        : 'bg-white/10 hover:bg-white/20 text-gray-300'
+                    } h-7 px-3 text-xs relative z-10`}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      if (step.id === 1) {
+                        window.open(
+                          "/assessment",
+                          "_blank"
+                        )
+                      } else if (step.id === 2) {  // Assuming the "Get Hired" step is index 2
+                        onContactModalOpen()
+                      } else if (step.action) {
+                        step.action()
+                      } else {
+                        onWebinarOpen()
+                      }
+                    }}
+                  >
+                    {step.nextStep} <ChevronRight className="w-3 h-3 ml-1" />
+                  </Button>
                 </div>
               </div>
             </div>
