@@ -37,6 +37,9 @@ const contactFormSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   phone: z.string().min(10, "Please enter a valid phone number"),
   message: z.string().optional(),
+  referalCode: z.string().optional(),
+  sessionNumber: z.string().optional(),
+  workshopName: z.string().optional()
 })
 
 type ContactFormData = z.infer<typeof contactFormSchema>
@@ -57,25 +60,56 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
       email: "",
       phone: "",
       message: "",
+      referalCode: "",
+      sessionNumber: "Session-04",
+      workshopName: "Practical implementation of Agentic AI"
     },
   })
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true)
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    console.log("Form submitted:", data)
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Reset form after successful submission
-    setTimeout(() => {
-      setIsSubmitted(false)
-      onOpenChange(false)
-      form.reset()
-    }, 3000)
+    try {
+      const response = await fetch('https://be-app.ailinc.com/api/clients/1/workshop-registrations/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.fullName,
+          email: data.email,
+          phone_number: data.phone,
+          referal_code: data.referalCode || '',
+          session_number: data.sessionNumber || 'Session-04',
+          workshop_name: data.workshopName || 'Practical implementation of Agentic AI'
+        }),
+      })
+
+      // Log the full response for debugging
+      const responseBody = await response.text()
+      console.log('Response Status:', response.status)
+      console.log('Response Body:', responseBody)
+
+      if (!response.ok) {
+        throw new Error(`Failed to submit form. Status: ${response.status}, Body: ${responseBody}`)
+      }
+
+      console.log("Form submitted successfully:", data)
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+      
+      // Reset form after successful submission
+      setTimeout(() => {
+        setIsSubmitted(false)
+        onOpenChange(false)
+        form.reset()
+      }, 3000)
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      setIsSubmitting(false)
+      // More detailed error alert
+      alert(`Failed to submit form: ${error instanceof Error ? error.message : 'Unknown error'}`)
+    }
   }
 
   if (isSubmitted) {
@@ -111,7 +145,7 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
             Let's Connect!
           </DialogTitle>
           <DialogDescription className="text-base text-muted-foreground">
-            Tell us about yourself and how we can help you with your AI journey.
+            {/* Tell us about yourself and how we can help you with your AI journey. */}
           </DialogDescription>
         </DialogHeader>
 
@@ -173,7 +207,7 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
             />
 
             {/* Message */}
-            <FormField
+            {/* <FormField
               control={form.control}
               name="message"
               render={({ field }) => (
@@ -192,7 +226,7 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             {/* Submit Button */}
             <div className="flex justify-end pt-4">
