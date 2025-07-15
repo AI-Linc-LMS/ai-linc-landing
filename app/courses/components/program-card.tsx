@@ -50,7 +50,7 @@ export function ProgramCard({
       <CardContent className="space-y-4 md:space-y-6 flex flex-col flex-1">
         <div className="space-y-2 md:space-y-3 flex-1">
           {type === "🟡 FLAGSHIP" && (
-            <p className={`text-xs sm:text-sm ${colorScheme.badgeText} font-semibold`}>Includes everything in Nanodegree, plus:</p>
+            <p className={`text-xs sm:text-sm ${colorScheme.badgeText} font-semibold`}></p>
           )}
           {features.map((feature, index) => (
             <div key={index} className="flex items-start">
