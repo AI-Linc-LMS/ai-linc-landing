@@ -39,7 +39,7 @@ export default function WorkshopRegistration() {
           >
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
-                No code development using Agentic Ai
+              Deploy Your First AI App: Live No-Code AI Workshop
               </h1>
               <p className="text-xl text-foreground/80 mb-8">
                 Develop Products without writing code
