@@ -3,8 +3,8 @@ import { CheckCircle, Star } from "lucide-react"
 export const nanodegreeFeatures = [
   "100+ hours of video content on AI, MERN, and more",
   "Auto-evaluated quizzes and coding assignments",
-  "21-Day No-Code AI Product Builder",
-  "90-Day Real-Client Work Experience",
+  " No-Code AI Product Builder",
+  " Real-Client Project Experience",
   "Career reports, weekly mentorship, and lifetime platform access"
 ]
 
