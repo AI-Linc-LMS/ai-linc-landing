@@ -21,7 +21,7 @@ export function PostAssessmentSection() {
         <div className="text-center mb-12 md:mb-16">
           <Badge variant="outline" className="text-purple-400 border-purple-400 mb-4">
             <Target className="w-4 h-4 mr-2" />
-            Step 3
+            Step 2
           </Badge>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">What Happens After the Assessment?</h2>
         </div>
