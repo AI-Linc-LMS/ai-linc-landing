@@ -25,6 +25,7 @@ import { WebinarModal } from "@/components/webinar-modal"
 import { RegistrationSection } from "@/components/registration-section"
 import { useHashNavigation } from "@/hooks/use-hash-navigation"
 import { useState } from "react"
+import { VideoSection } from "@/components/video-section"
 
 export default function Home() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -45,6 +46,7 @@ export default function Home() {
         <ParticleBackground />
         <Navbar />
         <HeroSection />
+        <VideoSection />
         <WhoWeAreSection />
         <ClientTalentSuccessSection />
         <HowWeDoItSection />

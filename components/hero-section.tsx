@@ -7,11 +7,13 @@ import { WebinarRegistrationModal } from "@/components/webinar-registration-moda
 import { HeroContent } from "./hero-section/hero-content"
 import { HeroShowcase } from "./hero-section/hero-showcase"
 import { useHeroTimers } from "./hero-section/hooks/use-hero-timers"
+import { ContactFormModal } from "@/components/contact-form-modal"
 
 export function HeroSection() {
   const { scrollTo } = useLenis()
   const [isHireTalentModalOpen, setIsHireTalentModalOpen] = useState(false)
   const [isWebinarModalOpen, setIsWebinarModalOpen] = useState(false)
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   
   const {
     activeProcess,
@@ -27,6 +29,10 @@ export function HeroSection() {
 
   const handleJoinWebinar = () => {
     setIsWebinarModalOpen(true)
+  }
+
+  const handleContactModalOpen = () => {
+    setIsContactModalOpen(true)
   }
 
   const handleProcessClick = (index: number) => {
@@ -51,6 +57,7 @@ export function HeroSection() {
             activeProcess={activeProcess}
             onProcessClick={handleProcessClick}
             onWebinarOpen={handleJoinWebinar}
+            onContactModalOpen={handleContactModalOpen}
           />
         </div>
       </div>
@@ -63,6 +70,10 @@ export function HeroSection() {
       <WebinarRegistrationModal
         open={isWebinarModalOpen}
         onOpenChange={setIsWebinarModalOpen}
+      />
+      <ContactFormModal
+        open={isContactModalOpen}
+        onOpenChange={setIsContactModalOpen}
       />
     </section>
   )
