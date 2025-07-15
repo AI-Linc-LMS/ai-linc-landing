@@ -111,7 +111,7 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
             Let's Connect!
           </DialogTitle>
           <DialogDescription className="text-base text-muted-foreground">
-            Tell us about yourself and how we can help you with your AI journey.
+            {/* Tell us about yourself and how we can help you with your AI journey. */}
           </DialogDescription>
         </DialogHeader>
 
@@ -173,7 +173,7 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
             />
 
             {/* Message */}
-            <FormField
+            {/* <FormField
               control={form.control}
               name="message"
               render={({ field }) => (
@@ -192,7 +192,7 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             {/* Submit Button */}
             <div className="flex justify-end pt-4">
