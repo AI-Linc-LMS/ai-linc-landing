@@ -39,7 +39,7 @@ export const talentJourney: TalentJourneyStep[] = [
   {
     id: 2,
     title: "Get Hired",
-    description: "Match with high-impact roles",
+    description: "Match with high-impact roles and direct placement in top companies",
     icon: Rocket,
     color: "from-green-500 to-emerald-500",
     bgColor: "bg-green-500/10",
