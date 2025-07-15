@@ -28,6 +28,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+  const [modalPurpose, setModalPurpose] = useState<'apply' | 'cheatsheet' | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,12 +40,27 @@ export function Navbar() {
 
   // Function to handle navigation to contact/apply form
   const navigateToApply = () => {
+    setModalPurpose('apply')
+    setIsContactModalOpen(true)
+  }
+
+  // Function to handle cheat sheet download
+  const navigateToCheatSheet = () => {
+    setModalPurpose('cheatsheet')
     setIsContactModalOpen(true)
   }
 
   // Function to handle mobile menu apply navigation
   const handleMobileApplyClick = () => {
     setMobileMenuOpen(false)
+    setModalPurpose('apply')
+    setIsContactModalOpen(true)
+  }
+
+  // Function to handle mobile cheat sheet download
+  const handleMobileCheatSheetClick = () => {
+    setMobileMenuOpen(false)
+    setModalPurpose('cheatsheet')
     setIsContactModalOpen(true)
   }
 
@@ -116,10 +132,7 @@ export function Navbar() {
                 <Button
                   className="bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(75,192,192,0.5)]"
                   size="lg"
-                  onClick={() => {
-                    // TODO: Replace with actual cheat sheet download link
-                    window.open('/ai-cheat-sheet.pdf', '_blank');
-                  }}
+                  onClick={navigateToCheatSheet}
                 >
                   <Download className="mr-2" size={20} /> Free AI Cheat Sheet
                 </Button>
@@ -202,11 +215,7 @@ export function Navbar() {
                 </Link>
                 <Button
                   className="bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90 text-white font-medium w-full py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(75,192,192,0.5)]"
-                  onClick={() => {
-                    // TODO: Replace with actual cheat sheet download link
-                    window.open('/ai-cheat-sheet.pdf', '_blank');
-                    setMobileMenuOpen(false);
-                  }}
+                  onClick={handleMobileCheatSheetClick}
                 >
                   <Download className="mr-2" size={20} /> Free AI Cheat Sheet
                 </Button>
@@ -219,6 +228,7 @@ export function Navbar() {
       <ContactFormModal 
         open={isContactModalOpen} 
         onOpenChange={setIsContactModalOpen} 
+        purpose={modalPurpose}
       />
     </>
   )

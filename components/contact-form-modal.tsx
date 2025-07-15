@@ -44,9 +44,14 @@ type ContactFormData = z.infer<typeof contactFormSchema>
 interface ContactFormModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
+  purpose?: 'apply' | 'cheatsheet' | null
 }
 
-export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) {
+export function ContactFormModal({ 
+  open, 
+  onOpenChange, 
+  purpose = null 
+}: ContactFormModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -56,7 +61,7 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
       fullName: "",
       email: "",
       phone: "",
-      message: "",
+      message: purpose === 'cheatsheet' ? "Please send me the Free AI Cheat Sheet" : "",
     },
   })
 
@@ -67,6 +72,7 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
     await new Promise(resolve => setTimeout(resolve, 2000))
     
     console.log("Form submitted:", data)
+    console.log("Modal purpose:", purpose)
     setIsSubmitting(false)
     setIsSubmitted(true)
     
@@ -93,9 +99,13 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </motion.div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">Thank You!</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-2">
+              {purpose === 'cheatsheet' ? 'Cheat Sheet on Its Way!' : 'Thank You!'}
+            </h3>
             <p className="text-muted-foreground">
-              We've received your information and will get back to you within 24 hours.
+              {purpose === 'cheatsheet' 
+                ? "We've sent the Free AI Cheat Sheet to your email. Check your inbox (and spam folder, just in case)!" 
+                : "We've received your information and will get back to you within 24 hours."}
             </p>
           </div>
         </DialogContent>
@@ -108,10 +118,12 @@ export function ContactFormModal({ open, onOpenChange }: ContactFormModalProps) 
       <DialogContent className="max-w-lg">
         <DialogHeader className="pb-4">
           <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
-            Let's Connect!
+            {purpose === 'cheatsheet' ? 'Get Your Free AI Cheat Sheet' : "Let's Connect!"}
           </DialogTitle>
           <DialogDescription className="text-base text-muted-foreground">
-            {/* Tell us about yourself and how we can help you with your AI journey. */}
+            {purpose === 'cheatsheet' 
+              ? "Enter your details to receive the Free AI Cheat Sheet directly in your email." 
+              : ""}
           </DialogDescription>
         </DialogHeader>
 
