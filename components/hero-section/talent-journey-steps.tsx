@@ -8,12 +8,14 @@ interface TalentJourneyStepsProps {
   activeProcess: number
   onProcessClick: (index: number) => void
   onWebinarOpen: () => void
+  onContactModalOpen: () => void  // New prop for opening contact modal
 }
 
 export function TalentJourneySteps({
   activeProcess,
   onProcessClick,
-  onWebinarOpen
+  onWebinarOpen,
+  onContactModalOpen  // Add to destructured props
 }: TalentJourneyStepsProps) {
   const handleStepClick = (step: any, index: number) => {
     onProcessClick(index)
@@ -23,6 +25,8 @@ export function TalentJourneySteps({
       step.action()
     } else if (step.id === 0) {
       onWebinarOpen()
+    } else if (step.id === 2) {  // Assuming the "Get Hired" step is index 2
+      onContactModalOpen()
     } else if (step.id === 1) {
       window.open("/assessment", "_blank")
     }
@@ -139,6 +143,8 @@ export function TalentJourneySteps({
                           "/assessment",
                           "_blank"
                         )
+                      } else if (step.id === 2) {  // Assuming the "Get Hired" step is index 2
+                        onContactModalOpen()
                       } else if (step.action) {
                         step.action()
                       } else {

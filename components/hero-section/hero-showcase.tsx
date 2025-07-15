@@ -13,6 +13,7 @@ interface HeroShowcaseProps {
   activeProcess: number
   onProcessClick: (index: number) => void
   onWebinarOpen: () => void
+  onContactModalOpen: () => void
 }
 
 export function HeroShowcase({
@@ -20,7 +21,8 @@ export function HeroShowcase({
   currentMetric,
   activeProcess,
   onProcessClick,
-  onWebinarOpen
+  onWebinarOpen,
+  onContactModalOpen
 }: HeroShowcaseProps) {
   return (
     <motion.div
@@ -67,6 +69,7 @@ export function HeroShowcase({
             activeProcess={activeProcess}
             onProcessClick={onProcessClick}
             onWebinarOpen={onWebinarOpen}
+            onContactModalOpen={onContactModalOpen}
           />
 
           {/* Live Activity Feed */}
