@@ -13,7 +13,12 @@ export const flagshipFeatures = [
   "Resume branding + AI-powered portfolio support",
   "Direct referrals to our hiring partners",
   "Technical + behavioral mock interviews",
-  "Personal mentorship from product managers"
+  "Personal mentorship from product managers",
+  "100+ hours of video content on AI, MERN, and more",
+  "Auto-evaluated quizzes and coding assignments",
+  "21-Day No-Code AI Product Builder",
+  "90-Day Real-Client Work Experience",
+  "Career reports, weekly mentorship, and lifetime platform access"
 ]
 
 export const programConfigs = [
