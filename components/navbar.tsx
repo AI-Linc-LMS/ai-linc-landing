@@ -4,7 +4,7 @@ import React from "react"
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -105,13 +105,25 @@ export function Navbar() {
             </NavigationMenu>
 
             <div className="hidden md:block">
-              <Button
-                className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
-                size="lg"
-                onClick={navigateToApply}
-              >
-               Get Hired
-              </Button>
+              <div className="flex items-center space-x-4">
+                <Button
+                  className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
+                  size="lg"
+                  onClick={navigateToApply}
+                >
+                 Get Hired
+                </Button>
+                <Button
+                  className="bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(75,192,192,0.5)]"
+                  size="lg"
+                  onClick={() => {
+                    // TODO: Replace with actual cheat sheet download link
+                    window.open('/ai-cheat-sheet.pdf', '_blank');
+                  }}
+                >
+                  <Download className="mr-2" size={20} /> Free AI Cheat Sheet
+                </Button>
+              </div>
             </div>
 
             <button className="md:hidden text-foreground" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -188,6 +200,16 @@ export function Navbar() {
                    Get Hired
                   </Button>
                 </Link>
+                <Button
+                  className="bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90 text-white font-medium w-full py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(75,192,192,0.5)]"
+                  onClick={() => {
+                    // TODO: Replace with actual cheat sheet download link
+                    window.open('/ai-cheat-sheet.pdf', '_blank');
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  <Download className="mr-2" size={20} /> Free AI Cheat Sheet
+                </Button>
               </div>
             </motion.div>
           )}
