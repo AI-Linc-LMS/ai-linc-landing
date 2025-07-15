@@ -31,19 +31,6 @@ export const VideoSection = () => {
 
     return (
         <section className="relative min-h-screen flex items-center justify-center py-16 overflow-hidden">
-            {/* Background Image/Video with overlay */}
-            {/* <div className="absolute inset-0 rounded-2xl overflow-hidden"> */}
-            {/* <Image
-                    src="/placeholder-video-thumbnail.jpg"
-                    alt="AI Fellowship Background"
-                    layout="fill"
-                    objectFit="cover"
-                    className="transition-transform duration-700 group-hover:scale-105 opacity-30"
-                /> */}
-            {/* Gradient overlay for better text readability */}
-            {/* <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div> */}
-            {/* </div> */}
-
             <div className="relative z-10 w-full mx-auto px-4">
                 <div className="relative w-full max-w-7xl mx-auto group">
                     {/* Hover glow effect */}
@@ -76,81 +63,78 @@ export const VideoSection = () => {
                                     initial="hidden"
                                     animate="visible"
                                     variants={contentVariants}
-                                    className="absolute inset-0 flex items-center"
+                                    className="absolute inset-0 flex items-end"
                                 >
-                                    <div className="w-full px-8 md:px-12">
-                                        {/* Content Container */}
-                                        <div className="flex flex-col md:flex-row items-center justify-between">
-                                            {/* Left Content */}
-                                            <div className="flex-1 text-left md:pr-8">
-                                                <div className="w-20 h-32 bg-gradient-to-b from-[#0BC5EA] to-[#6B46C1] rounded-lg mb-8 shadow-[0_0_30px_rgba(11,197,234,0.6)] animate-pulse"></div>
+                                    <div className="w-full px-8 md:px-12 pb-8 flex items-end justify-between">
+                                        {/* Left Content */}
+                                        <div className="flex-1 text-left">
+                                            <div className="w-20 h-32 bg-gradient-to-b from-[#0BC5EA] to-[#6B46C1] rounded-lg mb-8 shadow-[0_0_30px_rgba(11,197,234,0.6)] animate-pulse"></div>
 
-                                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white leading-tight">
-                                                    AI Generalist Fellowship
-                                                </h2>
+                                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white leading-tight">
+                                            Deploy Your First AI App: Live No-Code AI Workshop
+                                            </h2>
 
-                                                <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
-                                                    Master the Fundamentals and Advanced Concepts of AI Through a Hybrid Learning Experience
-                                                </p>
+                                            <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+                                                Master the Fundamentals and Advanced Concepts of AI Through a Hybrid Learning Experience
+                                            </p>
 
-                                                {/* Features */}
-                                                <div className="flex flex-wrap gap-6 text-gray-400 mb-8">
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="w-5 h-5 rounded-full border-2 border-gray-400 flex items-center justify-center">
-                                                            <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                                                        </div>
-                                                        <span className="text-sm md:text-base">6 Months</span>
+                                            {/* Features */}
+                                            <div className="flex flex-wrap gap-6 text-gray-400 mb-8">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-5 h-5 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                                                        <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                                                     </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="w-5 h-5 rounded border border-gray-400"></div>
-                                                        <span className="text-sm md:text-base">Hybrid Mode</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="w-5 h-5 rounded-full border-2 border-gray-400 flex items-center justify-center">
-                                                            <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                                                        </div>
-                                                        <span className="text-sm md:text-base">8+ Countries</span>
-                                                    </div>
+                                                    <span className="text-sm md:text-base">111 Days</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-5 h-5 rounded border border-gray-400"></div>
+                                                    <span className="text-sm md:text-base">Remote Mode</span>
+                                                </div>
+                                                <div className="flex items-center gap-2">
+                                                    {/* <div className="w-5 h-5 rounded-full border-2 border-gray-400 flex items-center justify-center">
+                                                        <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                                                    </div> */}
+                                                    {/* <span className="text-sm md:text-base">8+ Countries</span> */}
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            {/* Right Content - Explore Button and Mentors */}
-                                            <div className="flex-shrink-0 mt-8 md:mt-0 flex flex-col items-end">
-                                                {/* Mentors indicator */}
-                                                <div className="flex items-center gap-3 mb-4">
-                                                    <div className="flex -space-x-2">
-                                                        <div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-800"></div>
-                                                        <div className="w-8 h-8 rounded-full bg-gray-500 border-2 border-gray-800"></div>
-                                                        <div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-800"></div>
-                                                        <div className="w-8 h-8 rounded-full bg-[#0BC5EA] border-2 border-gray-800 flex items-center justify-center text-black text-xs font-bold">
-                                                            +2
-                                                        </div>
+                                        {/* Right Content - Explore Button and Mentors */}
+                                        <div className="flex-shrink-0 flex flex-col items-end">
+                                            {/* Mentors indicator */}
+                                            <div className="flex items-center gap-3 mb-4">
+                                                <div className="flex -space-x-2">
+                                                    <div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-800"></div>
+                                                    <div className="w-8 h-8 rounded-full bg-gray-500 border-2 border-gray-800"></div>
+                                                    <div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-800"></div>
+                                                    <div className="w-8 h-8 rounded-full bg-[#0BC5EA] border-2 border-gray-800 flex items-center justify-center text-black text-xs font-bold">
+                                                        +2
                                                     </div>
-                                                    <span className="text-sm text-gray-300">
-                                                        Multiple mentors from <br />
-                                                        Google, Adobe & more
-                                                    </span>
                                                 </div>
+                                                <span className="text-sm text-gray-300">
+                                                    Multiple mentors from <br />
+                                                    Google, Adobe & more
+                                                </span>
+                                            </div>
 
-                                                <motion.div
-                                                    initial={{ opacity: 0, scale: 0.8 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    transition={{ 
-                                                        duration: 0.5, 
-                                                        delay: 0.5 
-                                                    }}
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.8 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                transition={{ 
+                                                    duration: 0.5, 
+                                                    delay: 0.5 
+                                                }}
+                                            >
+                                                <Button
+                                                    variant="default"
+                                                    className="md:w-[260px] h-full bg-[#0BC5EA] text-black hover:bg-[#0BC5EA]/90 
+                                                       transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-xl
+                                                       hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
+                                                       transform hover:scale-105"
                                                 >
-                                                    <Button
-                                                        variant="default"
-                                                        className=" md:w-[260px] h-full bg-[#0BC5EA] text-black hover:bg-[#0BC5EA]/90 
-                                                           transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-xl
-                                                           hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
-                                                           transform hover:scale-105"
-                                                    >
-                                                        Explore Courses
-                                                    </Button>
-                                                </motion.div>
-                                            </div>
+                                                    Explore Courses
+                                                </Button>
+                                            </motion.div>
                                         </div>
                                     </div>
                                 </motion.div>
