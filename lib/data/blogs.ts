@@ -47,6 +47,77 @@ More details coming soon!`,
       "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80",
     readTime: 7,
   },
+  {
+    id: "3",
+    title: "Generative AI: Transforming Creative Industries",
+    slug: "generative-ai-creative-revolution",
+    author: "Emily Chen",
+    date: "2024-03-10",
+    excerpt: 
+      "Discover how generative AI is reshaping design, art, and content creation across multiple industries.",
+    content: `# Generative AI: The Creative Revolution
+
+Generative AI is not just a technological breakthrough; it's a paradigm shift in creative expression. From art to marketing, AI is redefining what's possible.
+
+## Exploring the Frontiers
+- AI in graphic design
+- Automated content generation
+- Ethical considerations of AI creativity
+
+The future is here, and it's incredibly exciting!`,
+    tags: ["Generative AI", "Creativity", "Innovation"],
+    coverImage: 
+      "https://images.unsplash.com/photo-1677442135394-633f44c15a95?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    readTime: 6,
+  },
+  {
+    id: "4",
+    title: "AI in Healthcare: Revolutionizing Patient Care",
+    slug: "ai-healthcare-innovation",
+    author: "Dr. Michael Rodriguez",
+    date: "2024-04-05",
+    excerpt: 
+      "Explore groundbreaking AI applications that are transforming diagnosis, treatment, and patient management.",
+    content: `# AI: The New Frontier in Healthcare
+
+Artificial Intelligence is not just a technological tool; it's becoming a critical partner in medical innovation.
+
+## Key Innovations
+- Predictive diagnostics
+- Personalized treatment plans
+- Medical image analysis
+- Remote patient monitoring
+
+AI is making healthcare more precise, accessible, and human-centric.`,
+    tags: ["AI", "Healthcare", "Medical Technology"],
+    coverImage: 
+      "https://images.unsplash.com/photo-1584982751345-519ade5bca54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    readTime: 8,
+  },
+  {
+    id: "5",
+    title: "Ethical AI: Navigating the Moral Landscape",
+    slug: "ethical-ai-challenges",
+    author: "Sarah Thompson",
+    date: "2024-04-20",
+    excerpt: 
+      "A deep dive into the ethical challenges and responsible development of artificial intelligence.",
+    content: `# The Ethical Imperative in AI Development
+
+As AI becomes more powerful, the need for robust ethical frameworks has never been more critical.
+
+## Exploring Ethical Dimensions
+- Bias and fairness in AI systems
+- Privacy and data protection
+- Transparency in AI decision-making
+- Societal impact of autonomous systems
+
+Responsible innovation is our collective responsibility.`,
+    tags: ["AI Ethics", "Technology", "Social Responsibility"],
+    coverImage: 
+      "https://images.unsplash.com/photo-1526374965328-7f61d4b3c4ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    readTime: 7,
+  }
 ];
 
 // ✅ Make this async to match usage in App Router
