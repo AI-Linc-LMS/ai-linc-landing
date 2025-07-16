@@ -16,7 +16,7 @@ const syllabusData = [
     description: "Develop an AI product without writing code within 3 weeks. Via prompts and Agentic AI"
   },
   {
-    phase: "Phase 2", 
+    phase: "Phase 2",
     title: "Work exp. 90 days",
     duration: "Days 22-111",
     icon: Briefcase,
@@ -78,7 +78,7 @@ const detailedSyllabusData = [
     }
   },
   {
-    phase: "Phase 2", 
+    phase: "Phase 2",
     title: "Work exp. 90 days",
     duration: "Days 22-111",
     icon: Briefcase,
@@ -266,7 +266,7 @@ function FlipCard({ phase, index }: { phase: any; index: number }) {
   }
 
   return (
-    <div 
+    <div
       ref={cardRef}
       className={`relative flex items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
     >
@@ -277,7 +277,7 @@ function FlipCard({ phase, index }: { phase: any; index: number }) {
 
       {/* Flip Card Container */}
       <div className={`ml-12 md:ml-0 w-full md:w-5/12 ${isEven ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
-        <div 
+        <div
           className="relative h-[400px] md:h-[450px] transition-transform duration-700 ease-in-out"
           style={{
             transformStyle: 'preserve-3d',
@@ -287,7 +287,7 @@ function FlipCard({ phase, index }: { phase: any; index: number }) {
           onMouseLeave={handleMouseLeave}
         >
           {/* Front Side */}
-          <div 
+          <div
             className="absolute inset-0"
             style={{ backfaceVisibility: 'hidden' }}
           >
@@ -320,11 +320,11 @@ function FlipCard({ phase, index }: { phase: any; index: number }) {
           </div>
 
           {/* Back Side */}
-          <div 
+          <div
             className="absolute inset-0"
-            style={{ 
+            style={{
               backfaceVisibility: 'hidden',
-              transform: 'rotateY(180deg)' 
+              transform: 'rotateY(180deg)'
             }}
           >
             <Card className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 border-cyan-400/50 h-full shadow-lg shadow-cyan-500/20 cursor-pointer">
@@ -356,7 +356,7 @@ function FlipCard({ phase, index }: { phase: any; index: number }) {
                     ))}
                   </ul>
                 </div>
-                
+
                 <div>
                   <h4 className="text-sm font-semibold text-cyan-300 mb-2 flex items-center">
                     <Monitor className="w-4 h-4 mr-2" />
@@ -422,12 +422,31 @@ export function SyllabusSection() {
             💡 Hover over cards to explore detailed outcomes & tools
           </p>
         </div>
+         {/* Detailed Course Button */}
+         <div className="text-center mb-10">
+          <Link href="/courses/detailed-syllabus">
+            <Button
+              size="lg"
+              className=" w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 mx-auto sm:w-auto"
+            >
+              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <span className="text-xs sm:text-sm md:text-base">
+                <span className="hidden sm:inline">Explore AI-Powered Week-by-Week Curriculum</span>
+                <span className="sm:hidden">Explore AI Curriculum</span>
+              </span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+            </Button>
+          </Link>
+          <p className="text-gray-400 mt-4 text-sm">
+            Discover comprehensive AI-driven learning outcomes, intelligent tools, and next-gen development skills
+          </p>
+        </div>
 
         {/* Main Phases Timeline with Flip Cards */}
         <div className="relative mb-12 md:mb-16">
           {/* Desktop Timeline Line */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 to-purple-400"></div>
-          
+
           {/* Mobile Timeline Line */}
           <div className="md:hidden absolute left-6 top-0 w-0.5 h-full bg-gradient-to-b from-cyan-400 to-purple-400"></div>
 
@@ -524,25 +543,7 @@ export function SyllabusSection() {
           )}
         </div>
 
-        {/* Detailed Course Button */}
-        <div className="text-center">
-          <Link href="/courses/detailed-syllabus">
-            <Button 
-              size="lg" 
-              className=" w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all duration-300 mx-auto sm:w-auto"
-            >
-              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              <span className="text-xs sm:text-sm md:text-base">
-                <span className="hidden sm:inline">Explore AI-Powered Week-by-Week Curriculum</span>
-                <span className="sm:hidden">Explore AI Curriculum</span>
-              </span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
-            </Button>
-          </Link>
-          <p className="text-gray-400 mt-4 text-sm">
-            Discover comprehensive AI-driven learning outcomes, intelligent tools, and next-gen development skills
-          </p>
-        </div>
+       
       </div>
     </section>
   )

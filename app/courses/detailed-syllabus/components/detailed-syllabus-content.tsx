@@ -419,7 +419,7 @@ export function DetailedSyllabusContent() {
           className="mb-8"
         >
           <div className="flex items-center gap-4 mb-6">
-            <Link href="/courses">
+            <Link href="/flagship-course">
               <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Courses
