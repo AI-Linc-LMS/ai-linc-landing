@@ -102,6 +102,11 @@ export function Navbar() {
                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>Instructors</NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/blogs" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Blogs</NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
                 {/* <NavigationMenuItem>
                 <Link href="/#community" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Community</NavigationMenuLink>
@@ -185,11 +190,11 @@ export function Navbar() {
                   Instructors
                 </Link>
                 <Link
-                  href="/#community"
+                  href="/blogs"
                   className="text-foreground/80 hover:text-foreground transition-colors py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Community
+                  Blogs
                 </Link>
                 {/* <Link
                 href="/#pricing"
