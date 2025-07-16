@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -178,19 +178,77 @@ const topScorersData: TopScorer[] = [
 
 export const TopScorersSection: React.FC = () => {
     const [currentScorer, setCurrentScorer] = useState(0);
+    const [direction, setDirection] = useState<'right' | 'left'>('right');
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    const startAutoPlay = () => {
+        // Clear any existing interval
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        // Start new interval if auto-playing
+        if (isAutoPlaying) {
+            intervalRef.current = setInterval(() => {
+                setCurrentScorer((prev) => (prev + 1) % topScorersData.length);
+                setDirection('right');
+            }, 3000);
+        }
+    };
+
+    const navigateScorer = (newIndex: number, navDirection: 'right' | 'left') => {
+        setCurrentScorer(newIndex);
+        setDirection(navDirection);
+
+        // Restart auto-play timer
+        startAutoPlay();
+    };
 
     const nextScorer = () => {
-        setCurrentScorer((prev) => (prev + 1) % topScorersData.length);
+        const newIndex = (currentScorer + 1) % topScorersData.length;
+        navigateScorer(newIndex, 'right');
     };
 
     const prevScorer = () => {
-        setCurrentScorer((prev) => (prev - 1 + topScorersData.length) % topScorersData.length);
+        const newIndex = (currentScorer - 1 + topScorersData.length) % topScorersData.length;
+        navigateScorer(newIndex, 'left');
     };
+
+    const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const halfWidth = rect.width / 2;
+
+        if (clickX < halfWidth) {
+            // Left half clicked
+            prevScorer();
+        } else {
+            // Right half clicked
+            nextScorer();
+        }
+    };
+
+    // Start auto-play on component mount
+    useEffect(() => {
+        startAutoPlay();
+
+        // Cleanup interval on component unmount
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [isAutoPlaying]);
 
     const scorer = topScorersData[currentScorer];
 
     return (
-        <section className="py-8 md:py-16 px-4 text-white">
+        <section
+            className="py-8 md:py-16 px-4 text-white"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+        >
             <div className="container mx-auto max-w-6xl">
                 <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">Top Performers</h2>
 
@@ -205,28 +263,37 @@ export const TopScorersSection: React.FC = () => {
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={scorer.id}
-                            initial={{ opacity: 0, x: 100 }}
+                            initial={{ opacity: 0, x: direction === 'right' ? 100 : -100 }}
                             animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -100 }}
+                            exit={{ opacity: 0, x: direction === 'right' ? -100 : 100 }}
                             transition={{ duration: 0.5 }}
                             className="w-full max-w-xs sm:max-w-sm md:max-w-2xl"
                         >
                             <Card className="border-none shadow-2xl">
                                 <CardContent className="flex flex-col items-center p-4 md:p-8">
-                                    <div className="w-full max-w-[680px] h-[280px] sm:max-w-[320px] sm:h-[320px] md:max-w-[600px] md:h-[400px] lg:w-[600px] lg:h-[600px] overflow-hidden border-4 rounded-lg">
+                                    <div
+                                        className="w-full max-w-[680px] h-[280px] sm:max-w-[320px] sm:h-[320px] md:max-w-[600px] md:h-[400px] lg:w-[600px] lg:h-[600px] overflow-hidden border-4 rounded-lg cursor-pointer relative"
+                                        onClick={handleImageClick}
+                                    >
                                         <img
                                             src={scorer.imageUrl}
                                             alt={scorer.name}
                                             className="w-full h-full object-cover"
                                         />
+                                        {/* Optional: Add visual indicators for clickable areas */}
+                                        <div className="absolute inset-0 flex">
+                                            <div
+                                                className="w-1/2 h-full"
+                                                title="Previous"
+                                                style={{ cursor: 'w-resize' }}
+                                            ></div>
+                                            <div
+                                                className="w-1/2 h-full"
+                                                title="Next"
+                                                style={{ cursor: 'e-resize' }}
+                                            ></div>
+                                        </div>
                                     </div>
-                                    {/* <div className="flex-1 mt-4 md:mt-0 md:ml-8">
-                    <h3 className="text-xl md:text-2xl font-semibold mb-2 text-center md:text-left">{scorer.name}</h3>
-                    <p className="text-base md:text-lg text-blue-300 mb-4 text-center md:text-left">{scorer.program} | Score: {scorer.score}/100</p>
-                    <blockquote className="italic text-gray-300 text-sm md:text-base text-center md:text-left">
-                      "{scorer.testimonial}"
-                    </blockquote>
-                  </div> */}
                                 </CardContent>
                             </Card>
                         </motion.div>
