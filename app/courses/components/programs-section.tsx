@@ -35,12 +35,12 @@ export function ProgramsSection() {
         <HowToChooseSection />
       </div>
 
-      <ProgramSelectionModal
+      {/* <ProgramSelectionModal
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
         onAssessment={handleAssessment}
         onWebinarRegistration={handleWebinarRegistration}
-      />
+      /> */}
     </section>
   )
 } 
