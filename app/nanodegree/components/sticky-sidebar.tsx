@@ -36,12 +36,8 @@ export function StickySidebar() {
             <div className="px-6 pt-4">
                 <div className="flex justify-between items-center mb-4">
                     <div>
-                        <Badge variant="secondary" className="text-sm mb-2">
-                            85% Off • Limited Time
-                        </Badge>
                         <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-bold text-primary">₹449</span>
-                            <span className="text-sm line-through text-foreground/50">₹3,089</span>
+                            <span className="text-3xl font-bold text-primary">₹4,999</span>
                         </div>
                     </div>
                     <div className="flex items-center gap-1 text-yellow-400">
@@ -113,22 +109,13 @@ export function StickySidebar() {
                     <Button 
                         size="lg" 
                         className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600"
-                    >
-                        Add to Cart
-                    </Button>
-                    <Button 
-                        variant="outline" 
-                        size="lg" 
-                        className="w-full"
+                        onClick={() => window.open('https://staging.ailinc.com/nanodegree-program-payment?data=3uv_szhmpq_n.959605af', '_blank')}
                     >
                         Buy Now
                     </Button>
                 </div>
 
-                {/* Price Countdown */}
-                <div className="text-center text-sm text-foreground/70 mt-4">
-                    1 day left at this price
-                </div>
+                {/* Removed Price Countdown */}
             </div>
 
             {/* Video Modal */}
