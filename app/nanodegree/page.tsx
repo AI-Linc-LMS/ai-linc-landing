@@ -19,10 +19,15 @@ export default function NanoDegreePage() {
                 <ParticleBackground />
                 <Navbar />
 
-                <div className="container mx-auto px-4 py-16">
-                    <div className="grid lg:grid-cols-[1fr_400px] gap-8 items-start">
+                <div className="container mx-auto px-4 py-8 md:py-16">
+                    {/* Mobile sidebar - shown at top on mobile */}
+                    <div className="lg:hidden mb-8">
+                        <StickySidebar />
+                    </div>
+
+                    <div className="grid lg:grid-cols-[1fr_400px] gap-6 lg:gap-8 items-start">
                         {/* Left side content */}
-                        <div>
+                        <div className="space-y-8 md:space-y-12">
                             <HeroSection />
                             <WhatYouLearnSection />
                             <CourseContentSection />
@@ -30,8 +35,8 @@ export default function NanoDegreePage() {
                             <InstructorsSection />
                         </div>
 
-                        {/* Sticky sidebar */}
-                        <div className="hidden lg:block sticky top-24 self-start h-fit">
+                        {/* Desktop sticky sidebar */}
+                        <div className="hidden lg:block sticky top-20 self-start h-fit">
                             <StickySidebar />
                         </div>
                     </div>
