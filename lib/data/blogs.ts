@@ -67,7 +67,7 @@ Generative AI is not just a technological breakthrough; it's a paradigm shift in
 The future is here, and it's incredibly exciting!`,
     tags: ["Generative AI", "Creativity", "Innovation"],
     coverImage: 
-      "https://images.unsplash.com/photo-1677442135394-633f44c15a95?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+     "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     readTime: 6,
   },
   {
@@ -91,7 +91,7 @@ Artificial Intelligence is not just a technological tool; it's becoming a critic
 AI is making healthcare more precise, accessible, and human-centric.`,
     tags: ["AI", "Healthcare", "Medical Technology"],
     coverImage: 
-      "https://images.unsplash.com/photo-1584982751345-519ade5bca54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80",
     readTime: 8,
   },
   {
@@ -115,7 +115,7 @@ As AI becomes more powerful, the need for robust ethical frameworks has never be
 Responsible innovation is our collective responsibility.`,
     tags: ["AI Ethics", "Technology", "Social Responsibility"],
     coverImage: 
-      "https://images.unsplash.com/photo-1526374965328-7f61d4b3c4ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+     "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     readTime: 7,
   }
 ];
