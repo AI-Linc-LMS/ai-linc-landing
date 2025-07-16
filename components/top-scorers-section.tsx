@@ -190,14 +190,14 @@ export const TopScorersSection: React.FC = () => {
     const scorer = topScorersData[currentScorer];
 
     return (
-        <section className="py-16 px-4  text-white">
+        <section className="py-8 md:py-16 px-4 text-white">
             <div className="container mx-auto max-w-6xl">
-                <h2 className="text-4xl font-bold text-center mb-12">Top Performers</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">Top Performers</h2>
 
-                <div className="flex items-center justify-center space-x-4">
+                <div className="flex items-center justify-center space-x-2 md:space-x-4">
                     <button
                         onClick={prevScorer}
-                        className="text-3xl hover:text-blue-500 transition-colors"
+                        className="text-xl md:text-3xl hover:text-blue-500 transition-colors p-2 md:p-0"
                     >
                         ←
                     </button>
@@ -209,21 +209,21 @@ export const TopScorersSection: React.FC = () => {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: -100 }}
                             transition={{ duration: 0.5 }}
-                            className="max-w-2xl"
+                            className="w-full max-w-xs sm:max-w-sm md:max-w-2xl"
                         >
-                            <Card className=" border-none shadow-2xl">
-                                <CardContent className="flex flex-col md:flex-row items-center p-8 space-x-8">
-                                    <div className="w-[600px] h-[600px]  overflow-hidden border-4 ">
+                            <Card className="border-none shadow-2xl">
+                                <CardContent className="flex flex-col items-center p-4 md:p-8">
+                                    <div className="w-full max-w-[680px] h-[280px] sm:max-w-[320px] sm:h-[320px] md:max-w-[600px] md:h-[400px] lg:w-[600px] lg:h-[600px] overflow-hidden border-4 rounded-lg">
                                         <img
                                             src={scorer.imageUrl}
                                             alt={scorer.name}
                                             className="w-full h-full object-cover"
                                         />
                                     </div>
-                                    {/* <div className="flex-1">
-                    <h3 className="text-2xl font-semibold mb-2">{scorer.name}</h3>
-                    <p className="text-lg text-blue-300 mb-4">{scorer.program} | Score: {scorer.score}/100</p>
-                    <blockquote className="italic text-gray-300">
+                                    {/* <div className="flex-1 mt-4 md:mt-0 md:ml-8">
+                    <h3 className="text-xl md:text-2xl font-semibold mb-2 text-center md:text-left">{scorer.name}</h3>
+                    <p className="text-base md:text-lg text-blue-300 mb-4 text-center md:text-left">{scorer.program} | Score: {scorer.score}/100</p>
+                    <blockquote className="italic text-gray-300 text-sm md:text-base text-center md:text-left">
                       "{scorer.testimonial}"
                     </blockquote>
                   </div> */}
@@ -234,7 +234,7 @@ export const TopScorersSection: React.FC = () => {
 
                     <button
                         onClick={nextScorer}
-                        className="text-3xl hover:text-blue-500 transition-colors"
+                        className="text-xl md:text-3xl hover:text-blue-500 transition-colors p-2 md:p-0"
                     >
                         →
                     </button>
