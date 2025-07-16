@@ -29,7 +29,8 @@ import {
   Phone,
   Mail,
   User,
-  MessageCircle
+  MessageCircle,
+  Server
 } from "lucide-react"
 import Link from "next/link"
 
@@ -39,7 +40,7 @@ const syllabusData = {
   phases: [
     {
       id: 1,
-      title: "No-Code AI Product Development",
+      title: "Agentic AI Learning",
       duration: "Weeks 1–3",
       color: "from-blue-500 to-cyan-500",
       icon: Brain,
@@ -105,9 +106,9 @@ const syllabusData = {
     },
     {
       id: 2,
-      title: "MERN Stack + AI Integration",
-      duration: "Weeks 4–16",
-      color: "from-purple-500 to-pink-500",
+      title: "HTML, CSS, and Web Fundamentals",
+      duration: "Weeks 4–5",
+      color: "from-green-500 to-emerald-500",
       icon: Code,
       weeks: [
         {
@@ -147,7 +148,16 @@ const syllabusData = {
           skills: ["Responsive Layouts", "Semantic HTML", "Modern UI Styling"],
           tools: ["HTML5", "CSS3", "Tailwind", "ChatGPT"],
           takeaway: "Able to create a professional, fully responsive landing page using AI-enhanced design flow."
-        },
+        }
+      ]
+    },
+    {
+      id: 3,
+      title: "JavaScript and DOM Manipulation",
+      duration: "Weeks 6–7",
+      color: "from-yellow-500 to-amber-500",
+      icon: Zap,
+      weeks: [
         {
           week: 6,
           title: "JavaScript Fundamentals",
@@ -185,7 +195,16 @@ const syllabusData = {
           skills: ["DOM Manipulation", "Event Handling", "Async Programming"],
           tools: ["JavaScript", "ChatGPT", "Copilot"],
           takeaway: "Able to build dynamic single-page apps with real-time interactivity powered by AI guidance."
-        },
+        }
+      ]
+    },
+    {
+      id: 4,
+      title: "React and State Management",
+      duration: "Weeks 8–10",
+      color: "from-purple-500 to-indigo-500",
+      icon: Target,
+      weeks: [
         {
           week: 8,
           title: "React Fundamentals",
@@ -242,7 +261,16 @@ const syllabusData = {
           skills: ["Component Architecture", "UI Integration", "Project Structuring"],
           tools: ["React", "GitHub", "Copilot"],
           takeaway: "Able to create and deploy a real-world frontend application on Vercel with clean code and AI reviews."
-        },
+        }
+      ]
+    },
+    {
+      id: 5,
+      title: "Backend Development and Full-Stack Integration",
+      duration: "Weeks 11–16",
+      color: "from-pink-500 to-rose-500",
+      icon: Server,
+      weeks: [
         {
           week: 11,
           title: "API Fundamentals",
@@ -362,6 +390,104 @@ const syllabusData = {
   ]
 }
 
+// Company Showcase Component
+const CompanyShowcase = ({ phase }: { phase: number }) => {
+  const companyData = [
+    {
+      phase: 1,
+      title: "Agentic AI Learning Partners",
+      description: "Leading AI and No-Code Tool Providers",
+      companies: [
+        { name: "OpenAI", logo: "/logos/openai.svg", link: "https://openai.com" },
+        { name: "Anthropic", logo: "/logos/anthropic.svg", link: "https://anthropic.com" },
+        { name: "Midjourney", logo: "/logos/midjourney.svg", link: "https://midjourney.com" },
+        { name: "Tana", logo: "/logos/tana.svg", link: "https://tana.inc" }
+      ]
+    },
+    {
+      phase: 2,
+      title: "Web Development Technology Partners",
+      description: "Cutting-Edge Web Design and Development Tools",
+      companies: [
+        { name: "Tailwind CSS", logo: "/logos/tailwind.svg", link: "https://tailwindcss.com" },
+        { name: "GitHub", logo: "/logos/github.svg", link: "https://github.com" },
+        { name: "Vercel", logo: "/logos/vercel.svg", link: "https://vercel.com" },
+        { name: "Netlify", logo: "/logos/netlify.svg", link: "https://netlify.com" }
+      ]
+    },
+    {
+      phase: 3,
+      title: "JavaScript Ecosystem Partners",
+      description: "Innovative JavaScript and Frontend Tools",
+      companies: [
+        { name: "React", logo: "/logos/react.svg", link: "https://reactjs.org" },
+        { name: "TypeScript", logo: "/logos/typescript.svg", link: "https://typescriptlang.org" },
+        { name: "Babel", logo: "/logos/babel.svg", link: "https://babeljs.io" },
+        { name: "ESLint", logo: "/logos/eslint.svg", link: "https://eslint.org" }
+      ]
+    },
+    {
+      phase: 4,
+      title: "React and State Management Collaborators",
+      description: "Advanced Frontend Development Platforms",
+      companies: [
+        { name: "Redux", logo: "/logos/redux.svg", link: "https://redux.js.org" },
+        { name: "Next.js", logo: "/logos/nextjs.svg", link: "https://nextjs.org" },
+        { name: "Chakra UI", logo: "/logos/chakra.svg", link: "https://chakra-ui.com" },
+        { name: "Framer Motion", logo: "/logos/framer.svg", link: "https://framer.com/motion" }
+      ]
+    },
+    {
+      phase: 5,
+      title: "Backend and Full-Stack Technology Partners",
+      description: "Enterprise-Grade Backend and Deployment Solutions",
+      companies: [
+        { name: "MongoDB", logo: "/logos/mongodb.svg", link: "https://mongodb.com" },
+        { name: "Express.js", logo: "/logos/express.svg", link: "https://expressjs.com" },
+        { name: "Node.js", logo: "/logos/nodejs.svg", link: "https://nodejs.org" },
+        { name: "Render", logo: "/logos/render.svg", link: "https://render.com" }
+      ]
+    }
+  ]
+
+  const phaseCompanies = companyData.find(data => data.phase === phase)
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="my-12 bg-gray-800/50 border border-gray-700 rounded-lg p-6"
+    >
+      <div className="text-center mb-6">
+        <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+          {phaseCompanies?.title}
+        </h3>
+        <p className="text-gray-400">{phaseCompanies?.description}</p>
+      </div>
+      <div className="flex flex-wrap justify-center items-center gap-8">
+        {phaseCompanies?.companies.map((company, index) => (
+          <motion.a
+            key={company.name}
+            href={company.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="opacity-70 hover:opacity-100 transition-all duration-300"
+          >
+            <img 
+              src={company.logo} 
+              alt={`${company.name} logo`} 
+              className="h-12 w-auto grayscale hover:grayscale-0 transition-all duration-300"
+            />
+          </motion.a>
+        ))}
+      </div>
+    </motion.div>
+  )
+}
+
 export function DetailedSyllabusContent() {
   const [activePhase, setActivePhase] = useState(0)
   const [activeWeek, setActiveWeek] = useState(0)
@@ -419,7 +545,7 @@ export function DetailedSyllabusContent() {
           className="mb-8"
         >
           <div className="flex items-center gap-4 mb-6">
-            <Link href="/courses">
+            <Link href="/flagship-course">
               <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Courses
@@ -456,11 +582,11 @@ export function DetailedSyllabusContent() {
             </Badge>
             <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 text-lg">
               <BookOpen className="w-5 h-5 mr-2" />
-              2 Phases
+              5 Phases
             </Badge>
           </div>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            A comprehensive journey from no-code AI product development to full-stack MERN development with AI integration
+            A comprehensive journey through Agentic AI, web development, JavaScript, React, and full-stack backend technologies with AI integration
           </p>
         </motion.div>
 
@@ -645,6 +771,9 @@ export function DetailedSyllabusContent() {
                     </motion.div>
                   ))}
                 </div>
+                
+                {/* Company Showcase */}
+                <CompanyShowcase phase={syllabusData.phases[activePhase].id} />
               </motion.div>
             </AnimatePresence>
           </div>
