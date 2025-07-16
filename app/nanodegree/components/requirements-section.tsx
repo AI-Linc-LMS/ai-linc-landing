@@ -7,23 +7,23 @@ export function RequirementsSection() {
     const requirements = [
         {
             icon: BookOpen,
-            title: "Python Proficiency",
-            description: "Familiarity with Python programming language, including basic syntax, data structures, and functions."
+            title: "AI Fundamentals",
+            description: "Comprehensive understanding of AI principles, machine learning algorithms, and generative AI technologies."
         },
         {
             icon: Brain,
-            title: "Machine Learning Basics",
-            description: "Basic understanding of machine learning concepts, including supervised and unsupervised learning, and fundamental AI principles."
+            title: "Practical AI Applications",
+            description: "Hands-on experience in developing real-world AI solutions across various domains like healthcare, finance, and technology."
         },
         {
             icon: Code,
-            title: "Deep Learning Knowledge",
-            description: "Basic knowledge of deep learning concepts and frameworks (e.g., TensorFlow or PyTorch) is advantageous but not strictly required."
+            title: "Advanced Generative AI",
+            description: "In-depth knowledge of large language models, prompt engineering, and cutting-edge generative AI techniques."
         },
         {
             icon: Terminal,
-            title: "Command Line Skills",
-            description: "Ability to navigate and execute commands in a command line interface (CLI) or terminal."
+            title: "Industry-Ready Skills",
+            description: "Professional-grade skills in AI development, model deployment, and ethical AI implementation."
         }
     ]
 
@@ -37,10 +37,10 @@ export function RequirementsSection() {
                     className="text-center mb-12"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-600 bg-clip-text text-transparent">
-                        Course Requirements
+                        What You'll Learn
                     </h2>
                     <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-                        Prepare for your Generative AI journey with these recommended prerequisites
+                        Transform your career with our comprehensive AI Professional Nanodegree Program, designed to turn you into an AI expert
                     </p>
                 </motion.div>
 
