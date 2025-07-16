@@ -1,7 +1,10 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { useRouter } from "next/navigation"
 
 interface ColorScheme {
   gradient: string
@@ -36,6 +39,26 @@ export function ProgramCard({
   onSelect,
   colorScheme
 }: ProgramCardProps) {
+  const router = useRouter()
+
+  const handleButtonClick = () => {
+    try {
+      if (type === "🟡 FLAGSHIP") {
+        router.push('/flagship-course')
+      } else if (type === "🟢 NANODEGREE") {
+        router.push('/nanodegree')
+      }
+    } catch (error) {
+      console.error('Router navigation failed:', error)
+      // Fallback to window.location if router fails
+      if (type === "🟡 FLAGSHIP") {
+        window.location.href = '/flagship-course'
+      } else if (type === "🟢 NANODEGREE") {
+        window.location.href = '/nanodegree'
+      }
+    }
+  }
+
   return (
     <Card className={`${colorScheme.gradient} ${colorScheme.border} relative overflow-hidden flex flex-col h-full`}>
       <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${colorScheme.accent}`}></div>
@@ -74,7 +97,7 @@ export function ProgramCard({
               <p className="text-xs sm:text-sm text-gray-400">(based on your assessment)</p>
             )}
           </div>
-          <Button className={`w-full ${colorScheme.button} text-sm sm:text-base py-2 sm:py-3`} onClick={onSelect}>
+          <Button className={`w-full ${colorScheme.button} text-sm sm:text-base py-2 sm:py-3`} onClick={handleButtonClick}>
             {type === "🟢 NANODEGREE" ? "Choose Nanodegree" : "Choose Flagship"}
           </Button>
         </div>
