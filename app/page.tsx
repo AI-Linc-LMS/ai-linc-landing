@@ -26,6 +26,8 @@ import { RegistrationSection } from "@/components/registration-section"
 import { useHashNavigation } from "@/hooks/use-hash-navigation"
 import { useState } from "react"
 import { VideoSection } from "@/components/video-section"
+import { CareerTransformation } from "../components/career-transformation"
+import { TopScorersSection } from "@/components/top-scorers-section"
 
 export default function Home() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -48,10 +50,12 @@ export default function Home() {
         <HeroSection />
         <VideoSection />
         <WhoWeAreSection />
+        <TopScorersSection />
         <ClientTalentSuccessSection />
         <HowWeDoItSection />
         <ProgramJourney />
         <KeyUsps />
+        <CareerTransformation />
         <WorkIntegration />
         <RegistrationSection onSuccess={() => setShowSuccessModal(true)} />
         <LetsWorkTogetherSection />
