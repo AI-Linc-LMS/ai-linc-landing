@@ -29,7 +29,8 @@ import {
   Phone,
   Mail,
   User,
-  MessageCircle
+  MessageCircle,
+  Server
 } from "lucide-react"
 import Link from "next/link"
 
@@ -39,7 +40,7 @@ const syllabusData = {
   phases: [
     {
       id: 1,
-      title: "No-Code AI Product Development",
+      title: "Agentic AI Learning",
       duration: "Weeks 1–3",
       color: "from-blue-500 to-cyan-500",
       icon: Brain,
@@ -105,9 +106,9 @@ const syllabusData = {
     },
     {
       id: 2,
-      title: "MERN Stack + AI Integration",
-      duration: "Weeks 4–16",
-      color: "from-purple-500 to-pink-500",
+      title: "HTML, CSS, and Web Fundamentals",
+      duration: "Weeks 4–5",
+      color: "from-green-500 to-emerald-500",
       icon: Code,
       weeks: [
         {
@@ -147,7 +148,16 @@ const syllabusData = {
           skills: ["Responsive Layouts", "Semantic HTML", "Modern UI Styling"],
           tools: ["HTML5", "CSS3", "Tailwind", "ChatGPT"],
           takeaway: "Able to create a professional, fully responsive landing page using AI-enhanced design flow."
-        },
+        }
+      ]
+    },
+    {
+      id: 3,
+      title: "JavaScript and DOM Manipulation",
+      duration: "Weeks 6–7",
+      color: "from-yellow-500 to-amber-500",
+      icon: Zap,
+      weeks: [
         {
           week: 6,
           title: "JavaScript Fundamentals",
@@ -185,7 +195,16 @@ const syllabusData = {
           skills: ["DOM Manipulation", "Event Handling", "Async Programming"],
           tools: ["JavaScript", "ChatGPT", "Copilot"],
           takeaway: "Able to build dynamic single-page apps with real-time interactivity powered by AI guidance."
-        },
+        }
+      ]
+    },
+    {
+      id: 4,
+      title: "React and State Management",
+      duration: "Weeks 8–10",
+      color: "from-purple-500 to-indigo-500",
+      icon: Target,
+      weeks: [
         {
           week: 8,
           title: "React Fundamentals",
@@ -242,7 +261,16 @@ const syllabusData = {
           skills: ["Component Architecture", "UI Integration", "Project Structuring"],
           tools: ["React", "GitHub", "Copilot"],
           takeaway: "Able to create and deploy a real-world frontend application on Vercel with clean code and AI reviews."
-        },
+        }
+      ]
+    },
+    {
+      id: 5,
+      title: "Backend Development and Full-Stack Integration",
+      duration: "Weeks 11–16",
+      color: "from-pink-500 to-rose-500",
+      icon: Server,
+      weeks: [
         {
           week: 11,
           title: "API Fundamentals",
@@ -456,11 +484,11 @@ export function DetailedSyllabusContent() {
             </Badge>
             <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 text-lg">
               <BookOpen className="w-5 h-5 mr-2" />
-              2 Phases
+              5 Phases
             </Badge>
           </div>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-            A comprehensive journey from no-code AI product development to full-stack MERN development with AI integration
+            A comprehensive journey through Agentic AI, web development, JavaScript, React, and full-stack backend technologies with AI integration
           </p>
         </motion.div>
 
