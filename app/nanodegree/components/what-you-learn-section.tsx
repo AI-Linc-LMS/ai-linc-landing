@@ -5,20 +5,20 @@ import { CheckCircle2 } from "lucide-react"
 
 export function WhatYouLearnSection() {
     const learningPoints = [
-        "Learn to create advanced generative AI applications leveraging the Langchain framework and Huggingface's state-of-the-art models.",
-        "Gain hands-on experience deploying generative AI models to various environments, including cloud platforms and on-premises servers.",
-        "Develop Retrieval-Augmented Generation (RAG) pipelines to enhance the performance and accuracy of generative models by integrating retrieval mechanisms.",
-        "Customize and fine-tune Huggingface models to fit specific application requirements and use cases.",
-        "Understand the architecture and design patterns for building robust generative AI systems.",
-        "Explore different deployment strategies, ensuring scalability and reliability of AI applications.",
-        "Learn to seamlessly incorporate Huggingface's pre-trained models into Langchain applications, leveraging their powerful NLP capabilities.",
-        "Work on real-world projects that illustrate the application of generative AI in various domains, such as chatbots, content generation, and data augmentation."
+        "Master the fundamentals of AI-enhanced web development, starting with a comprehensive no-code AI exploration in the first three weeks.",
+        "Learn full-stack web development using the MERN stack (MongoDB, Express, React, Node.js) with cutting-edge AI integration techniques.",
+        "Develop proficiency in HTML, CSS, and JavaScript, building a strong foundation for modern web development.",
+        "Gain hands-on experience with React, including state management, routing, and creating interactive user interfaces.",
+        "Understand backend development with Node.js, Express, and MongoDB, learning to build robust server-side applications.",
+        "Explore AI-driven development workflows, leveraging generative AI tools to enhance coding productivity and problem-solving.",
+        "Create full-stack projects that demonstrate practical application of web development and AI technologies.",
+        "Learn best practices in web development, including responsive design, API integration, and modern development workflows."
     ]
 
     return (
         <section className="py-16 md:py-20 px-4 bg-background/50">
             <div className="max-w-6xl mx-auto">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
@@ -34,7 +34,7 @@ export function WhatYouLearnSection() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                     {learningPoints.map((point, index) => (
-                        <motion.div 
+                        <motion.div
                             key={index}
                             initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                             animate={{ opacity: 1, x: 0 }}
