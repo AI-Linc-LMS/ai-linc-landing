@@ -13,11 +13,11 @@ export function StickySidebar() {
     return (
         <div className="sticky top-24 bg-card/50 border border-border/20 rounded-xl space-y-6 shadow-lg overflow-hidden">
             {/* Course Title and Description */}
-            <div className="px-6 pt-4">
+            <div className="px-6 ">
                 <h2 className="text-2xl font-bold mb-2">AI Professional Nanodegree Program</h2>
-                <p className="text-foreground/80 mb-4">
+                {/* <p className="text-foreground/80 mb-4">
                     A comprehensive program designed to transform you into an AI professional. Learn cutting-edge AI technologies, practical applications, and gain industry-relevant skills to excel in the rapidly evolving world of artificial intelligence.
-                </p>
+                </p> */}
             </div>
 
             {/* Video Preview Section */}
