@@ -44,6 +44,22 @@ const syllabusData = {
       duration: "Weeks 1–3",
       color: "from-blue-500 to-cyan-500",
       icon: Brain,
+      liveProjects: [
+        {
+          title: "AI-Powered Product Ideation Tool",
+          description: "Create a no-code application that generates innovative product concepts using AI prompts",
+          technologies: ["Tana", "Midjourney", "ChatGPT"],
+          complexity: "Beginner",
+          imageUrl: "/project-images/ai-ideation-tool.png"
+        },
+        {
+          title: "Automated Workflow Builder",
+          description: "Design a multi-tool integration platform that connects Zapier, Airtable, and AI assistants",
+          technologies: ["Zapier", "Airtable", "Claude"],
+          complexity: "Intermediate",
+          imageUrl: "/project-images/workflow-builder.png"
+        }
+      ],
       weeks: [
         {
           week: 1,
@@ -110,6 +126,22 @@ const syllabusData = {
       duration: "Weeks 4–5",
       color: "from-green-500 to-emerald-500",
       icon: Code,
+      liveProjects: [
+        {
+          title: "Responsive Landing Page",
+          description: "Build a modern, mobile-first landing page for a tech startup using semantic HTML and Tailwind CSS",
+          technologies: ["HTML5", "CSS3", "Tailwind"],
+          complexity: "Beginner",
+          imageUrl: "/project-images/responsive-landing.png"
+        },
+        {
+          title: "Interactive Portfolio Website",
+          description: "Create a personal portfolio showcasing web development skills with responsive design",
+          technologies: ["HTML", "CSS", "GitHub Pages"],
+          complexity: "Intermediate",
+          imageUrl: "/project-images/portfolio-website.png"
+        }
+      ],
       weeks: [
         {
           week: 4,
@@ -157,6 +189,22 @@ const syllabusData = {
       duration: "Weeks 6–7",
       color: "from-yellow-500 to-amber-500",
       icon: Zap,
+      liveProjects: [
+        {
+          title: "Interactive Calculator App",
+          description: "Develop a feature-rich calculator with advanced mathematical functions and real-time calculations",
+          technologies: ["JavaScript", "HTML", "CSS"],
+          complexity: "Intermediate",
+          imageUrl: "/project-images/calculator-app.png"
+        },
+        {
+          title: "Weather Dashboard",
+          description: "Build a dynamic weather application that fetches real-time data from external APIs",
+          technologies: ["JavaScript", "Fetch API", "OpenWeatherMap"],
+          complexity: "Advanced",
+          imageUrl: "/project-images/weather-dashboard.png"
+        }
+      ],
       weeks: [
         {
           week: 6,
@@ -204,6 +252,22 @@ const syllabusData = {
       duration: "Weeks 8–10",
       color: "from-purple-500 to-indigo-500",
       icon: Target,
+      liveProjects: [
+        {
+          title: "Task Management Application",
+          description: "Create a full-featured todo app with state management, filtering, and persistent storage",
+          technologies: ["React", "Redux", "LocalStorage"],
+          complexity: "Intermediate",
+          imageUrl: "/project-images/task-manager.png"
+        },
+        {
+          title: "E-commerce Product Catalog",
+          description: "Develop a dynamic product listing and filtering system with advanced state management",
+          technologies: ["React", "Context API", "Styled Components"],
+          complexity: "Advanced",
+          imageUrl: "/project-images/ecommerce-catalog.png"
+        }
+      ],
       weeks: [
         {
           week: 8,
@@ -270,6 +334,22 @@ const syllabusData = {
       duration: "Weeks 11–16",
       color: "from-pink-500 to-rose-500",
       icon: Server,
+      liveProjects: [
+        {
+          title: "Social Media Backend API",
+          description: "Build a comprehensive backend service with user authentication, post creation, and interaction features",
+          technologies: ["Node.js", "Express", "MongoDB", "JWT"],
+          complexity: "Advanced",
+          imageUrl: "/project-images/social-media-api.png"
+        },
+        {
+          title: "E-learning Platform Backend",
+          description: "Create a full-featured backend for an online learning management system with course and user management",
+          technologies: ["MongoDB", "Mongoose", "Express", "Authentication"],
+          complexity: "Expert",
+          imageUrl: "/project-images/elearning-platform.png"
+        }
+      ],
       weeks: [
         {
           week: 11,
@@ -774,6 +854,66 @@ export function DetailedSyllabusContent() {
                 
                 {/* Company Showcase */}
                 <CompanyShowcase phase={syllabusData.phases[activePhase].id} />
+
+                {/* Live Projects Showcase */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="my-12 bg-gray-800/50 border border-gray-700 rounded-lg p-6"
+                >
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                      Live Projects
+                    </h3>
+                    <p className="text-gray-400">
+                      Real-world projects that demonstrate your skills and build your portfolio
+                    </p>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {syllabusData.phases[activePhase].liveProjects.map((project, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.2 }}
+                        className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-500 transition-all duration-300"
+                      >
+                        <div className="relative">
+                          <img 
+                            src={project.imageUrl} 
+                            alt={project.title} 
+                            className="w-full h-48 object-cover opacity-80 hover:opacity-100 transition-opacity"
+                          />
+                          <Badge 
+                            className={`absolute top-3 right-3 ${
+                              project.complexity === 'Beginner' ? 'bg-green-500/80' :
+                              project.complexity === 'Intermediate' ? 'bg-blue-500/80' :
+                              'bg-purple-500/80'
+                            } text-white`}
+                          >
+                            {project.complexity}
+                          </Badge>
+                        </div>
+                        <div className="p-6">
+                          <h4 className="text-xl font-bold mb-3 text-cyan-400">{project.title}</h4>
+                          <p className="text-gray-300 mb-4">{project.description}</p>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {project.technologies.map((tech, techIndex) => (
+                              <Badge 
+                                key={techIndex} 
+                                variant="outline" 
+                                className="border-cyan-400/50 text-cyan-300"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
