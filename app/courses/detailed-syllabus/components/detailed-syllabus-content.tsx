@@ -478,10 +478,10 @@ const CompanyShowcase = ({ phase }: { phase: number }) => {
       title: "Agentic AI Learning Partners",
       description: "Leading AI and No-Code Tool Providers",
       companies: [
-        { name: "OpenAI", logo: "/logos/openai.svg", link: "https://openai.com" },
-        { name: "Anthropic", logo: "/logos/anthropic.svg", link: "https://anthropic.com" },
-        { name: "Midjourney", logo: "/logos/midjourney.svg", link: "https://midjourney.com" },
-        { name: "Tana", logo: "/logos/tana.svg", link: "https://tana.inc" }
+        { name: "OpenAI", logo: "https://freelogopng.com/images/all_img/1681142315open-ai-logo.png", link: "https://openai.com" },
+        { name: "Anthropic", logo: "https://www.marefa.org/w/images/thumb/7/78/Anthropic_logo.svg/640px-Anthropic_logo.svg.png", link: "https://anthropic.com" },
+        { name: "Midjourney", logo: "https://companieslogo.com/img/orig/midjourney.D-733962ee.png?t=1700715161", link: "https://midjourney.com" },
+        // { name: "Tana", logo: "/logos/tana.svg", link: "https://tana.inc" }
       ]
     },
     {
