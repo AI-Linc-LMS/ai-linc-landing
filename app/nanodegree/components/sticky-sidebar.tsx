@@ -109,7 +109,7 @@ export function StickySidebar() {
                             Get this course for your entire team, plus 26,000+ top-rated courses.
                         </p>
                         <div className="text-xs lg:text-sm text-foreground/70">
-                            Starting at ₹850 per month
+                            {/* Starting at ₹850 per month */}
                         </div>
                     </motion.div>
                 )}

@@ -9,14 +9,14 @@ import { Clock, Users, Star, GraduationCap, Calendar, Sparkles, ArrowRight, Chec
 import { Badge } from "@/components/ui/badge"
 
 // Modal Option Component
-const ModalOption = ({ 
-  icon: Icon, 
-  title, 
-  subtitle, 
-  badge, 
-  features, 
-  buttonText, 
-  onClick, 
+const ModalOption = ({
+  icon: Icon,
+  title,
+  subtitle,
+  badge,
+  features,
+  buttonText,
+  onClick,
   colorScheme,
   variant = "default"
 }: {
@@ -49,7 +49,7 @@ const ModalOption = ({
             {badge.text}
           </Badge>
         </div>
-        
+
         <div className="space-y-2 mb-4">
           {features.map((feature, index) => (
             <div key={index} className="flex items-center text-sm text-slate-300">
@@ -80,7 +80,16 @@ export function CtaSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const router = useRouter()
 
-  const handleProgramSelection = () => {
+  const handleNanodegreeSelection = () => {
+    try {
+      router.push('/nanodegree')
+    } catch (error) {
+      console.error('Router navigation failed:', error)
+      window.location.href = '/nanodegree'
+    }
+  }
+
+  const handleFlagshipSelection = () => {
     try {
       router.push('/flagship-course')
     } catch (error) {
@@ -92,7 +101,7 @@ export function CtaSection() {
   const handleAssessment = () => {
     const url = '/assessment'
     const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-    
+
     if (newWindow) {
       newWindow.focus()
       setIsModalOpen(false)
@@ -146,18 +155,18 @@ export function CtaSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 sm:px-8 py-3"
-                onClick={handleProgramSelection}
+                onClick={handleNanodegreeSelection}
               >
                 Choose Nanodegree (₹4,999)
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="w-full sm:w-auto border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black text-sm sm:text-base px-6 sm:px-8 py-3"
-                onClick={handleProgramSelection}
+                onClick={handleFlagshipSelection}
               >
                 Choose Flagship (Scholarship)
               </Button>
@@ -176,7 +185,7 @@ export function CtaSection() {
           <DialogHeader className="text-center pb-6 relative">
             <div className="absolute -top-4 -left-4 w-20 h-20 bg-gradient-to-br from-cyan-400/20 to-purple-500/20 rounded-full blur-xl"></div>
             <div className="absolute -top-2 -right-2 w-16 h-16 bg-gradient-to-br from-yellow-400/20 to-pink-500/20 rounded-full blur-lg"></div>
-            
+
             <DialogTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent relative z-10">
               <Sparkles className="w-8 h-8 inline mr-3 text-cyan-400" />
               Ready to Transform Your Career?
