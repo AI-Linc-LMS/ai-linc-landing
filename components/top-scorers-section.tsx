@@ -250,7 +250,7 @@ export const TopScorersSection: React.FC = () => {
             onMouseLeave={() => setIsAutoPlaying(true)}
         >
             <div className="container mx-auto max-w-6xl">
-                <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">Top Performers</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12">Our students in placement pool</h2>
 
                 <div className="flex items-center justify-center space-x-2 md:space-x-4">
                     <button
