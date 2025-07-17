@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { ChevronDown, ChevronUp, PlayCircle } from "lucide-react"
+import { ChevronDown, ChevronUp, PlayCircle, Play } from "lucide-react"
+import { VimeoPreviewModal, useVideoModal } from "./vimeo-preview-modal"
 
 export function CourseContentSection() {
     type CourseSection = {
@@ -12,6 +13,7 @@ export function CourseContentSection() {
         subLectures?: {
             title: string;
             duration?: string;
+            vimeoId?: string; // Added vimeoId for video preview
         }[];
     }
 
@@ -24,6 +26,14 @@ export function CourseContentSection() {
     const [expandedSubSections, setExpandedSubSections] = useState<{ [key: string]: boolean }>({})
     const [showAllWeeks, setShowAllWeeks] = useState(false)
 
+    // Add video modal hook
+    const { 
+        isVideoModalOpen, 
+        currentVideo, 
+        openVideoModal, 
+        closeVideoModal 
+    } = useVideoModal()
+
     const courseContent: CourseWeek[] = [
         {
             title: "Week 1: AI-Enhanced MERN Stack Development",
@@ -35,11 +45,13 @@ export function CourseContentSection() {
                     subLectures: [
                         {
                             title: "Generative AI for Developers",
-                            duration: "10 mins"
+                            duration: "10 mins",
+                            vimeoId: "1093151116" // Sample Vimeo ID
                         },
                         {
                             title: "AI Tools for Development",
-                            duration: "10 mins"
+                            duration: "10 mins",
+                            vimeoId: "1093151660" // Another sample Vimeo ID
                         },
                         {
                             title: "AI Tools for Algorithmic and Development Tasks",
@@ -62,7 +74,8 @@ export function CourseContentSection() {
                     subLectures: [
                         {
                             title: "Setting up Cursor AI",
-                            duration: "10 mins"
+                            duration: "10 mins",
+                            vimeoId: "1093152543"
                         },
                         {
                             title: "Using chatGPT prompts in development",
@@ -1481,11 +1494,21 @@ export function CourseContentSection() {
                                                     {section.subLectures.map((subLecture, subIndex) => (
                                                         <div 
                                                             key={subLecture.title} 
-                                                            className="border-l-2 border-cyan-400 pl-4 py-2"
+                                                            className="border-l-2 border-cyan-400 pl-4 py-2 flex justify-between items-center"
                                                         >
-                                                            <p className="text-sm text-foreground/80">{subLecture.title}</p>
-                                                            {subLecture.duration && (
-                                                                <p className="text-xs text-foreground/60">{subLecture.duration}</p>
+                                                            <div>
+                                                                <p className="text-sm text-foreground/80">{subLecture.title}</p>
+                                                                {subLecture.duration && (
+                                                                    <p className="text-xs text-foreground/60">{subLecture.duration}</p>
+                                                                )}
+                                                            </div>
+                                                            {subLecture.vimeoId && (
+                                                                <button 
+                                                                    onClick={() => openVideoModal(subLecture.vimeoId!, subLecture.title)}
+                                                                    className="text-cyan-500 hover:text-cyan-600 transition-colors"
+                                                                >
+                                                                    <Play className="w-5 h-5" />
+                                                                </button>
                                                             )}
                                                         </div>
                                                     ))}
@@ -1522,6 +1545,16 @@ export function CourseContentSection() {
                     )}
                 </div>
             </div>
+            
+            {/* Vimeo Preview Modal */}
+            {currentVideo?.id ? (
+                <VimeoPreviewModal 
+                    vimeoId={currentVideo.id}
+                    title={currentVideo.title}
+                    isOpen={isVideoModalOpen}
+                    onClose={closeVideoModal}
+                />
+            ) : null}
         </section>
     )
 } 
