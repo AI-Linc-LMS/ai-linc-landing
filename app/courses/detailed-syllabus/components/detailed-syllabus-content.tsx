@@ -44,6 +44,22 @@ const syllabusData = {
       duration: "Weeks 1–3",
       color: "from-blue-500 to-cyan-500",
       icon: Brain,
+      liveProjects: [
+        {
+          title: "AI-Powered Product Ideation Tool",
+          description: "Create a no-code application that generates innovative product concepts using AI prompts",
+          technologies: ["Tana", "Midjourney", "ChatGPT"],
+          complexity: "Beginner",
+          imageUrl: "/project-images/ai-ideation-tool.png"
+        },
+        {
+          title: "Automated Workflow Builder",
+          description: "Design a multi-tool integration platform that connects Zapier, Airtable, and AI assistants",
+          technologies: ["Zapier", "Airtable", "Claude"],
+          complexity: "Intermediate",
+          imageUrl: "/project-images/workflow-builder.png"
+        }
+      ],
       weeks: [
         {
           week: 1,
@@ -110,6 +126,22 @@ const syllabusData = {
       duration: "Weeks 4–5",
       color: "from-green-500 to-emerald-500",
       icon: Code,
+      liveProjects: [
+        {
+          title: "Responsive Landing Page",
+          description: "Build a modern, mobile-first landing page for a tech startup using semantic HTML and Tailwind CSS",
+          technologies: ["HTML5", "CSS3", "Tailwind"],
+          complexity: "Beginner",
+          imageUrl: "/project-images/responsive-landing.png"
+        },
+        {
+          title: "Interactive Portfolio Website",
+          description: "Create a personal portfolio showcasing web development skills with responsive design",
+          technologies: ["HTML", "CSS", "GitHub Pages"],
+          complexity: "Intermediate",
+          imageUrl: "/project-images/portfolio-website.png"
+        }
+      ],
       weeks: [
         {
           week: 4,
@@ -157,6 +189,22 @@ const syllabusData = {
       duration: "Weeks 6–7",
       color: "from-yellow-500 to-amber-500",
       icon: Zap,
+      liveProjects: [
+        {
+          title: "Interactive Calculator App",
+          description: "Develop a feature-rich calculator with advanced mathematical functions and real-time calculations",
+          technologies: ["JavaScript", "HTML", "CSS"],
+          complexity: "Intermediate",
+          imageUrl: "/project-images/calculator-app.png"
+        },
+        {
+          title: "Weather Dashboard",
+          description: "Build a dynamic weather application that fetches real-time data from external APIs",
+          technologies: ["JavaScript", "Fetch API", "OpenWeatherMap"],
+          complexity: "Advanced",
+          imageUrl: "/project-images/weather-dashboard.png"
+        }
+      ],
       weeks: [
         {
           week: 6,
@@ -204,6 +252,22 @@ const syllabusData = {
       duration: "Weeks 8–10",
       color: "from-purple-500 to-indigo-500",
       icon: Target,
+      liveProjects: [
+        {
+          title: "Task Management Application",
+          description: "Create a full-featured todo app with state management, filtering, and persistent storage",
+          technologies: ["React", "Redux", "LocalStorage"],
+          complexity: "Intermediate",
+          imageUrl: "/project-images/task-manager.png"
+        },
+        {
+          title: "E-commerce Product Catalog",
+          description: "Develop a dynamic product listing and filtering system with advanced state management",
+          technologies: ["React", "Context API", "Styled Components"],
+          complexity: "Advanced",
+          imageUrl: "/project-images/ecommerce-catalog.png"
+        }
+      ],
       weeks: [
         {
           week: 8,
@@ -270,6 +334,22 @@ const syllabusData = {
       duration: "Weeks 11–16",
       color: "from-pink-500 to-rose-500",
       icon: Server,
+      liveProjects: [
+        {
+          title: "Social Media Backend API",
+          description: "Build a comprehensive backend service with user authentication, post creation, and interaction features",
+          technologies: ["Node.js", "Express", "MongoDB", "JWT"],
+          complexity: "Advanced",
+          imageUrl: "/project-images/social-media-api.png"
+        },
+        {
+          title: "E-learning Platform Backend",
+          description: "Create a full-featured backend for an online learning management system with course and user management",
+          technologies: ["MongoDB", "Mongoose", "Express", "Authentication"],
+          complexity: "Expert",
+          imageUrl: "/project-images/elearning-platform.png"
+        }
+      ],
       weeks: [
         {
           week: 11,
@@ -395,57 +475,57 @@ const CompanyShowcase = ({ phase }: { phase: number }) => {
   const companyData = [
     {
       phase: 1,
-      title: "Agentic AI Learning Partners",
-      description: "Leading AI and No-Code Tool Providers",
+      title: "In collaboration with",
+      description: "AI and No-Code Tool Providers",
       companies: [
-        { name: "OpenAI", logo: "/logos/openai.svg", link: "https://openai.com" },
-        { name: "Anthropic", logo: "/logos/anthropic.svg", link: "https://anthropic.com" },
-        { name: "Midjourney", logo: "/logos/midjourney.svg", link: "https://midjourney.com" },
-        { name: "Tana", logo: "/logos/tana.svg", link: "https://tana.inc" }
+        { name: "Replit", logo: "https://vectorseek.com/wp-content/uploads/2023/08/Replit-Logo-Vector.svg-.png", link: "https://replit.com" },
+        { name: "OpenAI", logo: "https://freelogopng.com/images/all_img/1681142315open-ai-logo.png", link: "https://openai.com" },
+        { name: "Notion", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", link: "https://notion.so" },
+        { name: "Zapier", logo: "https://1000logos.net/wp-content/uploads/2022/09/Zapier-Logo-1536x864.png", link: "https://zapier.com" }
       ]
     },
     {
       phase: 2,
-      title: "Web Development Technology Partners",
-      description: "Cutting-Edge Web Design and Development Tools",
+      title: "In collaboration with",
+      description: "Web Technology and Design Leaders",
       companies: [
-        { name: "Tailwind CSS", logo: "/logos/tailwind.svg", link: "https://tailwindcss.com" },
-        { name: "GitHub", logo: "/logos/github.svg", link: "https://github.com" },
-        { name: "Vercel", logo: "/logos/vercel.svg", link: "https://vercel.com" },
-        { name: "Netlify", logo: "/logos/netlify.svg", link: "https://netlify.com" }
+        { name: "Spotify", logo: "https://www.pngall.com/wp-content/uploads/13/Spotify-Logo-PNG-HD-Image.png", link: "https://spotify.com" },
+        { name: "LinkedIn", logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png", link: "https://linkedin.com" },
+        { name: "Flipkart", logo: "https://th.bing.com/th/id/R.af1de3f2ed4972e46ab0e68dd9ab3ba8?rik=REx4C5jQDkv6bA&riu=http%3a%2f%2fassets.stickpng.com%2fimages%2f610673352ced4d0004ead4e5.png&ehk=9dETXKdo%2fRMEm1R2WhNn%2f9T0tPpXFDB5xYeCgTFpG2w%3d&risl=&pid=ImgRaw&r=0", link: "https://flipkart.com" },
+        { name: "Atlassian", logo: "https://images.ctfassets.net/8j5aqoy0ts8s/3V650c91OiNdKFEHshpKMs/e3913190d8e406b3acf0fa13b6055c63/atlassian-blue-logo.png", link: "https://atlassian.com" }
       ]
     },
     {
       phase: 3,
-      title: "JavaScript Ecosystem Partners",
-      description: "Innovative JavaScript and Frontend Tools",
+      title: "In collaboration with",
+      description: "Modern Frontend Development Leaders",
       companies: [
-        { name: "React", logo: "/logos/react.svg", link: "https://reactjs.org" },
-        { name: "TypeScript", logo: "/logos/typescript.svg", link: "https://typescriptlang.org" },
-        { name: "Babel", logo: "/logos/babel.svg", link: "https://babeljs.io" },
-        { name: "ESLint", logo: "/logos/eslint.svg", link: "https://eslint.org" }
+        { name: "Meta", logo: "https://pngimg.com/uploads/meta/meta_PNG4.png", link: "https://meta.com" },
+        { name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", link: "https://netflix.com" },
+        { name: "Uber", logo: "https://download.logo.wine/logo/Uber/Uber-Logo.wine.png", link: "https://uber.com" },
+        { name: "Airbnb", logo: "https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg", link: "https://airbnb.com" }
       ]
     },
     {
       phase: 4,
-      title: "React and State Management Collaborators",
-      description: "Advanced Frontend Development Platforms",
+      title: "In collaboration with",
+      description: "Enterprise Backend and Microservices Solutions",
       companies: [
-        { name: "Redux", logo: "/logos/redux.svg", link: "https://redux.js.org" },
-        { name: "Next.js", logo: "/logos/nextjs.svg", link: "https://nextjs.org" },
-        { name: "Chakra UI", logo: "/logos/chakra.svg", link: "https://chakra-ui.com" },
-        { name: "Framer Motion", logo: "/logos/framer.svg", link: "https://framer.com/motion" }
+        { name: "PayPal", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg", link: "https://paypal.com" },
+        { name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", link: "https://netflix.com" },
+        { name: "Walmart", logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Walmart_logo.svg", link: "https://walmart.com" },
+        { name: "Coursera", logo: "https://1000logos.net/wp-content/uploads/2022/06/Coursera-Logo-2048x1152.png", link: "https://coursera.org" }
       ]
     },
     {
       phase: 5,
-      title: "Backend and Full-Stack Technology Partners",
-      description: "Enterprise-Grade Backend and Deployment Solutions",
+      title: "In collaboration with",
+      description: "Cloud Infrastructure and Deployment Leaders",
       companies: [
-        { name: "MongoDB", logo: "/logos/mongodb.svg", link: "https://mongodb.com" },
-        { name: "Express.js", logo: "/logos/express.svg", link: "https://expressjs.com" },
-        { name: "Node.js", logo: "/logos/nodejs.svg", link: "https://nodejs.org" },
-        { name: "Render", logo: "/logos/render.svg", link: "https://render.com" }
+        { name: "GitHub", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg", link: "https://github.com" },
+        { name: "Vercel", logo: "https://bemeir.com/wp-content/uploads/2023/02/vercel.png", link: "https://vercel.com" },
+        { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg", link: "https://aws.amazon.com" },
+        { name: "Swiggy", logo: "https://logos-world.net/wp-content/uploads/2020/11/Swiggy-Logo.png", link: "https://swiggy.com" }
       ]
     }
   ]
@@ -476,9 +556,9 @@ const CompanyShowcase = ({ phase }: { phase: number }) => {
             whileTap={{ scale: 0.95 }}
             className="opacity-70 hover:opacity-100 transition-all duration-300"
           >
-            <img 
-              src={company.logo} 
-              alt={`${company.name} logo`} 
+            <img
+              src={company.logo}
+              alt={`${company.name} logo`}
               className="h-12 w-auto grayscale hover:grayscale-0 transition-all duration-300"
             />
           </motion.a>
@@ -548,7 +628,7 @@ export function DetailedSyllabusContent() {
             <Link href="/flagship-course">
               <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Courses
+                Back
               </Button>
             </Link>
             <div className="flex items-center text-sm text-gray-400">
@@ -556,8 +636,8 @@ export function DetailedSyllabusContent() {
                 <Home className="w-4 h-4" />
               </Link>
               <ChevronRight className="w-4 h-4 mx-2" />
-              <Link href="/courses" className="hover:text-gray-300 transition-colors">
-                Courses
+              <Link href="/flagship-course" className="hover:text-gray-300 transition-colors">
+                Flagship Courses
               </Link>
               <ChevronRight className="w-4 h-4 mx-2" />
               <span className="text-gray-300">Detailed Syllabus</span>
@@ -608,8 +688,8 @@ export function DetailedSyllabusContent() {
                     >
                       <Card
                         className={`cursor-pointer transition-all duration-300 ${activePhase === index
-                            ? 'bg-gradient-to-r ' + phase.color + ' border-transparent shadow-lg shadow-cyan-500/25'
-                            : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
+                          ? 'bg-gradient-to-r ' + phase.color + ' border-transparent shadow-lg shadow-cyan-500/25'
+                          : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
                           }`}
                         onClick={() => setActivePhase(index)}
                       >
@@ -771,9 +851,68 @@ export function DetailedSyllabusContent() {
                     </motion.div>
                   ))}
                 </div>
-                
+
                 {/* Company Showcase */}
                 <CompanyShowcase phase={syllabusData.phases[activePhase].id} />
+
+                {/* Live Projects Showcase */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="my-12 bg-gray-800/50 border border-gray-700 rounded-lg p-6"
+                >
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                      Live Projects
+                    </h3>
+                    <p className="text-gray-400">
+                      Real-world projects that demonstrate your skills and build your portfolio
+                    </p>
+                  </div>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {syllabusData.phases[activePhase].liveProjects.map((project, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.2 }}
+                        className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-500 transition-all duration-300"
+                      >
+                        <div className="relative">
+                          <img
+                            src={project.imageUrl}
+                            alt={project.title}
+                            className="w-full h-48 object-cover opacity-80 hover:opacity-100 transition-opacity"
+                          />
+                          <Badge
+                            className={`absolute top-3 right-3 ${project.complexity === 'Beginner' ? 'bg-green-500/80' :
+                                project.complexity === 'Intermediate' ? 'bg-blue-500/80' :
+                                  'bg-purple-500/80'
+                              } text-white`}
+                          >
+                            {project.complexity}
+                          </Badge>
+                        </div>
+                        <div className="p-6">
+                          <h4 className="text-xl font-bold mb-3 text-cyan-400">{project.title}</h4>
+                          <p className="text-gray-300 mb-4">{project.description}</p>
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {project.technologies.map((tech, techIndex) => (
+                              <Badge
+                                key={techIndex}
+                                variant="outline"
+                                className="border-cyan-400/50 text-cyan-300"
+                              >
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -793,8 +932,8 @@ export function DetailedSyllabusContent() {
                 Join thousands of students who have transformed their careers with our comprehensive AI development program
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
                   onClick={() => window.location.href = '/workshop-registration'}
                 >
@@ -850,7 +989,7 @@ export function DetailedSyllabusContent() {
                           />
                         </div>
                       </div>
-                      
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="phone" className="text-sm font-medium flex items-center">
