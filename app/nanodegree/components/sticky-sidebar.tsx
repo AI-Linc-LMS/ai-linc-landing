@@ -139,7 +139,7 @@ export function StickySidebar() {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <video
-                            src="/videos/ai_video.mp4"
+                            src=""
                             controls
                             autoPlay
                             className="w-full h-full rounded-lg"

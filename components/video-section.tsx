@@ -131,6 +131,7 @@ export const VideoSection = () => {
                                                        transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-xl
                                                        hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
                                                        transform hover:scale-105"
+                                                    onClick={() => window.location.href = '/courses'}
                                                 >
                                                     Explore Courses
                                                 </Button>
