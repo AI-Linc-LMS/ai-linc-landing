@@ -556,9 +556,9 @@ const CompanyShowcase = ({ phase }: { phase: number }) => {
             whileTap={{ scale: 0.95 }}
             className="opacity-70 hover:opacity-100 transition-all duration-300"
           >
-            <img 
-              src={company.logo} 
-              alt={`${company.name} logo`} 
+            <img
+              src={company.logo}
+              alt={`${company.name} logo`}
               className="h-12 w-auto grayscale hover:grayscale-0 transition-all duration-300"
             />
           </motion.a>
@@ -637,7 +637,7 @@ export function DetailedSyllabusContent() {
               </Link>
               <ChevronRight className="w-4 h-4 mx-2" />
               <Link href="/flagship-course" className="hover:text-gray-300 transition-colors">
-               Flagship Courses
+                Flagship Courses
               </Link>
               <ChevronRight className="w-4 h-4 mx-2" />
               <span className="text-gray-300">Detailed Syllabus</span>
@@ -688,8 +688,8 @@ export function DetailedSyllabusContent() {
                     >
                       <Card
                         className={`cursor-pointer transition-all duration-300 ${activePhase === index
-                            ? 'bg-gradient-to-r ' + phase.color + ' border-transparent shadow-lg shadow-cyan-500/25'
-                            : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
+                          ? 'bg-gradient-to-r ' + phase.color + ' border-transparent shadow-lg shadow-cyan-500/25'
+                          : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
                           }`}
                         onClick={() => setActivePhase(index)}
                       >
@@ -851,7 +851,7 @@ export function DetailedSyllabusContent() {
                     </motion.div>
                   ))}
                 </div>
-                
+
                 {/* Company Showcase */}
                 <CompanyShowcase phase={syllabusData.phases[activePhase].id} />
 
@@ -880,17 +880,16 @@ export function DetailedSyllabusContent() {
                         className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-500 transition-all duration-300"
                       >
                         <div className="relative">
-                          <img 
-                            src={project.imageUrl} 
-                            alt={project.title} 
+                          <img
+                            src={project.imageUrl}
+                            alt={project.title}
                             className="w-full h-48 object-cover opacity-80 hover:opacity-100 transition-opacity"
                           />
-                          <Badge 
-                            className={`absolute top-3 right-3 ${
-                              project.complexity === 'Beginner' ? 'bg-green-500/80' :
-                              project.complexity === 'Intermediate' ? 'bg-blue-500/80' :
-                              'bg-purple-500/80'
-                            } text-white`}
+                          <Badge
+                            className={`absolute top-3 right-3 ${project.complexity === 'Beginner' ? 'bg-green-500/80' :
+                                project.complexity === 'Intermediate' ? 'bg-blue-500/80' :
+                                  'bg-purple-500/80'
+                              } text-white`}
                           >
                             {project.complexity}
                           </Badge>
@@ -900,9 +899,9 @@ export function DetailedSyllabusContent() {
                           <p className="text-gray-300 mb-4">{project.description}</p>
                           <div className="flex flex-wrap gap-2 mb-4">
                             {project.technologies.map((tech, techIndex) => (
-                              <Badge 
-                                key={techIndex} 
-                                variant="outline" 
+                              <Badge
+                                key={techIndex}
+                                variant="outline"
                                 className="border-cyan-400/50 text-cyan-300"
                               >
                                 {tech}
@@ -933,8 +932,8 @@ export function DetailedSyllabusContent() {
                 Join thousands of students who have transformed their careers with our comprehensive AI development program
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
                   onClick={() => window.location.href = '/workshop-registration'}
                 >
@@ -990,7 +989,7 @@ export function DetailedSyllabusContent() {
                           />
                         </div>
                       </div>
-                      
+
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="phone" className="text-sm font-medium flex items-center">
