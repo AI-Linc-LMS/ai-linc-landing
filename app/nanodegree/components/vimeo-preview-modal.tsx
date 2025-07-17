@@ -32,7 +32,7 @@ export function VimeoPreviewModal({
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.9, opacity: 0 }}
-                    className="bg-white rounded-xl shadow-2xl w-full max-w-4xl"
+                    className=" rounded-xl shadow-2xl w-full max-w-4xl"
                     onClick={(e) => e.stopPropagation()}
                 >
                     <div className="flex justify-between items-center p-4 border-b">

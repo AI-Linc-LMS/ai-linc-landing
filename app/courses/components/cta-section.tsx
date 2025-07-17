@@ -80,7 +80,16 @@ export function CtaSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const router = useRouter()
 
-  const handleProgramSelection = () => {
+  const handleNanodegreeSelection = () => {
+    try {
+      router.push('/nanodegree')
+    } catch (error) {
+      console.error('Router navigation failed:', error)
+      window.location.href = '/nanodegree'
+    }
+  }
+
+  const handleFlagshipSelection = () => {
     try {
       router.push('/flagship-course')
     } catch (error) {
@@ -149,7 +158,7 @@ export function CtaSection() {
               <Button 
                 size="lg" 
                 className="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-sm sm:text-base px-6 sm:px-8 py-3"
-                onClick={handleProgramSelection}
+                onClick={handleNanodegreeSelection}
               >
                 Choose Nanodegree (₹4,999)
               </Button>
@@ -157,7 +166,7 @@ export function CtaSection() {
                 size="lg" 
                 variant="outline" 
                 className="w-full sm:w-auto border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black text-sm sm:text-base px-6 sm:px-8 py-3"
-                onClick={handleProgramSelection}
+                onClick={handleFlagshipSelection}
               >
                 Choose Flagship (Scholarship)
               </Button>
