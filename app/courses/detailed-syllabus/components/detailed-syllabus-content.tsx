@@ -548,7 +548,7 @@ export function DetailedSyllabusContent() {
             <Link href="/flagship-course">
               <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Courses
+                Back
               </Button>
             </Link>
             <div className="flex items-center text-sm text-gray-400">
@@ -556,8 +556,8 @@ export function DetailedSyllabusContent() {
                 <Home className="w-4 h-4" />
               </Link>
               <ChevronRight className="w-4 h-4 mx-2" />
-              <Link href="/courses" className="hover:text-gray-300 transition-colors">
-                Courses
+              <Link href="/flagship-course" className="hover:text-gray-300 transition-colors">
+               Flagship Courses
               </Link>
               <ChevronRight className="w-4 h-4 mx-2" />
               <span className="text-gray-300">Detailed Syllabus</span>
