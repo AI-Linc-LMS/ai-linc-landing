@@ -475,57 +475,57 @@ const CompanyShowcase = ({ phase }: { phase: number }) => {
   const companyData = [
     {
       phase: 1,
-      title: "Agentic AI Learning Partners",
-      description: "Leading AI and No-Code Tool Providers",
+      title: "Development Without Code Partners",
+      description: "AI and No-Code Tool Providers",
       companies: [
+        { name: "Replit", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Replit-logo-png.png", link: "https://replit.com" },
         { name: "OpenAI", logo: "https://freelogopng.com/images/all_img/1681142315open-ai-logo.png", link: "https://openai.com" },
-        { name: "Anthropic", logo: "https://www.marefa.org/w/images/thumb/7/78/Anthropic_logo.svg/640px-Anthropic_logo.svg.png", link: "https://anthropic.com" },
-        { name: "Midjourney", logo: "https://companieslogo.com/img/orig/midjourney.D-733962ee.png?t=1700715161", link: "https://midjourney.com" },
-        // { name: "Tana", logo: "/logos/tana.svg", link: "https://tana.inc" }
+        { name: "Notion", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", link: "https://notion.so" },
+        { name: "Zapier", logo: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Zapier-logo.png", link: "https://zapier.com" }
       ]
     },
     {
       phase: 2,
-      title: "Web Development Technology Partners",
-      description: "Cutting-Edge Web Design and Development Tools",
+      title: "Frontend Fundamentals Partners",
+      description: "Web Technology and Design Leaders",
       companies: [
-        { name: "Tailwind CSS", logo: "/logos/tailwind.svg", link: "https://tailwindcss.com" },
-        { name: "GitHub", logo: "/logos/github.svg", link: "https://github.com" },
-        { name: "Vercel", logo: "/logos/vercel.svg", link: "https://vercel.com" },
-        { name: "Netlify", logo: "/logos/netlify.svg", link: "https://netlify.com" }
+        { name: "Spotify", logo: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.png", link: "https://spotify.com" },
+        { name: "LinkedIn", logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png", link: "https://linkedin.com" },
+        { name: "Flipkart", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Flipkart_logo.svg/1200px-Flipkart_logo.svg.png", link: "https://flipkart.com" },
+        { name: "Atlassian", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Atlassian_logo.png", link: "https://atlassian.com" }
       ]
     },
     {
       phase: 3,
-      title: "JavaScript Ecosystem Partners",
-      description: "Innovative JavaScript and Frontend Tools",
+      title: "React and Component Architecture Partners",
+      description: "Modern Frontend Development Leaders",
       companies: [
-        { name: "React", logo: "/logos/react.svg", link: "https://reactjs.org" },
-        { name: "TypeScript", logo: "/logos/typescript.svg", link: "https://typescriptlang.org" },
-        { name: "Babel", logo: "/logos/babel.svg", link: "https://babeljs.io" },
-        { name: "ESLint", logo: "/logos/eslint.svg", link: "https://eslint.org" }
+        { name: "Meta", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.png", link: "https://meta.com" },
+        { name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", link: "https://netflix.com" },
+        { name: "Uber", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Uber_logo_2018.png", link: "https://uber.com" },
+        { name: "Airbnb", logo: "https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg", link: "https://airbnb.com" }
       ]
     },
     {
       phase: 4,
-      title: "React and State Management Collaborators",
-      description: "Advanced Frontend Development Platforms",
+      title: "Backend Development Partners",
+      description: "Enterprise Backend and Microservices Solutions",
       companies: [
-        { name: "Redux", logo: "/logos/redux.svg", link: "https://redux.js.org" },
-        { name: "Next.js", logo: "/logos/nextjs.svg", link: "https://nextjs.org" },
-        { name: "Chakra UI", logo: "/logos/chakra.svg", link: "https://chakra-ui.com" },
-        { name: "Framer Motion", logo: "/logos/framer.svg", link: "https://framer.com/motion" }
+        { name: "PayPal", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg", link: "https://paypal.com" },
+        { name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", link: "https://netflix.com" },
+        { name: "Walmart", logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Walmart_logo.svg", link: "https://walmart.com" },
+        { name: "Coursera", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Coursera_logo.svg/1200px-Coursera_logo.svg.png", link: "https://coursera.org" }
       ]
     },
     {
       phase: 5,
-      title: "Backend and Full-Stack Technology Partners",
-      description: "Enterprise-Grade Backend and Deployment Solutions",
+      title: "DevOps and Deployment Partners",
+      description: "Cloud Infrastructure and Deployment Leaders",
       companies: [
-        { name: "MongoDB", logo: "/logos/mongodb.svg", link: "https://mongodb.com" },
-        { name: "Express.js", logo: "/logos/express.svg", link: "https://expressjs.com" },
-        { name: "Node.js", logo: "/logos/nodejs.svg", link: "https://nodejs.org" },
-        { name: "Render", logo: "/logos/render.svg", link: "https://render.com" }
+        { name: "GitHub", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg", link: "https://github.com" },
+        { name: "Vercel", logo: "/logos/vercel.svg", link: "https://vercel.com" },
+        { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg", link: "https://aws.amazon.com" },
+        { name: "Swiggy", logo: "https://upload.wikimedia.org/wikipedia/en/1/12/Swiggy_logo.png", link: "https://swiggy.com" }
       ]
     }
   ]
