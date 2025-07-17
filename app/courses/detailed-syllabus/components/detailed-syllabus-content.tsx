@@ -475,57 +475,57 @@ const CompanyShowcase = ({ phase }: { phase: number }) => {
   const companyData = [
     {
       phase: 1,
-      title: "Development Without Code Partners",
+      title: "In collaboration with",
       description: "AI and No-Code Tool Providers",
       companies: [
-        { name: "Replit", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Replit-logo-png.png", link: "https://replit.com" },
+        { name: "Replit", logo: "https://vectorseek.com/wp-content/uploads/2023/08/Replit-Logo-Vector.svg-.png", link: "https://replit.com" },
         { name: "OpenAI", logo: "https://freelogopng.com/images/all_img/1681142315open-ai-logo.png", link: "https://openai.com" },
         { name: "Notion", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", link: "https://notion.so" },
-        { name: "Zapier", logo: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Zapier-logo.png", link: "https://zapier.com" }
+        { name: "Zapier", logo: "https://1000logos.net/wp-content/uploads/2022/09/Zapier-Logo-1536x864.png", link: "https://zapier.com" }
       ]
     },
     {
       phase: 2,
-      title: "Frontend Fundamentals Partners",
+      title: "In collaboration with",
       description: "Web Technology and Design Leaders",
       companies: [
-        { name: "Spotify", logo: "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.png", link: "https://spotify.com" },
+        { name: "Spotify", logo: "https://www.pngall.com/wp-content/uploads/13/Spotify-Logo-PNG-HD-Image.png", link: "https://spotify.com" },
         { name: "LinkedIn", logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png", link: "https://linkedin.com" },
-        { name: "Flipkart", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Flipkart_logo.svg/1200px-Flipkart_logo.svg.png", link: "https://flipkart.com" },
-        { name: "Atlassian", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Atlassian_logo.png", link: "https://atlassian.com" }
+        { name: "Flipkart", logo: "https://th.bing.com/th/id/R.af1de3f2ed4972e46ab0e68dd9ab3ba8?rik=REx4C5jQDkv6bA&riu=http%3a%2f%2fassets.stickpng.com%2fimages%2f610673352ced4d0004ead4e5.png&ehk=9dETXKdo%2fRMEm1R2WhNn%2f9T0tPpXFDB5xYeCgTFpG2w%3d&risl=&pid=ImgRaw&r=0", link: "https://flipkart.com" },
+        { name: "Atlassian", logo: "https://images.ctfassets.net/8j5aqoy0ts8s/3V650c91OiNdKFEHshpKMs/e3913190d8e406b3acf0fa13b6055c63/atlassian-blue-logo.png", link: "https://atlassian.com" }
       ]
     },
     {
       phase: 3,
-      title: "React and Component Architecture Partners",
+      title: "In collaboration with",
       description: "Modern Frontend Development Leaders",
       companies: [
-        { name: "Meta", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.png", link: "https://meta.com" },
+        { name: "Meta", logo: "https://pngimg.com/uploads/meta/meta_PNG4.png", link: "https://meta.com" },
         { name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", link: "https://netflix.com" },
-        { name: "Uber", logo: "https://upload.wikimedia.org/wikipedia/commons/c/c6/Uber_logo_2018.png", link: "https://uber.com" },
+        { name: "Uber", logo: "https://download.logo.wine/logo/Uber/Uber-Logo.wine.png", link: "https://uber.com" },
         { name: "Airbnb", logo: "https://upload.wikimedia.org/wikipedia/commons/6/69/Airbnb_Logo_B%C3%A9lo.svg", link: "https://airbnb.com" }
       ]
     },
     {
       phase: 4,
-      title: "Backend Development Partners",
+      title: "In collaboration with",
       description: "Enterprise Backend and Microservices Solutions",
       companies: [
         { name: "PayPal", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg", link: "https://paypal.com" },
         { name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", link: "https://netflix.com" },
         { name: "Walmart", logo: "https://upload.wikimedia.org/wikipedia/commons/c/ca/Walmart_logo.svg", link: "https://walmart.com" },
-        { name: "Coursera", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Coursera_logo.svg/1200px-Coursera_logo.svg.png", link: "https://coursera.org" }
+        { name: "Coursera", logo: "https://1000logos.net/wp-content/uploads/2022/06/Coursera-Logo-2048x1152.png", link: "https://coursera.org" }
       ]
     },
     {
       phase: 5,
-      title: "DevOps and Deployment Partners",
+      title: "In collaboration with",
       description: "Cloud Infrastructure and Deployment Leaders",
       companies: [
         { name: "GitHub", logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg", link: "https://github.com" },
-        { name: "Vercel", logo: "/logos/vercel.svg", link: "https://vercel.com" },
+        { name: "Vercel", logo: "https://bemeir.com/wp-content/uploads/2023/02/vercel.png", link: "https://vercel.com" },
         { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg", link: "https://aws.amazon.com" },
-        { name: "Swiggy", logo: "https://upload.wikimedia.org/wikipedia/en/1/12/Swiggy_logo.png", link: "https://swiggy.com" }
+        { name: "Swiggy", logo: "https://logos-world.net/wp-content/uploads/2020/11/Swiggy-Logo.png", link: "https://swiggy.com" }
       ]
     }
   ]
