@@ -9,7 +9,7 @@ export function HeroSection() {
     return (
         <section className="relative py-16 md:py-24 px-4">
             <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
@@ -24,7 +24,7 @@ export function HeroSection() {
                     <p className="text-xl md:text-2xl text-foreground/80 mb-6">
                         A comprehensive, self-paced learning experience designed to transform you into a full-stack AI product developer
                     </p>
-                    
+
                     <div className="flex justify-center flex-wrap gap-4 mb-6">
                         <div className="flex items-center gap-2">
                             <Clock className="w-5 h-5 text-cyan-400" />
@@ -41,10 +41,16 @@ export function HeroSection() {
                     </div>
 
                     <div className="flex justify-center gap-4">
-                        <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600">
+                        <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600" 
+                        onClick={() => window.open('https://staging.ailinc.com/nanodegree-program-payment?data=3uv_szhmpq_n.959605af', '_blank')}>
                             Enroll Now
                         </Button>
-                        <Button variant="outline" size="lg">
+                        <Button variant="outline" size="lg" onClick={() => {
+                            const courseContentSection = document.getElementById('course-content-section');
+                            if (courseContentSection) {
+                                courseContentSection.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }}>
                             Explore Curriculum
                         </Button>
                     </div>

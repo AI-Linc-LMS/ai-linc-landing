@@ -1417,7 +1417,7 @@ export function CourseContentSection() {
     const displayedWeeks = showAllWeeks ? courseContent : courseContent.slice(0, 8)
 
     return (
-        <section className="py-16 md:py-20 px-4">
+        <section id="course-content-section" className="py-16 md:py-20 px-4">
             <div className="max-w-6xl mx-auto">
                 <motion.div 
                     initial={{ opacity: 0, y: 50 }}
