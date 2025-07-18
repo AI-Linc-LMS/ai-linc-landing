@@ -30,7 +30,12 @@ import {
   Mail,
   User,
   MessageCircle,
-  Server
+  Server,
+  Calculator,
+  Cloud,
+  CheckSquare,
+  ShoppingCart,
+  Share2
 } from "lucide-react"
 import Link from "next/link"
 
@@ -50,14 +55,14 @@ const syllabusData = {
           description: "Create a no-code application that generates innovative product concepts using AI prompts",
           technologies: ["Tana", "Midjourney", "ChatGPT"],
           complexity: "Beginner",
-          imageUrl: "/project-images/ai-ideation-tool.png"
+          projectIcon: Lightbulb
         },
         {
           title: "Automated Workflow Builder",
           description: "Design a multi-tool integration platform that connects Zapier, Airtable, and AI assistants",
           technologies: ["Zapier", "Airtable", "Claude"],
           complexity: "Intermediate",
-          imageUrl: "/project-images/workflow-builder.png"
+          projectIcon: Zap
         }
       ],
       weeks: [
@@ -132,14 +137,14 @@ const syllabusData = {
           description: "Build a modern, mobile-first landing page for a tech startup using semantic HTML and Tailwind CSS",
           technologies: ["HTML5", "CSS3", "Tailwind"],
           complexity: "Beginner",
-          imageUrl: "/project-images/responsive-landing.png"
+          projectIcon: Home
         },
         {
           title: "Interactive Portfolio Website",
           description: "Create a personal portfolio showcasing web development skills with responsive design",
           technologies: ["HTML", "CSS", "GitHub Pages"],
           complexity: "Intermediate",
-          imageUrl: "/project-images/portfolio-website.png"
+          projectIcon: User
         }
       ],
       weeks: [
@@ -195,14 +200,14 @@ const syllabusData = {
           description: "Develop a feature-rich calculator with advanced mathematical functions and real-time calculations",
           technologies: ["JavaScript", "HTML", "CSS"],
           complexity: "Intermediate",
-          imageUrl: "/project-images/calculator-app.png"
+          projectIcon: Calculator
         },
         {
           title: "Weather Dashboard",
           description: "Build a dynamic weather application that fetches real-time data from external APIs",
           technologies: ["JavaScript", "Fetch API", "OpenWeatherMap"],
           complexity: "Advanced",
-          imageUrl: "/project-images/weather-dashboard.png"
+          projectIcon: Cloud
         }
       ],
       weeks: [
@@ -258,14 +263,14 @@ const syllabusData = {
           description: "Create a full-featured todo app with state management, filtering, and persistent storage",
           technologies: ["React", "Redux", "LocalStorage"],
           complexity: "Intermediate",
-          imageUrl: "/project-images/task-manager.png"
+          projectIcon: CheckSquare
         },
         {
           title: "E-commerce Product Catalog",
           description: "Develop a dynamic product listing and filtering system with advanced state management",
           technologies: ["React", "Context API", "Styled Components"],
           complexity: "Advanced",
-          imageUrl: "/project-images/ecommerce-catalog.png"
+          projectIcon: ShoppingCart
         }
       ],
       weeks: [
@@ -340,14 +345,14 @@ const syllabusData = {
           description: "Build a comprehensive backend service with user authentication, post creation, and interaction features",
           technologies: ["Node.js", "Express", "MongoDB", "JWT"],
           complexity: "Advanced",
-          imageUrl: "/project-images/social-media-api.png"
+          projectIcon: Share2
         },
         {
           title: "E-learning Platform Backend",
           description: "Create a full-featured backend for an online learning management system with course and user management",
           technologies: ["MongoDB", "Mongoose", "Express", "Authentication"],
           complexity: "Expert",
-          imageUrl: "/project-images/elearning-platform.png"
+          projectIcon: BookOpen
         }
       ],
       weeks: [
@@ -880,15 +885,13 @@ export function DetailedSyllabusContent() {
                         className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-500 transition-all duration-300"
                       >
                         <div className="relative">
-                          <img
-                            src={project.imageUrl}
-                            alt={project.title}
-                            className="w-full h-48 object-cover opacity-80 hover:opacity-100 transition-opacity"
-                          />
+                          <div className="w-full h-48 flex items-center justify-center bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-t-lg">
+                            <project.projectIcon className="w-24 h-24 text-cyan-400 opacity-80" />
+                          </div>
                           <Badge
                             className={`absolute top-3 right-3 ${project.complexity === 'Beginner' ? 'bg-green-500/80' :
-                                project.complexity === 'Intermediate' ? 'bg-blue-500/80' :
-                                  'bg-purple-500/80'
+                              project.complexity === 'Intermediate' ? 'bg-blue-500/80' :
+                                'bg-purple-500/80'
                               } text-white`}
                           >
                             {project.complexity}
