@@ -267,7 +267,7 @@ export default function ContactUsPage() {
                     />
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Shubham </h3>
-                  <p className="text-foreground/60 mb-2">Founder & Director</p>
+                  <p className="text-foreground/60 mb-2"> Director</p>
                   <p className="text-foreground/60 text-sm text-center">
                     Driving AI LINC's vision and strategic growth with innovative leadership.
                   </p>
