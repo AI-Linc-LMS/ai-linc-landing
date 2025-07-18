@@ -275,7 +275,7 @@ export function Footer() {
             <Link href="/terms" className="hover:text-[#0BC5EA] transition-colors">Terms</Link>
             <Link href="/privacy" className="hover:text-[#0BC5EA] transition-colors">Privacy</Link>
             <Link href="/refund" className="hover:text-[#0BC5EA] transition-colors">Refunds</Link>
-            <Link href="/contact_us" className="hover:text-[#0BC5EA] transition-colors">Support</Link>
+            <Link href="/contact-us" className="hover:text-[#0BC5EA] transition-colors">Support</Link>
           </div>
         </motion.div>
       </div>

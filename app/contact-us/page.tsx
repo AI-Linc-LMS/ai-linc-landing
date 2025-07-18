@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft, Mail, Phone, MapPin, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -241,6 +242,110 @@ export default function ContactUsPage() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+
+        {/* Team Section */}
+        <div className="mt-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-2xl font-semibold text-white mb-8 text-center">Our Leadership Team</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="bg-background/50 border-[#0BC5EA]/20 transform transition-all duration-300 hover:scale-105 hover:shadow-lg 
+                relative overflow-hidden group
+                before:absolute before:inset-0 before:bg-[#0BC5EA]/10 before:opacity-0 hover:before:opacity-100 
+                before:transition-opacity before:duration-300
+                after:absolute after:inset-[-50%] after:bg-[radial-gradient(closest-side,#0BC5EA_0%,transparent_100%)] 
+                after:opacity-0 hover:after:opacity-20 after:transition-opacity after:duration-300 after:z-0">
+                <CardContent className="p-6 flex flex-col items-center text-center relative z-10">
+                  <div className="w-24 h-24 mb-4 rounded-full overflow-hidden border-4 border-[#0BC5EA]/30">
+                    <Image 
+                      src="/shubham_lal.jpg" 
+                      alt="Shubham Lal" 
+                      width={96} 
+                      height={96} 
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Shubham </h3>
+                  <p className="text-foreground/60 mb-2">Founder & Director</p>
+                  <p className="text-foreground/60 text-sm text-center">
+                    Driving AI LINC's vision and strategic growth with innovative leadership.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-background/50 border-[#6B46C1]/20 transform transition-all duration-300 hover:scale-105 hover:shadow-lg 
+                relative overflow-hidden group
+                before:absolute before:inset-0 before:bg-[#6B46C1]/10 before:opacity-0 hover:before:opacity-100 
+                before:transition-opacity before:duration-300
+                after:absolute after:inset-[-50%] after:bg-[radial-gradient(closest-side,#6B46C1_0%,transparent_100%)] 
+                after:opacity-0 hover:after:opacity-20 after:transition-opacity after:duration-300 after:z-0">
+                <CardContent className="p-6 flex flex-col items-center text-center relative z-10">
+                  <div className="w-24 h-24 mb-4 rounded-full overflow-hidden border-4 border-[#6B46C1]/30">
+                    <Image 
+                      src="/poorva_image.jpg" 
+                      alt="Poorva Gupta" 
+                      width={96} 
+                      height={96} 
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Poorva</h3>
+                  <p className="text-foreground/60 mb-2">Director</p>
+                  <p className="text-foreground/60 text-sm text-center">
+                    Pioneering innovative solutions and driving AI LINC's technological advancement.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-background/50 border-[#48BB78]/20 transform transition-all duration-300 hover:scale-105 hover:shadow-lg 
+                relative overflow-hidden group
+                before:absolute before:inset-0 before:bg-[#48BB78]/10 before:opacity-0 hover:before:opacity-100 
+                before:transition-opacity before:duration-300
+                after:absolute after:inset-[-50%] after:bg-[radial-gradient(closest-side,#48BB78_0%,transparent_100%)] 
+                after:opacity-0 hover:after:opacity-20 after:transition-opacity after:duration-300 after:z-0">
+                <CardContent className="p-6 flex flex-col items-center text-center relative z-10">
+                  <div className="w-24 h-24 mb-4 rounded-full overflow-hidden border-4 border-[#48BB78]/30">
+                    <Image 
+                      src="/sandeep.jpeg" 
+                      alt="Sandeep Dubey" 
+                      width={96} 
+                      height={96} 
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Sandeep</h3>
+                  <p className="text-foreground/60 mb-2">Director</p>
+                  <p className="text-foreground/60 text-sm text-center">
+                    Guiding AI LINC's strategic partnerships and business development.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-background/50 border-[#ED64A6]/20 transform transition-all duration-300 hover:scale-105 hover:shadow-lg 
+                relative overflow-hidden group
+                before:absolute before:inset-0 before:bg-[#ED64A6]/10 before:opacity-0 hover:before:opacity-100 
+                before:transition-opacity before:duration-300
+                after:absolute after:inset-[-50%] after:bg-[radial-gradient(closest-side,#ED64A6_0%,transparent_100%)] 
+                after:opacity-0 hover:after:opacity-20 after:transition-opacity after:duration-300 after:z-0">
+                <CardContent className="p-6 flex flex-col items-center text-center relative z-10">
+                  <div className="w-24 h-24 mb-4 rounded-full overflow-hidden border-4 border-[#ED64A6]/30">
+                    <Image 
+                      src="/noorman.jpeg" 
+                      alt="Noorman Mulla" 
+                      width={96} 
+                      height={96} 
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Noorman</h3>
+                  <p className="text-foreground/60 mb-2">Chief Marketing Officer</p>
+                  <p className="text-foreground/60 text-sm text-center">
+                    Crafting AI LINC's brand narrative and market positioning.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
 
