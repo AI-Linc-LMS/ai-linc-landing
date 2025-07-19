@@ -115,8 +115,8 @@ export function RegistrationForm({ onSuccess, seatsLeft, setSeatsLeft }: Registr
         name: "",
         email: "",
         phone_number: "+91 ",
-        workshop_name: "Practical implementation of Agentic AI",
-        session_number: "Session-02",
+        workshop_name: "Contact Form",
+        session_number: "Contact Form",
         referal_code: ""
       })
       setSeatsLeft(prev => prev - 1) // Decrease seat count on successful registration

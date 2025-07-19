@@ -59,18 +59,63 @@ const comparisonData = [
 
 export function ComparisonTable() {
   return (
-    <section className="py-16 md:py-20 px-4">
+    <section className="py-8 sm:py-12 md:py-16 lg:py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 px-2">
             📊 Compare Programs
           </h2>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-2">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-2 leading-relaxed">
             See what's included in each program to make the right choice for your career goals.
           </p>
         </div>
 
-        <Card className="bg-gray-900/50 border-gray-700 overflow-hidden">
+        {/* Mobile Card Layout */}
+        <div className="block md:hidden space-y-4">
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <Card className="bg-gray-900/50 border-gray-700 p-4 text-center" onClick={() => window.location.href = '/nanodegree'}>
+              <Badge className="bg-green-400 text-green-900 text-xs mb-2">NANODEGREE</Badge>
+              <p className="text-sm text-gray-400">₹4,999</p>
+            </Card>
+            <Card className="bg-gray-900/50 border-gray-700 p-4 text-center" onClick={() => window.location.href = '/flagship-course'}>
+              <Badge className="bg-yellow-400 text-yellow-900 text-xs mb-2">FLAGSHIP</Badge>
+              <p className="text-sm text-gray-400">Up to 100% Scholarship</p>
+            </Card>
+          </div>
+          
+          {comparisonData.map((item, index) => (
+            <Card key={index} className="bg-gray-900/50 border-gray-700">
+              <CardContent className="p-4">
+                <h3 className="text-sm font-medium mb-3 text-white leading-tight">{item.feature}</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center justify-center">
+                    <div className="text-center">
+                      {item.nanodegree ? (
+                        <CheckCircle className="w-6 h-6 text-green-400 mx-auto mb-1" />
+                      ) : (
+                        <X className="w-6 h-6 text-red-400 mx-auto mb-1" />
+                      )}
+                      <p className="text-xs text-gray-400">Nanodegree</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <div className="text-center">
+                      {item.flagship ? (
+                        <CheckCircle className="w-6 h-6 text-yellow-400 mx-auto mb-1" />
+                      ) : (
+                        <X className="w-6 h-6 text-red-400 mx-auto mb-1" />
+                      )}
+                      <p className="text-xs text-gray-400">Flagship</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Desktop Table Layout */}
+        <Card className="hidden md:block bg-gray-900/50 border-gray-700 overflow-hidden">
           <CardHeader className="pb-4">
             <CardTitle className="text-xl sm:text-2xl text-center">Feature Comparison</CardTitle>
           </CardHeader>
