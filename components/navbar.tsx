@@ -20,6 +20,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useLenis } from "@/hooks/use-lenis"
 import { useRouter, usePathname } from "next/navigation"
 import { ContactFormModal } from "@/components/contact-form-modal"
+import { AICheatSheetModal } from "@/components/ai-cheatsheet-modal"
 
 export function Navbar() {
   const { scrollTo } = useLenis()
@@ -29,6 +30,7 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [modalPurpose, setModalPurpose] = useState<'apply' | 'cheatsheet' | null>(null)
+  const [isAICheatSheetModalOpen, setIsAICheatSheetModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,9 +47,51 @@ export function Navbar() {
   }
 
   // Function to handle cheat sheet download
+  const handleCheatSheetDownload = async (details: { name: string; email: string; phone: string }) => {
+    try {
+      // Prepare the payload matching the API request body
+      const payload = {
+        name: details.name,
+        email: details.email,
+        phone_number: details.phone,
+        workshop_name: "AI-Cheat Sheet",
+        session_number: "AI-Cheat Sheet leads",
+        referal_code: ""
+      }
+
+      // Make the API call
+      const response = await fetch('https://be-app.ailinc.com/api/clients/1/free-cheat-sheet-download/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to download cheat sheet')
+      }
+
+      // Parse the response (if needed)
+      const responseData = await response.json()
+
+      // If the API returns a download link, use it
+      // Otherwise, you might want to show a success message
+      if (responseData.download_url) {
+        window.open(responseData.download_url, '_blank')
+      } else {
+        alert('Cheat sheet request submitted successfully. Check your email.')
+      }
+    } catch (error) {
+      console.error("Cheat sheet download error:", error)
+      alert("Failed to download cheat sheet. Please try again.")
+    }
+  }
+
+  // Update cheat sheet navigation functions
   const navigateToCheatSheet = () => {
-    setModalPurpose('cheatsheet')
-    setIsContactModalOpen(true)
+    setIsContactModalOpen(false)  // Close the existing contact modal
+    setIsAICheatSheetModalOpen(true)
   }
 
   // Function to handle mobile menu apply navigation
@@ -60,8 +104,8 @@ export function Navbar() {
   // Function to handle mobile cheat sheet download
   const handleMobileCheatSheetClick = () => {
     setMobileMenuOpen(false)
-    setModalPurpose('cheatsheet')
-    setIsContactModalOpen(true)
+    setIsContactModalOpen(false)  // Close the existing contact modal
+    setIsAICheatSheetModalOpen(true)
   }
 
   return (
@@ -234,6 +278,12 @@ export function Navbar() {
         open={isContactModalOpen} 
         onOpenChange={setIsContactModalOpen} 
         purpose={modalPurpose}
+      />
+
+      <AICheatSheetModal 
+        open={isAICheatSheetModalOpen} 
+        onOpenChange={setIsAICheatSheetModalOpen}
+        onDownload={handleCheatSheetDownload}
       />
     </>
   )
