@@ -230,7 +230,7 @@ export function Footer() {
               <Button
                 variant="ghost"
                 className="w-full justify-start p-3 hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA] transition-colors"
-                onClick={() => navigateToContactForm("contact")}
+                onClick={() => window.open("/contact-us", "_blank")}
               >
                 <Mail className="size-5 mr-3" />
                 Contact
