@@ -21,6 +21,7 @@ import { useLenis } from "@/hooks/use-lenis"
 import { useRouter, usePathname } from "next/navigation"
 import { ContactFormModal } from "@/components/contact-form-modal"
 import { AICheatSheetModal } from "@/components/ai-cheatsheet-modal"
+import { CheatSheetSuccessModal } from "@/components/cheatsheet-success-modal"
 
 export function Navbar() {
   const { scrollTo } = useLenis()
@@ -31,6 +32,8 @@ export function Navbar() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [modalPurpose, setModalPurpose] = useState<'apply' | 'cheatsheet' | null>(null)
   const [isAICheatSheetModalOpen, setIsAICheatSheetModalOpen] = useState(false)
+  const [isCheatSheetSuccessModalOpen, setIsCheatSheetSuccessModalOpen] = useState(false)
+  const [cheatSheetSuccessMessage, setCheatSheetSuccessMessage] = useState("")
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,15 +75,19 @@ export function Navbar() {
         throw new Error('Failed to download cheat sheet')
       }
 
-      // Parse the response (if needed)
+      // Parse the response
       const responseData = await response.json()
 
-      // If the API returns a download link, use it
-      // Otherwise, you might want to show a success message
+      // Set success message and open success modal
+      if (responseData.message) {
+        setCheatSheetSuccessMessage(responseData.message)
+        setIsAICheatSheetModalOpen(false)
+        setIsCheatSheetSuccessModalOpen(true)
+      }
+
+      // Optional: If there's a download URL, open it
       if (responseData.download_url) {
         window.open(responseData.download_url, '_blank')
-      } else {
-        alert('Cheat sheet request submitted successfully. Check your email.')
       }
     } catch (error) {
       console.error("Cheat sheet download error:", error)
@@ -284,6 +291,12 @@ export function Navbar() {
         open={isAICheatSheetModalOpen} 
         onOpenChange={setIsAICheatSheetModalOpen}
         onDownload={handleCheatSheetDownload}
+      />
+
+      <CheatSheetSuccessModal
+        open={isCheatSheetSuccessModalOpen}
+        onOpenChange={setIsCheatSheetSuccessModalOpen}
+        message={cheatSheetSuccessMessage}
       />
     </>
   )
