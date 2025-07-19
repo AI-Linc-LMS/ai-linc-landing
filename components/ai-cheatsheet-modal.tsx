@@ -12,22 +12,46 @@ interface AICheatSheetModalProps {
   onDownload: (details: { name: string; email: string; phone: string }) => void
 }
 
-export function AICheatSheetModal({ 
-  open, 
-  onOpenChange, 
-  onDownload 
+export function AICheatSheetModal({
+  open,
+  onOpenChange,
+  onDownload
 }: AICheatSheetModalProps) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  const validatePhone = (phone: string): boolean => {
+    // Remove all non-digit characters
+    const cleanPhone = phone.replace(/\D/g, '')
+    // Check if it's a valid phone number (10-15 digits)
+    return cleanPhone.length >= 10 && cleanPhone.length <= 15
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Basic validation
     if (!name || !email || !phone) {
       alert("Please fill in all fields")
+      return
+    }
+
+    // Email validation
+    if (!validateEmail(email)) {
+      alert("Please enter a valid email address")
+      return
+    }
+
+    // Phone validation
+    if (!validatePhone(phone)) {
+      alert("Please enter a valid phone number (10-15 digits)")
       return
     }
 
@@ -35,7 +59,7 @@ export function AICheatSheetModal({
     try {
       // Call the download handler passed from parent
       await onDownload({ name, email, phone })
-      
+
       // Reset form and close modal
       setName("")
       setEmail("")
@@ -58,32 +82,32 @@ export function AICheatSheetModal({
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <Input 
-            placeholder="Full Name" 
+          <Input
+            placeholder="Full Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
-          <Input 
-            type="email" 
-            placeholder="Email Address" 
+          <Input
+            type="email"
+            placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <Input 
-            type="tel" 
-            placeholder="Phone Number" 
+          <Input
+            type="tel"
+            placeholder="Phone Number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
           />
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             className="w-full bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90"
             disabled={isSubmitting}
           >
-            <Download className="mr-2" size={20} /> 
+            <Download className="mr-2" size={20} />
             {isSubmitting ? "Downloading..." : "Get Cheat Sheet"}
           </Button>
         </form>
