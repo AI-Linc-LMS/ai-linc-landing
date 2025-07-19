@@ -183,7 +183,7 @@ export function Navbar() {
                   size="lg"
                   onClick={navigateToApply}
                 >
-                 Get Hired
+                  Get Hired
                 </Button>
                 <Button
                   className="bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(75,192,192,0.5)]"
@@ -266,7 +266,7 @@ export function Navbar() {
                     className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium w-full py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
                     onClick={handleMobileApplyClick}
                   >
-                   Get Hired
+                    Get Hired
                   </Button>
                 </Link>
                 <Button
@@ -281,14 +281,14 @@ export function Navbar() {
         </AnimatePresence>
       </header>
 
-      <ContactFormModal 
-        open={isContactModalOpen} 
-        onOpenChange={setIsContactModalOpen} 
+      <ContactFormModal
+        open={isContactModalOpen}
+        onOpenChange={setIsContactModalOpen}
         purpose={modalPurpose}
       />
 
-      <AICheatSheetModal 
-        open={isAICheatSheetModalOpen} 
+      <AICheatSheetModal
+        open={isAICheatSheetModalOpen}
         onOpenChange={setIsAICheatSheetModalOpen}
         onDownload={handleCheatSheetDownload}
       />
