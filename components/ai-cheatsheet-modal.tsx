@@ -4,7 +4,8 @@ import React, { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Download } from "lucide-react"
+import { Download, AlertCircle } from "lucide-react"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 interface AICheatSheetModalProps {
   open: boolean
@@ -21,6 +22,7 @@ export function AICheatSheetModal({
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState("")
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -36,22 +38,23 @@ export function AICheatSheetModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError("")
 
     // Basic validation
     if (!name || !email || !phone) {
-      alert("Please fill in all fields")
+      setError("Please fill in all fields")
       return
     }
 
     // Email validation
     if (!validateEmail(email)) {
-      alert("Please enter a valid email address")
+      setError("Please enter a valid email address")
       return
     }
 
     // Phone validation
     if (!validatePhone(phone)) {
-      alert("Please enter a valid phone number (10-15 digits)")
+      setError("Please enter a valid phone number (10-15 digits)")
       return
     }
 
@@ -64,10 +67,11 @@ export function AICheatSheetModal({
       setName("")
       setEmail("")
       setPhone("")
+      setError("")
       onOpenChange(false)
     } catch (error) {
       console.error("Download failed", error)
-      alert("Failed to download cheat sheet. Please try again.")
+      setError("Failed to download cheat sheet. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -82,6 +86,12 @@ export function AICheatSheetModal({
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
           <Input
             placeholder="Full Name"
             value={name}
