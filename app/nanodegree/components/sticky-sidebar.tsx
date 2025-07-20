@@ -119,7 +119,7 @@ export function StickySidebar() {
                     <Button
                         size="lg"
                         className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-sm lg:text-base py-3 lg:py-4"
-                        onClick={() => window.open('https://staging.ailinc.com/nanodegree-program-payment?data=3uv_szhmpq_n.959605af', '_blank')}
+                        onClick={() => window.open('https://app.ailinc.com/nanodegree-program-payment?data=3uv_szo8vp_n.0b7e8fe4', '_blank')}
                     >
                         Buy Now
                     </Button>

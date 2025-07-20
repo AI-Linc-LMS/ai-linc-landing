@@ -42,7 +42,7 @@ export function HeroSection() {
 
                     <div className="flex justify-center gap-4">
                         <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600" 
-                        onClick={() => window.open('https://staging.ailinc.com/nanodegree-program-payment?data=3uv_szhmpq_n.959605af', '_blank')}>
+                        onClick={() => window.open('https://app.ailinc.com/nanodegree-program-payment?data=3uv_szo8vp_n.0b7e8fe4', '_blank')}>
                             Enroll Now
                         </Button>
                         <Button variant="outline" size="lg" onClick={() => {
