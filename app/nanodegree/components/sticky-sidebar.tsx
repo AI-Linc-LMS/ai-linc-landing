@@ -14,7 +14,7 @@ export function StickySidebar() {
         <div className="lg:sticky lg:top-24 bg-card/50 border border-border/20 rounded-xl space-y-4 lg:space-y-6 shadow-lg overflow-hidden">
             {/* Course Title and Description */}
             <div className="px-4 lg:px-6 pt-4 lg:pt-6">
-                <h2 className="text-xl lg:text-2xl font-bold mb-2">AI Professional Nanodegree Program</h2>
+                <h2 className="text-[12px] lg:text-xl font-bold my-2">AI Professional Nanodegree Program</h2>
                 {/* <p className="text-foreground/80 mb-4">
                     A comprehensive program designed to transform you into an AI professional. Learn cutting-edge AI technologies, practical applications, and gain industry-relevant skills to excel in the rapidly evolving world of artificial intelligence.
                 </p> */}
@@ -41,7 +41,7 @@ export function StickySidebar() {
             </div>
 
             {/* Pricing and Rating Section */}
-            <div className="px-4 lg:px-6 pt-2 lg:pt-4">
+            <div className="px-4 lg:px-4  pt-2 ">
                 <div className="flex justify-between items-center mb-4">
                     <div>
                         <div className="flex items-baseline gap-2">
@@ -52,6 +52,29 @@ export function StickySidebar() {
                         <Star className="w-4 h-4 lg:w-5 lg:h-5 fill-current" />
                         <span className="text-base lg:text-lg font-semibold">4.6</span>
                         <span className="text-xs lg:text-sm text-foreground/70">(10,519)</span>
+                    </div>
+                </div>
+
+                {/* Seat Booking Option - Redesigned */}
+                <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-400/50 rounded-lg p-3 mb-4 backdrop-blur-sm">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="text-center">
+                                <div className="text-lg lg:text-xl font-bold text-orange-400">₹499</div>
+                                <div className="text-xs text-orange-300">Book Seat</div>
+                            </div>
+                            <div className="text-xs lg:text-sm text-orange-200 leading-tight">
+                                Reserve your spot ,<br />
+                                Pay rest later
+                            </div>
+                        </div>
+                        <Button
+                            size="sm"
+                            className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-200"
+                            onClick={() => window.open('https://rzp.io/rzp/wnrwzzhe', '_blank')}
+                        >
+                            Book Now
+                        </Button>
                     </div>
                 </div>
 
@@ -81,7 +104,7 @@ export function StickySidebar() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="space-y-3 lg:space-y-4 mb-4"
+                        className="space-y-3 lg:space-y-1 mb-2"
                     >
                         <div className="flex items-center gap-2 lg:gap-3">
                             <Clock className="w-4 h-4 lg:w-5 lg:h-5 text-cyan-400 flex-shrink-0" />

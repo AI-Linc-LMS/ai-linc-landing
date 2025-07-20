@@ -542,30 +542,33 @@ const CompanyShowcase = ({ phase }: { phase: number }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="my-12 bg-gray-800/50 border border-gray-700 rounded-lg p-6"
+      className="my-12 bg-gray-800/50 border border-gray-700 rounded-lg p-4 sm:p-6"
     >
       <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+        <h3 className="text-xl sm:text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
           {phaseCompanies?.title}
         </h3>
-        <p className="text-gray-400">{phaseCompanies?.description}</p>
+        <p className="text-sm sm:text-base text-gray-400">{phaseCompanies?.description}</p>
       </div>
-      <div className="flex flex-wrap justify-center items-center gap-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 place-items-center">
         {phaseCompanies?.companies.map((company, index) => (
           <motion.a
             key={company.name}
             href={company.link}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="opacity-70 hover:opacity-100 transition-all duration-300"
+            className="opacity-70 hover:opacity-100 transition-all duration-300 w-full max-w-[120px] sm:max-w-[140px] flex items-center justify-center"
           >
-            <img
-              src={company.logo}
-              alt={`${company.name} logo`}
-              className="h-12 w-auto grayscale hover:grayscale-0 transition-all duration-300"
-            />
+            <div className="w-full h-12 sm:h-14 lg:h-16 flex items-center justify-center bg-white/5 rounded-lg p-2 hover:bg-white/10 transition-colors">
+              <img
+                src={company.logo}
+                alt={`${company.name} logo`}
+                className="max-w-full max-h-full object-contain  hover:grayscale-0 transition-all duration-300"
+                loading="lazy"
+              />
+            </div>
           </motion.a>
         ))}
       </div>

@@ -36,7 +36,7 @@ export default function NanoDegreePage() {
                         </div>
 
                         {/* Desktop sticky sidebar */}
-                        <div className="hidden lg:block sticky top-20 self-start h-fit">
+                        <div className="hidden lg:block sticky top-12 self-start h-fit">
                             <StickySidebar />
                         </div>
                     </div>
