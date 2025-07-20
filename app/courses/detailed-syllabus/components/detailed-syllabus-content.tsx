@@ -565,7 +565,7 @@ const CompanyShowcase = ({ phase }: { phase: number }) => {
               <img
                 src={company.logo}
                 alt={`${company.name} logo`}
-                className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                className="max-w-full max-h-full object-contain  hover:grayscale-0 transition-all duration-300"
                 loading="lazy"
               />
             </div>
