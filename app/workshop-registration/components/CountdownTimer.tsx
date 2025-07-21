@@ -16,7 +16,7 @@ export function CountdownTimer() {
   })
 
   useEffect(() => {
-    const targetDate = new Date("2025-07-20T12:30:00")
+    const targetDate = new Date("2025-07-27T12:30:00")
 
     const interval = setInterval(() => {
       const now = new Date()
@@ -40,7 +40,7 @@ export function CountdownTimer() {
       {/* Workshop Date */}
       <div className="text-center mb-6">
         <div className="text-yellow-400 font-semibold text-lg mb-2">
-          📅 Sunday, July 20, 2025 at 12:30 PM IST
+          📅 Sunday, July 27, 2025 at 12:30 PM IST
         </div>
         <div className="font-semibold text-orange-400">⏰ Workshop Starts In:</div>
       </div>
