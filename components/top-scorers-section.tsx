@@ -12,6 +12,53 @@ interface TopScorer {
     testimonial: string;
 }
 
+// Custom hook for lazy loading images
+const useLazyImage = (src: string) => {
+    const [imageSrc, setImageSrc] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+        setError(false);
+        
+        const img = new Image();
+        img.onload = () => {
+            setImageSrc(src);
+            setIsLoading(false);
+        };
+        img.onerror = () => {
+            setError(true);
+            setIsLoading(false);
+        };
+        img.src = src;
+    }, [src]);
+
+    return { imageSrc, isLoading, error };
+};
+
+// Loading placeholder component
+const ImagePlaceholder: React.FC = () => (
+    <div className="w-full h-full bg-gray-200 animate-pulse flex items-center justify-center">
+        <div className="text-gray-500 text-center">
+            <div className="w-16 h-16 mx-auto mb-2 bg-gray-300 rounded-full animate-pulse"></div>
+            <p className="text-sm">Loading...</p>
+        </div>
+    </div>
+);
+
+// Error placeholder component
+const ImageError: React.FC = () => (
+    <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+        <div className="text-gray-500 text-center">
+            <div className="w-16 h-16 mx-auto mb-2 bg-gray-300 rounded-full flex items-center justify-center">
+                <span className="text-2xl">❌</span>
+            </div>
+            <p className="text-sm">Failed to load image</p>
+        </div>
+    </div>
+);
+
 // Sample data - replace with actual data from your backend
 const topScorersData: TopScorer[] = [
     {
@@ -180,7 +227,30 @@ export const TopScorersSection: React.FC = () => {
     const [currentScorer, setCurrentScorer] = useState(0);
     const [direction, setDirection] = useState<'right' | 'left'>('right');
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    const [preloadedImages, setPreloadedImages] = useState<Set<number>>(new Set());
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    const scorer = topScorersData[currentScorer];
+    const { imageSrc, isLoading, error } = useLazyImage(scorer.imageUrl);
+
+    // Preload adjacent images for smoother transitions
+    useEffect(() => {
+        const preloadImage = (index: number) => {
+            if (!preloadedImages.has(index) && topScorersData[index]) {
+                const img = new Image();
+                img.src = topScorersData[index].imageUrl;
+                setPreloadedImages(prev => new Set(prev).add(index));
+            }
+        };
+
+        // Preload current, next, and previous images
+        const nextIndex = (currentScorer + 1) % topScorersData.length;
+        const prevIndex = (currentScorer - 1 + topScorersData.length) % topScorersData.length;
+        
+        preloadImage(currentScorer);
+        preloadImage(nextIndex);
+        preloadImage(prevIndex);
+    }, [currentScorer, preloadedImages]);
 
     const startAutoPlay = () => {
         // Clear any existing interval
@@ -216,6 +286,9 @@ export const TopScorersSection: React.FC = () => {
     };
 
     const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        // Don't navigate if image is still loading
+        if (isLoading) return;
+
         const rect = e.currentTarget.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const halfWidth = rect.width / 2;
@@ -241,8 +314,6 @@ export const TopScorersSection: React.FC = () => {
         };
     }, [isAutoPlaying]);
 
-    const scorer = topScorersData[currentScorer];
-
     return (
         <section
             className="py-8 md:py-16 px-4 text-white"
@@ -256,6 +327,7 @@ export const TopScorersSection: React.FC = () => {
                     <button
                         onClick={prevScorer}
                         className="text-xl md:text-3xl hover:text-blue-500 transition-colors p-2 md:p-0"
+                        disabled={isLoading}
                     >
                         ←
                     </button>
@@ -274,25 +346,33 @@ export const TopScorersSection: React.FC = () => {
                                     <div
                                         className="w-full max-w-[680px] h-[280px] sm:max-w-[320px] sm:h-[320px] md:max-w-[600px] md:h-[400px] lg:w-[600px] lg:h-[600px] overflow-hidden border-4 rounded-lg cursor-pointer relative"
                                         onClick={handleImageClick}
+                                        style={{ cursor: isLoading ? 'wait' : 'pointer' }}
                                     >
-                                        <img
-                                            src={scorer.imageUrl}
-                                            alt={scorer.name}
-                                            className="w-full h-full object-cover"
-                                        />
-                                        {/* Optional: Add visual indicators for clickable areas */}
-                                        <div className="absolute inset-0 flex">
-                                            <div
-                                                className="w-1/2 h-full"
-                                                title="Previous"
-                                                style={{ cursor: 'w-resize' }}
-                                            ></div>
-                                            <div
-                                                className="w-1/2 h-full"
-                                                title="Next"
-                                                style={{ cursor: 'e-resize' }}
-                                            ></div>
-                                        </div>
+                                        {isLoading && <ImagePlaceholder />}
+                                        {error && <ImageError />}
+                                        {imageSrc && !isLoading && !error && (
+                                            <>
+                                                <img
+                                                    src={imageSrc}
+                                                    alt={scorer.name}
+                                                    className="w-full h-full object-cover"
+                                                    loading="lazy"
+                                                />
+                                                {/* Optional: Add visual indicators for clickable areas */}
+                                                <div className="absolute inset-0 flex">
+                                                    <div
+                                                        className="w-1/2 h-full"
+                                                        title="Previous"
+                                                        style={{ cursor: 'w-resize' }}
+                                                    ></div>
+                                                    <div
+                                                        className="w-1/2 h-full"
+                                                        title="Next"
+                                                        style={{ cursor: 'e-resize' }}
+                                                    ></div>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                 </CardContent>
                             </Card>
@@ -302,6 +382,7 @@ export const TopScorersSection: React.FC = () => {
                     <button
                         onClick={nextScorer}
                         className="text-xl md:text-3xl hover:text-blue-500 transition-colors p-2 md:p-0"
+                        disabled={isLoading}
                     >
                         →
                     </button>

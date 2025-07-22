@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -9,6 +9,20 @@ import { Clock, Gift, ShieldCheck, Star, Play } from "lucide-react"
 export function StickySidebar() {
     const [selectedPlan, setSelectedPlan] = useState('personal')
     const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+    const videoRef = useRef<HTMLVideoElement>(null)
+
+    const handleVideoModalOpen = () => {
+        setIsVideoModalOpen(true)
+    }
+
+    const handleVideoModalClose = () => {
+        setIsVideoModalOpen(false)
+        // Pause and reset video when modal closes
+        if (videoRef.current) {
+            videoRef.current.pause()
+            videoRef.current.currentTime = 0
+        }
+    }
 
     return (
         <div className="lg:sticky lg:top-24 bg-card/50 border border-border/20 rounded-xl space-y-4 lg:space-y-6 shadow-lg overflow-hidden">
@@ -16,19 +30,19 @@ export function StickySidebar() {
             <div className="px-4 lg:px-6 pt-4 lg:pt-6">
                 <h2 className="text-[12px] lg:text-xl font-bold my-2">AI Professional Nanodegree Program</h2>
                 {/* <p className="text-foreground/80 mb-4">
-                    A comprehensive program designed to transform you into an AI professional. Learn cutting-edge AI technologies, practical applications, and gain industry-relevant skills to excel in the rapidly evolving world of artificial intelligence.
-                </p> */}
+A comprehensive program designed to transform you into an AI professional. Learn cutting-edge AI technologies, practical applications, and gain industry-relevant skills to excel in the rapidly evolving world of artificial intelligence.
+</p> */}
             </div>
 
             {/* Video Preview Section */}
             <div className="relative group">
                 <img
-                    src="/images/1st-pic.png"
+                    src="/images/preview-thumbnail.png"
                     alt="Course Preview Thumbnail"
                     className="w-full h-[200px] lg:h-[250px] object-cover"
                 />
                 <div
-                    onClick={() => setIsVideoModalOpen(true)}
+                    onClick={handleVideoModalOpen}
                     className="absolute inset-0 bg-black/30 flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 >
                     <div className="bg-white/20 p-3 lg:p-4 rounded-full backdrop-blur-sm">
@@ -41,7 +55,7 @@ export function StickySidebar() {
             </div>
 
             {/* Pricing and Rating Section */}
-            <div className="px-4 lg:px-4  pt-2 ">
+            <div className="px-4 lg:px-4 pt-2 ">
                 <div className="flex justify-between items-center mb-4">
                     <div>
                         <div className="flex items-baseline gap-2">
@@ -155,19 +169,33 @@ export function StickySidebar() {
             {isVideoModalOpen && (
                 <div
                     className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-                    onClick={() => setIsVideoModalOpen(false)}
+                    onClick={handleVideoModalClose}
                 >
                     <div
-                        className="max-w-4xl w-full aspect-video"
+                        className="max-w-4xl w-full aspect-video relative"
                         onClick={(e) => e.stopPropagation()}
                     >
+                        {/* Close button */}
+                        <button
+                            onClick={handleVideoModalClose}
+                            className="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl z-10"
+                        >
+                            ✕
+                        </button>
+
+                        {/* Lazy loaded video */}
                         <video
-                            src=""
+                            ref={videoRef}
+                            src="/videos/ailinc10_2.mp4"
                             controls
                             autoPlay
+                            preload="none"
                             className="w-full h-full rounded-lg"
-                            poster="/images/ai-course-video-thumbnail.png"
+                            poster="/images/1st-pic.png"
+                            onLoadStart={() => console.log('Video loading started')}
+                            onCanPlay={() => console.log('Video can play')}
                         >
+                            <source src="/videos/ailinc10_2.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -175,4 +203,4 @@ export function StickySidebar() {
             )}
         </div>
     )
-} 
+}
