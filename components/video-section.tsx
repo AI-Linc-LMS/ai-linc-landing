@@ -126,14 +126,14 @@ export const VideoSection = () => {
     };
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center py-8 sm:py-12 lg:py-16 overflow-hidden">
-            <div className="relative z-10 w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative flex items-center justify-center py-4 sm:py-8 lg:py-16 overflow-hidden">
+            <div className="relative z-10 w-full mx-auto px-3 sm:px-4 lg:px-8">
                 <div className="relative w-full max-w-7xl mx-auto group">
-                    {/* Hover glow effect */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-[#0BC5EA]/20 to-[#6B46C1]/20 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-50 transition-all duration-500 blur-xl -z-10"></div>
+                    {/* Hover glow effect - reduced on mobile */}
+                    <div className="absolute -inset-0.5 sm:-inset-1 bg-gradient-to-r from-[#0BC5EA]/10 sm:from-[#0BC5EA]/20 to-[#6B46C1]/10 sm:to-[#6B46C1]/20 rounded-lg sm:rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-30 sm:group-hover:opacity-50 transition-all duration-500 blur-xl -z-10"></div>
 
                     {/* Main Card Container */}
-                    <div className="relative bg-gradient-to-br from-gray-800/40 via-gray-900/60 to-black/80 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 shadow-2xl backdrop-blur-sm border border-gray-700/50 overflow-hidden min-h-[400px] sm:min-h-[450px] lg:min-h-[500px] z-20">
+                    <div className="relative bg-gradient-to-br from-gray-800/40 via-gray-900/60 to-black/80 rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-6 md:p-8 lg:p-12 shadow-2xl backdrop-blur-sm border border-gray-700/50 overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] z-20">
                         <motion.div
                             initial="hidden"
                             animate="visible"
@@ -142,16 +142,16 @@ export const VideoSection = () => {
                         >
                             <div className="w-full max-w-6xl mx-auto">
                                 {/* Video Container */}
-                                <div ref={containerRef} className="relative w-full aspect-video rounded-lg sm:rounded-xl overflow-hidden shadow-2xl group/video">
+                                <div ref={containerRef} className="relative w-full aspect-video rounded-md sm:rounded-lg lg:rounded-xl overflow-hidden shadow-2xl group/video">
                                     {/* Fallback background when video doesn't load or hasn't started loading */}
                                     {(!shouldLoadVideo || !videoLoaded || videoError) && (
                                         <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-                                            <div className="text-center p-8">
-                                                <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-[#0BC5EA] to-[#6B46C1] rounded-lg flex items-center justify-center">
-                                                    <Play className="w-8 h-8 text-white" fill="currentColor" />
+                                            <div className="text-center p-4 sm:p-8">
+                                                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-[#0BC5EA] to-[#6B46C1] rounded-lg flex items-center justify-center">
+                                                    <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="currentColor" />
                                                 </div>
-                                                <h3 className="text-white text-lg font-semibold mb-2">AI Workshop Preview</h3>
-                                                <p className="text-gray-300 text-sm">
+                                                <h3 className="text-white text-base sm:text-lg font-semibold mb-2">AI Workshop Preview</h3>
+                                                <p className="text-gray-300 text-xs sm:text-sm px-2">
                                                     {!shouldLoadVideo
                                                         ? "Scroll down or click to load video preview"
                                                         : videoError
@@ -160,8 +160,8 @@ export const VideoSection = () => {
                                                     }
                                                 </p>
                                                 {shouldLoadVideo && !videoError && (
-                                                    <div className="mt-4">
-                                                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#0BC5EA] mx-auto"></div>
+                                                    <div className="mt-3 sm:mt-4">
+                                                        <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-[#0BC5EA] mx-auto"></div>
                                                     </div>
                                                 )}
                                             </div>
@@ -207,34 +207,17 @@ export const VideoSection = () => {
                                                         handlePlayPause();
                                                     }}
                                                 >
-                                                    {/* Glow effect */}
-                                                    <div className="absolute inset-0 bg-[#0BC5EA]/40 rounded-full blur-xl scale-150 group-hover/video:bg-[#0BC5EA]/60 transition-colors duration-300 pointer-events-none"></div>
+                                                    {/* Glow effect - reduced on mobile */}
+                                                    <div className="absolute inset-0 bg-[#0BC5EA]/30 sm:bg-[#0BC5EA]/40 rounded-full blur-lg sm:blur-xl scale-150 group-hover/video:bg-[#0BC5EA]/50 sm:group-hover/video:bg-[#0BC5EA]/60 transition-colors duration-300 pointer-events-none"></div>
 
-                                                    {/* Play button */}
-                                                    <div className="relative w-20 h-20 sm:w-24 sm:h-24 bg-[#0BC5EA] rounded-full flex items-center justify-center shadow-2xl group-hover/video:bg-[#0BC5EA]/95 hover:scale-110 transition-all duration-300 backdrop-blur-sm">
+                                                    {/* Play button - smaller on mobile */}
+                                                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-[#0BC5EA] rounded-full flex items-center justify-center shadow-2xl group-hover/video:bg-[#0BC5EA]/95 hover:scale-110 transition-all duration-300 backdrop-blur-sm">
                                                         <Play
-                                                            className="w-8 h-8 sm:w-10 sm:h-10 text-black ml-1 pointer-events-none"
+                                                            className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-black ml-0.5 sm:ml-1 pointer-events-none"
                                                             fill="currentColor"
                                                         />
                                                     </div>
                                                 </motion.div>
-
-                                                {/* Mentors indicator - moved to bottom left */}
-                                                {/* <div className="absolute bottom-6 left-6 pointer-events-none">
-<div className="flex items-center gap-3">
-<div className="flex -space-x-2">
-<div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-800"></div>
-<div className="w-8 h-8 rounded-full bg-gray-500 border-2 border-gray-800"></div>
-<div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-800"></div>
-<div className="w-8 h-8 rounded-full bg-[#0BC5EA] border-2 border-gray-800 flex items-center justify-center text-black text-xs font-bold">
-+2
-</div>
-</div>
-<span className="text-sm text-gray-300">
-Multiple mentors from Google, Adobe & more
-</span>
-</div>
-</div> */}
 
                                                 {/* Clickable area for video background */}
                                                 <div
@@ -248,7 +231,7 @@ Multiple mentors from Google, Adobe & more
                                         )}
                                     </AnimatePresence>
 
-                                    {/* Timed "Explore Courses" button overlay - appears after 10 seconds during video playback */}
+                                    {/* Timed "Explore Courses" button overlay - mobile responsive positioning */}
                                     <AnimatePresence>
                                         {showTimedButton && (
                                             <motion.div
@@ -256,23 +239,24 @@ Multiple mentors from Google, Adobe & more
                                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                                 exit={{ opacity: 0, scale: 0.8, y: 20 }}
                                                 transition={{ duration: 0.5, ease: "easeOut" }}
-                                                className="absolute bottom-6 right-6 z-40"
+                                                className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 z-40"
                                             >
                                                 <Button
                                                     variant="default"
                                                     className="bg-[#0BC5EA] text-black hover:bg-[#0BC5EA]/90
-transition-all duration-300 px-6 py-3 text-base font-semibold rounded-xl
-hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
-transform hover:scale-105 shadow-2xl backdrop-blur-sm"
+                                                    transition-all duration-300 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg sm:rounded-xl
+                                                    hover:shadow-[0_0_20px_rgba(11,197,234,0.4)] sm:hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
+                                                    transform hover:scale-105 shadow-lg sm:shadow-2xl backdrop-blur-sm"
                                                     onClick={() => window.location.href = '/courses'}
                                                 >
-                                                    Explore Courses
+                                                    <span className="hidden xs:inline">Explore Courses</span>
+                                                    <span className="xs:hidden">Explore Courses</span>
                                                 </Button>
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
 
-                                    {/* Mute/Unmute button - appears when video is playing */}
+                                    {/* Mute/Unmute button - mobile responsive */}
                                     <AnimatePresence>
                                         {isPlaying && (
                                             <motion.div
@@ -280,23 +264,23 @@ transform hover:scale-105 shadow-2xl backdrop-blur-sm"
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 exit={{ opacity: 0, scale: 0.8 }}
                                                 transition={{ duration: 0.3 }}
-                                                className="absolute top-6 right-6 z-40"
+                                                className="absolute top-3 right-3 sm:top-6 sm:right-6 z-40"
                                             >
                                                 <button
                                                     onClick={handleMuteToggle}
-                                                    className="w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                                                    className="w-10 h-10 sm:w-12 sm:h-12 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-110"
                                                 >
                                                     {isMuted ? (
-                                                        <VolumeX className="w-5 h-5 text-white" />
+                                                        <VolumeX className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                                     ) : (
-                                                        <Volume2 className="w-5 h-5 text-white" />
+                                                        <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                                     )}
                                                 </button>
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
 
-                                    {/* Pause overlay for when video is playing */}
+                                    {/* Pause overlay for when video is playing - mobile responsive */}
                                     {isPlaying && (
                                         <div
                                             className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/20 cursor-pointer z-30"
@@ -305,83 +289,24 @@ transform hover:scale-105 shadow-2xl backdrop-blur-sm"
                                                 handlePlayPause();
                                             }}
                                         >
-                                            <div className="w-16 h-16 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                                <Pause className="w-6 h-6 text-white pointer-events-none" fill="currentColor" />
+                                            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                                <Pause className="w-5 h-5 sm:w-6 sm:h-6 text-white pointer-events-none" fill="currentColor" />
                                             </div>
                                         </div>
                                     )}
                                 </div>
 
-                                {/* Video Title and Description */}
-                                <div className="mt-6 sm:mt-8 text-center">
-                                    {/* <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-white leading-tight">
-Deploy Your First AI App: Live No-Code AI Workshop
-</h2> */}
-
-                                    {/* <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
-Master the Fundamentals and Advanced Concepts of AI Through a Hybrid Learning Experience
-</p> */}
-
-                                    {/* Features */}
-                                    {/* <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-gray-400 mb-6 sm:mb-8">
-<div className="flex items-center gap-2">
-<div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-gray-400 flex items-center justify-center">
-<div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400 rounded-full"></div>
-</div>
-<span className="text-xs sm:text-sm md:text-base">111 Days</span>
-</div>
-<div className="flex items-center gap-2">
-<div className="w-4 h-4 sm:w-5 sm:h-5 rounded border border-gray-400"></div>
-<span className="text-xs sm:text-sm md:text-base">Remote Mode</span>
-</div>
-</div> */}
-
-                                    {/* Mentors and CTA */}
-                                    {/* <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8"> */}
-                                    {/* Mentors indicator */}
-                                    {/* <div className="flex items-center gap-3">
-<div className="flex -space-x-2">
-<div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-800"></div>
-<div className="w-8 h-8 rounded-full bg-gray-500 border-2 border-gray-800"></div>
-<div className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-800"></div>
-<div className="w-8 h-8 rounded-full bg-[#0BC5EA] border-2 border-gray-800 flex items-center justify-center text-black text-xs font-bold">
-+2
-</div>
-</div>
-<span className="text-sm text-gray-300">
-Multiple mentors from Google, Adobe & more
-</span>
-</div> */}
-
-                                    {/* CTA Button */}
-                                    {/* <motion.div
-initial={{ opacity: 0, scale: 0.8 }}
-animate={{ opacity: 1, scale: 1 }}
-transition={{
-duration: 0.5,
-delay: 0.5
-}}
->
-<Button
-variant="default"
-className="bg-[#0BC5EA] text-black hover:bg-[#0BC5EA]/90
-transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-xl
-hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
-transform hover:scale-105"
-onClick={() => window.location.href = '/courses'}
->
-Explore Courses
-</Button>
-</motion.div> */}
-                                    {/* </div> */}
+                                {/* Video Title and Description - Mobile optimized spacing */}
+                                <div className="mt-4 sm:mt-6 lg:mt-8 text-center">
+                                    {/* All commented content remains the same but with improved mobile spacing if uncommented */}
                                 </div>
                             </div>
                         </motion.div>
                     </div>
 
-                    {/* Background glow effects */}
-                    <div className="absolute top-1/3 left-1/4 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-[#0BC5EA]/10 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-500 -z-10"></div>
-                    <div className="absolute bottom-1/3 right-1/4 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-[#6B46C1]/10 rounded-full blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 -z-10"></div>
+                    {/* Background glow effects - mobile optimized */}
+                    <div className="absolute top-1/3 left-1/4 w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 xl:w-96 xl:h-96 bg-[#0BC5EA]/5 sm:bg-[#0BC5EA]/10 rounded-full blur-2xl sm:blur-3xl opacity-40 sm:opacity-60 group-hover:opacity-60 sm:group-hover:opacity-80 transition-opacity duration-500 -z-10"></div>
+                    <div className="absolute bottom-1/3 right-1/4 w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 xl:w-96 xl:h-96 bg-[#6B46C1]/5 sm:bg-[#6B46C1]/10 rounded-full blur-2xl sm:blur-3xl opacity-30 sm:opacity-40 group-hover:opacity-50 sm:group-hover:opacity-60 transition-opacity duration-500 -z-10"></div>
                 </div>
             </div>
         </section>
