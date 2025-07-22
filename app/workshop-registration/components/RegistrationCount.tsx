@@ -7,6 +7,21 @@ interface RegistrationCountProps {
   className?: string
 }
 
+// Helper function to format the count display
+const formatCount = (count: number): string => {
+  if (count < 100) {
+    return count.toString()
+  } else if (count < 1000) {
+    // Round down to nearest 50 for numbers 100-999
+    const rounded = Math.floor(count / 50) * 50
+    return `${rounded}`
+  } else {
+    // Round down to nearest 100 for numbers 1000+
+    const rounded = Math.floor(count / 100) * 100
+    return `${rounded}`
+  }
+}
+
 export function RegistrationCount({ className = "" }: RegistrationCountProps) {
   const [registrationCount, setRegistrationCount] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -80,7 +95,7 @@ export function RegistrationCount({ className = "" }: RegistrationCountProps) {
           ) : (
             <>
               <span className="text-2xl font-bold bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
-                {registrationCount}+
+                {registrationCount !== null ? formatCount(registrationCount) : '0'}+
               </span>
               <span className="text-sm text-foreground/80">students already registered!</span>
             </>
