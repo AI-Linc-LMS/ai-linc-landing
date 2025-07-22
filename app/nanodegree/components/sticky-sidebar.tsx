@@ -37,7 +37,7 @@ A comprehensive program designed to transform you into an AI professional. Learn
             {/* Video Preview Section */}
             <div className="relative group">
                 <img
-                    src="/images/1st-pic.png"
+                    src="/images/preview-thumbnail.png"
                     alt="Course Preview Thumbnail"
                     className="w-full h-[200px] lg:h-[250px] object-cover"
                 />
