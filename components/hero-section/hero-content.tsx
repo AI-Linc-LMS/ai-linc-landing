@@ -38,7 +38,7 @@ export function HeroContent({ timeLeft, onHireTalent, onJoinWebinar }: HeroConte
           variant="outline"
           className="px-3 py-1 mb-6 bg-background/80 border-[#0BC5EA]/30 text-[#0BC5EA] text-sm font-medium"
         >
-          Next Cohort: {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+          Next Webinar:  {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
         </Badge>
       </motion.div>
       
