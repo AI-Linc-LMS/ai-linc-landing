@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { TimeLeft } from "./types"
+import Image from "next/image"
 
 interface HeroContentProps {
   timeLeft: TimeLeft
@@ -41,23 +42,23 @@ export function HeroContent({ timeLeft, onHireTalent, onJoinWebinar }: HeroConte
           Next Webinar:  {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
         </Badge>
       </motion.div>
-      
+
       <motion.h1
         variants={item}
         className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent"
       >
         Deploying the Next Generation of AI Talent into High-Impact Roles
       </motion.h1>
-      
-      <motion.p 
-        variants={item} 
+
+      <motion.p
+        variants={item}
         className="text-xl text-foreground/80 mb-8 max-w-xl mx-auto md:mx-0"
       >
         We connect top AI professionals to roles that matter — full-time, part-time, freelance, or startup-backed.
       </motion.p>
-      
-      <motion.div 
-        variants={item} 
+
+      <motion.div
+        variants={item}
         className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
       >
         <Button
@@ -75,6 +76,30 @@ export function HeroContent({ timeLeft, onHireTalent, onJoinWebinar }: HeroConte
         >
           Join Free Webinar
         </Button>
+      </motion.div>
+
+      <motion.div
+        variants={item}
+        className="flex items-center gap-4 justify-center md:justify-start mt-10"
+      >
+        <motion.div
+          className="flex items-center gap-4 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm shadow-lg cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-xl hover:scale-105"
+          whileHover={{
+            scale: 1.05,
+            boxShadow: "0 0 25px rgba(255, 255, 255, 0.2)"
+          }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span className="text-lg text-white font-medium">Powered by</span>
+          <Image
+            src="/last_microsoft.png"
+            alt="Microsoft"
+            width={180}
+            height={45}
+            className="h-10 w-auto transition-transform duration-300 hover:scale-110"
+          />
+          <span className="text-lg text-white font-medium">for Startups</span>
+        </motion.div>
       </motion.div>
     </motion.div>
   )
