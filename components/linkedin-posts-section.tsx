@@ -9,72 +9,72 @@ import { Button } from "@/components/ui/button"
 const candidatesData = [
   {
     id: 1,
-    name: "Satyanarayan Mohapatra",
-    title: "Data Scientist",
-    avatar: "/images/candidate1.jpg", // You'll need to add these images
+    name: "Swayam Agarwal",
+    title: "",
+    avatar: "https://media.licdn.com/dms/image/v2/D5635AQGqoBPbNNKjvw/profile-framedphoto-shrink_800_800/B56Zbx.o.xH0As-/0/1747816452357?e=1753909200&v=beta&t=3SBaLyIzVf9zHF6uUDzKkwph51R4M8URUw0tJuzIHpo", // You'll need to add these images
     linkedinPost: {
-      content: "Thrilled to announce the attainment of my Big Data Certificate! 🎯 Delving into the depths of data analytics, I've honed skills in processing, analyzing, and interpreting vast data sets.\n\nFrom harnessing Hadoop to mastering Spark, this journey has been exhilarating. Grateful for the support and guidance throughout this pursuit Silvia Priyadharshini mam Learnbay\n\nThis certificate symbolizes a milestone in my commitment to excellence in the realm of data science. Excited to leverage these newfound skills in unlocking insights and driving impactful decisions. Onwards and upwards, ready to conquer new data frontiers! 🚀",
+      content: "",
       timestamp: "1d",
       likes: 42,
       comments: 8,
       shares: 3,
-      image: "/images/certificate1.jpg"
+      image: "/link/ss_10.png"
     }
   },
   {
     id: 2,
-    name: "Priya Sharma",
-    title: "AI Engineer",
+    name: "Shubham Narvekar",
+    title: "",
     avatar: "/images/candidate2.jpg",
     linkedinPost: {
-      content: "Just completed my AI certification from AI LINC! 🤖 The journey has been incredible - from learning prompt engineering to building real AI applications.\n\nSpecial thanks to the amazing mentors who guided us through this transformative experience. Ready to apply these skills in the real world! #AI #MachineLearning #Career",
+      content: "",
       timestamp: "2d",
       likes: 67,
       comments: 12,
       shares: 5,
-      image: "/images/certificate2.jpg"
+      image: "/link/ss7.png"
     }
   },
   {
     id: 3,
-    name: "Rahul Kumar",
-    title: "Full Stack Developer",
+    name: "Rahul Ghai",
+    title: "",
     avatar: "/images/candidate3.jpg",
     linkedinPost: {
-      content: "Excited to share that I've successfully transitioned from a non-tech background to becoming a Full Stack Developer! 💻\n\nThe AI LINC program provided the perfect blend of theoretical knowledge and hands-on experience. Built 5 real projects and gained industry-ready skills. #FullStack #CareerTransition #TechJourney",
+      content: "",
       timestamp: "3d",
       likes: 89,
       comments: 15,
       shares: 7,
-      image: "/images/project1.jpg"
+      image: "/link/ss2.png"
     }
   },
   {
     id: 4,
-    name: "Anisha Patel",
-    title: "Product Manager",
-    avatar: "/images/candidate4.jpg",
+    name: "Krishna Patidar",
+    title: "",
+    avatar: "https://media.licdn.com/dms/image/v2/D4D03AQF_SDIwN7DtOg/profile-displayphoto-shrink_800_800/B4DZV8gonBGkAg-/0/1741550686433?e=1756339200&v=beta&t=Jx47IYCS6mHeGwaKVoz2V2jQh0ZU86ccB9AtBRtrf-I",
     linkedinPost: {
-      content: "From idea to execution - just launched my first AI-powered product! 🚀\n\nThe AI LINC program taught me how to bridge the gap between technical possibilities and business needs. Grateful for the mentorship and support throughout this journey. #ProductManagement #AI #Innovation",
+      content: "",
       timestamp: "4d",
       likes: 134,
       comments: 23,
       shares: 11,
-      image: "/images/product1.jpg"
+      image: "/link/ss3 png.png"
     }
   },
   {
     id: 5,
-    name: "Vikram Singh",
-    title: "ML Engineer",
-    avatar: "/images/candidate5.jpg",
+    name: "Amruta Kore",
+    title: "",
+    avatar: "https://media.licdn.com/dms/image/v2/D4E03AQEcJfzgeq2XNw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718220158523?e=1756339200&v=beta&t=4XHlv7v7FrI4k-UcCjavm80DvSVXSqIsgJwOUJVDDwc",
     linkedinPost: {
-      content: "Thrilled to announce my placement at a top tech company! 🎉\n\nThe comprehensive AI and ML training at AI LINC prepared me for real-world challenges. From algorithms to deployment, every aspect was covered thoroughly. Thank you to the entire team! #MachineLearning #Placement #Success",
+      content: "",
       timestamp: "5d",
       likes: 156,
       comments: 28,
       shares: 14,
-      image: "/images/placement1.jpg"
+      image: "/link/ss5 png.png"
     }
   }
 ]
@@ -163,10 +163,12 @@ export function LinkedInPostsSection() {
                         <div className={`w-12 h-12 rounded-full bg-gradient-to-br from-[#0BC5EA] to-[#6B46C1] p-0.5 ${
                           selectedCandidate === index ? "animate-pulse" : ""
                         }`}>
-                          <div className="w-full h-full rounded-full bg-[#1A202C] flex items-center justify-center">
-                            <span className="text-lg font-bold text-white">
-                              {candidate.name.split(' ').map(n => n[0]).join('')}
-                            </span>
+                          <div className="w-full h-full rounded-full overflow-hidden">
+                            <img 
+                              src={candidate.avatar} 
+                              alt={candidate.name}
+                              className="w-full h-full object-cover"
+                            />
                           </div>
                         </div>
                         {selectedCandidate === index && (
@@ -260,7 +262,7 @@ export function LinkedInPostsSection() {
                   {/* LinkedIn App Interface */}
                   <div className="h-full bg-white overflow-hidden">
                     {/* LinkedIn Header */}
-                    <div className="bg-[#0077B5] px-4 py-3 pt-8">
+                    <div className="bg-[#0077B5] px-4 py-3 ">
                       <div className="flex items-center justify-between">
                         <div className="text-white font-bold text-lg">LinkedIn</div>
                         <div className="flex space-x-3">
@@ -282,7 +284,7 @@ export function LinkedInPostsSection() {
                           className="p-4"
                         >
                           {/* Post Header */}
-                          <div className="flex items-start space-x-3 mb-3">
+                          {/* <div className="flex items-start space-x-3 mb-3">
                             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0BC5EA] to-[#6B46C1] flex items-center justify-center">
                               <span className="text-white font-bold text-sm">
                                 {currentCandidate.name.split(' ').map(n => n[0]).join('')}
@@ -298,19 +300,38 @@ export function LinkedInPostsSection() {
                                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                               </svg>
                             </div>
-                          </div>
+                          </div> */}
 
                           {/* Post Content */}
-                          <div className="mb-4">
-                            <p className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">
+                          <div className="">
+                            {/* <p className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">
                               {currentCandidate.linkedinPost.content}
-                            </p>
+                            </p> */}
                           </div>
 
                           {/* Post Image */}
-                          <div className="mb-4 bg-gray-200 rounded-lg h-40 flex items-center justify-center">
-                            <div className="text-gray-500 text-xs">📸 Certificate/Project Image</div>
-                          </div>
+                          {currentCandidate.linkedinPost.image && (
+                            <div className=" rounded-lg overflow-hidden">
+                              <img 
+                                src={currentCandidate.linkedinPost.image} 
+                                alt={`${currentCandidate.name}'s LinkedIn post`}
+                                className="w-full h-auto object-cover"
+                                onError={(e) => {
+                                  // Fallback if image fails to load
+                                  const img = e.currentTarget;
+                                  const fallback = img.nextElementSibling as HTMLElement;
+                                  img.style.display = 'none';
+                                  if (fallback) {
+                                    fallback.style.display = 'flex';
+                                    fallback.classList.remove('hidden');
+                                  }
+                                }}
+                              />
+                              <div className="hidden bg-gray-200 rounded-lg items-center justify-center">
+                                <div className="text-gray-500 text-xs">{currentCandidate.linkedinPost.image}</div>
+                              </div>
+                            </div>
+                          )}
 
                           {/* Post Engagement */}
                           <div className="border-t border-gray-200 pt-3">
