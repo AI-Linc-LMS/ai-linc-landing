@@ -28,6 +28,7 @@ import { useState } from "react"
 import { VideoSection } from "@/components/video-section"
 import { CareerTransformation } from "../components/career-transformation"
 import { TopScorersSection } from "@/components/top-scorers-section"
+import { LinkedInPostsSection } from "@/components/linkedin-posts-section"
 
 export default function Home() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -51,6 +52,7 @@ export default function Home() {
         <VideoSection />
         {/* <WhoWeAreSection /> */}
         <TopScorersSection />
+        {/* <LinkedInPostsSection /> */}
         <ClientTalentSuccessSection />
         <HowWeDoItSection />
         <ProgramJourney />
