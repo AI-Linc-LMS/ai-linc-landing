@@ -2,49 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Play, Pause, Volume2, VolumeX, X } from 'lucide-react';
 
 export const VideoSection = () => {
-    const [showContent, setShowContent] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [showOverlay, setShowOverlay] = useState(true);
     const [videoLoaded, setVideoLoaded] = useState(false);
     const [videoError, setVideoError] = useState(false);
-    const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
     const [showTimedButton, setShowTimedButton] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-    // Lazy loading with Intersection Observer
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && !shouldLoadVideo) {
-                        setShouldLoadVideo(true);
-                        observer.disconnect(); // Stop observing once we start loading
-                    }
-                });
-            },
-            {
-                rootMargin: '100px', // Start loading when video is 100px away from viewport
-                threshold: 0.1
-            }
-        );
-
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
-
-        return () => observer.disconnect();
-    }, [shouldLoadVideo]);
 
     // Timer for showing the button after 10 seconds
     useEffect(() => {
-        if (isPlaying && !showTimedButton) {
-            // Start timer when video starts playing, but only if button hasn't been shown yet
+        if (isPlaying && !showTimedButton && isModalOpen) {
+            // Start timer when video starts playing in modal, but only if button hasn't been shown yet
             timerRef.current = setTimeout(() => {
                 setShowTimedButton(true);
             }, 10000); // 10 seconds
@@ -62,39 +38,62 @@ export const VideoSection = () => {
                 clearTimeout(timerRef.current);
             }
         };
-    }, [isPlaying, showTimedButton]);
+    }, [isPlaying, showTimedButton, isModalOpen]);
+
+    // Update video time
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const updateTime = () => {
+            setCurrentTime(video.currentTime);
+        };
+
+        const updateDuration = () => {
+            setDuration(video.duration);
+        };
+
+        video.addEventListener('timeupdate', updateTime);
+        video.addEventListener('loadedmetadata', updateDuration);
+
+        return () => {
+            video.removeEventListener('timeupdate', updateTime);
+            video.removeEventListener('loadedmetadata', updateDuration);
+        };
+    }, []);
+
+    const handleWatchVideoClick = () => {
+        // Open modal when "Watch the video" is clicked
+        setIsModalOpen(true);
+        
+        // Auto-play when modal opens
+        setTimeout(() => {
+            if (videoRef.current) {
+                videoRef.current.play();
+                setIsPlaying(true);
+            }
+        }, 300); // Small delay to ensure modal is fully open
+    };
 
     const handlePlayPause = () => {
-        // If video hasn't started loading yet, trigger loading
-        if (!shouldLoadVideo) {
-            setShouldLoadVideo(true);
-        }
-
         if (videoRef.current) {
             if (isPlaying) {
                 videoRef.current.pause();
                 setIsPlaying(false);
-                setShowOverlay(true);
             } else {
                 videoRef.current.play();
                 setIsPlaying(true);
-                setShowOverlay(false);
             }
         }
     };
 
     const handleVideoEnd = () => {
         setIsPlaying(false);
-        setShowOverlay(true);
     };
 
     const handleVideoLoaded = () => {
         setVideoLoaded(true);
         setVideoError(false);
-        // Seek to first frame to show preview
-        if (videoRef.current) {
-            videoRef.current.currentTime = 0.5;
-        }
     };
 
     const handleVideoError = () => {
@@ -108,6 +107,33 @@ export const VideoSection = () => {
             setIsMuted(newMutedState);
             videoRef.current.muted = newMutedState;
         }
+    };
+
+    const handleModalClose = () => {
+        // Pause video when modal closes
+        if (videoRef.current) {
+            videoRef.current.pause();
+            setIsPlaying(false);
+        }
+        setIsModalOpen(false);
+        setShowTimedButton(false); // Reset timed button
+    };
+
+    const formatTime = (time: number) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    };
+
+    const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!videoRef.current || !duration) return;
+        
+        const rect = e.currentTarget.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const newTime = (clickX / rect.width) * duration;
+        
+        videoRef.current.currentTime = newTime;
+        setCurrentTime(newTime);
     };
 
     const contentVariants = {
@@ -126,189 +152,196 @@ export const VideoSection = () => {
     };
 
     return (
-        <section className="relative flex items-center justify-center py-4 sm:py-8 lg:py-16 overflow-hidden">
-            <div className="relative z-10 w-full mx-auto px-3 sm:px-4 lg:px-8">
-                <div className="relative w-full max-w-7xl mx-auto group">
-                    {/* Hover glow effect - reduced on mobile */}
-                    <div className="absolute -inset-0.5 sm:-inset-1 bg-gradient-to-r from-[#0BC5EA]/10 sm:from-[#0BC5EA]/20 to-[#6B46C1]/10 sm:to-[#6B46C1]/20 rounded-lg sm:rounded-xl lg:rounded-2xl opacity-0 group-hover:opacity-30 sm:group-hover:opacity-50 transition-all duration-500 blur-xl -z-10"></div>
+        <>
+            <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden">
+                {/* Background Effects */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-[#0BC5EA]/10 rounded-full blur-3xl opacity-30"></div>
+                    <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-[#6B46C1]/10 rounded-full blur-3xl opacity-20"></div>
+                    
+                    {/* Animated flowing lines similar to the image */}
+                    <div className="absolute inset-0 overflow-hidden">
+                        {/* <svg className="absolute top-0 right-0 w-full h-full" viewBox="0 0 1200 800" fill="none">
+                            <defs>
+                                <linearGradient id="flowGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#0BC5EA" stopOpacity="0.3" />
+                                    <stop offset="50%" stopColor="#6B46C1" stopOpacity="0.2" />
+                                    <stop offset="100%" stopColor="#F59E0B" stopOpacity="0.1" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M800,100 Q1000,200 1200,150 Q1000,300 800,250 Q600,400 400,350 Q200,500 0,450"
+                                stroke="url(#flowGradient1)"
+                                strokeWidth="2"
+                                fill="none"
+                                className="animate-pulse"
+                            />
+                            <path
+                                d="M1000,200 Q800,300 600,250 Q400,400 200,350 Q100,500 0,480"
+                                stroke="url(#flowGradient1)"
+                                strokeWidth="1.5"
+                                fill="none"
+                                className="animate-pulse"
+                                style={{ animationDelay: '1s' }}
+                            />
+                        </svg> */}
+                    </div>
+                </div>
 
-                    {/* Main Card Container */}
-                    <div className="relative bg-gradient-to-br from-gray-800/40 via-gray-900/60 to-black/80 rounded-lg sm:rounded-xl lg:rounded-2xl p-3 sm:p-6 md:p-8 lg:p-12 shadow-2xl backdrop-blur-sm border border-gray-700/50 overflow-hidden min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] z-20">
-                        <motion.div
-                            initial="hidden"
-                            animate="visible"
+                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={contentVariants}
+                        className="max-w-4xl"
+                    >
+                        {/* Small heading */}
+                        <motion.p 
+                            className="text-[#0BC5EA] text-sm sm:text-base font-medium  uppercase mb-6"
                             variants={contentVariants}
-                            className="w-full h-full flex items-center justify-center"
                         >
-                            <div className="w-full max-w-6xl mx-auto">
-                                {/* Video Container */}
-                                <div ref={containerRef} className="relative w-full aspect-video rounded-md sm:rounded-lg lg:rounded-xl overflow-hidden shadow-2xl group/video">
-                                    {/* Fallback background when video doesn't load or hasn't started loading */}
-                                    {(!shouldLoadVideo || !videoLoaded || videoError) && (
-                                        <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-                                            <div className="text-center p-4 sm:p-8">
-                                                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-[#0BC5EA] to-[#6B46C1] rounded-lg flex items-center justify-center">
-                                                    <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="currentColor" />
-                                                </div>
-                                                <h3 className="text-white text-base sm:text-lg font-semibold mb-2">AI Workshop Preview</h3>
-                                                <p className="text-gray-300 text-xs sm:text-sm px-2">
-                                                    {!shouldLoadVideo
-                                                        ? "Scroll down or click to load video preview"
-                                                        : videoError
-                                                            ? "Click to retry loading video"
-                                                            : "Loading video preview..."
-                                                    }
-                                                </p>
-                                                {shouldLoadVideo && !videoError && (
-                                                    <div className="mt-3 sm:mt-4">
-                                                        <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-[#0BC5EA] mx-auto"></div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    )}
+                            TRANSFORMING CAREERS WITH AGENTIC AI 
+                        </motion.p>
 
-                                    {/* Only render video element when lazy loading is triggered */}
-                                    {shouldLoadVideo && (
-                                        <video
-                                            ref={videoRef}
-                                            className={`w-full h-full object-cover transition-opacity duration-500 ${videoLoaded && !videoError ? 'opacity-100' : 'opacity-0'}`}
-                                            preload="metadata"
-                                            muted={isMuted}
-                                            playsInline
-                                            onEnded={handleVideoEnd}
-                                            onLoadedData={handleVideoLoaded}
-                                            onError={handleVideoError}
-                                            onCanPlay={() => setVideoLoaded(true)}
+                        {/* Main heading with blue accent bar */}
+                        <motion.div 
+                            className="flex items-start mb-8"
+                            variants={contentVariants}
+                        >
+                            <div className="w-1 bg-[#0BC5EA] mr-6 flex-shrink-0" style={{ height: '200px' }}></div>
+                            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
+                                Build powerful software and websites without coding. AI LINC teaches you to harness AI tools for no-code development, transforming ideas into reality .
+                            </h1>
+                        </motion.div>
+
+                        {/* Watch video button and Learn more */}
+                        <motion.div 
+                            className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
+                            variants={contentVariants}
+                        >
+                            <button
+                                onClick={handleWatchVideoClick}
+                                className="flex items-center gap-4 group cursor-pointer"
+                            >
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full flex items-center justify-center group-hover:bg-gray-100 transition-colors duration-300">
+                                    <Play className="w-5 h-5 sm:w-6 sm:h-6 text-black ml-0.5" fill="currentColor" />
+                                </div>
+                                <span className="text-white text-base sm:text-lg font-medium group-hover:text-[#0BC5EA] transition-colors duration-300">
+                                    Watch the video
+                                </span>
+                            </button>
+
+                            <button className="text-white text-base sm:text-lg font-medium border-b border-white/30 hover:border-[#0BC5EA] hover:text-[#0BC5EA] transition-colors duration-300" onClick={() => window.location.href = '/courses'}>
+                                Learn more
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Full Screen Video Modal */}
+            <Dialog open={isModalOpen} onOpenChange={handleModalClose}>
+                <DialogContent className="max-w-[100vw] max-h-[100vh] w-full h-full p-0 bg-black border-none rounded-none overflow-hidden">
+                    <div className="relative w-full h-full flex items-center justify-center">
+                        {/* Close button */}
+                        <button
+                            onClick={handleModalClose}
+                            className="absolute top-4 right-4 z-50 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                        >
+                            <X className="w-6 h-6 text-white" />
+                        </button>
+
+                        {/* Video container */}
+                        <div className="relative w-full h-full max-w-7xl max-h-[90vh] mx-auto">
+                            <video
+                                ref={videoRef}
+                                className="w-full h-full object-contain"
+                                preload="metadata"
+                                muted={isMuted}
+                                playsInline
+                                onEnded={handleVideoEnd}
+                                onLoadedData={handleVideoLoaded}
+                                onError={handleVideoError}
+                                onCanPlay={() => setVideoLoaded(true)}
+                            >
+                                <source src="/videos/ailinc10_2.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+
+                            {/* Video Controls Overlay */}
+                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-6">
+                                {/* Progress Bar */}
+                                <div 
+                                    className="w-full h-2 bg-white/20 rounded-full mb-4 cursor-pointer"
+                                    onClick={handleProgressClick}
+                                >
+                                    <div 
+                                        className="h-full bg-[#0BC5EA] rounded-full transition-all duration-150"
+                                        style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
+                                    />
+                                </div>
+
+                                {/* Control buttons and time */}
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center space-x-4">
+                                        {/* Play/Pause button */}
+                                        <button
+                                            onClick={handlePlayPause}
+                                            className="w-12 h-12 bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                                         >
-                                            <source src="/videos/ailinc10_2.mp4" type="video/mp4" />
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    )}
+                                            {isPlaying ? (
+                                                <Pause className="w-6 h-6 text-black" fill="currentColor" />
+                                            ) : (
+                                                <Play className="w-6 h-6 text-black ml-0.5" fill="currentColor" />
+                                            )}
+                                        </button>
 
-                                    {/* Video overlay */}
-                                    <AnimatePresence>
-                                        {showOverlay && (
-                                            <motion.div
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                exit={{ opacity: 0 }}
-                                                transition={{ duration: 0.3 }}
-                                                className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover/video:bg-black/10 transition-colors duration-300 z-30"
-                                            >
-                                                {/* Play Button */}
-                                                <motion.div
-                                                    initial={{ scale: 0.8, opacity: 0 }}
-                                                    animate={{ scale: 1, opacity: 1 }}
-                                                    transition={{ delay: 0.2, duration: 0.3 }}
-                                                    className="relative z-40 cursor-pointer"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        handlePlayPause();
-                                                    }}
-                                                >
-                                                    {/* Glow effect - reduced on mobile */}
-                                                    <div className="absolute inset-0 bg-[#0BC5EA]/30 sm:bg-[#0BC5EA]/40 rounded-full blur-lg sm:blur-xl scale-150 group-hover/video:bg-[#0BC5EA]/50 sm:group-hover/video:bg-[#0BC5EA]/60 transition-colors duration-300 pointer-events-none"></div>
+                                        {/* Mute button */}
+                                        <button
+                                            onClick={handleMuteToggle}
+                                            className="w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                                        >
+                                            {isMuted ? (
+                                                <VolumeX className="w-5 h-5 text-white" />
+                                            ) : (
+                                                <Volume2 className="w-5 h-5 text-white" />
+                                            )}
+                                        </button>
 
-                                                    {/* Play button - smaller on mobile */}
-                                                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-[#0BC5EA] rounded-full flex items-center justify-center shadow-2xl group-hover/video:bg-[#0BC5EA]/95 hover:scale-110 transition-all duration-300 backdrop-blur-sm">
-                                                        <Play
-                                                            className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-black ml-0.5 sm:ml-1 pointer-events-none"
-                                                            fill="currentColor"
-                                                        />
-                                                    </div>
-                                                </motion.div>
+                                        {/* Time display */}
+                                        <div className="text-white text-sm font-mono">
+                                            {formatTime(currentTime)} / {formatTime(duration)}
+                                        </div>
+                                    </div>
 
-                                                {/* Clickable area for video background */}
-                                                <div
-                                                    className="absolute inset-0 cursor-pointer z-10"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        handlePlayPause();
-                                                    }}
-                                                ></div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-
-                                    {/* Timed "Explore Courses" button overlay - mobile responsive positioning */}
+                                    {/* Timed "Explore Courses" button */}
                                     <AnimatePresence>
                                         {showTimedButton && (
                                             <motion.div
-                                                initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                                                animate={{ opacity: 1, scale: 1, y: 0 }}
-                                                exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                                                initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                                                animate={{ opacity: 1, scale: 1, x: 0 }}
+                                                exit={{ opacity: 0, scale: 0.8, x: 20 }}
                                                 transition={{ duration: 0.5, ease: "easeOut" }}
-                                                className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 z-40"
                                             >
                                                 <Button
                                                     variant="default"
                                                     className="bg-[#0BC5EA] text-black hover:bg-[#0BC5EA]/90
-                                                    transition-all duration-300 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg sm:rounded-xl
+                                                    transition-all duration-300 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg
                                                     hover:shadow-[0_0_20px_rgba(11,197,234,0.4)] sm:hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
-                                                    transform hover:scale-105 shadow-lg sm:shadow-2xl backdrop-blur-sm"
+                                                    transform hover:scale-105 shadow-lg backdrop-blur-sm"
                                                     onClick={() => window.location.href = '/courses'}
                                                 >
-                                                    <span className="hidden xs:inline">Explore Courses</span>
-                                                    <span className="xs:hidden">Explore Courses</span>
+                                                    Explore Courses
                                                 </Button>
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
-
-                                    {/* Mute/Unmute button - mobile responsive */}
-                                    <AnimatePresence>
-                                        {isPlaying && (
-                                            <motion.div
-                                                initial={{ opacity: 0, scale: 0.8 }}
-                                                animate={{ opacity: 1, scale: 1 }}
-                                                exit={{ opacity: 0, scale: 0.8 }}
-                                                transition={{ duration: 0.3 }}
-                                                className="absolute top-3 right-3 sm:top-6 sm:right-6 z-40"
-                                            >
-                                                <button
-                                                    onClick={handleMuteToggle}
-                                                    className="w-10 h-10 sm:w-12 sm:h-12 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-110"
-                                                >
-                                                    {isMuted ? (
-                                                        <VolumeX className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                                    ) : (
-                                                        <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                                    )}
-                                                </button>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-
-                                    {/* Pause overlay for when video is playing - mobile responsive */}
-                                    {isPlaying && (
-                                        <div
-                                            className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/20 cursor-pointer z-30"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handlePlayPause();
-                                            }}
-                                        >
-                                            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm">
-                                                <Pause className="w-5 h-5 sm:w-6 sm:h-6 text-white pointer-events-none" fill="currentColor" />
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Video Title and Description - Mobile optimized spacing */}
-                                <div className="mt-4 sm:mt-6 lg:mt-8 text-center">
-                                    {/* All commented content remains the same but with improved mobile spacing if uncommented */}
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
-
-                    {/* Background glow effects - mobile optimized */}
-                    <div className="absolute top-1/3 left-1/4 w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 xl:w-96 xl:h-96 bg-[#0BC5EA]/5 sm:bg-[#0BC5EA]/10 rounded-full blur-2xl sm:blur-3xl opacity-40 sm:opacity-60 group-hover:opacity-60 sm:group-hover:opacity-80 transition-opacity duration-500 -z-10"></div>
-                    <div className="absolute bottom-1/3 right-1/4 w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 xl:w-96 xl:h-96 bg-[#6B46C1]/5 sm:bg-[#6B46C1]/10 rounded-full blur-2xl sm:blur-3xl opacity-30 sm:opacity-40 group-hover:opacity-50 sm:group-hover:opacity-60 transition-opacity duration-500 -z-10"></div>
-                </div>
-            </div>
-        </section>
+                </DialogContent>
+            </Dialog>
+        </>
     );
 };
