@@ -20,7 +20,51 @@ import {
   SiOpenai, 
   SiAnthropic, 
   SiHuggingface, 
-  SiDatabricks 
+  SiDatabricks,
+  SiApple,
+  SiNvidia,
+  SiSlack,
+  SiDropbox,
+  SiX,
+  SiLinkedin,
+  SiReddit,
+  SiDiscord,
+  SiTwitch,
+  SiZoom,
+  SiShopify,
+  SiSquare,
+  SiStripe,
+  SiAsana,
+  SiNotion,
+  SiFigma,
+  SiCanva,
+  SiAdobexd,
+  SiGithub,
+  SiGitlab,
+  SiJira,
+  SiConfluence,
+  SiMongodb,
+  SiPostgresql,
+  SiDocker,
+  SiKubernetes,
+  SiOracle,
+  SiCisco,
+  SiIntel,
+  SiHp,
+  SiDell,
+  SiLenovo,
+  SiVmware,
+  SiRedhat,
+  SiSap,
+  SiTableau,
+  SiSnowflake,
+  SiPalantir,
+  SiTwilio,
+  SiSendgrid,
+  SiMailchimp,
+  SiHubspot,
+  SiZendesk,
+  SiIntercom
 } from "react-icons/si"
 // Import additional icons from other icon sets
 import { FaMicrosoft } from "react-icons/fa"
@@ -36,24 +80,108 @@ export function ClientTalentSuccessSection() {
     </div>
   )
 
-  // Client companies that trust us for recruitment with their logos
+  // Custom components for consulting companies without icons
+  const AccentureIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current text-xs`} style={style}>
+      Accenture
+    </div>
+  )
+
+  const WiproIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current`} style={style}>
+      Wipro
+    </div>
+  )
+
+  const CognizantIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current text-xs`} style={style}>
+      Cognizant
+    </div>
+  )
+
+  const CapgeminiIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current text-xs`} style={style}>
+      Capgemini
+    </div>
+  )
+
+  const TCSIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current`} style={style}>
+      TCS
+    </div>
+  )
+
+  const InfosysIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current text-xs`} style={style}>
+      Infosys
+    </div>
+  )
+
+  const DeloitteIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current text-xs`} style={style}>
+      Deloitte
+    </div>
+  )
+
+  const PwCIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current`} style={style}>
+      PwC
+    </div>
+  )
+
+  const KPMGIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current`} style={style}>
+      KPMG
+    </div>
+  )
+
+  const EYIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={`${className} flex items-center justify-center font-bold text-current`} style={style}>
+      EY
+    </div>
+  )
+
+  // Client companies that trust us for recruitment with their logos - 32 companies (8x4 tiers)
   const clientCompanies = [
+    // Big 4 Consulting Firms + Major IT Services (8 companies)
+    { name: "Deloitte", icon: DeloitteIcon, color: "#86BC25" },
+    { name: "PwC", icon: PwCIcon, color: "#FF6600" },
+    { name: "KPMG", icon: KPMGIcon, color: "#00338D" },
+    { name: "EY", icon: EYIcon, color: "#FFE600" },
+    { name: "Accenture", icon: AccentureIcon, color: "#A100FF" },
+    { name: "TCS", icon: TCSIcon, color: "#0F1B3C" },
+    { name: "Infosys", icon: InfosysIcon, color: "#007CC3" },
+    { name: "Wipro", icon: WiproIcon, color: "#0066CC" },
+
+    // Tier 1 - Tech Giants (8 companies)
     { name: "Microsoft", icon: FaMicrosoft, color: "#00BCF2" },
     { name: "Google", icon: SiGoogle, color: "#4285F4" },
     { name: "Amazon", icon: SiAmazon, color: "#FF9900" },
+    { name: "Apple", icon: SiApple, color: "#999999" },
     { name: "Meta", icon: SiMeta, color: "#1877F2" },
-    { name: "Spotify", icon: SiSpotify, color: "#1DB954" },
-    { name: "Adobe", icon: SiAdobe, color: "#FF0000" },
-    { name: "IBM", icon: IBMIcon, color: "#054ADA" },
-    { name: "Salesforce", icon: SiSalesforce, color: "#00A1E0" },
     { name: "Netflix", icon: SiNetflix, color: "#E50914" },
+    { name: "Tesla", icon: SiTesla, color: "#CC0000" },
+    { name: "Nvidia", icon: SiNvidia, color: "#76B900" },
+
+    // Tier 2 - Established Tech Companies (8 companies)
+    { name: "Salesforce", icon: SiSalesforce, color: "#00A1E0" },
+    { name: "Adobe", icon: SiAdobe, color: "#FF0000" },
+    { name: "Oracle", icon: SiOracle, color: "#F80000" },
+    { name: "IBM", icon: IBMIcon, color: "#054ADA" },
+    { name: "Cisco", icon: SiCisco, color: "#1AB2FF" },
+    { name: "SAP", icon: SiSap, color: "#007E1A" },
+    { name: "Intel", icon: SiIntel, color: "#0071C5" },
+    { name: "VMware", icon: SiVmware, color: "#2376C2" },
+
+    // Tier 3 - Growth Companies & Specialized (8 companies)
+    { name: "Spotify", icon: SiSpotify, color: "#1DB954" },
     { name: "Uber", icon: SiUber, color: "#000000" },
     { name: "Airbnb", icon: SiAirbnb, color: "#FF5A5F" },
-    { name: "Tesla", icon: SiTesla, color: "#CC0000" },
-    { name: "OpenAI", icon: SiOpenai, color: "#412991" },
-    { name: "Anthropic", icon: SiAnthropic, color: "#D4A574" },
-    { name: "Hugging Face", icon: SiHuggingface, color: "#FFD21E" },
-    { name: "Databricks", icon: SiDatabricks, color: "#FF3621" }
+    { name: "Shopify", icon: SiShopify, color: "#96CC39" },
+    { name: "Stripe", icon: SiStripe, color: "#008CDD" },
+    { name: "Zoom", icon: SiZoom, color: "#2D8CFF" },
+    { name: "Slack", icon: SiSlack, color: "#4A154B" },
+    { name: "Cognizant", icon: CognizantIcon, color: "#0073E6" }
   ]
 
   // Testimonials from deployed talent
