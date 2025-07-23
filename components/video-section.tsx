@@ -50,29 +50,83 @@ export const VideoSection = () => {
         };
 
         const updateDuration = () => {
-            setDuration(video.duration);
+            if (video.duration && !isNaN(video.duration) && isFinite(video.duration)) {
+                setDuration(video.duration);
+            }
+        };
+
+        const handleLoadedMetadata = () => {
+            setVideoLoaded(true);
+            setVideoError(false);
+            updateDuration();
+        };
+
+        const handleCanPlay = () => {
+            setVideoLoaded(true);
+            updateDuration();
+        };
+
+        const handleDurationChange = () => {
+            updateDuration();
+        };
+
+        const handleError = (e: Event) => {
+            setVideoError(true);
+            setVideoLoaded(false);
         };
 
         video.addEventListener('timeupdate', updateTime);
-        video.addEventListener('loadedmetadata', updateDuration);
+        video.addEventListener('loadedmetadata', handleLoadedMetadata);
+        video.addEventListener('canplay', handleCanPlay);
+        video.addEventListener('durationchange', handleDurationChange);
+        video.addEventListener('error', handleError);
+
+        // Initial check for already loaded video
+        if (video.readyState >= 1) {
+            updateDuration();
+        }
 
         return () => {
             video.removeEventListener('timeupdate', updateTime);
-            video.removeEventListener('loadedmetadata', updateDuration);
+            video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+            video.removeEventListener('canplay', handleCanPlay);
+            video.removeEventListener('durationchange', handleDurationChange);
+            video.removeEventListener('error', handleError);
         };
-    }, []);
+    }, [isModalOpen]); // Re-run when modal opens
 
     const handleWatchVideoClick = () => {
         // Open modal when "Watch the video" is clicked
         setIsModalOpen(true);
         
-        // Auto-play when modal opens
+        // Reset states
+        setCurrentTime(0);
+        setDuration(0);
+        setVideoError(false);
+        
+        // Auto-play when modal opens with a longer delay
         setTimeout(() => {
             if (videoRef.current) {
-                videoRef.current.play();
-                setIsPlaying(true);
+                // Force load the video metadata
+                videoRef.current.load();
+                
+                // Wait for metadata to load before playing
+                const playWhenReady = () => {
+                    if (videoRef.current && videoRef.current.readyState >= 1) {
+                        videoRef.current.play().then(() => {
+                            setIsPlaying(true);
+                        }).catch((error) => {
+                            console.error('Play failed:', error);
+                        });
+                    } else {
+                        // Wait a bit more and try again
+                        setTimeout(playWhenReady, 100);
+                    }
+                };
+                
+                playWhenReady();
             }
-        }, 300); // Small delay to ensure modal is fully open
+        }, 500); // Increased delay
     };
 
     const handlePlayPause = () => {
@@ -81,8 +135,11 @@ export const VideoSection = () => {
                 videoRef.current.pause();
                 setIsPlaying(false);
             } else {
-                videoRef.current.play();
-                setIsPlaying(true);
+                videoRef.current.play().then(() => {
+                    setIsPlaying(true);
+                }).catch((error) => {
+                    console.error('Play failed:', error);
+                });
             }
         }
     };
@@ -94,6 +151,10 @@ export const VideoSection = () => {
     const handleVideoLoaded = () => {
         setVideoLoaded(true);
         setVideoError(false);
+        // Force duration update
+        if (videoRef.current && videoRef.current.duration) {
+            setDuration(videoRef.current.duration);
+        }
     };
 
     const handleVideoError = () => {
@@ -120,13 +181,16 @@ export const VideoSection = () => {
     };
 
     const formatTime = (time: number) => {
+        if (!time || isNaN(time) || !isFinite(time)) return '0:00';
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
         return `${minutes}:${seconds.toString().padStart(2, '0')}`;
     };
 
     const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!videoRef.current || !duration) return;
+        if (!videoRef.current || !duration || duration === 0) {
+            return;
+        }
         
         const rect = e.currentTarget.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
@@ -262,7 +326,17 @@ export const VideoSection = () => {
                                 onEnded={handleVideoEnd}
                                 onLoadedData={handleVideoLoaded}
                                 onError={handleVideoError}
-                                onCanPlay={() => setVideoLoaded(true)}
+                                onCanPlay={() => {
+                                    setVideoLoaded(true);
+                                    if (videoRef.current && videoRef.current.duration) {
+                                        setDuration(videoRef.current.duration);
+                                    }
+                                }}
+                                onLoadedMetadata={() => {
+                                    if (videoRef.current && videoRef.current.duration) {
+                                        setDuration(videoRef.current.duration);
+                                    }
+                                }}
                             >
                                 <source src="/videos/ailinc10_2.mp4" type="video/mp4" />
                                 Your browser does not support the video tag.
@@ -276,8 +350,10 @@ export const VideoSection = () => {
                                     onClick={handleProgressClick}
                                 >
                                     <div 
-                                        className="h-full bg-[#0BC5EA] rounded-full transition-all duration-150"
-                                        style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
+                                        className="h-full bg-[#0BC5EA] rounded-full transition-all duration-100 ease-linear"
+                                        style={{ 
+                                            width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`
+                                        }}
                                     />
                                 </div>
 
@@ -312,6 +388,7 @@ export const VideoSection = () => {
                                         <div className="text-white text-sm font-mono">
                                             {formatTime(currentTime)} / {formatTime(duration)}
                                         </div>
+                                        
                                     </div>
 
                                     {/* Timed "Explore Courses" button */}
