@@ -50,11 +50,12 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <VideoSection />
+        <HowWeDoItSection />
         {/* <WhoWeAreSection /> */}
         <TopScorersSection />
         {/* <LinkedInPostsSection /> */}
         <ClientTalentSuccessSection />
-        <HowWeDoItSection />
+        {/* <HowWeDoItSection /> */}
         <ProgramJourney />
         <KeyUsps />
         <CareerTransformation />
