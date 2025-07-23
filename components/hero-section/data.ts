@@ -46,7 +46,8 @@ export const talentJourney: TalentJourneyStep[] = [
     metrics: "< 48hr match",
     details: "Schedule a 1-1 call with industry expert to understand gaps and plan of action",
     duration: "Ongoing",
-    nextStep: "Get Placed"
+    nextStep: "Get Hired",
+    action: () => window.location.href = "https://app.ailinc.com/jobs"
   }
 ]
 

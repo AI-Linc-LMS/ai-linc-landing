@@ -2,54 +2,40 @@ import { useState, useEffect } from "react"
 import { TimeLeft } from "../types"
 import { talentJourney, keyMetrics } from "../data"
 
+const WEBINAR_DATE = new Date("2025-07-27T12:30:00+05:30"); // IST timezone
+
 export function useHeroTimers() {
   const [activeProcess, setActiveProcess] = useState(0)
   const [currentMetric, setCurrentMetric] = useState(0)
   const [progressValue, setProgressValue] = useState(0)
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 7,
-    hours: 23,
-    minutes: 59,
-    seconds: 59,
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
   })
 
   useEffect(() => {
-    // Countdown timer
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.days === 0 && prev.hours === 0 && prev.minutes === 0 && prev.seconds === 0) {
-          clearInterval(timer)
-          return prev
-        }
-
-        let newSeconds = prev.seconds - 1
-        let newMinutes = prev.minutes
-        let newHours = prev.hours
-        let newDays = prev.days
-
-        if (newSeconds < 0) {
-          newSeconds = 59
-          newMinutes -= 1
-        }
-
-        if (newMinutes < 0) {
-          newMinutes = 59
-          newHours -= 1
-        }
-
-        if (newHours < 0) {
-          newHours = 23
-          newDays -= 1
-        }
-
-        return {
-          days: newDays,
-          hours: newHours,
-          minutes: newMinutes,
-          seconds: newSeconds,
-        }
-      })
-    }, 1000)
+    // Countdown timer - calculate actual time remaining
+    const updateCountdown = () => {
+      const now = new Date()
+      const diff = WEBINAR_DATE.getTime() - now.getTime()
+      
+      if (diff <= 0) {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        return
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+      
+      setTimeLeft({ days, hours, minutes, seconds })
+    }
+    
+    updateCountdown()
+    const timer = setInterval(updateCountdown, 1000)
 
     // Auto-cycle through talent journey
     const processTimer = setInterval(() => {

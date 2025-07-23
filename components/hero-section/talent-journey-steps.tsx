@@ -26,7 +26,8 @@ export function TalentJourneySteps({
     } else if (step.id === 0) {
       onWebinarOpen()
     } else if (step.id === 2) {  // Assuming the "Get Hired" step is index 2
-      onContactModalOpen()
+      window.open("https://app.ailinc.com/jobs", "_blank")
+      // onContactModalOpen() - disabled
     } else if (step.id === 1) {
       window.open("/assessment", "_blank")
     }
@@ -143,8 +144,11 @@ export function TalentJourneySteps({
                           "/assessment",
                           "_blank"
                         )
-                      } else if (step.id === 2) {  // Assuming the "Get Hired" step is index 2
-                        onContactModalOpen()
+                      } else if (step.id === 2) {
+                        window.open(
+                          "https://app.ailinc.com/jobs",
+                          "_blank"
+                        )
                       } else if (step.action) {
                         step.action()
                       } else {
