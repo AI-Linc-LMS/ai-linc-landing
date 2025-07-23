@@ -29,6 +29,7 @@ import { VideoSection } from "@/components/video-section"
 import { CareerTransformation } from "../components/career-transformation"
 import { TopScorersSection } from "@/components/top-scorers-section"
 import { LinkedInPostsSection } from "@/components/linkedin-posts-section"
+import { StudentTestimonialsSection } from "@/components/student-testimonials-section"
 
 export default function Home() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -54,6 +55,7 @@ export default function Home() {
         {/* <WhoWeAreSection /> */}
         <TopScorersSection />
         <LinkedInPostsSection />
+        <StudentTestimonialsSection />
         <ClientTalentSuccessSection />
         {/* <HowWeDoItSection /> */}
         <ProgramJourney />
