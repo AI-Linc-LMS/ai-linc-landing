@@ -82,7 +82,7 @@ export function RegistrationCount({ className = "" }: RegistrationCountProps) {
               <span className="text-2xl font-bold bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
                 {registrationCount !== null ? registrationCount : '0'}+
               </span>
-              <span className="text-sm text-foreground/80">students already registered!</span>
+              <span className="text-sm text-foreground/80">users using platform</span>
             </>
           )}
         </div>
