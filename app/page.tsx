@@ -49,7 +49,7 @@ export default function Home() {
         <Navbar />
         <HeroSection />
         <VideoSection />
-        <WhoWeAreSection />
+        {/* <WhoWeAreSection /> */}
         <TopScorersSection />
         <ClientTalentSuccessSection />
         <HowWeDoItSection />

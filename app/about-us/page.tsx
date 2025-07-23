@@ -43,6 +43,7 @@ export default function AboutUsPage() {
         
         {/* What We Do Section */}
         <WhatWeDoSection />
+        
 
         <Footer />
       </main>
