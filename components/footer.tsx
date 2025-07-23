@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Linkedin, Mail, Send } from "lucide-react"
+import { Linkedin, Mail, Send, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
@@ -76,20 +76,20 @@ export function Footer() {
             </p>
             <ul className="space-y-2 text-sm sm:text-base">
               <li>
-                <button
-                  onClick={() => navigateToSection("who-we-are")}
+                <Link
+                  href="/about-us"
                   className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
                 >
                   Who We Are
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  onClick={() => navigateToSection("what-we-do")}
+                <Link
+                  href="/about-us"
                   className="text-foreground/60 hover:text-[#0BC5EA] transition-colors text-left"
                 >
                   What We Do
-                </button>
+                </Link>
               </li>
               <li>
                 <button
@@ -234,6 +234,17 @@ export function Footer() {
               >
                 <Mail className="size-5 mr-3" />
                 Contact
+              </Button>
+
+              <Button
+                variant="ghost"
+                className="w-full justify-start p-3 hover:bg-[#0BC5EA]/10 hover:text-[#0BC5EA] transition-colors"
+                asChild
+              >
+                <Link href="/about-us">
+                  <Users className="size-5 mr-3" />
+                  About Us
+                </Link>
               </Button>
             </div>
 
