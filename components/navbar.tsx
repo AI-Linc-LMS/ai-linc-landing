@@ -140,13 +140,21 @@ export function Navbar() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/courses" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Courses</NavigationMenuLink>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Programs</NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/courses#curriculum" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Curriculum</NavigationMenuLink>
-                  </Link>
+                  <NavigationMenuTrigger>Courses</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[200px] gap-3 p-4">
+                      <ListItem href="/nanodegree" title="Nanodegree">
+                        Comprehensive AI nanodegree program
+                      </ListItem>
+                      <ListItem href="/flagship-course" title="Flagship">
+                        Our flagship AI course
+                      </ListItem>
+                    </ul>
+                  </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/courses#instructors" legacyBehavior passHref>
@@ -213,25 +221,33 @@ export function Navbar() {
             >
               <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
                 <Link
-                  href="/#program"
+                  href="/"
                   className="text-foreground/80 hover:text-foreground transition-colors py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Home
+                </Link>
+                <div className="text-foreground/60 text-sm font-medium py-1">Courses</div>
+                <Link
+                  href="/nanodegree"
+                  className="text-foreground/80 hover:text-foreground transition-colors py-2 pl-4"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Nanodegree
+                </Link>
+                <Link
+                  href="/flagship-course"
+                  className="text-foreground/80 hover:text-foreground transition-colors py-2 pl-4"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Flagship Course
                 </Link>
                 <Link
                   href="/courses"
                   className="text-foreground/80 hover:text-foreground transition-colors py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Courses
-                </Link>
-                <Link
-                  href="/courses#curriculum"
-                  className="text-foreground/80 hover:text-foreground transition-colors py-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Curriculum
+                Programs
                 </Link>
                 <Link
                   href="/courses#instructors"
@@ -247,19 +263,12 @@ export function Navbar() {
                 >
                   Blogs
                 </Link>
-                {/* <Link
-                href="/#pricing"
-                className="text-foreground/80 hover:text-foreground transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Pricing
-              </Link> */}
                 <Link
                   href="/workshop-registration"
                   className="text-foreground/80 hover:text-foreground transition-colors py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Register
+                  Webinar
                 </Link>
                 <Link href="/#contact-apply">
                   <Button

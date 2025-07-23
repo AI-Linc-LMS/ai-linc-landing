@@ -324,7 +324,7 @@ export function ClientTalentSuccessSection() {
             </div>
           </div>
         </motion.div>
-        <WhatWeDoSection />
+        {/* <WhatWeDoSection /> */}
 
         {/* Talent Success Stories */}
         <motion.div
