@@ -25,7 +25,7 @@ const candidatesData = [
     id: 2,
     name: "Shubham Narvekar",
     title: "",
-    avatar: "/images/candidate2.jpg",
+    avatar: "https://media.licdn.com/dms/image/v2/D4D35AQEDQnovWLJ78A/profile-framedphoto-shrink_800_800/B4DZc1.6HfG8Ao-/0/1748957373227?e=1753970400&v=beta&t=smdlQhQ18uD4wa0W95Tzeu_6kxvwo6zwNNEtXr2TehU",
     linkedinPost: {
       content: "",
       timestamp: "2d",
@@ -37,7 +37,7 @@ const candidatesData = [
   },
   {
     id: 3,
-    name: "Rahul Ghai",
+    name: "Rishab Ghai",
     title: "",
     avatar: "/images/candidate3.jpg",
     linkedinPost: {
@@ -79,60 +79,47 @@ const candidatesData = [
   },
   {
     id: 6,
-    name: "Amruta Kore",
+    name: "Mahir Prajapati",
     title: "",
-    avatar: "https://media.licdn.com/dms/image/v2/D4E03AQEcJfzgeq2XNw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718220158523?e=1756339200&v=beta&t=4XHlv7v7FrI4k-UcCjavm80DvSVXSqIsgJwOUJVDDwc",
+    avatar: "https://media.licdn.com/dms/image/v2/D4E35AQExoRGFxj3c2g/profile-framedphoto-shrink_800_800/B4EZcYgOBcHAAg-/0/1748462788941?e=1753966800&v=beta&t=Hfad8YxbHQu57dlp6-60EqEb9_C7JkLh0TBHvf-XCas",
     linkedinPost: {
       content: "",
       timestamp: "5d",
       likes: 156,
       comments: 28,
       shares: 14,
-      image: "/link/ss5 png.png"
+      image: "/link/ss png.png"
     }
   },
   {
     id: 7,
-    name: "Amruta Kore",
+    name: "Mohammad Asef Qayumi",
     title: "",
-    avatar: "https://media.licdn.com/dms/image/v2/D4E03AQEcJfzgeq2XNw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718220158523?e=1756339200&v=beta&t=4XHlv7v7FrI4k-UcCjavm80DvSVXSqIsgJwOUJVDDwc",
+    avatar: "https://media.licdn.com/dms/image/v2/D4D03AQFOGe_2IFY0uQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1726383200155?e=1756339200&v=beta&t=0OlzVUcq4T1Xndsnr8p-HPAq3477RwO48LPe7vlMo1Q",
     linkedinPost: {
       content: "",
       timestamp: "5d",
       likes: 156,
       comments: 28,
       shares: 14,
-      image: "/link/ss5 png.png"
+      image: "/link/ss6 png.png"
     }
   },
   {
     id: 8,
-    name: "Amruta Kore",
+    name: "Vijaya Pothula ",
     title: "",
-    avatar: "https://media.licdn.com/dms/image/v2/D4E03AQEcJfzgeq2XNw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718220158523?e=1756339200&v=beta&t=4XHlv7v7FrI4k-UcCjavm80DvSVXSqIsgJwOUJVDDwc",
+    avatar: "https://media.licdn.com/dms/image/v2/D5603AQGO_J5hGezn7g/profile-displayphoto-crop_800_800/B56ZfGgR7qGoAM-/0/1751382041067?e=1756339200&v=beta&t=ojkgq9ONJu3lB4ZwQGWYkGpWyP1HQTAVm-vz8GPZG-k",
     linkedinPost: {
       content: "",
       timestamp: "5d",
       likes: 156,
       comments: 28,
       shares: 14,
-      image: "/link/ss5 png.png"
+      image: "/link/Vijaya.png"
     }
   },
-  {
-    id: 9,
-    name: "Amruta Kore",
-    title: "",
-    avatar: "https://media.licdn.com/dms/image/v2/D4E03AQEcJfzgeq2XNw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718220158523?e=1756339200&v=beta&t=4XHlv7v7FrI4k-UcCjavm80DvSVXSqIsgJwOUJVDDwc",
-    linkedinPost: {
-      content: "",
-      timestamp: "5d",
-      likes: 156,
-      comments: 28,
-      shares: 14,
-      image: "/link/ss5 png.png"
-    }
-  }
+  
 ]
 
 export function LinkedInPostsSection() {
