@@ -39,7 +39,7 @@ const candidatesData = [
     id: 3,
     name: "Rishab Ghai",
     title: "",
-    avatar: "/images/candidate3.jpg",
+    avatar: "/link/Rishab.png",
     linkedinPost: {
       content: "",
       timestamp: "3d",
