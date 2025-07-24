@@ -273,9 +273,15 @@ export const VideoSection = () => {
                             variants={contentVariants}
                         >
                             <div className="w-1 bg-[#0BC5EA] mr-6 flex-shrink-0" style={{ height: '200px' }}></div>
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
-                                Build powerful software and websites without coding. AI LINC teaches you to harness AI tools for no-code development, transforming ideas into reality .
-                            </h1>
+                            <div>
+                                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
+                                    Build powerful software and websites without coding.
+                                </h1>
+                                <h2 className="mt-4 text-lg sm:text-xl lg:text-2xl font-light bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
+                                    AI LINC teaches you to harness AI tools for no-code development, transforming ideas into reality.
+                                </h2>
+                            </div>
+                            
                         </motion.div>
 
                         {/* Watch video button and Learn more */}

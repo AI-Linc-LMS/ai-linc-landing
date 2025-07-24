@@ -53,7 +53,7 @@ export default function Home() {
         <VideoSection />
         <HowWeDoItSection />
         {/* <WhoWeAreSection /> */}
-        <TopScorersSection />
+        {/* <TopScorersSection /> */}
         <LinkedInPostsSection />
         <StudentTestimonialsSection />
         <ClientTalentSuccessSection />
