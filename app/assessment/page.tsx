@@ -18,6 +18,7 @@ import { useSearchParams } from "next/navigation"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Suspense } from "react"
+import { CtaScheduleCall } from "../courses/detailed-syllabus/components/cta-schedule-call"
 
 function AssessmentPageContent({
   isTestModalOpen,
@@ -110,6 +111,7 @@ function AssessmentPageContent({
       
       {/* Post-Bootcamp Assessment */}
       <PostBootcampSection onStartTest={handleStartTest} />
+      <CtaScheduleCall />
       <Footer />
       {/* Modals */}
       {/* <TestModal 
