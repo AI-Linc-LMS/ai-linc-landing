@@ -632,7 +632,7 @@ export function DetailedSyllabusContent() {
           transition={{ duration: 0.4 }}
           className="mb-8"
         >
-          <div className="flex items-center gap-4 mb-6">
+          {/* <div className="flex items-center gap-4 mb-6">
             <Link href="/flagship-course">
               <Button variant="outline" size="sm" className="border-gray-600 text-gray-300 hover:bg-gray-700">
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -650,7 +650,7 @@ export function DetailedSyllabusContent() {
               <ChevronRight className="w-4 h-4 mx-2" />
               <span className="text-gray-300">Detailed Syllabus</span>
             </div>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Header */}
