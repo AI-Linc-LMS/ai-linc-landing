@@ -5,6 +5,7 @@ import { BookOpen, Code, Brain, Rocket, Users, Trophy, Target, Star, ArrowRight,
 import Link from "next/link"
 import { useRef, useEffect, useState } from "react"
 import { motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion"
+import { DetailedSyllabusContent } from "@/app/courses/detailed-syllabus/components/detailed-syllabus-content"
 
 const syllabusData = [
   {
@@ -423,7 +424,8 @@ export function SyllabusSection() {
           </p>
         </div>
          {/* Detailed Course Button */}
-         <div className="text-center mb-10">
+         <DetailedSyllabusContent />
+         {/* <div className="text-center mb-10">
           <Link href="/courses/detailed-syllabus">
             <Button
               size="lg"
@@ -440,7 +442,7 @@ export function SyllabusSection() {
           <p className="text-gray-400 mt-4 text-sm">
             Discover comprehensive AI-driven learning outcomes, intelligent tools, and next-gen development skills
           </p>
-        </div>
+        </div> */}
 
         {/* Main Phases Timeline with Flip Cards */}
         <div className="relative mb-12 md:mb-16">

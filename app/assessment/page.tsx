@@ -107,6 +107,7 @@ function AssessmentPageContent({
         containerVariants={containerVariants}
         itemVariants={itemVariants}
       />
+      
       {/* Post-Bootcamp Assessment */}
       <PostBootcampSection onStartTest={handleStartTest} />
       <Footer />
