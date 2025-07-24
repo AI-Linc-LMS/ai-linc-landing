@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight, Heart, MessageCircle, Share, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ContactFormModal } from "@/components/contact-form-modal"
 
 // Sample data structure for candidates and their LinkedIn posts
 const candidatesData = [
@@ -124,6 +125,7 @@ const candidatesData = [
 export function LinkedInPostsSection() {
   const [selectedCandidate, setSelectedCandidate] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
 
   // Ref for the avatar container
   const avatarsRef = useRef<HTMLDivElement>(null)
@@ -233,8 +235,8 @@ export function LinkedInPostsSection() {
                         onClick={() => setSelectedCandidate(index)}
                       >
                         <div className={`w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-2 sm:border-3 lg:border-4 transition-all duration-300 ${selectedCandidate === index
-                            ? "border-[#0BC5EA] shadow-lg shadow-[#0BC5EA]/30"
-                            : "border-gray-300 hover:border-gray-400"
+                          ? "border-[#0BC5EA] shadow-lg shadow-[#0BC5EA]/30"
+                          : "border-gray-300 hover:border-gray-400"
                           }`}>
                           <img
                             src={candidate.avatar}
@@ -281,8 +283,8 @@ export function LinkedInPostsSection() {
                       key={index}
                       onClick={() => setSelectedCandidate(index)}
                       className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${selectedCandidate === index
-                          ? "bg-[#0BC5EA] w-4 sm:w-6 lg:w-8"
-                          : "bg-gray-500 hover:bg-gray-400 w-1.5 sm:w-2"
+                        ? "bg-[#0BC5EA] w-4 sm:w-6 lg:w-8"
+                        : "bg-gray-500 hover:bg-gray-400 w-1.5 sm:w-2"
                         }`}
                     />
                   ))}
@@ -300,6 +302,7 @@ export function LinkedInPostsSection() {
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-[#FF6B35] to-[#FF8E53] hover:from-[#FF5722] hover:to-[#FF7043] text-white px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 text-sm sm:text-base lg:text-lg rounded-lg sm:rounded-xl lg:rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto max-w-xs sm:max-w-sm"
+                  onClick={() => setIsContactModalOpen(true)}
                 >
                   Free Career Counselling from Experts
                 </Button>
@@ -421,6 +424,10 @@ export function LinkedInPostsSection() {
       {/* Background Effects - More responsive sizing */}
       <div className="absolute top-1/4 left-1/4 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-96 xl:h-96 bg-[#0BC5EA]/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/4 right-1/4 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 xl:w-96 xl:h-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
+      <ContactFormModal
+        open={isContactModalOpen}
+        onOpenChange={setIsContactModalOpen}
+      />
     </section>
   )
 }
