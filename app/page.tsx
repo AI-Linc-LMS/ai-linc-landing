@@ -62,7 +62,7 @@ export default function Home() {
         {/* <HowWeDoItSection /> */}
         <ProgramJourney />
         <KeyUsps />
-        <CareerTransformation />
+        {/* <CareerTransformation /> */}
         <WorkIntegration />
         <RegistrationSection onSuccess={() => setShowSuccessModal(true)} />
         <LetsWorkTogetherSection />
