@@ -98,18 +98,18 @@ export const VideoSection = () => {
     const handleWatchVideoClick = () => {
         // Open modal when "Watch the video" is clicked
         setIsModalOpen(true);
-        
+
         // Reset states
         setCurrentTime(0);
         setDuration(0);
         setVideoError(false);
-        
+
         // Auto-play when modal opens with a longer delay
         setTimeout(() => {
             if (videoRef.current) {
                 // Force load the video metadata
                 videoRef.current.load();
-                
+
                 // Wait for metadata to load before playing
                 const playWhenReady = () => {
                     if (videoRef.current && videoRef.current.readyState >= 1) {
@@ -123,7 +123,7 @@ export const VideoSection = () => {
                         setTimeout(playWhenReady, 100);
                     }
                 };
-                
+
                 playWhenReady();
             }
         }, 500); // Increased delay
@@ -191,11 +191,11 @@ export const VideoSection = () => {
         if (!videoRef.current || !duration || duration === 0) {
             return;
         }
-        
+
         const rect = e.currentTarget.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const newTime = (clickX / rect.width) * duration;
-        
+
         videoRef.current.currentTime = newTime;
         setCurrentTime(newTime);
     };
@@ -222,7 +222,7 @@ export const VideoSection = () => {
                 <div className="absolute inset-0">
                     <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-[#0BC5EA]/10 rounded-full blur-3xl opacity-30"></div>
                     <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-[#6B46C1]/10 rounded-full blur-3xl opacity-20"></div>
-                    
+
                     {/* Animated flowing lines similar to the image */}
                     <div className="absolute inset-0 overflow-hidden">
                         {/* <svg className="absolute top-0 right-0 w-full h-full" viewBox="0 0 1200 800" fill="none">
@@ -260,15 +260,15 @@ export const VideoSection = () => {
                         className="max-w-4xl"
                     >
                         {/* Small heading */}
-                        <motion.p 
+                        <motion.p
                             className="text-[#0BC5EA] text-sm sm:text-base font-medium  uppercase mb-6"
                             variants={contentVariants}
                         >
-                            TRANSFORMING CAREERS WITH AGENTIC AI 
+                            TRANSFORMING CAREERS WITH AGENTIC AI
                         </motion.p>
 
                         {/* Main heading with blue accent bar */}
-                        <motion.div 
+                        <motion.div
                             className="flex items-start mb-8"
                             variants={contentVariants}
                         >
@@ -281,11 +281,11 @@ export const VideoSection = () => {
                                     AI LINC teaches you to harness AI tools for no-code development, transforming ideas into reality.
                                 </h2>
                             </div>
-                            
+
                         </motion.div>
 
                         {/* Watch video button and Learn more */}
-                        <motion.div 
+                        <motion.div
                             className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
                             variants={contentVariants}
                         >
@@ -351,13 +351,13 @@ export const VideoSection = () => {
                             {/* Video Controls Overlay */}
                             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-6">
                                 {/* Progress Bar */}
-                                <div 
+                                <div
                                     className="w-full h-2 bg-white/20 rounded-full mb-4 cursor-pointer"
                                     onClick={handleProgressClick}
                                 >
-                                    <div 
+                                    <div
                                         className="h-full bg-[#0BC5EA] rounded-full transition-all duration-100 ease-linear"
-                                        style={{ 
+                                        style={{
                                             width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`
                                         }}
                                     />
@@ -394,7 +394,7 @@ export const VideoSection = () => {
                                         <div className="text-white text-sm font-mono">
                                             {formatTime(currentTime)} / {formatTime(duration)}
                                         </div>
-                                        
+
                                     </div>
 
                                     {/* Timed "Explore Courses" button */}
