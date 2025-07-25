@@ -406,7 +406,7 @@ export function SyllabusSection() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">
-            🤖 16-Week AI-Powered Development Journey
+             16-Week AI-Powered Development Journey
           </h2>
           <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-2">
             From AI Product Creation in 21 Days to Industry Work Experience with MAANG Leaders
@@ -420,7 +420,7 @@ export function SyllabusSection() {
             </Badge>
           </div>
           <p className="text-sm text-gray-400 mt-4 px-2">
-            💡 Hover over cards to explore detailed outcomes & tools
+             Hover over cards to explore detailed outcomes & tools
           </p>
         </div>
          {/* Detailed Course Button */}
@@ -462,7 +462,7 @@ export function SyllabusSection() {
         {/* Weekly Breakdown */}
         <div className="mb-12 md:mb-16">
           <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12 px-2">
-            🧠 AI-Enhanced Weekly Progression
+            AI-Enhanced Weekly Progression
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {weeklyBreakdown.slice(0, 3).map((period, index) => (
@@ -511,7 +511,7 @@ export function SyllabusSection() {
         {/* Learning Components */}
         <div className="mb-12 md:mb-16">
           <h3 className="text-2xl sm:text-3xl font-bold text-center mb-8 md:mb-12 px-2">
-            ⚡ Revolutionary Learning Experience
+             Revolutionary Learning Experience
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {learningComponents.slice(0, 3).map((component, index) => {
