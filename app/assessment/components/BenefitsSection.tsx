@@ -18,13 +18,13 @@ export function BenefitsSection({ containerVariants, itemVariants }: BenefitsSec
       color: "from-yellow-400 to-orange-500"
     },
     {
-      title: "Get a FREE 🎁 LinkedIn Profile Review",
+      title: "Get a FREE  LinkedIn Profile Review",
       description: "Professional LinkedIn optimization by our career experts to attract top recruiters",
       icon: Users,
       color: "from-blue-400 to-blue-600"
     },
     {
-      title: "Get a FREE 🎁 Placement Readiness Score",
+      title: "Get a FREE  Placement Readiness Score",
       description: "Comprehensive analysis of your job readiness with personalized improvement suggestions",
       icon: Target,
       color: "from-green-400 to-green-600"

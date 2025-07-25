@@ -926,7 +926,7 @@ export function DetailedSyllabusContent() {
         </div>
 
         {/* CTA Section */}
-        {/* <CtaScheduleCall /> */}
+        <CtaScheduleCall />
       </div>
     </div>
   )

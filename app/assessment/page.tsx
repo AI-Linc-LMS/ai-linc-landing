@@ -78,19 +78,19 @@ function AssessmentPageContent({
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             className="grid lg:grid-cols-2 gap-12 items-center"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             {/* Left Content - Hero with Company Logos */}
-            <HeroSection 
+            <HeroSection
               containerVariants={containerVariants}
               itemVariants={itemVariants}
             />
             {/* Right Content - Assessment Card */}
-            <AssessmentCard 
+            <AssessmentCard
               itemVariants={itemVariants}
               onStartTest={handleStartTest}
               onWhyTest={handleWhyTest}
@@ -99,26 +99,26 @@ function AssessmentPageContent({
         </div>
       </section>
       {/* Benefits Section */}
-      <BenefitsSection 
+      <BenefitsSection
         containerVariants={containerVariants}
         itemVariants={itemVariants}
       />
       {/* What's With This Test Section */}
-      <WhatsWithTestSection 
+      <WhatsWithTestSection
         containerVariants={containerVariants}
         itemVariants={itemVariants}
       />
-      
+
       {/* Post-Bootcamp Assessment */}
       <PostBootcampSection onStartTest={handleStartTest} />
-      <CtaScheduleCall />
+      {/* <CtaScheduleCall /> */}
       <Footer />
       {/* Modals */}
       {/* <TestModal 
         isOpen={isTestModalOpen}
         onClose={() => setIsTestModalOpen(false)}
       /> */}
-      <WhyTestModal 
+      <WhyTestModal
         isOpen={isWhyTestModalOpen}
         onClose={() => setIsWhyTestModalOpen(false)}
         onStartTest={handleStartTest}
