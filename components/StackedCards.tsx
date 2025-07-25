@@ -94,6 +94,10 @@ const StackedCards = () => {
     const [hoveredTab, setHoveredTab] = useState<number | null>(null)
     const [isMobile, setIsMobile] = useState(false)
 
+    // Defensive: Clamp activeTab to valid range
+    const safeActiveTab = Number.isInteger(activeTab) && activeTab >= 0 && activeTab < cards.length ? activeTab : 0
+    const activeCard = cards[safeActiveTab] ?? {}
+
     // Detect mobile
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
@@ -125,7 +129,7 @@ const StackedCards = () => {
 
     // 3D stack transform logic
     const getCardTransform = (index: number) => {
-        if (index === activeTab) {
+        if (index === safeActiveTab) {
             return {
                 transform: `translateY(${index * cardSpacing - (isMobile ? 12 : 24)}px) translateZ(48px) scale(1.04)`,
                 zIndex: 10,
@@ -164,7 +168,7 @@ const StackedCards = () => {
                                 <div
                                     key={card.title}
                                     className={`text-base md:text-lg font-semibold px-3 py-1 md:px-4 md:py-2 transition-all duration-300 cursor-pointer select-none whitespace-nowrap rounded-full mx-1
-                    ${activeTab === idx
+                    ${safeActiveTab === idx
                                             ? 'bg-blue-700/30 text-white font-bold shadow-sm'
                                             : 'text-gray-400 hover:text-white hover:bg-blue-700/10'}
                   `}
@@ -181,7 +185,7 @@ const StackedCards = () => {
                         {[0, 1, 2, 3, 4].map((i) => (
                             <div
                                 key={i}
-                                className={`absolute left-0 right-0 mx-auto stack-card rounded-xl border border-blue-200/10 bg-white/10 backdrop-blur-md ${i === activeTab ? 'shadow-2xl' : ''
+                                className={`absolute left-0 right-0 mx-auto stack-card rounded-xl border border-blue-200/10 bg-white/10 backdrop-blur-md ${i === safeActiveTab ? 'shadow-2xl' : ''
                                     } ${cardHeights.join(' ')} ${cardWidths.join(' ')}`}
                                 style={{
                                     ...getCardTransform(i),
@@ -191,12 +195,12 @@ const StackedCards = () => {
                             >
                                 <div className="flex h-full items-center px-4 md:px-8 relative">
                                     {/* Logo only for top card */}
-                                    {i === activeTab && (
+                                    {i === safeActiveTab && (
                                         <div className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2">{cards[i]?.logo}</div>
                                     )}
                                     <div className="flex-1 flex flex-col justify-center pl-14 md:pl-20">
-                                        <span className={`font-bold transition-all text-base md:text-2xl ${i === activeTab ? 'text-white' : 'text-gray-300'}`}>{stackLabels[i]}</span>
-                                        <span className={`transition-all text-xs md:text-base ${i === activeTab ? 'text-blue-200' : 'text-gray-400'}`}>{stackSideLabels[i]}</span>
+                                        <span className={`font-bold transition-all text-base md:text-2xl ${i === safeActiveTab ? 'text-white' : 'text-gray-300'}`}>{stackLabels[i]}</span>
+                                        <span className={`transition-all text-xs md:text-base ${i === safeActiveTab ? 'text-blue-200' : 'text-gray-400'}`}>{stackSideLabels[i]}</span>
                                     </div>
                                 </div>
                             </div>
@@ -206,11 +210,13 @@ const StackedCards = () => {
                 {/* Right: Content */}
                 <div className="w-full md:w-1/2 md:pl-10 lg:pl-16 mt-10 md:mt-0">
                     <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6">
-                        {cards[activeTab]?.title ?? ''}
+                        {activeCard?.title ?? ''}
                     </h1>
-                    <p className="text-base sm:text-lg md:text-2xl text-blue-100 mb-6 md:mb-8 leading-relaxed">{cards[activeTab].subtitle}</p>
+                    <p className="text-base sm:text-lg md:text-2xl text-blue-100 mb-6 md:mb-8 leading-relaxed">
+                        {activeCard?.subtitle ?? ''}
+                    </p>
                     <ul className="space-y-2 md:space-y-3 mb-8 md:mb-10">
-                        {cards[activeTab].features.map((feature, idx) => (
+                        {(Array.isArray(activeCard?.features) ? activeCard.features : []).map((feature, idx) => (
                             <li key={feature} className="text-blue-100 flex items-center text-sm sm:text-base md:text-lg lg:text-xl">
                                 <span className="w-2 h-2 md:w-3 md:h-3 bg-blue-400 rounded-full mr-3 md:mr-4"></span>
                                 {feature}
@@ -218,7 +224,7 @@ const StackedCards = () => {
                         ))}
                     </ul>
                     {/* <button className="group flex items-center text-white hover:text-blue-400 transition-all duration-300 text-base md:text-xl font-bold">
-                        <span>{cards[activeTab].action}</span>
+                        <span>{activeCard?.action}</span>
                         <svg className="ml-2 md:ml-3 w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>

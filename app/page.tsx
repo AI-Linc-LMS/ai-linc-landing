@@ -57,7 +57,7 @@ export default function Home() {
         {/* <WhoWeAreSection /> */}
         {/* <TopScorersSection /> */}
         <LinkedInPostsSection />
-        <StudentTestimonialsSection />
+        {/* <StudentTestimonialsSection /> */}
         <ClientTalentSuccessSection />
         {/* <HowWeDoItSection /> */}
         <ProgramJourney />

@@ -354,7 +354,7 @@ export function LinkedInPostsSection() {
                                 <img
                                   src={currentCandidate.linkedinPost.image}
                                   alt={`${currentCandidate.name}'s LinkedIn post`}
-                                  className="w-full h-auto object-cover max-h-[300px] sm:max-h-[350px] md:max-h-[400px]"
+                                  className="w-full h-auto object-fill max-h-[300px] sm:max-h-[350px] md:max-h-[400px]"
                                   onError={(e) => {
                                     const img = e.currentTarget;
                                     const fallback = img.nextElementSibling as HTMLElement;
