@@ -20,7 +20,7 @@ export function WebinarModal() {
       <DialogContent className="max-w-[95vw] sm:max-w-lg w-full  sm:mx-auto mx-auto sm:p-6">
         <DialogHeader className="space-y-2 sm:space-y-3">
           <DialogTitle className="text-base sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse leading-tight text-center">
-            🚀 Webinar: "Deploy Your First AI App: Live No-Code AI Workshop"
+             Webinar: "Deploy Your First AI App: Live No-Code AI Workshop"
           </DialogTitle>
           <DialogDescription className="space-y-2 sm:space-y-3">
             <div className="text-xs sm:text-sm md:text-base font-medium bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent text-center">
