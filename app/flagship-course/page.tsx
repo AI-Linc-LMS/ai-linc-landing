@@ -25,7 +25,7 @@ export default function FlagshipCoursePage() {
                 <SyllabusSection />
                 <PlatformPreview />
                 <InstructorsSection />
-                <CareerTransformation />
+                {/* <CareerTransformation /> */}
 
 
                 <Footer />
