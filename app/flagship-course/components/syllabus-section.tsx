@@ -424,7 +424,7 @@ export function SyllabusSection() {
           </p>
         </div>
          {/* Detailed Course Button */}
-         <DetailedSyllabusContent />
+         
          {/* <div className="text-center mb-10">
           <Link href="/courses/detailed-syllabus">
             <Button

@@ -11,6 +11,7 @@ import { SyllabusSection } from "./components/syllabus-section"
 import { InstructorsSection } from "@/components/instructors-section"
 import { PlatformPreview } from "@/components/platform-preview"
 import { CareerTransformation } from "@/components/career-transformation"
+import { DetailedSyllabusContent } from "../courses/detailed-syllabus/components/detailed-syllabus-content"
 
 
 export default function FlagshipCoursePage() {
@@ -20,7 +21,7 @@ export default function FlagshipCoursePage() {
                 <ParticleBackground />
                 <Navbar />
 
-
+                <DetailedSyllabusContent />
                 <SyllabusSection />
                 <PlatformPreview />
                 <InstructorsSection />
