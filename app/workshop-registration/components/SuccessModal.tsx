@@ -34,6 +34,14 @@ export function SuccessModal({ showModal, onClose }: SuccessModalProps) {
           >
             Join AI Community
           </a>
+          <a
+            href="https://app.ailinc.com/jobs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white px-6 py-3 rounded-lg text-center font-medium mt-2"
+          >
+             Explore Jobs & Internship Opportunities
+          </a>
           <Button
             onClick={onClose}
             className="bg-[#0BC5EA] hover:bg-[#0BC5EA]/90 text-white mt-4"
