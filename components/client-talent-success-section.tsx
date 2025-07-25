@@ -72,6 +72,24 @@ import { WhatWeDoSection } from "./what-we-do-section"
 
 export function ClientTalentSuccessSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [visibleCompanies, setVisibleCompanies] = useState(16)
+
+  // Add useEffect to update visible companies based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      // Show all 32 companies on extra large screens (1280px and above)
+      setVisibleCompanies(window.innerWidth >= 1280 ? 32 : 16)
+    }
+
+    // Add event listener
+    window.addEventListener('resize', handleResize)
+    
+    // Initial check
+    handleResize()
+
+    // Cleanup event listener
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Custom IBM component since no icon is available
   const IBMIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
@@ -149,7 +167,7 @@ export function ClientTalentSuccessSection() {
     { name: "KPMG", icon: KPMGIcon, color: "#00338D" },
     { name: "EY", icon: EYIcon, color: "#FFE600" },
     { name: "Accenture", icon: AccentureIcon, color: "#A100FF" },
-    { name: "TCS", icon: TCSIcon, color: "#0F1B3C" },
+    { name: "TCS", icon: TCSIcon, color: "#0F1B3" },
     { name: "Infosys", icon: InfosysIcon, color: "#007CC3" },
     { name: "Wipro", icon: WiproIcon, color: "#0066CC" },
 
@@ -301,7 +319,7 @@ export function ClientTalentSuccessSection() {
             
             {/* Logo Grid */}
             <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 sm:gap-4 lg:gap-6 items-center">
-              {clientCompanies.map((company, index) => (
+              {clientCompanies.slice(0, visibleCompanies).map((company, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
