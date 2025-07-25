@@ -4,7 +4,7 @@ import React from "react"
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, Download } from "lucide-react"
+import { Menu, X, Download, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -139,18 +139,20 @@ export function Navbar() {
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/courses" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Programs</NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Courses</NavigationMenuTrigger>
+                  <div className="flex items-center">
+                    <Link href="/courses" legacyBehavior passHref>
+                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>Programs</NavigationMenuLink>
+                    </Link>
+                    <NavigationMenuTrigger>
+                      <span className="sr-only">Programs Dropdown</span>
+                    </NavigationMenuTrigger>
+                  </div>
                   <NavigationMenuContent>
                     <ul className="grid w-[200px] gap-3 p-4">
                       <ListItem href="/nanodegree" title="Nanodegree">
                         Comprehensive AI nanodegree program
                       </ListItem>
-                      <ListItem href="/flagship-course" title="Flagship">
+                      <ListItem href="/flagship-course" title="Flagship Course">
                         Our flagship AI course
                       </ListItem>
                     </ul>
@@ -166,16 +168,6 @@ export function Navbar() {
                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>Blogs</NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                {/* <NavigationMenuItem>
-                <Link href="/#community" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Community</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem> */}
-                {/* <NavigationMenuItem>
-                <Link href="/#pricing" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Pricing</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem> */}
                 <NavigationMenuItem>
                   <Link href="/workshop-registration" legacyBehavior passHref>
                     <NavigationMenuLink className={navigationMenuTriggerStyle()}>Webinar</NavigationMenuLink>
@@ -227,30 +219,48 @@ export function Navbar() {
                 >
                   Home
                 </Link>
-                <div className="text-foreground/60 text-sm font-medium py-1">Courses</div>
+                <div className="relative">
+                  <div 
+                    className="flex items-center justify-between text-foreground/80 hover:text-foreground transition-colors py-2"
+                    onClick={() => {
+                      const programsDropdown = document.getElementById('mobile-programs-dropdown');
+                      if (programsDropdown) {
+                        programsDropdown.classList.toggle('hidden');
+                      }
+                    }}
+                  >
+                    Programs
+                    <ChevronDown className="ml-2 h-4 w-4" />
+                  </div>
+                  <div 
+                    id="mobile-programs-dropdown"
+                    className="hidden pl-4 space-y-2"
+                  >
+                    <Link
+                      href="/courses"
+                      className="block text-foreground/80 hover:text-foreground transition-colors py-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      All Programs
+                    </Link>
+                    <Link
+                      href="/nanodegree"
+                      className="block text-foreground/80 hover:text-foreground transition-colors py-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Nanodegree
+                    </Link>
+                    <Link
+                      href="/flagship-course"
+                      className="block text-foreground/80 hover:text-foreground transition-colors py-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Flagship Course
+                    </Link>
+                  </div>
+                </div>
                 <Link
-                  href="/nanodegree"
-                  className="text-foreground/80 hover:text-foreground transition-colors py-2 pl-4"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Nanodegree
-                </Link>
-                <Link
-                  href="/flagship-course"
-                  className="text-foreground/80 hover:text-foreground transition-colors py-2 pl-4"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Flagship Course
-                </Link>
-                <Link
-                  href="/courses"
-                  className="text-foreground/80 hover:text-foreground transition-colors py-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                Programs
-                </Link>
-                <Link
-                href="/flagship-course#instructors" legacyBehavior passHref
+                  href="/flagship-course#instructors"
                   className="text-foreground/80 hover:text-foreground transition-colors py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
