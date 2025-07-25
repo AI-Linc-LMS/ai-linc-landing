@@ -40,9 +40,9 @@ export function CountdownTimer() {
       {/* Workshop Date */}
       <div className="text-center mb-6">
         <div className="text-yellow-400 font-semibold text-lg mb-2">
-          📅 Sunday, July 27, 2025 at 12:30 PM IST
+           Sunday, July 27, 2025 at 12:30 PM IST
         </div>
-        <div className="font-semibold text-orange-400">⏰ Workshop Starts In:</div>
+        <div className="font-semibold text-orange-400"> Workshop Starts In:</div>
       </div>
 
       {/* Countdown Timer */}

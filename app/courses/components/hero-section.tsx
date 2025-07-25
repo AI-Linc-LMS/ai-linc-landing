@@ -6,7 +6,7 @@ export function HeroSection() {
     <section className="relative pt-20 md:pt-32 pb-16  px-4">
       <div className="max-w-6xl mx-auto text-center">
         <div className="flex flex-col sm:flex-row items-center justify-center mb-6">
-          <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mb-2 sm:mb-0 sm:mr-3" />
+          {/* <Trophy className="w-6 h-6 sm:w-8 sm:h-8 text-yellow-400 mb-2 sm:mb-0 sm:mr-3" /> */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent leading-tight">
             Programs at AI Linc
           </h1>

@@ -4,7 +4,7 @@ import { CheckCircle, Trophy } from "lucide-react"
 export function HowToChooseSection() {
   return (
     <div className="mt-12 md:mt-16 text-center">
-      <h3 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 px-2">🤔 How to Choose?</h3>
+      <h3 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 px-2"> How to Choose?</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
         <Card className="bg-gradient-to-br from-green-800/20 to-green-900/20 border-green-400/30">
           <CardContent className="p-4 md:p-6 text-center">

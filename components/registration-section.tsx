@@ -12,10 +12,10 @@ interface RegistrationSectionProps {
 }
 
 const benefits = [
-  { icon: "🎯", title: "Expert Guidance", desc: "Learn from industry leaders with 10+ years experience" },
-  { icon: "🚀", title: "Career Acceleration", desc: "Fast-track your AI career with proven strategies" },
-  { icon: "🤝", title: "Networking", desc: "Connect with like-minded professionals and mentors" },
-  { icon: "📜", title: "Certificate", desc: "Receive a completion certificate to boost your profile" }
+  { icon: "", title: "Expert Guidance", desc: "Learn from industry leaders with 10+ years experience" },
+  { icon: "", title: "Career Acceleration", desc: "Fast-track your AI career with proven strategies" },
+  { icon: "", title: "Networking", desc: "Connect with like-minded professionals and mentors" },
+  { icon: "", title: "Certificate", desc: "Receive a completion certificate to boost your profile" }
 ]
 
 const stats = [
@@ -87,12 +87,12 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                     <span className="text-yellow-400 font-medium text-sm">Live Workshop</span>
                   </div>
                   <div className="text-yellow-400 font-semibold text-lg">
-                    📅 Sunday, July 27, 2025 at 12:30 PM IST
+                     Sunday, July 27, 2025 at 12:30 PM IST
                   </div>
                 </div>
 
                 <div className="text-center mb-4">
-                  <div className="font-semibold text-orange-400 mb-3">⏰ Workshop Starts In:</div>
+                  <div className="font-semibold text-orange-400 mb-3"> Workshop Starts In:</div>
                   <div className="grid grid-cols-4 gap-2">
                     {[
                       { value: timeLeft.days, label: 'Days' },

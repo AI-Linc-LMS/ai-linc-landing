@@ -129,7 +129,7 @@ export function CtaSection() {
           <CardContent className="p-6 md:p-8 text-center">
             <div className="mb-6 md:mb-8">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">
-                🚀 Ready to Transform Your Career?
+                 Ready to Transform Your Career?
               </h2>
               <p className="text-lg sm:text-xl text-gray-300 mb-6 md:mb-8 px-2">
                 Join thousands of students who've already started their journey to success

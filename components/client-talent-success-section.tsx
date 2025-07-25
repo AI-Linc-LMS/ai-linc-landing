@@ -72,6 +72,24 @@ import { WhatWeDoSection } from "./what-we-do-section"
 
 export function ClientTalentSuccessSection() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [visibleCompanies, setVisibleCompanies] = useState(16)
+
+  // Add useEffect to update visible companies based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      // Show all 32 companies on extra large screens (1280px and above)
+      setVisibleCompanies(window.innerWidth >= 1280 ? 32 : 16)
+    }
+
+    // Add event listener
+    window.addEventListener('resize', handleResize)
+    
+    // Initial check
+    handleResize()
+
+    // Cleanup event listener
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Custom IBM component since no icon is available
   const IBMIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
@@ -149,7 +167,7 @@ export function ClientTalentSuccessSection() {
     { name: "KPMG", icon: KPMGIcon, color: "#00338D" },
     { name: "EY", icon: EYIcon, color: "#FFE600" },
     { name: "Accenture", icon: AccentureIcon, color: "#A100FF" },
-    { name: "TCS", icon: TCSIcon, color: "#0F1B3C" },
+    { name: "TCS", icon: TCSIcon, color: "#0F1B3" },
     { name: "Infosys", icon: InfosysIcon, color: "#007CC3" },
     { name: "Wipro", icon: WiproIcon, color: "#0066CC" },
 
@@ -301,7 +319,7 @@ export function ClientTalentSuccessSection() {
             
             {/* Logo Grid */}
             <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 sm:gap-4 lg:gap-6 items-center">
-              {clientCompanies.map((company, index) => (
+              {clientCompanies.slice(0, visibleCompanies).map((company, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -327,105 +345,7 @@ export function ClientTalentSuccessSection() {
         {/* <WhatWeDoSection /> */}
 
         {/* Talent Success Stories */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mb-8"
-        >
-          <div className="text-center mb-8 sm:mb-12">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-4 px-2">
-              Hear from talent who joined our pool and got deployed
-            </h3>
-            <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto px-2">
-              Real stories from AI professionals who transformed their careers through our platform
-            </p>
-          </div>
-
-          {/* Testimonial Carousel */}
-          <div className="relative max-w-5xl mx-auto px-2 sm:px-4">
-            <Card className="bg-gradient-to-r from-card/50 to-card/20 backdrop-blur-sm border-[#0BC5EA]/20 rounded-xl sm:rounded-2xl overflow-hidden">
-              <CardContent className="p-4 sm:p-6 lg:p-8 xl:p-12">
-                <div className="relative">
-                  {/* Quote Icon */}
-                  {/* <div className="absolute -top-2 sm:-top-4 -left-2 sm:-left-4 size-8 sm:size-10 lg:size-12 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] rounded-full flex items-center justify-center">
-                    <Quote className="size-3 sm:size-4 lg:size-6 text-white" />
-                  </div> */}
-
-                  {/* Testimonial Content */}
-                  <div className="space-y-4 sm:space-y-6">
-                    <blockquote className="text-base sm:text-lg lg:text-xl xl:text-2xl text-foreground/90 leading-relaxed font-medium pt-4 sm:pt-0">
-                      "{talentTestimonials[currentTestimonial].quote}"
-                    </blockquote>
-
-                    <div className="flex flex-col gap-4 sm:gap-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <div className="flex items-center gap-3 sm:gap-4">
-                          <div className="size-12 sm:size-14 lg:size-16 rounded-full bg-gradient-to-r from-[#0BC5EA]/20 to-[#6B46C1]/20 flex items-center justify-center flex-shrink-0">
-                            <span className="text-sm sm:text-lg lg:text-xl font-bold text-[#0BC5EA]">
-                              {talentTestimonials[currentTestimonial].author.split(' ').map(n => n[0]).join('')}
-                            </span>
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <div className="font-bold text-white text-base sm:text-lg truncate">
-                              {talentTestimonials[currentTestimonial].author}
-                            </div>
-                            <div className="text-foreground/70 text-sm sm:text-base truncate">
-                              {talentTestimonials[currentTestimonial].role}
-                            </div>
-                            <div className="text-[#0BC5EA] font-medium text-sm sm:text-base truncate">
-                              {talentTestimonials[currentTestimonial].company}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r ${getDeploymentColor(talentTestimonials[currentTestimonial].deploymentType)} text-white font-semibold text-xs sm:text-sm flex-shrink-0 text-center`}>
-                          {talentTestimonials[currentTestimonial].deploymentType}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Navigation Buttons */}
-            <div className="flex justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={prevTestimonial}
-                className="border-[#0BC5EA]/30 text-[#0BC5EA] hover:bg-[#0BC5EA]/10 hover:border-[#0BC5EA] h-8 w-8 sm:h-10 sm:w-10 p-0"
-              >
-                <ChevronLeft className="size-3 sm:size-4" />
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={nextTestimonial}
-                className="border-[#0BC5EA]/30 text-[#0BC5EA] hover:bg-[#0BC5EA]/10 hover:border-[#0BC5EA] h-8 w-8 sm:h-10 sm:w-10 p-0"
-              >
-                <ChevronRight className="size-3 sm:size-4" />
-              </Button>
-            </div>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-6">
-              {talentTestimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`size-2 sm:size-3 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial
-                      ? "bg-[#0BC5EA] scale-125"
-                      : "bg-foreground/30 hover:bg-foreground/50"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
+      
  {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

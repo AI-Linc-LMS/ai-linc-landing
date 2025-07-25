@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Play, Pause, Volume2, VolumeX, X } from 'lucide-react';
@@ -10,123 +10,101 @@ export const VideoSection = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [videoLoaded, setVideoLoaded] = useState(false);
     const [videoError, setVideoError] = useState(false);
-    const [showTimedButton, setShowTimedButton] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Timer for showing the button after 10 seconds
+    // --- Fix: Use requestAnimationFrame for smooth progress/timer updates ---
     useEffect(() => {
-        if (isPlaying && !showTimedButton && isModalOpen) {
-            // Start timer when video starts playing in modal, but only if button hasn't been shown yet
-            timerRef.current = setTimeout(() => {
-                setShowTimedButton(true);
-            }, 10000); // 10 seconds
-        } else if (!isPlaying && timerRef.current) {
-            // Only clear timer if video is paused AND button hasn't appeared yet
-            if (!showTimedButton) {
-                clearTimeout(timerRef.current);
-                timerRef.current = null;
-            }
-        }
-
-        // Cleanup timer on unmount
-        return () => {
-            if (timerRef.current) {
-                clearTimeout(timerRef.current);
+        let rafId: number;
+        const update = () => {
+            const video = videoRef.current;
+            if (video && !video.paused && !video.ended) {
+                setCurrentTime(video.currentTime);
+                rafId = requestAnimationFrame(update);
             }
         };
-    }, [isPlaying, showTimedButton, isModalOpen]);
+        if (isPlaying) {
+            rafId = requestAnimationFrame(update);
+        }
+        return () => {
+            if (rafId) cancelAnimationFrame(rafId);
+        };
+    }, [isPlaying]);
 
-    // Update video time
+    // --- Fix: Always sync currentTime on timeupdate (for seeking, etc) ---
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
 
-        const updateTime = () => {
-            setCurrentTime(video.currentTime);
-        };
-
-        const updateDuration = () => {
+        const handleTimeUpdate = () => setCurrentTime(video.currentTime);
+        const handleDurationChange = () => {
             if (video.duration && !isNaN(video.duration) && isFinite(video.duration)) {
                 setDuration(video.duration);
             }
         };
-
         const handleLoadedMetadata = () => {
             setVideoLoaded(true);
             setVideoError(false);
-            updateDuration();
+            handleDurationChange();
         };
-
         const handleCanPlay = () => {
             setVideoLoaded(true);
-            updateDuration();
+            handleDurationChange();
         };
-
-        const handleDurationChange = () => {
-            updateDuration();
-        };
-
-        const handleError = (e: Event) => {
+        const handleError = () => {
             setVideoError(true);
             setVideoLoaded(false);
         };
 
-        video.addEventListener('timeupdate', updateTime);
+        video.addEventListener('timeupdate', handleTimeUpdate);
         video.addEventListener('loadedmetadata', handleLoadedMetadata);
         video.addEventListener('canplay', handleCanPlay);
         video.addEventListener('durationchange', handleDurationChange);
         video.addEventListener('error', handleError);
 
-        // Initial check for already loaded video
+        // Initial sync
         if (video.readyState >= 1) {
-            updateDuration();
+            handleDurationChange();
+            setCurrentTime(video.currentTime);
         }
 
         return () => {
-            video.removeEventListener('timeupdate', updateTime);
+            video.removeEventListener('timeupdate', handleTimeUpdate);
             video.removeEventListener('loadedmetadata', handleLoadedMetadata);
             video.removeEventListener('canplay', handleCanPlay);
             video.removeEventListener('durationchange', handleDurationChange);
             video.removeEventListener('error', handleError);
         };
-    }, [isModalOpen]); // Re-run when modal opens
+    }, [isModalOpen]);
 
+    // --- Fix: Reset time and play from start on open ---
     const handleWatchVideoClick = () => {
-        // Open modal when "Watch the video" is clicked
         setIsModalOpen(true);
-        
-        // Reset states
         setCurrentTime(0);
         setDuration(0);
         setVideoError(false);
-        
-        // Auto-play when modal opens with a longer delay
+
         setTimeout(() => {
             if (videoRef.current) {
-                // Force load the video metadata
+                videoRef.current.currentTime = 0;
                 videoRef.current.load();
-                
-                // Wait for metadata to load before playing
                 const playWhenReady = () => {
-                    if (videoRef.current && videoRef.current.readyState >= 1) {
+                    if (videoRef.current && videoRef.current.readyState >= 2) {
                         videoRef.current.play().then(() => {
                             setIsPlaying(true);
                         }).catch((error) => {
-                            console.error('Play failed:', error);
+                            setIsPlaying(false);
+                            // Don't log error on user gesture
                         });
                     } else {
-                        // Wait a bit more and try again
                         setTimeout(playWhenReady, 100);
                     }
                 };
-                
                 playWhenReady();
             }
-        }, 500); // Increased delay
+        }, 300);
     };
 
     const handlePlayPause = () => {
@@ -137,8 +115,8 @@ export const VideoSection = () => {
             } else {
                 videoRef.current.play().then(() => {
                     setIsPlaying(true);
-                }).catch((error) => {
-                    console.error('Play failed:', error);
+                }).catch(() => {
+                    setIsPlaying(false);
                 });
             }
         }
@@ -146,6 +124,7 @@ export const VideoSection = () => {
 
     const handleVideoEnd = () => {
         setIsPlaying(false);
+        setCurrentTime(duration);
     };
 
     const handleVideoLoaded = () => {
@@ -177,7 +156,7 @@ export const VideoSection = () => {
             setIsPlaying(false);
         }
         setIsModalOpen(false);
-        setShowTimedButton(false); // Reset timed button
+        // No need to reset showTimedButton
     };
 
     const formatTime = (time: number) => {
@@ -191,11 +170,11 @@ export const VideoSection = () => {
         if (!videoRef.current || !duration || duration === 0) {
             return;
         }
-        
+
         const rect = e.currentTarget.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         const newTime = (clickX / rect.width) * duration;
-        
+
         videoRef.current.currentTime = newTime;
         setCurrentTime(newTime);
     };
@@ -222,7 +201,7 @@ export const VideoSection = () => {
                 <div className="absolute inset-0">
                     <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-[#0BC5EA]/10 rounded-full blur-3xl opacity-30"></div>
                     <div className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-[#6B46C1]/10 rounded-full blur-3xl opacity-20"></div>
-                    
+
                     {/* Animated flowing lines similar to the image */}
                     <div className="absolute inset-0 overflow-hidden">
                         {/* <svg className="absolute top-0 right-0 w-full h-full" viewBox="0 0 1200 800" fill="none">
@@ -260,26 +239,32 @@ export const VideoSection = () => {
                         className="max-w-4xl"
                     >
                         {/* Small heading */}
-                        <motion.p 
+                        <motion.p
                             className="text-[#0BC5EA] text-sm sm:text-base font-medium  uppercase mb-6"
                             variants={contentVariants}
                         >
-                            TRANSFORMING CAREERS WITH AGENTIC AI 
+                            TRANSFORMING CAREERS WITH AGENTIC AI
                         </motion.p>
 
                         {/* Main heading with blue accent bar */}
-                        <motion.div 
+                        <motion.div
                             className="flex items-start mb-8"
                             variants={contentVariants}
                         >
                             <div className="w-1 bg-[#0BC5EA] mr-6 flex-shrink-0" style={{ height: '200px' }}></div>
-                            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
-                                Build powerful software and websites without coding. AI LINC teaches you to harness AI tools for no-code development, transforming ideas into reality .
-                            </h1>
+                            <div>
+                                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
+                                    Build powerful software and websites without coding.
+                                </h1>
+                                <h2 className="mt-4 text-lg sm:text-xl lg:text-2xl font-light bg-gradient-to-r from-white via-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
+                                    AI LINC teaches you to harness AI tools for no-code development, transforming ideas into reality.
+                                </h2>
+                            </div>
+
                         </motion.div>
 
                         {/* Watch video button and Learn more */}
-                        <motion.div 
+                        <motion.div
                             className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
                             variants={contentVariants}
                         >
@@ -345,13 +330,13 @@ export const VideoSection = () => {
                             {/* Video Controls Overlay */}
                             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 sm:p-6">
                                 {/* Progress Bar */}
-                                <div 
+                                <div
                                     className="w-full h-2 bg-white/20 rounded-full mb-4 cursor-pointer"
                                     onClick={handleProgressClick}
                                 >
-                                    <div 
+                                    <div
                                         className="h-full bg-[#0BC5EA] rounded-full transition-all duration-100 ease-linear"
-                                        style={{ 
+                                        style={{
                                             width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`
                                         }}
                                     />
@@ -388,31 +373,27 @@ export const VideoSection = () => {
                                         <div className="text-white text-sm font-mono">
                                             {formatTime(currentTime)} / {formatTime(duration)}
                                         </div>
-                                        
+
                                     </div>
 
-                                    {/* Timed "Explore Courses" button */}
-                                    <AnimatePresence>
-                                        {showTimedButton && (
-                                            <motion.div
-                                                initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                                                animate={{ opacity: 1, scale: 1, x: 0 }}
-                                                exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                                                transition={{ duration: 0.5, ease: "easeOut" }}
-                                            >
-                                                <Button
-                                                    variant="default"
-                                                    className="bg-[#0BC5EA] text-black hover:bg-[#0BC5EA]/90
-                                                    transition-all duration-300 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg
-                                                    hover:shadow-[0_0_20px_rgba(11,197,234,0.4)] sm:hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
-                                                    transform hover:scale-105 shadow-lg backdrop-blur-sm"
-                                                    onClick={() => window.location.href = '/courses'}
-                                                >
-                                                    Explore Courses
-                                                </Button>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
+                                    {/* "Explore Courses" button always visible */}
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                                        exit={{ opacity: 0, scale: 0.8, x: 20 }}
+                                        transition={{ duration: 0.5, ease: "easeOut" }}
+                                    >
+                                        <Button
+                                            variant="default"
+                                            className="bg-[#0BC5EA] text-black hover:bg-[#0BC5EA]/90
+                                            transition-all duration-300 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded-lg
+                                            hover:shadow-[0_0_20px_rgba(11,197,234,0.4)] sm:hover:shadow-[0_0_30px_rgba(11,197,234,0.6)]
+                                            transform hover:scale-105 shadow-lg backdrop-blur-sm"
+                                            onClick={() => window.location.href = '/courses'}
+                                        >
+                                            Explore Courses
+                                        </Button>
+                                    </motion.div>
                                 </div>
                             </div>
                         </div>

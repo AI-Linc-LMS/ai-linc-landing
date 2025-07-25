@@ -31,6 +31,7 @@ export default function CoursesPage() {
         <ProgramsSection />
         <ComparisonTable />
         <CtaSection />
+        <CareerTransformation />
         {/* <SyllabusSection />
         <PlatformPreview />
         <InstructorsSection />
