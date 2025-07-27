@@ -5,7 +5,7 @@ import { RegistrationForm } from "@/app/workshop-registration/components/Registr
 import { RegistrationCount } from "@/app/workshop-registration/components/RegistrationCount"
 import { useCountdown } from "@/hooks/use-countdown"
 
-const WEBINAR_DATE = new Date("2025-07-27T12:30:00+05:30"); // IST timezone
+const WEBINAR_DATE = new Date("2025-08-03T12:30:00+05:30"); // IST timezone
 
 interface RegistrationSectionProps {
   onSuccess: () => void
@@ -44,7 +44,7 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
             Transform your career with our exclusive AI workshop. Join industry experts and unlock your potential in the world of artificial intelligence.
           </p>
-          
+
           {/* Live Registration Count */}
           <RegistrationCount className="mb-8" />
         </div>
@@ -87,7 +87,7 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                     <span className="text-yellow-400 font-medium text-sm">Live Workshop</span>
                   </div>
                   <div className="text-yellow-400 font-semibold text-lg">
-                     Sunday, July 27, 2025 at 12:30 PM IST
+                    Sunday, Aug 03, 2025 at 12:30 PM IST
                   </div>
                 </div>
 
