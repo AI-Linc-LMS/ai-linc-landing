@@ -27,7 +27,7 @@ export function SuccessModal({ showModal, onClose }: SuccessModalProps) {
         </p>
         <div className="flex flex-col gap-2">
           <a
-            href="https://chat.whatsapp.com/Cjz3oELjb0G7sGFSjRq2jf?mode=r_t"
+            href="https://chat.whatsapp.com/Etkh6RuvXEu5XAqQ0rk7y3?mode=ac_t"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-[#25D366] hover:bg-[#25D366]/90 text-white px-6 py-3 rounded-lg text-center font-medium"
