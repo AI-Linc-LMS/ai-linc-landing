@@ -26,7 +26,7 @@ export function WebinarModal() {
             <div className="text-xs sm:text-sm md:text-base font-medium bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent text-center">
               Develop tech products without single line of code
             </div>
-            <div className="text-xs sm:text-sm text-yellow-400 font-semibold text-center"> Sunday 12:30pm (3 Aug 2025)</div>
+            <div className="text-xs sm:text-sm text-yellow-400 font-semibold text-center"> Sunday 12:30pm (03 Aug 2025)</div>
 
             {/* Registration Count */}
             <div className="my-2 sm:my-3">
