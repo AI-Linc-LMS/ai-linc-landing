@@ -227,7 +227,7 @@ export function LinkedInPostsSection() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{
                           opacity: 1,
-                          scale: selectedCandidate === index ? 1.1 : 0.9,
+                          scale: selectedCandidate === index ? 0.9 : 0.7,
                         }}
                         transition={{ duration: 0.3 }}
                         className={`relative cursor-pointer flex-shrink-0 ${selectedCandidate === index ? 'z-10' : 'z-0'
