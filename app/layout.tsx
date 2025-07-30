@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   other: {
     'google-tag-manager': 'GTM-NHJGR4BD',
-    'google-analytics': 'G-KHTSBXWHQT'
+    'google-analytics': 'G-RPBJERYCVD'
   }
 }
 
@@ -96,10 +96,10 @@ export default function RootLayout({
         />
         {/* End Google Tag Manager */}
 
-        {/* Google Analytics */}
+        {/* Google tag (gtag.js) */}
         <script 
           async 
-          src="https://www.googletagmanager.com/gtag/js?id=G-KHTSBXWHQT"
+          src="https://www.googletagmanager.com/gtag/js?id=G-RPBJERYCVD"
         />
         <script
           id="gtag-script"
@@ -108,13 +108,13 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-KHTSBXWHQT');
+            gtag('config', 'G-RPBJERYCVD');
             
-            console.warn('Google Analytics: Initialized with tracking ID G-KHTSBXWHQT');
+            console.warn('Google Analytics: Initialized with tracking ID G-RPBJERYCVD');
             `
           }}
         />
-        {/* End Google Analytics */}
+        {/* End Google tag (gtag.js) */}
       </head>
       <body>
         {/* Google Tag Manager (noscript) */}
