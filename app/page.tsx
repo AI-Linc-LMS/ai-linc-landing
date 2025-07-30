@@ -31,6 +31,7 @@ import { TopScorersSection } from "@/components/top-scorers-section"
 import { LinkedInPostsSection } from "@/components/linkedin-posts-section"
 import { StudentTestimonialsSection } from "@/components/student-testimonials-section"
 import StackedCards from "@/components/StackedCards"
+import WorkshopGallery from "@/components/workshop-gallery"
 
 export default function Home() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -59,6 +60,7 @@ export default function Home() {
         <LinkedInPostsSection />
         {/* <StudentTestimonialsSection /> */}
         <ClientTalentSuccessSection />
+        <WorkshopGallery />
         {/* <HowWeDoItSection /> */}
         <ProgramJourney />
         <KeyUsps />
