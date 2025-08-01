@@ -5,7 +5,7 @@ import { RegistrationForm } from "@/app/workshop-registration/components/Registr
 import { RegistrationCount } from "@/app/workshop-registration/components/RegistrationCount"
 import { useCountdown } from "@/hooks/use-countdown"
 
-const WEBINAR_DATE = new Date("2025-08-03T12:30:00+05:30"); // IST timezone
+const WEBINAR_DATE = new Date("2025-08-10T12:30:00+05:30"); // IST timezone
 
 interface RegistrationSectionProps {
   onSuccess: () => void
@@ -87,7 +87,7 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                     <span className="text-yellow-400 font-medium text-sm">Live Workshop</span>
                   </div>
                   <div className="text-yellow-400 font-semibold text-lg">
-                    Sunday, Aug 03, 2025 at 12:30 PM IST
+                    Sunday, Aug 10, 2025 at 12:30 PM IST
                   </div>
                 </div>
 

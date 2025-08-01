@@ -5,7 +5,7 @@ import { RegistrationCount } from "@/app/workshop-registration/components/Regist
 import { useEffect, useState } from "react"
 import { useCountdown } from "@/hooks/use-countdown"
 
-const WEBINAR_DATE = new Date("2025-08-03T12:30:00+05:30"); // IST timezone
+const WEBINAR_DATE = new Date("2025-08-10T12:30:00+05:30"); // IST timezone
 
 export function WebinarModal() {
   const [open, setOpen] = useState(false);
@@ -20,13 +20,13 @@ export function WebinarModal() {
       <DialogContent className="max-w-[95vw] sm:max-w-lg w-full  sm:mx-auto mx-auto sm:p-6">
         <DialogHeader className="space-y-2 sm:space-y-3">
           <DialogTitle className="text-base sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse leading-tight text-center">
-             Webinar: "Deploy Your First AI App: Live No-Code AI Workshop"
+            Webinar: "Deploy Your First AI App: Live No-Code AI Workshop"
           </DialogTitle>
           <DialogDescription className="space-y-2 sm:space-y-3">
             <div className="text-xs sm:text-sm md:text-base font-medium bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent text-center">
               Develop tech products without single line of code
             </div>
-            <div className="text-xs sm:text-sm text-yellow-400 font-semibold text-center"> Sunday 12:30pm (03 Aug 2025)</div>
+            <div className="text-xs sm:text-sm text-yellow-400 font-semibold text-center"> Sunday 12:30pm (10 Aug 2025)</div>
 
             {/* Registration Count */}
             <div className="my-2 sm:my-3">
