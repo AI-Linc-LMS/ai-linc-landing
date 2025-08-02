@@ -50,62 +50,47 @@ export function Navbar() {
           <NavigationMenu className="hidden md:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="#program" legacyBehavior passHref>
+                <Link href="/#program" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Program</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#curriculum" legacyBehavior passHref>
+                <Link href="/#curriculum" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Curriculum</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#instructors" legacyBehavior passHref>
+                <Link href="/#instructors" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Instructors</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#community" legacyBehavior passHref>
+                <Link href="/#community" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Community</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#pricing" legacyBehavior passHref>
+                <Link href="/#pricing" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>Pricing</NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/workshop-registration" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Register</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
 
           <div className="hidden md:block">
-            <Button
-              className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
-              size="lg"
-              onClick={() => {
-                console.log('Navbar Apply Now button clicked!');
-                
-                // Try Lenis first
-                try {
-                  scrollTo('#contact-apply', { duration: 1.5 });
-                  console.log('Navbar Lenis scroll attempted');
-                } catch (error) {
-                  console.log('Navbar Lenis failed, using fallback:', error);
-                  // Fallback to native scroll
-                  const element = document.getElementById('contact-apply');
-                  if (element) {
-                    element.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                    console.log('Navbar native scroll used');
-                  } else {
-                    console.log('Navbar: Element not found!');
-                  }
-                }
-              }}
-            >
-              Apply Now
-            </Button>
+            <Link href="/#contact-apply">
+              <Button
+                className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
+                size="lg"
+              >
+                Apply Now
+              </Button>
+            </Link>
           </div>
 
           <button className="md:hidden text-foreground" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -126,70 +111,55 @@ export function Navbar() {
           >
             <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
               <Link
-                href="#program"
+                href="/#program"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Program
               </Link>
               <Link
-                href="#curriculum"
+                href="/#curriculum"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Curriculum
               </Link>
               <Link
-                href="#instructors"
+                href="/#instructors"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Instructors
               </Link>
               <Link
-                href="#community"
+                href="/#community"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Community
               </Link>
               <Link
-                href="#pricing"
+                href="/#pricing"
                 className="text-foreground/80 hover:text-foreground transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Pricing
               </Link>
-              <Button
-                className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium w-full py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setTimeout(() => {
-                    console.log('Mobile Apply Now button clicked!');
-                    
-                    // Try Lenis first
-                    try {
-                      scrollTo('#contact-apply', { duration: 1.5 });
-                      console.log('Mobile Lenis scroll attempted');
-                    } catch (error) {
-                      console.log('Mobile Lenis failed, using fallback:', error);
-                      // Fallback to native scroll
-                      const element = document.getElementById('contact-apply');
-                      if (element) {
-                        element.scrollIntoView({ 
-                          behavior: 'smooth',
-                          block: 'start'
-                        });
-                        console.log('Mobile native scroll used');
-                      } else {
-                        console.log('Mobile: Element not found!');
-                      }
-                    }
-                  }, 300);
-                }}
+              <Link
+                href="/workshop-registration"
+                className="text-foreground/80 hover:text-foreground transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                Apply Now
-              </Button>
+                Register
+              </Link>
+              <Link href="/#contact-apply">
+                <Button
+                  className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium w-full py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Apply Now
+                </Button>
+              </Link>
             </div>
           </motion.div>
         )}
