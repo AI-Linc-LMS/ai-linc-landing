@@ -1,28 +1,45 @@
-"use client"
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { ThemeProvider } from "@/components/theme-provider"
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { toast, Toaster } from "sonner"
-import { CountdownTimer } from "./components/CountdownTimer"
-import { SpeakersSection } from "./components/SpeakersSection"
-import { RegistrationForm } from "./components/RegistrationForm"
-import { BootcampBenefits } from "./components/BootcampBenefits"
-import { SuccessModal } from "./components/SuccessModal"
-import { RegistrationCount } from "./components/RegistrationCount"
+"use client";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { toast, Toaster } from "sonner";
+import { CountdownTimer } from "./components/CountdownTimer";
+import { SpeakersSection } from "./components/SpeakersSection";
+import { RegistrationForm } from "./components/RegistrationForm";
+import { BootcampBenefits } from "./components/BootcampBenefits";
+import { SuccessModal } from "./components/SuccessModal";
+import { RegistrationCount } from "./components/RegistrationCount";
+import { WhatYouWillLearnSection } from "./components/WhatYouWillLearnSection";
+import { MentorSection } from "./components/MentorSection";
+import { AboutWorkshopSection } from "./components/AboutWorkshopSection";
+import { WhoIsThisWorkshopForSection } from "./components/WhoIsThisWorkshopForSection";
+import { BonusSection } from "./components/BonusSection";
+import { StickyBottomBar } from "./components/StickyBottomBar";
 
 export default function WorkshopRegistration() {
-  const [showModal, setShowModal] = useState(false)
-  const [seatsLeft, setSeatsLeft] = useState(5) // Simulating limited seats
-
-  const handleRegistrationSuccess = () => {
-    setShowModal(true)
-  }
+  const [showModal, setShowModal] = useState(false);
+  const [seatsLeft, setSeatsLeft] = useState(5); // Simulating limited seats
 
   const closeModal = () => {
-    setShowModal(false)
-  }
+    setShowModal(false);
+  };
+
+  const scrollToRegistration = () => {
+    const registrationElement = document.getElementById("registration-form");
+    if (registrationElement) {
+      registrationElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  const handleRegistrationSuccess = () => {
+    setShowModal(true);
+  };
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
@@ -39,7 +56,7 @@ export default function WorkshopRegistration() {
           >
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
-              Deploy Your First AI App: Live No-Code AI Workshop
+                Deploy Your First AI App: Live No-Code AI Workshop
               </h1>
               <p className="text-xl text-foreground/80 mb-8">
                 Develop Products without writing code
@@ -48,18 +65,66 @@ export default function WorkshopRegistration() {
               {/* Live Registration Count */}
               <RegistrationCount className="mb-8" />
 
+              {/* Registration Button and Pricing */}
+              <div className="mb-8 space-y-4">
+                <p className="text-lg font-semibold text-[#0BC5EA] mb-4">
+                  Join for Rs{" "}
+                  <span className="line-through text-gray-400">499</span> FREE
+                </p>
+                <Button
+                  onClick={scrollToRegistration}
+                  className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:from-[#0BC5EA]/90 hover:to-[#6B46C1]/90 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full md:w-auto min-w-[280px]"
+                  size="lg"
+                >
+                  Register Now for FREE
+                </Button>
+              </div>
+
               {/* Countdown Timer */}
               <CountdownTimer />
 
+              {/* YouTube Video */}
+              <div className="mb-12">
+                <div className="relative w-full max-w-4xl mx-auto">
+                  <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-2xl">
+                    <iframe
+                      src="https://www.youtube.com/embed/aqrZuRF65u8?si=wi7TiBBDb8v03jRF"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute top-0 left-0 w-full h-full"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+
+              {/* About the Workshop Section */}
+              <AboutWorkshopSection
+                onRegistrationClick={scrollToRegistration}
+                onRegistrationSuccess={handleRegistrationSuccess}
+                seatsLeft={seatsLeft}
+                setSeatsLeft={setSeatsLeft}
+              />
+
+              {/* What You Will Learn Section */}
+              <WhatYouWillLearnSection
+                scrollToRegistration={scrollToRegistration}
+              />
+
+              {/* Mentor Section */}
+              <MentorSection />
+
               {/* Speakers */}
               <SpeakersSection />
-            </div>
 
-            <RegistrationForm
-              onSuccess={handleRegistrationSuccess}
-              seatsLeft={seatsLeft}
-              setSeatsLeft={setSeatsLeft}
-            />
+              <WhoIsThisWorkshopForSection
+                onRegistrationClick={scrollToRegistration}
+              />
+
+              {/* Bonus Section */}
+              <BonusSection onRegistrationClick={scrollToRegistration} />
+            </div>
 
             {/* Bootcamp Benefits Section */}
             <BootcampBenefits />
@@ -69,11 +134,17 @@ export default function WorkshopRegistration() {
         {/* Registration Success Modal */}
         <SuccessModal showModal={showModal} onClose={closeModal} />
 
+        {/* Sticky Bottom Bar */}
+        <StickyBottomBar
+          onRegistrationClick={scrollToRegistration}
+          seatsLeft={seatsLeft}
+        />
+
         <Footer />
 
         <div className="absolute top-1/4 right-1/3 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
         <div className="absolute bottom-1/4 left-1/3 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
       </main>
     </ThemeProvider>
-  )
+  );
 }

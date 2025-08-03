@@ -11,7 +11,6 @@ export function useLenis() {
     const checkForLenis = () => {
       const lenisInstance = (window as any).lenis
       if (lenisInstance && !lenis) {
-        console.log('Lenis instance found and set')
         setLenis(lenisInstance)
         return true
       }
@@ -23,38 +22,48 @@ export function useLenis() {
       return
     }
 
-    // If not found, keep checking every 100ms for up to 5 seconds
+    // If not found, keep checking every 100ms for up to 2 seconds (reduced from 5)
+    let attempts = 0
+    const maxAttempts = 20 // 2 seconds at 100ms intervals
+    
     const interval = setInterval(() => {
-      if (checkForLenis()) {
+      attempts++
+      if (checkForLenis() || attempts >= maxAttempts) {
         clearInterval(interval)
+        if (attempts >= maxAttempts) {
+          // Silently handle - no console warning for better UX
+          console.debug('Lenis instance not found, using fallback scroll behavior')
+        }
       }
     }, 100)
 
-    // Clear interval after 5 seconds
-    const timeout = setTimeout(() => {
-      clearInterval(interval)
-      console.warn('Lenis instance not found after 5 seconds')
-    }, 5000)
-
     return () => {
       clearInterval(interval)
-      clearTimeout(timeout)
     }
   }, [lenis])
 
   const scrollTo = (target: string | number, options?: { offset?: number; duration?: number }) => {
-    console.log('scrollTo called with:', target, options)
-    console.log('lenis instance:', lenis)
-    
     if (lenis) {
-      console.log('Using Lenis to scroll')
       lenis.scrollTo(target, {
         offset: options?.offset || 0,
         duration: options?.duration || 1.2,
       })
     } else {
-      console.warn('Lenis instance not available, cannot scroll')
-      throw new Error('Lenis instance not available')
+      // Fallback to native scroll when Lenis isn't available
+      if (typeof target === 'string') {
+        const element = document.querySelector(target)
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          })
+        }
+      } else {
+        window.scrollTo({ 
+          top: target, 
+          behavior: 'smooth' 
+        })
+      }
     }
   }
 

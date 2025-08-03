@@ -42,8 +42,8 @@ export const programConfigs = [
   },
   {
     type: "🟡 FLAGSHIP",
-    title: "AI Linc Flagship Career Launchpad",
-    description: "A premium, outcome-driven program designed to get you placed — fast",
+    title: "AI Linc Flagship Program",
+    description: "Become an AI Generalist in 6 months with Microsoft Experts. Powered By Microsoft for Startups",
     features: flagshipFeatures,
     price: "Up to 100% Scholarship",
     booking: "₹999 (fully refundable within 7 days)",
