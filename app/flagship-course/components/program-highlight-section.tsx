@@ -4,16 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import {
-  GraduationCap,
   Clock,
   Calendar,
   CreditCard,
@@ -21,9 +13,6 @@ import {
   MessageCircle,
   Sparkles,
   CheckCircle,
-  Target,
-  BookOpen,
-  Users,
 } from "lucide-react";
 import { ContactFormModal } from "@/components/contact-form-modal";
 
