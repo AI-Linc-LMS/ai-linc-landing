@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export function InstructorsSection() {
   const instructors = [
@@ -37,7 +37,7 @@ export function InstructorsSection() {
       expertise: "Cloud AI and Databases",
       linkedin: "https://www.linkedin.com/in/abiramisukumaran/",
     },
-  ]
+  ];
 
   return (
     <section id="instructors" className="py-20 relative overflow-hidden">
@@ -50,10 +50,11 @@ export function InstructorsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-[#0BC5EA] bg-clip-text text-transparent">
-            Expert Instructors
+            AI Industry Leaders
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Learn from industry leaders with extensive experience at top AI companies.
+            Learn from industry leaders with extensive experience at top AI
+            companies.
           </p>
         </motion.div>
 
@@ -80,13 +81,19 @@ export function InstructorsSection() {
                     className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
-                    <div className="text-xs font-medium text-[#0BC5EA] mb-1">{instructor.company}</div>
-                    <h3 className="text-xl font-bold text-white mb-1">{instructor.name}</h3>
+                    <div className="text-xs font-medium text-[#0BC5EA] mb-1">
+                      {instructor.company}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-1">
+                      {instructor.name}
+                    </h3>
                     <p className="text-gray-300 text-sm">{instructor.role}</p>
                   </div>
                 </div>
                 <div className="p-4 flex items-center justify-between">
-                  <div className="text-sm text-gray-300">{instructor.expertise}</div>
+                  <div className="text-sm text-gray-300">
+                    {instructor.expertise}
+                  </div>
                   <div className="size-8 rounded-full bg-[#0BC5EA]/10 flex items-center justify-center group-hover:bg-[#0BC5EA]/20 transition-all duration-300">
                     <ArrowRight className="size-4 text-[#0BC5EA]" />
                   </div>
@@ -101,5 +108,5 @@ export function InstructorsSection() {
       <div className="absolute top-1/3 right-1/3 size-96 bg-[#0BC5EA]/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/3 left-1/3 size-96 bg-[#6B46C1]/5 rounded-full blur-3xl"></div>
     </section>
-  )
+  );
 }

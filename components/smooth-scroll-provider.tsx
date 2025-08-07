@@ -11,37 +11,36 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const lenisRef = useRef<Lenis | null>(null)
 
   useEffect(() => {
-    console.log('Initializing Lenis...')
-    
-    // Initialize Lenis with basic configuration
+    // Initialize Lenis with optimized configuration
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
     })
 
     lenisRef.current = lenis
-    console.log('Lenis initialized:', lenis)
 
-    // Expose lenis instance globally immediately
-    // @ts-ignore
-    window.lenis = lenis
-    console.log('Lenis exposed globally')
+    // Expose lenis instance globally immediately after creation
+    ;(window as any).lenis = lenis
 
-    // Animation frame loop
+    // Optimized animation frame loop
+    let rafId: number
     function raf(time: number) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
 
-    requestAnimationFrame(raf)
-    console.log('Lenis animation loop started')
+    rafId = requestAnimationFrame(raf)
 
     // Cleanup
     return () => {
-      console.log('Cleaning up Lenis')
+      if (rafId) {
+        cancelAnimationFrame(rafId)
+      }
       lenis.destroy()
-      // @ts-ignore
-      window.lenis = null
+      ;(window as any).lenis = null
     }
   }, [])
 
