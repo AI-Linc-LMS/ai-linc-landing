@@ -67,10 +67,6 @@ export default function WorkshopRegistration() {
 
               {/* Registration Button and Pricing */}
               <div className="mb-8 space-y-4">
-                <p className="text-lg font-semibold text-[#0BC5EA] mb-4">
-                  Join for Rs{" "}
-                  <span className="line-through text-gray-400">499</span> FREE
-                </p>
                 <Button
                   onClick={scrollToRegistration}
                   className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:from-[#0BC5EA]/90 hover:to-[#6B46C1]/90 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full md:w-auto min-w-[280px]"
@@ -78,6 +74,10 @@ export default function WorkshopRegistration() {
                 >
                   Register Now for FREE
                 </Button>
+                <p className="text-md font-semibold text-[#0BC5EA] mb-4">
+                  Join for Rs{" "}
+                  <span className="line-through text-gray-400">499</span> FREE
+                </p>
               </div>
 
               {/* Countdown Timer */}
