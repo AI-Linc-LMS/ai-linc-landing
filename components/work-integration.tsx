@@ -303,7 +303,7 @@ export function WorkIntegration() {
                                 </div>
                                 <div className="bg-card/50 rounded p-2">
                                   <div className="text-xs text-foreground/60 mb-1">Deadline</div>
-                                  <div className="text-sm font-medium">May 15, 2025</div>
+                                  <div className="text-sm font-medium">Aug 24, 2025</div>
                                   <div className="text-xs text-foreground/60">18 days remaining</div>
                                 </div>
                               </div>

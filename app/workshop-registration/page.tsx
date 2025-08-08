@@ -21,12 +21,9 @@ import { StickyBottomBar } from "./components/StickyBottomBar";
 
 export default function WorkshopRegistration() {
   const [showModal, setShowModal] = useState(false);
-  const [seatsLeft, setSeatsLeft] = useState(5); // Simulating limited seats
+  const [seatsLeft, setSeatsLeft] = useState(30); // Simulating limited seats
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
+  
   const scrollToRegistration = () => {
     const registrationElement = document.getElementById("registration-form");
     if (registrationElement) {
@@ -36,9 +33,12 @@ export default function WorkshopRegistration() {
       });
     }
   };
-
+  
   const handleRegistrationSuccess = () => {
     setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (

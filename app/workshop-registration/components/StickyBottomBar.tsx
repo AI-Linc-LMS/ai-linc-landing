@@ -37,7 +37,7 @@ export function StickyBottomBar({ onRegistrationClick, seatsLeft = 5 }: StickyBo
               </div>
               <div className="flex items-center gap-1 text-red-400">
                 <Users className="w-4 h-4" />
-                <span>{seatsLeft} seats left</span>
+                <span>30 seats left</span>
               </div>
             </div>
           </div>
