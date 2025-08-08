@@ -12,37 +12,37 @@ const learningItems: LearningItem[] = [
   {
     title: "Build a website in 5 Minutes",
     description: "No coding, no stress!",
-    icon: "🌐",
+    icon: "",
   },
   {
     title: "How generative AI works",
     description: "Be smart to learn new technologies",
-    icon: "🤖",
+    icon: "",
   },
   {
     title: "AI tools to make Videos & PPTs Instantly",
     description: "Save your time, Its precious!",
-    icon: "🎥",
+    icon: "",
   },
   {
     title: "Automate Emails & Reports",
     description: "Save time, work smart",
-    icon: "📧",
+    icon: "",
   },
   {
     title: "Correct usage of Prompts",
     description: "Your right prompt matters!",
-    icon: "💡",
+    icon: "",
   },
-  {
-    title: "Real Use Cases",
+  {   
+    title: "Re  al Use Cases",
     description: "Hiring, onboarding, training... all with AI",
-    icon: "🎯",
+    icon: "",
   },
   {
     title: "Build Resume in minutes",
     description: "Level up your personal brand",
-    icon: "📄",
+    icon: "",
   },
 ];
 
