@@ -6,8 +6,8 @@ import { ParticleBackground } from "@/components/particle-background"
 import { ThemeProvider } from "@/components/theme-provider"
 
 // Import all the components
-
 import { SyllabusSection } from "./components/syllabus-section"
+import { CurriculumSection } from "./components/curriculum-section"
 import { InstructorsSection } from "@/components/instructors-section"
 import { PlatformPreview } from "@/components/platform-preview"
 import { CareerTransformation } from "@/components/career-transformation"
@@ -22,6 +22,7 @@ export default function FlagshipCoursePage() {
                 <Navbar />
 
                 <DetailedSyllabusContent />
+                <CurriculumSection />
                 <SyllabusSection />
                 <PlatformPreview />
                 <InstructorsSection />
@@ -32,4 +33,4 @@ export default function FlagshipCoursePage() {
             </main>
         </ThemeProvider>
     )
-} 
+}
