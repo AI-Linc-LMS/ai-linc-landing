@@ -33,6 +33,7 @@ export function StickyCtaButtons() {
     seatsLeft: 5,
   });
   const [seatsRemaining, setSeatsRemaining] = useState(5);
+  const [isDismissed, setIsDismissed] = useState(false);
   const router = useRouter();
 
   // Random names for notifications
@@ -66,13 +67,13 @@ export function StickyCtaButtons() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      // Show after scrolling 300px
-      setIsVisible(scrollY > 300);
+      // Show after scrolling 300px and only if not dismissed
+      setIsVisible(scrollY > 300 && !isDismissed);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isDismissed]);
 
   // Random notification system
   useEffect(() => {
@@ -126,12 +127,17 @@ export function StickyCtaButtons() {
   };
 
   const handleReserveSubmit = () => {
-      try {
+    try {
       router.push("/contact-us");
     } catch (error) {
       console.error("Router navigation failed:", error);
       window.location.href = "/contact-us";
     }
+  };
+
+  const handleCloseCta = () => {
+    setIsDismissed(true);
+    setIsVisible(false);
   };
 
   return (
@@ -177,7 +183,7 @@ export function StickyCtaButtons() {
 
       {/* Sticky CTA Buttons */}
       <AnimatePresence>
-        {isVisible && (
+        {isVisible && !isDismissed && (
           <motion.div
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
@@ -191,10 +197,19 @@ export function StickyCtaButtons() {
               transition={{ duration: 0.3 }}
               className="w-80"
             >
-              <Card className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50 shadow-2xl backdrop-blur-sm">
+              <Card className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50 shadow-2xl backdrop-blur-sm relative">
                 <CardContent className="p-6">
+                  {/* Close Button */}
+                  <button
+                    onClick={handleCloseCta}
+                    className="absolute top-3 right-3 w-6 h-6 bg-slate-700/50 hover:bg-slate-600/50 rounded-full flex items-center justify-center transition-colors group"
+                    aria-label="Close"
+                  >
+                    <X className="w-3 h-3 text-slate-400 group-hover:text-white transition-colors" />
+                  </button>
+
                   <div className="mb-4">
-                    <h3 className="text-lg font-bold text-white text-center">
+                    <h3 className="text-lg font-bold text-white text-center pr-6">
                       Take Action Now!
                     </h3>
                   </div>
