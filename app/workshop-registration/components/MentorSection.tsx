@@ -15,7 +15,7 @@ export function MentorSection() {
 
       {/* Shubham Lal - Main Mentor */}
       <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#0BC5EA]/10 to-[#6B46C1]/10 rounded-2xl p-8 border border-[#0BC5EA]/20 shadow-2xl">
-        <div className="flex flex-col lg:flex-row items-start gap-8">
+        <div className="flex flex-col lg:flex-row md:items-start gap-8 items-center justify-center">
           {/* Profile Image */}
           <div className="flex-shrink-0">
             <div className="size-32 rounded-full overflow-hidden border-4 border-[#0BC5EA] p-1 shadow-lg">

@@ -169,7 +169,7 @@ export function BonusSection({ onRegistrationClick }: BonusSectionProps) {
                 Enroll Now
               </Button>
               <span className="absolute -top-1 left-3/4 transform -translate-x-1/2 bg-yellow-400 text-black px-3 py-1 rounded text-xs font-bold">
-                50 Seats Left
+                10 Seats Left
               </span>
             </div>
           </div>
