@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from 'react'
-import Lenis from 'lenis'
+import { useEffect, useRef } from "react";
+import Lenis from "lenis";
 
 interface SmoothScrollProviderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
-  const lenisRef = useRef<Lenis | null>(null)
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     // Initialize Lenis with optimized configuration
@@ -18,31 +18,31 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
-    })
+    });
 
-    lenisRef.current = lenis
+    lenisRef.current = lenis;
 
     // Expose lenis instance globally immediately after creation
-    ;(window as any).lenis = lenis
+    (window as any).lenis = lenis;
 
     // Optimized animation frame loop
-    let rafId: number
+    let rafId: number;
     function raf(time: number) {
-      lenis.raf(time)
-      rafId = requestAnimationFrame(raf)
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
     }
 
-    rafId = requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf);
 
     // Cleanup
     return () => {
       if (rafId) {
-        cancelAnimationFrame(rafId)
+        cancelAnimationFrame(rafId);
       }
-      lenis.destroy()
-      ;(window as any).lenis = null
-    }
-  }, [])
+      lenis.destroy();
+      (window as any).lenis = null;
+    };
+  }, []);
 
-  return <>{children}</>
-} 
+  return <>{children}</>;
+}

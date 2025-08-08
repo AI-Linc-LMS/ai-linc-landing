@@ -125,9 +125,6 @@ export default function WorkshopRegistration() {
               {/* Bonus Section */}
               <BonusSection onRegistrationClick={scrollToRegistration} />
             </div>
-
-            {/* Bootcamp Benefits Section */}
-            <BootcampBenefits />
           </motion.div>
         </div>
 
