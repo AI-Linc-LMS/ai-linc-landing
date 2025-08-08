@@ -223,7 +223,7 @@ export function StickyCtaButtons() {
                         </div>
                         <div>
                           <div className="text-white font-semibold text-sm">
-                            Apply for Scholarship
+                            Apply Now
                           </div>
                           <div className="text-gray-400 text-xs">
                             Get personalized guidance
