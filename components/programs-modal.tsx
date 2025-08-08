@@ -39,13 +39,14 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
   const courses = [
     {
       id: 1,
-      title: "Flagship Course",
-      description: "Our flagship AI course",
-      duration: "4 Months",
+      title: "Flagship Program",
+      description: "Become an AI Generalist in 6 months",
+      duration: "6 Months",
       format: "Live & Recorded Sessions",
       startDate: "Starting Soon",
-      price: "Up to 100% Scholarship",
+      price: "",
       features: [
+        "Learn 100+ AI tools",
         "AI fundamentals & prompt engineering",
         "Practical AI tools & workflows",
         "Project-based learning approach",
@@ -196,7 +197,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
               {/* AI Courses Section */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <h3 className="text-xl font-semibold text-white">AI Courses</h3>
+                  <h3 className="text-xl font-semibold text-white">ALL Programs</h3>
                   <Badge variant="outline" className="bg-[#0BC5EA]/10 text-[#0BC5EA] border-[#0BC5EA]/30">
                     Core Programs
                   </Badge>
@@ -225,9 +226,9 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
                               <Calendar className="w-3 h-3 mr-1" />
                               {course.duration}
                             </Badge>
-                            <Badge variant="outline" className="text-xs text-green-400 border-green-400/30">
+                            {/* <Badge variant="outline" className="text-xs text-green-400 border-green-400/30">
                               {course.price}
-                            </Badge>
+                            </Badge> */}
                           </div>
                         </div>
                         <ArrowRight className="w-4 h-4 text-gray-500 group-hover:text-[#0BC5EA] transition-colors flex-shrink-0 ml-2" />
