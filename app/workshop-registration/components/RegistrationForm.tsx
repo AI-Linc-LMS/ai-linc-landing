@@ -251,7 +251,7 @@ export function RegistrationForm({
             </select>
           </div>
 
-          <div>
+          {/* <div>
             <label
               htmlFor="educationalQualification"
               className="block text-sm font-medium mb-2"
@@ -284,9 +284,9 @@ export function RegistrationForm({
                 PhD
               </option>
             </select>
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label
               htmlFor="experience"
               className="block text-sm font-medium mb-2"
@@ -322,9 +322,9 @@ export function RegistrationForm({
                 10+ years
               </option>
             </select>
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label
               htmlFor="yearOfGraduation"
               className="block text-sm font-medium mb-2"
@@ -340,9 +340,9 @@ export function RegistrationForm({
               className="bg-background/50 border-[#0BC5EA]/30 focus:border-[#0BC5EA] focus:ring-[#0BC5EA]/20"
               placeholder="Enter your graduation year (e.g., 2023)"
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <label
               htmlFor="preferredLanguage"
               className="block text-sm font-medium mb-2"
@@ -387,7 +387,7 @@ export function RegistrationForm({
                 Gujarati
               </option>
             </select>
-          </div>
+          </div> */}
 
           <div>
             <label
