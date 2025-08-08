@@ -208,7 +208,7 @@ export function ContactFormModal({
         </DialogHeader>
 
         {seatsLeft !== undefined && seatsLeft <= 3 && (
-          <p className="text-red-500 font-bold mb-4">Only {seatsLeft} FREE seats left!</p>
+          <p className="text-red-500 font-bold mb-4">Only 30 FREE seats left!</p>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">

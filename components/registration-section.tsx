@@ -219,7 +219,7 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
             <div className="p-4 rounded-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-red-400 font-semibold">Only {seatsLeft} seats left!</span>
+                <span className="text-red-400 font-semibold">Only 30 seats left!</span>
               </div>
               <div className="text-xs text-gray-400">Register now to secure your spot</div>
             </div>
