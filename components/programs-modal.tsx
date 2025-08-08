@@ -24,7 +24,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (!mounted) return;
-    
+
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -82,7 +82,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
     {
       id: 1,
       title: "LinkedIn Growth With AI",
-      mentor: "Vaibhav Sisinty",
+      mentor: "",
       duration: "5 Days",
       time: "7 PM IST",
       date: "29th Aug, 2025",
@@ -92,7 +92,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
     {
       id: 2,
       title: "Generative AI Workshop",
-      mentor: "Vaibhav Sisinty",
+      mentor: "",
       duration: "3 Hours",
       time: "7 PM IST",
       date: "1st Aug, 2025",
@@ -102,7 +102,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
     {
       id: 3,
       title: "Generative AI Business Mastermind",
-      mentor: "Multiple mentors from Uber, Growthschool & more",
+      mentor: "",
       duration: "2 Days",
       time: "10 AM IST",
       date: "Coming Soon",
@@ -112,7 +112,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
     {
       id: 4,
       title: "Product Management With AI",
-      mentor: "Mohammad Sarosh",
+      mentor: "",
       duration: "3 Hours",
       time: "11 AM IST",
       date: "10th Aug, 2025",
@@ -122,7 +122,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
     {
       id: 5,
       title: "Generative AI Marketing Mastermind",
-      mentor: "Multiple mentors from Uber, Growthschool & more",
+      mentor: "",
       duration: "2 Days",
       time: "7 AM IST",
       date: "1st Aug, 2025",
@@ -132,7 +132,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
     {
       id: 6,
       title: "AI For Consultants",
-      mentor: "Vaibhav & Rushika",
+      mentor: "",
       duration: "3 Hours",
       time: "11 AM IST",
       date: "Coming Soon",
@@ -201,7 +201,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
                     Core Programs
                   </Badge>
                 </div>
-                
+
                 <div className="grid gap-6 grid-cols-1">
                   {courses.map((course) => (
                     <Link
@@ -254,7 +254,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
                     Advanced Learning
                   </Badge>
                 </div>
-                
+
                 <div className="grid gap-6 grid-cols-1">
                   {specializedPrograms.map((program) => (
                     <Link
@@ -307,7 +307,7 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
                     Focused Learning
                   </Badge>
                 </div>
-                
+
                 <div className="grid gap-3 grid-cols-1">
                   {workshops.map((workshop) => (
                     <div
