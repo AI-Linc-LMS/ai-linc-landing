@@ -1,69 +1,94 @@
-import { useState, useEffect } from "react"
+"use client"
+import { useCountdown } from "@/hooks/use-countdown"
+import { useMemo } from "react"
 
-interface TimeLeft {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
+interface WorkshopData {
+  UpcomingWorkshopDate: string
+  WorkshopTime: string
+  WorkshopTitle: string
+  SessionNumber: string
 }
 
-export function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  })
+interface CountdownTimerProps {
+  workshopData?: WorkshopData | null
+}
 
-  useEffect(() => {
-    const targetDate = new Date("2025-08-10T12:30:00")
+const FALLBACK_DATE = new Date("2025-08-10T12:00:00+05:30")
 
-    const interval = setInterval(() => {
-      const now = new Date()
-      const difference = targetDate.getTime() - now.getTime()
+export function CountdownTimer({ workshopData }: CountdownTimerProps) {
+  // Create webinar date from API data or use fallback
+  const workshopDate = useMemo(() => {
+    if (!workshopData) return FALLBACK_DATE
 
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60)
-        })
-      }
-    }, 1000)
+    try {
+      const [day, month, year] = workshopData.UpcomingWorkshopDate.split("-")
+      const [hours, minutes, seconds] = workshopData.WorkshopTime.split(":")
 
-    return () => clearInterval(interval)
-  }, [])
+      return new Date(
+        `${year}-${month}-${day}T${hours}:${minutes}:${seconds || "00"}+05:30`
+      )
+    } catch (error) {
+      console.error("Error parsing workshop date:", error)
+      return FALLBACK_DATE
+    }
+  }, [workshopData])
+
+  const timeLeft = useCountdown(workshopDate)
+
+  // Format date for display
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString("en-IN", {
+      weekday: "long",
+      day: "numeric",
+      month: "short",
+      year: "numeric"
+    })
+  }
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString("en-IN", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    })
+  }
 
   return (
-    <div className="mb-8">
-      {/* Workshop Date */}
-      <div className="text-center mb-6">
-        <div className="text-yellow-400 font-semibold text-lg mb-2">
-           Sunday, Aug 10, 2025 at 12:30 PM IST
-        </div>
-        <div className="font-semibold text-orange-400"> Workshop Starts In:</div>
+    <div className="mb-12">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+        Workshop Starts In
+      </h2>
+      <div className="text-center mb-4">
+        <p className="text-lg text-[#0BC5EA] font-semibold">
+          {formatDate(workshopDate)} at {formatTime(workshopDate)}
+        </p>
       </div>
-
-      {/* Countdown Timer */}
-      <div className="flex justify-center gap-4">
-        <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
-          <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.days}</div>
-          <div className="text-sm text-foreground/60">Days</div>
+      <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+        <div className="bg-gradient-to-br from-[#0BC5EA]/20 to-[#6B46C1]/20 backdrop-blur-sm border border-[#0BC5EA]/30 rounded-lg p-4 text-center">
+          <div className="text-2xl md:text-3xl font-bold text-[#0BC5EA]">
+            {timeLeft.days.toString().padStart(2, "0")}
+          </div>
+          <div className="text-sm text-gray-300">Days</div>
         </div>
-        <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
-          <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.hours}</div>
-          <div className="text-sm text-foreground/60">Hours</div>
+        <div className="bg-gradient-to-br from-[#0BC5EA]/20 to-[#6B46C1]/20 backdrop-blur-sm border border-[#0BC5EA]/30 rounded-lg p-4 text-center">
+          <div className="text-2xl md:text-3xl font-bold text-[#0BC5EA]">
+            {timeLeft.hours.toString().padStart(2, "0")}
+          </div>
+          <div className="text-sm text-gray-300">Hours</div>
         </div>
-        <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
-          <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.minutes}</div>
-          <div className="text-sm text-foreground/60">Minutes</div>
+        <div className="bg-gradient-to-br from-[#0BC5EA]/20 to-[#6B46C1]/20 backdrop-blur-sm border border-[#0BC5EA]/30 rounded-lg p-4 text-center">
+          <div className="text-2xl md:text-3xl font-bold text-[#0BC5EA]">
+            {timeLeft.minutes.toString().padStart(2, "0")}
+          </div>
+          <div className="text-sm text-gray-300">Minutes</div>
         </div>
-        <div className="bg-background/30 rounded-lg p-4 min-w-[80px]">
-          <div className="text-3xl font-bold text-[#0BC5EA]">{timeLeft.seconds}</div>
-          <div className="text-sm text-foreground/60">Seconds</div>
+        <div className="bg-gradient-to-br from-[#0BC5EA]/20 to-[#6B46C1]/20 backdrop-blur-sm border border-[#0BC5EA]/30 rounded-lg p-4 text-center">
+          <div className="text-2xl md:text-3xl font-bold text-[#0BC5EA]">
+            {timeLeft.seconds.toString().padStart(2, "0")}
+          </div>
+          <div className="text-sm text-gray-300">Seconds</div>
         </div>
       </div>
     </div>
   )
-} 
+}

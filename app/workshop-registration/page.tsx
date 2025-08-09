@@ -19,12 +19,13 @@ import { WhoIsThisWorkshopForSection } from "./components/WhoIsThisWorkshopForSe
 import { BonusSection } from "./components/BonusSection";
 import { StickyBottomBar } from "./components/StickyBottomBar";
 import { StickyCtaButtons } from "../flagship-course/components/sticky-cta-buttons";
+import { useWorkshopVariables } from "@/hooks/use-workshop-variables";
 
 export default function WorkshopRegistration() {
   const [showModal, setShowModal] = useState(false);
-  const [seatsLeft, setSeatsLeft] = useState(30); // Simulating limited seats
+  const [seatsLeft, setSeatsLeft] = useState(30);
+  const { data: workshopData, loading } = useWorkshopVariables();
 
-  
   const scrollToRegistration = () => {
     const registrationElement = document.getElementById("registration-form");
     if (registrationElement) {
@@ -34,13 +35,37 @@ export default function WorkshopRegistration() {
       });
     }
   };
-  
+
   const handleRegistrationSuccess = () => {
     setShowModal(true);
   };
   const closeModal = () => {
     setShowModal(false);
   };
+
+  // Use API data or fallback values
+  const workshopTitle =
+    workshopData?.WorkshopTitle ||
+    "Deploy Your First AI App: Live No-Code AI Workshop";
+  const sessionNumber = workshopData?.SessionNumber || "";
+  const displayTitle = sessionNumber ? `${sessionNumber}: ${workshopTitle}` : workshopTitle;
+
+  if (loading) {
+    return (
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <main className="relative min-h-screen bg-gradient-to-b from-[#0A1128] to-[#1A202C] text-white overflow-hidden">
+          <Navbar />
+          <div className="container mx-auto px-4 py-16 flex items-center justify-center min-h-[60vh]">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#0BC5EA] mx-auto mb-4"></div>
+              <p className="text-xl">Loading workshop details...</p>
+            </div>
+          </div>
+          <Footer />
+        </main>
+      </ThemeProvider>
+    );
+  }
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
@@ -57,7 +82,7 @@ export default function WorkshopRegistration() {
           >
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] bg-clip-text text-transparent">
-                Deploy Your First AI App: Live No-Code AI Workshop
+                {displayTitle}
               </h1>
               <p className="text-xl text-foreground/80 mb-8">
                 Develop Products without writing code
@@ -82,7 +107,7 @@ export default function WorkshopRegistration() {
               </div>
 
               {/* Countdown Timer */}
-              <CountdownTimer />
+              <CountdownTimer workshopData={workshopData} />
 
               {/* YouTube Video */}
               <div className="mb-12">
@@ -106,36 +131,43 @@ export default function WorkshopRegistration() {
                 onRegistrationSuccess={handleRegistrationSuccess}
                 seatsLeft={seatsLeft}
                 setSeatsLeft={setSeatsLeft}
+                // workshopData={workshopData}
               />
 
               {/* What You Will Learn Section */}
               <WhatYouWillLearnSection
                 scrollToRegistration={scrollToRegistration}
+                // workshopData={workshopData}
               />
 
               {/* Mentor Section */}
-              <MentorSection />
+              <MentorSection  />
 
               {/* Speakers */}
-              <SpeakersSection />
+              <SpeakersSection  />
 
               <WhoIsThisWorkshopForSection
                 onRegistrationClick={scrollToRegistration}
+                
               />
 
               {/* Bonus Section */}
-              <BonusSection onRegistrationClick={scrollToRegistration} />
+              <BonusSection
+                onRegistrationClick={scrollToRegistration}
+                
+              />
             </div>
           </motion.div>
         </div>
 
         {/* Registration Success Modal */}
-        <SuccessModal showModal={showModal} onClose={closeModal} />
+        <SuccessModal showModal={showModal} onClose={closeModal} workshopData={workshopData} />
 
         {/* Sticky Bottom Bar */}
         <StickyBottomBar
           onRegistrationClick={scrollToRegistration}
           seatsLeft={seatsLeft}
+          workshopData={workshopData}
         />
 
         <StickyCtaButtons onReserveSeat={scrollToRegistration}/>

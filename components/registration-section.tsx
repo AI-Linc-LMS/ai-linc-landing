@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { RegistrationForm } from "@/app/workshop-registration/components/RegistrationForm"
 import { RegistrationCount } from "@/app/workshop-registration/components/RegistrationCount"
 import { useCountdown } from "@/hooks/use-countdown"
+import { useWorkshopVariables } from "@/hooks/use-workshop-variables"
 
-const WEBINAR_DATE = new Date("2025-08-10T12:30:00+05:30"); // IST timezone
+const FALLBACK_WEBINAR_DATE = new Date("2025-08-10T12:30:00+05:30");
 
 interface RegistrationSectionProps {
   onSuccess: () => void
@@ -27,7 +28,57 @@ const stats = [
 
 export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
   const [seatsLeft, setSeatsLeft] = useState(47)
-  const timeLeft = useCountdown(WEBINAR_DATE)
+  const { data: workshopData, loading } = useWorkshopVariables()
+
+  // Create webinar date from API data or use fallback
+  const webinarDate = useMemo(() => {
+    if (!workshopData) return FALLBACK_WEBINAR_DATE;
+    
+    try {
+      const [day, month, year] = workshopData.UpcomingWorkshopDate.split('-');
+      const [hours, minutes, seconds] = workshopData.WorkshopTime.split(':');
+      
+      return new Date(`${year}-${month}-${day}T${hours}:${minutes}:${seconds || '00'}+05:30`);
+    } catch (error) {
+      console.error('Error parsing workshop date:', error);
+      return FALLBACK_WEBINAR_DATE;
+    }
+  }, [workshopData]);
+
+  const timeLeft = useCountdown(webinarDate);
+
+  // Format date for display
+  const formatWorkshopDate = (date: Date) => {
+    return date.toLocaleDateString('en-IN', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    }) + ' at ' + date.toLocaleTimeString('en-IN', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    }) + ' IST';
+  };
+
+  // Use API data or fallback values
+  const workshopTitle = workshopData?.WorkshopTitle || "Deploy Your First AI App: Live No-Code AI Workshop";
+  const sessionNumber = workshopData?.SessionNumber || "";
+  const displayTitle = sessionNumber ? `${sessionNumber}: ${workshopTitle}` : workshopTitle;
+  const formattedDate = formatWorkshopDate(webinarDate);
+
+  if (loading) {
+    return (
+      <section id="registration" className="py-20 relative overflow-hidden">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#0BC5EA] mx-auto mb-4"></div>
+            <p className="text-xl">Loading workshop details...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="registration" className="py-20 relative overflow-hidden">
@@ -47,11 +98,11 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                 </div>
                 
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-orange-400 via-red-400 to-pink-400 bg-clip-text text-transparent">
-                  Scared of coding?
+                  {workshopTitle.includes("No-Code") ? "Scared of coding?" : "Ready to build AI products?"}
                 </h3>
                 
                 <p className="text-xl text-gray-200 mb-6 leading-relaxed">
-                  Attend our <span className="font-bold text-orange-400">FREE 90 mins Live No Code Development Workshop</span> and learn generative & agentic AI.
+                  Attend our <span className="font-bold text-orange-400">FREE 90 mins Live Workshop</span> on {displayTitle.replace(/^Session-\d+:\s*/, "")}.
                 </p>
                 
                 <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-xl p-6 border border-green-500/30 mb-6">
@@ -141,8 +192,13 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                     <span className="text-yellow-400 font-medium text-sm">Live Workshop</span>
                   </div>
                   <div className="text-yellow-400 font-semibold text-lg">
-                    Sunday, Aug 10, 2025 at 12:30 PM IST
+                    {formattedDate}
                   </div>
+                  {sessionNumber && (
+                    <div className="text-[#0BC5EA] font-medium text-sm mt-2">
+                      {sessionNumber}
+                    </div>
+                  )}
                 </div>
 
                 <div className="text-center mb-4">
@@ -170,6 +226,7 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                 onSuccess={onSuccess}
                 seatsLeft={seatsLeft}
                 setSeatsLeft={setSeatsLeft}
+                
               />
             </div>
           </div>
@@ -225,6 +282,40 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
             </div>
           </div>
         </div>
+
+        {/* Add WhatsApp and Zoom links if available */}
+        {/* {workshopData && (
+          <div className="mt-12 text-center space-y-4">
+            <div className="flex flex-wrap justify-center gap-4">
+              {workshopData.whatsAppGroupLink && (
+                <a
+                  href={workshopData.whatsAppGroupLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                  </svg>
+                  Join WhatsApp Group
+                </a>
+              )}
+              {workshopData.ZoomJoiningLink && (
+                <a
+                  href={workshopData.ZoomJoiningLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.5 0A4.5 4.5 0 0124 4.5v15A4.5 4.5 0 0119.5 24h-15A4.5 4.5 0 010 19.5v-15A4.5 4.5 0 014.5 0h15zm-8.25 6v12l9-6-9-6z"/>
+                  </svg>
+                  Join Workshop (Zoom)
+                </a>
+              )}
+            </div>
+          </div>
+        )} */}
       </div>
 
       {/* Enhanced Background Effects */}
@@ -238,4 +329,4 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
       <div className="absolute bottom-20 left-1/4 w-3 h-3 bg-[#0BC5EA]/40 rounded-full animate-bounce" style={{ animationDelay: '2.5s' }}></div>
     </section>
   )
-} 
+}
