@@ -40,7 +40,7 @@ export function AiTalentDeployedSection() {
       company: "Nexzu Mobility",
       companyLogo: "/placeholder-logo.png",
       image: "/placeholder-user.jpg",
-      salaryIncrease: "120%",
+      salaryIncrease: "12%",
       story:
         "Transformed from traditional marketing to AI-driven growth strategies",
     },
@@ -51,7 +51,7 @@ export function AiTalentDeployedSection() {
       company: "Self-employed",
       companyLogo: "/placeholder-logo.png",
       image: "/placeholder-user.jpg",
-      salaryIncrease: "300%",
+      salaryIncrease: "30%",
       story: "Built an AI-powered startup after completing our program",
     },
     {
@@ -71,7 +71,7 @@ export function AiTalentDeployedSection() {
       company: "Faira Electronics & Services",
       companyLogo: "/placeholder-logo.png",
       image: "/placeholder-user.jpg",
-      salaryIncrease: "200%",
+      salaryIncrease: "20%",
       story: "Founded AI-driven electronics company",
     },
     {
@@ -81,7 +81,7 @@ export function AiTalentDeployedSection() {
       company: "Tada7 Asia",
       companyLogo: "/placeholder-logo.png",
       image: "/placeholder-user.jpg",
-      salaryIncrease: "95%",
+      salaryIncrease: "65%",
       story: "Applied AI tools to scale marketing operations",
     },
     {
@@ -91,18 +91,9 @@ export function AiTalentDeployedSection() {
       company: "Google",
       companyLogo: "/Google.png",
       image: "/Divyansh_dubey.jpg",
-      salaryIncrease: "150%",
+      salaryIncrease: "35%",
       story: "Now working on cutting-edge AI projects at Google",
     },
-  ];
-
-  const companiesDeployed = [
-    { name: "Google", logo: "/Google.png", count: "45+" },
-    { name: "Microsoft", logo: "/Microsoft_logo.png", count: "38+" },
-    { name: "Amazon", logo: "/amazon.png", count: "52+" },
-    { name: "Meta", logo: "/placeholder-logo.png", count: "23+" },
-    { name: "Apple", logo: "/placeholder-logo.png", count: "31+" },
-    { name: "Tesla", logo: "/placeholder-logo.png", count: "19+" },
   ];
 
   const roleCategories = [
@@ -213,7 +204,7 @@ export function AiTalentDeployedSection() {
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0">
                     <img
-                      src={story.image || "/placeholder-user.jpg"}
+                      src={`https://ui-avatars.com/api/?name=${story.name}`}
                       alt={story.name}
                       className="w-full h-full object-cover"
                     />
@@ -223,11 +214,6 @@ export function AiTalentDeployedSection() {
                       {story.name}
                     </h4>
                     <div className="flex items-center gap-2 mb-2">
-                      <img
-                        src={story.companyLogo || "/placeholder-logo.png"}
-                        alt={story.company}
-                        className="w-6 h-6 object-contain filter brightness-0 invert opacity-70"
-                      />
                       <span className="text-sm text-[#0BC5EA] font-medium">
                         {story.company}
                       </span>

@@ -5,19 +5,25 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, Users, Star, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ContactFormModal } from "@/components/contact-form-modal";
+import { useState } from "react";
 
-export function CareerTransformationCta() {
+export function CareerTransformationCta({
+  onReserveSeat,
+}: {
+  onReserveSeat: () => void;
+}) {
   const router = useRouter();
 
   const handleApplyNow = () => {
-    console.log("Apply Now Clicked");
-    router.push("/contact-us");
+    setIsContactModalOpen(true);
   };
 
   const handleBookSeat = () => {
     console.log("Book Seat Clicked");
-    router.push("/contact-us");
+    onReserveSeat();
   };
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <section className="py-16 sm:py-20 relative overflow-hidden">
@@ -146,6 +152,10 @@ export function CareerTransformationCta() {
           </Card>
         </motion.div>
 
+        <ContactFormModal
+          open={isContactModalOpen}
+          onOpenChange={setIsContactModalOpen}
+        />
         {/* Background Effects */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0BC5EA]/5 rounded-full blur-3xl"></div>
       </div>

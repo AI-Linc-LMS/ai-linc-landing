@@ -1,6 +1,38 @@
 "use client";
+// Array of flagship course modules (replace with real titles as needed)
+const flagshipModules = [
+  {
+    title: "Module 1: Foundations of AI & Everyday Productivity",
+    slug: "foundations-of-ai-everyday-productivity",
+  },
+  {
+    title: "Module 2: AI‑Powered Data & Business Analysis",
+    slug: "ai-powered-data-business-analysis",
+  },
+  {
+    title: "Module 3: AI‑Powered Software Development & Testing",
+    slug: "ai-powered-software-development-testing",
+  },
+  {
+    title: "Module 4: Agentic AI & Automation Strategies",
+    slug: "agentic-ai-automation-strategies",
+  },
+  {
+    title: "Module 5: Core Data Science & Generative AI Skills",
+    slug: "core-data-science-generative-ai-skills",
+  },
+  {
+    title: "Module 6: Business Applications of AI",
+    slug: "business-applications-of-ai",
+  },
+  {
+    title: "Module 7: AI‑Powered Career Advancement Strategies",
+    slug: "ai-powered-career-advancement-strategies",
+  },
+];
 
 import React from "react";
+import { createPortal } from "react-dom";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -96,7 +128,6 @@ export function Navbar() {
         setIsAICheatSheetModalOpen(false);
         setIsCheatSheetSuccessModalOpen(true);
       }
-
       // Optional: If there's a download URL, open it
       if (responseData.download_url) {
         window.open(responseData.download_url, "_blank");
@@ -107,9 +138,9 @@ export function Navbar() {
     }
   };
 
-  // Update cheat sheet navigation functions
+  // Function to handle cheat sheet modal open (desktop)
   const navigateToCheatSheet = () => {
-    setIsContactModalOpen(false); // Close the existing contact modal
+    setIsContactModalOpen(false); // Close the existing contact modal if open
     setIsAICheatSheetModalOpen(true);
   };
 
@@ -125,6 +156,36 @@ export function Navbar() {
     setMobileMenuOpen(false);
     setIsContactModalOpen(false); // Close the existing contact modal
     setIsAICheatSheetModalOpen(true);
+  };
+
+  const [showModuleMenu, setShowModuleMenu] = useState(false);
+  const [moduleMenuPos, setModuleMenuPos] = useState({ top: 0, left: 0 });
+  const flagshipRef = React.useRef<HTMLLIElement>(null);
+  // Timer for delayed close
+  const closeTimer = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Helper functions for hover logic
+  const openModuleMenu = (e: React.MouseEvent<HTMLLIElement>) => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setShowModuleMenu(true);
+    const rect = e.currentTarget.getBoundingClientRect();
+    setModuleMenuPos({
+      top: rect.top + rect.height / 2 - 24,
+      left: rect.right + 8,
+    });
+  };
+  const closeModuleMenu = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setShowModuleMenu(false), 120);
+  };
+  const cancelCloseModuleMenu = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
   };
 
   return (
@@ -166,20 +227,70 @@ export function Navbar() {
                     </NavigationMenuTrigger>
                   </div>
                   <NavigationMenuContent>
-                    <ul className="grid w-[280px] gap-3 p-4">
-                      <ListItem href="/flagship-course" title="Flagship Course">
-                        Our flagship AI course
-                      </ListItem>
-                      <li className="text-sm font-medium text-gray-400 px-3 py-1 border-t border-gray-700 mt-2 pt-3">
-                        Specialized Programs
-                      </li>
-                      <ListItem
-                        href="/nanodegree"
-                        title="AI in Tech: Build Products using Agentic AI"
-                      >
-                        Comprehensive AI nanodegree program
-                      </ListItem>
-                    </ul>
+                    <div className="flex relative overflow-visible z-[100]">
+                      <ul className="grid w-[280px] gap-3 p-4 relative">
+                        <li
+                          className="relative"
+                          ref={flagshipRef}
+                          onMouseEnter={openModuleMenu}
+                          onMouseLeave={closeModuleMenu}
+                        >
+                          <ListItem
+                            href="/flagship-course"
+                            title="Flagship Course"
+                          >
+                            Our flagship AI course
+                          </ListItem>
+                        </li>
+                        {/* Portal-style module menu, rendered at the body level for full visibility */}
+                        {typeof window !== "undefined" &&
+                          createPortal(
+                            <AnimatePresence>
+                              {showModuleMenu && (
+                                <motion.div
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: 10 }}
+                                  transition={{
+                                    duration: 0.18,
+                                    ease: "easeOut",
+                                  }}
+                                  className="min-w-[260px] bg-background border border-border rounded-lg shadow-lg p-4 flex flex-col gap-2 z-[9999] fixed"
+                                  style={{
+                                    top: moduleMenuPos.top,
+                                    left: moduleMenuPos.left,
+                                  }}
+                                  onMouseEnter={cancelCloseModuleMenu}
+                                  onMouseLeave={closeModuleMenu}
+                                >
+                                  <div className="font-semibold text-base mb-2 text-[#0BC5EA]">
+                                    Flagship Modules
+                                  </div>
+                                  {flagshipModules.map((mod) => (
+                                    <Link
+                                      key={mod.slug}
+                                      href={`/flagship-course/module/${mod.slug}`}
+                                      className="block px-3 py-2 rounded hover:bg-accent hover:text-accent-foreground text-sm text-foreground transition-colors"
+                                    >
+                                      {mod.title}
+                                    </Link>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>,
+                            document.body
+                          )}
+                        <li className="text-sm font-medium text-gray-400 px-3 py-1 border-t border-gray-700 mt-2 pt-3">
+                          Specialized Programs
+                        </li>
+                        <ListItem
+                          href="/nanodegree"
+                          title="AI in Tech: Build Products using Agentic AI"
+                        >
+                          Comprehensive AI nanodegree program
+                        </ListItem>
+                      </ul>
+                    </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
@@ -219,13 +330,11 @@ export function Navbar() {
             <div className="hidden md:block">
               <div className="flex items-center space-x-4">
                 <Button
-                  className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
-                  size="lg"
-                  onClick={() =>
-                    window.open("https://app.ailinc.com/jobs", "_blank")
-                  }
+                  className={navigationMenuTriggerStyle()}
+                  onClick={() => setIsProgramsModalOpen(true)}
+                  variant="outline"
                 >
-                  Apply for Jobs
+                  Join the AI Linc Community
                 </Button>
                 <Button
                   className="bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(75,192,192,0.5)]"

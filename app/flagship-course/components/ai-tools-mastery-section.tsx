@@ -23,12 +23,12 @@ const aiTools = [
     category: "Code Assistant",
     color: "from-blue-500 to-cyan-500",
   },
-  {
-    name: "perplexity",
-    logo: "https://yt3.googleusercontent.com/WMhp_9de--WM9k5Bwv2L9hKRBz5VPRhqCGC5wd2SkUnJw1BnsI8O3_v2rFdSaOYQJ5jzAl2b=s900-c-k-c0x00ffffff-no-rj",
-    category: "Research AI",
-    color: "from-purple-500 to-pink-500",
-  },
+  // {
+  //   name: "Perplexity",
+  //   logo: "https://yt3.googleusercontent.com/WMhp_9de--WM9k5Bwv2L9hKRBz5VPRhqCGC5wd2SkUnJw1BnsI8O3_v2rFdSaOYQJ5jzAl2b=s900-c-k-c0x00ffffff-no-rj",
+  //   category: "Research AI",
+  //   color: "from-purple-500 to-pink-500",
+  // },
   {
     name: "Claude",
     logo: "https://claude.ai/images/claude_app_icon.png",
@@ -47,12 +47,12 @@ const aiTools = [
     category: "Automation",
     color: "from-orange-500 to-yellow-500",
   },
-  {
-    name: "MidJourney",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/midjourney/midjourney-original.svg",
-    category: "Image Generation",
-    color: "from-pink-500 to-rose-500",
-  },
+  // {
+  //   name: "MidJourney",
+  //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/midjourney/midjourney-original.svg",
+  //   category: "Image Generation",
+  //   color: "from-pink-500 to-rose-500",
+  // },
 ];
 
 const automationTasks = [
@@ -157,7 +157,7 @@ export function AiToolsMasterySection() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 mb-12">
             {aiTools.map((tool, index) => (
               <motion.div key={tool.name} variants={toolItem}>
                 <Card className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 backdrop-blur-sm border-gray-700/50 hover:border-[#0BC5EA]/50 transition-all duration-300 group">

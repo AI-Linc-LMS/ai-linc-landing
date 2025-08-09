@@ -18,6 +18,7 @@ import { AboutWorkshopSection } from "./components/AboutWorkshopSection";
 import { WhoIsThisWorkshopForSection } from "./components/WhoIsThisWorkshopForSection";
 import { BonusSection } from "./components/BonusSection";
 import { StickyBottomBar } from "./components/StickyBottomBar";
+import { StickyCtaButtons } from "../flagship-course/components/sticky-cta-buttons";
 import { useWorkshopVariables } from "@/hooks/use-workshop-variables";
 
 export default function WorkshopRegistration() {
@@ -168,6 +169,8 @@ export default function WorkshopRegistration() {
           seatsLeft={seatsLeft}
           workshopData={workshopData}
         />
+
+        <StickyCtaButtons onReserveSeat={scrollToRegistration}/>
 
         <Footer />
 

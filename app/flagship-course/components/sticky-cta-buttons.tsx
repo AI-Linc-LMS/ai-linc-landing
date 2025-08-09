@@ -23,10 +23,15 @@ import {
   CheckCircle,
   Sparkles,
 } from "lucide-react";
+import { ContactFormModal } from "@/components/contact-form-modal";
 
-export function StickyCtaButtons() {
+export function StickyCtaButtons({
+  onReserveSeat,
+}: {
+  onReserveSeat: () => void;
+}) {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [showReserveModal, setShowReserveModal] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [currentNotification, setCurrentNotification] = useState({
     name: "",
@@ -113,17 +118,7 @@ export function StickyCtaButtons() {
   }, [seatsRemaining, randomNames]);
 
   const handleApplyNow = () => {
-    // Navigate to contact us form within the website
-    try {
-      router.push("/contact-us");
-    } catch (error) {
-      console.error("Router navigation failed:", error);
-      window.location.href = "/contact-us";
-    }
-  };
-
-  const handleReserveSeat = () => {
-    setShowReserveModal(true);
+    setIsContactModalOpen(true);
   };
 
   const handleReserveSubmit = () => {
@@ -150,7 +145,7 @@ export function StickyCtaButtons() {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 300, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed top-6 right-4 z-[60] bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-w-xs"
+            className="fixed top-10 right-4 z-[60] bg-white border border-gray-200 rounded-lg shadow-lg p-4 max-w-xs"
           >
             <div className="flex items-center space-x-3">
               <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -202,7 +197,7 @@ export function StickyCtaButtons() {
                   {/* Close Button */}
                   <button
                     onClick={handleCloseCta}
-                    className="absolute top-3 right-3 w-6 h-6 bg-slate-700/50 hover:bg-slate-600/50 rounded-full flex items-center justify-center transition-colors group"
+                    className="absolute top-10 right-3 w-6 h-6 bg-slate-700/50 hover:bg-slate-600/50 rounded-full flex items-center justify-center transition-colors group"
                     aria-label="Close"
                   >
                     <X className="w-3 h-3 text-slate-400 group-hover:text-white transition-colors" />
@@ -261,7 +256,7 @@ export function StickyCtaButtons() {
                         </Badge>
                       </div>
                       <Button
-                        onClick={handleReserveSeat}
+                        onClick={onReserveSeat}
                         className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-semibold"
                       >
                         Reserve at ₹499/-
@@ -282,101 +277,10 @@ export function StickyCtaButtons() {
         )}
       </AnimatePresence>
 
-      {/* Reserve Seat Modal */}
-      <Dialog open={showReserveModal} onOpenChange={setShowReserveModal}>
-        <DialogContent className="max-w-md bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50">
-          <DialogHeader className="text-center pb-4">
-            <div className="w-16 h-16 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CreditCard className="w-8 h-8 text-white" />
-            </div>
-            <DialogTitle className="text-2xl font-bold text-white">
-              Reserve Your Seat
-            </DialogTitle>
-            <DialogDescription className="text-slate-300">
-              Secure your spot in the AI Generalist Program for just ₹499/-
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="space-y-6">
-            <div className="bg-gradient-to-r from-yellow-600/10 to-orange-600/10 border border-yellow-600/30 rounded-lg p-4">
-              <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
-                <Shield className="w-4 h-4 text-yellow-400" />
-                Reservation Benefits
-              </h4>
-              <div className="space-y-2 text-sm text-slate-300">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-3 h-3 text-green-400" />
-                  <span>Guaranteed seat in next batch</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-3 h-3 text-green-400" />
-                  <span>100% refundable within 7 days</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-3 h-3 text-green-400" />
-                  <span>Early access to course materials</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-3 h-3 text-green-400" />
-                  <span>Priority support from mentors</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-yellow-500 transition-colors"
-                />
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-yellow-500 transition-colors"
-                />
-              </div>
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-yellow-500 transition-colors"
-              />
-              <input
-                type="tel"
-                placeholder="Phone Number"
-                className="w-full px-4 py-3 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-yellow-500 transition-colors"
-              />
-            </div>
-
-            <div className="bg-slate-800/30 rounded-lg p-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-white font-semibold">
-                  Reservation Fee
-                </span>
-                <span className="text-2xl font-bold text-yellow-400">
-                  ₹499/-
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-slate-400">
-                <Clock className="w-3 h-3" />
-                <span>Refundable within 7 days of course start</span>
-              </div>
-            </div>
-
-            <Button
-              onClick={handleReserveSubmit}
-              className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-semibold py-3"
-            >
-              Proceed to Payment
-              <CreditCard className="w-4 h-4 ml-2" />
-            </Button>
-
-            <p className="text-xs text-slate-400 text-center">
-              Secure payment powered by Razorpay • Your data is protected
-            </p>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <ContactFormModal
+        open={isContactModalOpen}
+        onOpenChange={setIsContactModalOpen}
+      />
     </>
   );
 }

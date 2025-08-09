@@ -28,17 +28,20 @@ import { RegistrationSection } from "@/components/registration-section";
 import { useHashNavigation } from "@/hooks/use-hash-navigation";
 import { useState } from "react";
 import { VideoSection } from "@/components/video-section";
+import { HowWeHelpSection } from "@/components/how-we-help-section";
 import { CareerTransformation } from "../components/career-transformation";
 import { TopScorersSection } from "@/components/top-scorers-section";
 import { LinkedInPostsSection } from "@/components/linkedin-posts-section";
 import { StudentTestimonialsSection } from "@/components/student-testimonials-section";
 import StackedCards from "@/components/StackedCards";
+import { ProgramsModal } from "@/components/programs-modal";
 
 export default function Home() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   // Initialize hash navigation
   useHashNavigation();
+  const [isProgramsModalOpen, setIsProgramsModalOpen] = useState(false);
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
@@ -55,7 +58,9 @@ export default function Home() {
         <HeroSection />
         <VideoSection />
         <StackedCards />
-        <HowWeDoItSection />
+        <HowWeHelpSection
+          onOpenProgramsModal={() => setIsProgramsModalOpen(true)}
+        />
         {/* <WhoWeAreSection /> */}
         {/* <TopScorersSection /> */}
         <LinkedInPostsSection />
@@ -71,6 +76,11 @@ export default function Home() {
         <RegistrationSection onSuccess={() => setShowSuccessModal(true)} />
         <LetsWorkTogetherSection />
         <Footer />
+
+        <ProgramsModal
+          isOpen={isProgramsModalOpen}
+          onClose={() => setIsProgramsModalOpen(false)}
+        />
       </main>
     </ThemeProvider>
   );
