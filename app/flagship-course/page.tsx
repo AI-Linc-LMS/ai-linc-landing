@@ -28,6 +28,16 @@ export default function FlagshipCoursePage() {
   const handleRegistrationSuccess = () => {
     setShowSuccessModal(true);
   };
+
+  const scrollToRegistration = () => {
+    const registrationElement = document.getElementById("registration-form");
+    if (registrationElement) {
+      registrationElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       {showSuccessModal && (
@@ -45,7 +55,7 @@ export default function FlagshipCoursePage() {
         <ProjectsPortfolioSection />
         <AiToolsMasterySection />
         <TangibleOutcomesSection />
-        <CareerTransformationCta />
+        <CareerTransformationCta onReserveSeat={scrollToRegistration} />
         <RegistrationSection onSuccess={handleRegistrationSuccess} />
         <InstructorsSection />
         <DetailedSyllabusContent />
@@ -53,7 +63,7 @@ export default function FlagshipCoursePage() {
         <PlatformPreview />
         {/* <CareerTransformation /> */}
 
-        <StickyCtaButtons />
+        <StickyCtaButtons onReserveSeat={scrollToRegistration} />
         <Footer />
       </main>
     </ThemeProvider>

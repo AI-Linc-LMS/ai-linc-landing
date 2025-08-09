@@ -18,6 +18,7 @@ import { AboutWorkshopSection } from "./components/AboutWorkshopSection";
 import { WhoIsThisWorkshopForSection } from "./components/WhoIsThisWorkshopForSection";
 import { BonusSection } from "./components/BonusSection";
 import { StickyBottomBar } from "./components/StickyBottomBar";
+import { StickyCtaButtons } from "../flagship-course/components/sticky-cta-buttons";
 
 export default function WorkshopRegistration() {
   const [showModal, setShowModal] = useState(false);
@@ -136,6 +137,8 @@ export default function WorkshopRegistration() {
           onRegistrationClick={scrollToRegistration}
           seatsLeft={seatsLeft}
         />
+
+        <StickyCtaButtons onReserveSeat={scrollToRegistration}/>
 
         <Footer />
 

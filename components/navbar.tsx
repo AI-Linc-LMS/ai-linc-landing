@@ -219,13 +219,11 @@ export function Navbar() {
             <div className="hidden md:block">
               <div className="flex items-center space-x-4">
                 <Button
-                  className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(11,197,234,0.5)]"
-                  size="lg"
-                  onClick={() =>
-                    window.open("https://app.ailinc.com/jobs", "_blank")
-                  }
+                  className={navigationMenuTriggerStyle()}
+                  onClick={() => setIsProgramsModalOpen(true)}
+                  variant="outline"
                 >
-                  Apply for Jobs
+                  Join the AI Linc Community
                 </Button>
                 <Button
                   className="bg-gradient-to-r from-green-400 to-blue-500 hover:opacity-90 text-white font-medium px-6 py-2 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(75,192,192,0.5)]"

@@ -104,7 +104,7 @@ export function ProgramHighlightSection() {
                     Admission Deadline
                   </div>
                   <div className="text-lg font-bold text-white">
-                    Every Month End
+                    30 Aug 2025
                   </div>
                 </motion.div>
 
