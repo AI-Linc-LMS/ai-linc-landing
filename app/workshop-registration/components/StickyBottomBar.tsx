@@ -2,13 +2,46 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Clock, Users, ArrowRight } from "lucide-react";
+import { useMemo } from "react";
 
-interface StickyBottomBarProps {
-  onRegistrationClick?: () => void;
-  seatsLeft?: number;
+interface WorkshopData {
+  UpcomingWorkshopDate: string;
+  WorkshopTime: string;
+  WorkshopTitle: string;
+  SessionNumber: string;
 }
 
-export function StickyBottomBar({ onRegistrationClick, seatsLeft = 5 }: StickyBottomBarProps) {
+interface StickyBottomBarProps {
+  onRegistrationClick: () => void;
+  seatsLeft: number;
+  workshopData?: WorkshopData | null;
+}
+
+export function StickyBottomBar({ onRegistrationClick, seatsLeft, workshopData }: StickyBottomBarProps) {
+  // Format workshop date and time
+  const workshopDateTime = useMemo(() => {
+    if (!workshopData) return "Aug 10, 2025 at 12:00 PM";
+    
+    try {
+      const [day, month, year] = workshopData.UpcomingWorkshopDate.split('-');
+      const [hours, minutes] = workshopData.WorkshopTime.split(':');
+      
+      const date = new Date(`${year}-${month}-${day}T${hours}:${minutes}:00`);
+      
+      return date.toLocaleDateString('en-IN', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      }) + ' at ' + date.toLocaleTimeString('en-IN', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      });
+    } catch (error) {
+      return "Aug 10, 2025 at 12:00 PM";
+    }
+  }, [workshopData]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -33,11 +66,11 @@ export function StickyBottomBar({ onRegistrationClick, seatsLeft = 5 }: StickyBo
             <div className="flex items-center gap-4 text-sm">
               <div className="flex items-center gap-1 text-orange-400">
                 <Clock className="w-4 h-4" />
-                <span>90 mins</span>
+                <span>{workshopDateTime}</span>
               </div>
               <div className="flex items-center gap-1 text-red-400">
                 <Users className="w-4 h-4" />
-                <span>10 seats left</span>
+                <span>{seatsLeft} seats left</span>
               </div>
             </div>
           </div>
