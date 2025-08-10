@@ -1,65 +1,99 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Users, Calendar, User, Mail, Phone, Clock, MessageCircle } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Users,
+  Calendar,
+  User,
+  Mail,
+  Phone,
+  Clock,
+  MessageCircle,
+} from "lucide-react";
 
 export function CtaScheduleCall() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     preferredTime: "",
     message: "",
-    course: "Product Development Using Agentic AI"
-  })
+    course: "Product Development Using Agentic AI",
+  });
 
   const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle form submission here (API call, etc.)
-    console.log("Form submitted:", formData)
-    setIsModalOpen(false)
+    console.log("Form submitted:", formData);
+    setIsModalOpen(false);
     setFormData({
       name: "",
       email: "",
       phone: "",
       preferredTime: "",
       message: "",
-      course: "Product Development Using Agentic AI"
-    })
-  }
+      course: "Product Development Using Agentic AI",
+    });
+  };
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
-    }))
-  }
+      [field]: value,
+    }));
+  };
 
   return (
     <div className="text-center max-w-4xl mx-auto my-8 px-2 sm:px-4">
       <Card className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border-cyan-500/20 p-4 sm:p-8">
         <CardContent className="p-0">
-          <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Ready to Start Your AI Journey?</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
+            Ready to Start Your AI Journey?
+          </h3>
           <p className="text-base sm:text-xl text-gray-300 mb-4 sm:mb-6">
-            Join thousands of students who have transformed their careers with our comprehensive AI development program
+            Join thousands of students who have transformed their careers with
+            our comprehensive AI development program
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full">
-            <Button
-              size="lg"
-              className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
-              onClick={() => window.location.href = '/assessment'}
-            >
-              <Users className="w-5 h-5 mr-2" />
-              Enroll Now
-            </Button>
+            <div className="flex flex-col items-center w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
+                onClick={() =>
+                  window.open(
+                    "https://app.ailinc.com/flagship-program-payment?data=lls_t0qai8_f.17b45ced",
+                    "_blank"
+                  )
+                }
+              >
+                <Users className="w-5 h-5 mr-2" />
+                Enroll Now
+              </Button>
+              <span className="text-xs text-cyan-300 mt-2 text-center max-w-xs">
+                Login to the platform to make the payment and immediately you
+                will be granted the access to the program
+              </span>
+            </div>
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
               <DialogTrigger asChild>
                 <Button
@@ -80,10 +114,16 @@ export function CtaScheduleCall() {
                     Get personalized guidance about our AI development program
                   </p>
                 </DialogHeader>
-                <form onSubmit={handleFormSubmit} className="space-y-4 sm:space-y-6">
+                <form
+                  onSubmit={handleFormSubmit}
+                  className="space-y-4 sm:space-y-6"
+                >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-sm font-medium flex items-center">
+                      <Label
+                        htmlFor="name"
+                        className="text-sm font-medium flex items-center"
+                      >
                         <User className="w-4 h-4 mr-2" />
                         Full Name *
                       </Label>
@@ -92,13 +132,18 @@ export function CtaScheduleCall() {
                         type="text"
                         placeholder="Enter your full name"
                         value={formData.name}
-                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("name", e.target.value)
+                        }
                         className="bg-gray-800 border-gray-600 text-white"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-medium flex items-center">
+                      <Label
+                        htmlFor="email"
+                        className="text-sm font-medium flex items-center"
+                      >
                         <Mail className="w-4 h-4 mr-2" />
                         Email Address *
                       </Label>
@@ -107,7 +152,9 @@ export function CtaScheduleCall() {
                         type="email"
                         placeholder="Enter your email"
                         value={formData.email}
-                        onChange={(e) => handleInputChange('email', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
                         className="bg-gray-800 border-gray-600 text-white"
                         required
                       />
@@ -116,7 +163,10 @@ export function CtaScheduleCall() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-sm font-medium flex items-center">
+                      <Label
+                        htmlFor="phone"
+                        className="text-sm font-medium flex items-center"
+                      >
                         <Phone className="w-4 h-4 mr-2" />
                         Phone Number *
                       </Label>
@@ -125,24 +175,40 @@ export function CtaScheduleCall() {
                         type="tel"
                         placeholder="Enter your phone number"
                         value={formData.phone}
-                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        onChange={(e) =>
+                          handleInputChange("phone", e.target.value)
+                        }
                         className="bg-gray-800 border-gray-600 text-white"
                         required
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="preferredTime" className="text-sm font-medium flex items-center">
+                      <Label
+                        htmlFor="preferredTime"
+                        className="text-sm font-medium flex items-center"
+                      >
                         <Clock className="w-4 h-4 mr-2" />
                         Preferred Time *
                       </Label>
-                      <Select value={formData.preferredTime} onValueChange={(value) => handleInputChange('preferredTime', value)}>
+                      <Select
+                        value={formData.preferredTime}
+                        onValueChange={(value) =>
+                          handleInputChange("preferredTime", value)
+                        }
+                      >
                         <SelectTrigger className="bg-gray-800 border-gray-600 text-white">
                           <SelectValue placeholder="Select preferred time" />
                         </SelectTrigger>
                         <SelectContent className="bg-gray-800 border-gray-600">
-                          <SelectItem value="morning">Morning (9 AM - 12 PM)</SelectItem>
-                          <SelectItem value="afternoon">Afternoon (12 PM - 5 PM)</SelectItem>
-                          <SelectItem value="evening">Evening (5 PM - 8 PM)</SelectItem>
+                          <SelectItem value="morning">
+                            Morning (9 AM - 12 PM)
+                          </SelectItem>
+                          <SelectItem value="afternoon">
+                            Afternoon (12 PM - 5 PM)
+                          </SelectItem>
+                          <SelectItem value="evening">
+                            Evening (5 PM - 8 PM)
+                          </SelectItem>
                           <SelectItem value="flexible">Flexible</SelectItem>
                         </SelectContent>
                       </Select>
@@ -150,7 +216,10 @@ export function CtaScheduleCall() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-sm font-medium flex items-center">
+                    <Label
+                      htmlFor="message"
+                      className="text-sm font-medium flex items-center"
+                    >
                       <MessageCircle className="w-4 h-4 mr-2" />
                       Message (Optional)
                     </Label>
@@ -158,7 +227,9 @@ export function CtaScheduleCall() {
                       id="message"
                       placeholder="Tell us about your background and what you'd like to discuss..."
                       value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("message", e.target.value)
+                      }
                       className="bg-gray-800 border-gray-600 text-white min-h-[100px]"
                       rows={4}
                     />
@@ -188,5 +259,5 @@ export function CtaScheduleCall() {
         </CardContent>
       </Card>
     </div>
-  )
-} 
+  );
+}
