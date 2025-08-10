@@ -4,19 +4,16 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Clock, Users, Star, ArrowRight } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export function CareerTransformationCta() {
-  const router = useRouter();
-
   const handleApplyNow = () => {
     console.log("Apply Now Clicked");
-    router.push("/contact-us");
+    window.open("https://app.ailinc.com/flagship-program-payment?data=dv_t0rkn9_f.4759bfe8", "_blank");
   };
 
   const handleBookSeat = () => {
     console.log("Book Seat Clicked");
-    router.push("/contact-us");
+    window.open("https://app.ailinc.com/flagship-program-payment?data=dv_t0rkn9_f.4759bfe8", "_blank");
   };
 
   return (
@@ -140,14 +137,14 @@ export function CareerTransformationCta() {
               </motion.div>
 
               {/* Background Decorations */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#0BC5EA]/10 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#6B46C1]/10 rounded-full blur-2xl"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#0BC5EA]/10 rounded-full blur-2xl pointer-events-none -z-10"></div>
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-[#6B46C1]/10 rounded-full blur-2xl pointer-events-none -z-10"></div>
             </CardContent>
           </Card>
         </motion.div>
 
         {/* Background Effects */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0BC5EA]/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0BC5EA]/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
       </div>
     </section>
   );
