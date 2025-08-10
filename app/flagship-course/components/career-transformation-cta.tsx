@@ -20,8 +20,11 @@ export function CareerTransformationCta({
   };
 
   const handleBookSeat = () => {
-    console.log("Book Seat Clicked");
     onReserveSeat();
+  };
+
+  const openPaymentPage = () => {
+    window.open("https://app.ailinc.com/flagship-program-payment?data=dv_t0rkn9_f.4759bfe8", "_blank");
   };
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
@@ -118,7 +121,7 @@ export function CareerTransformationCta({
                 </Button>
 
                 <Button
-                  onClick={handleBookSeat}
+                  onClick={openPaymentPage}
                   className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:from-[#0BC5EA]/80 hover:to-[#6B46C1]/80 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl group w-full sm:w-auto cursor-pointer"
                 >
                   Book your seat at ₹499/-
