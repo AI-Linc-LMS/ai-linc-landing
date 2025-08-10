@@ -21,7 +21,8 @@ import { CareerTransformationCta } from "./components/career-transformation-cta"
 import { StickyCtaButtons } from "./components/sticky-cta-buttons";
 import { RegistrationSection } from "@/components/registration-section";
 import { useState } from "react";
-import { SuccessModal } from "../workshop-registration/components/SuccessModal";
+import { SuccessModal } from "../workshop-registration/components/SuccessModal"
+import { CtaScheduleCall } from "../courses/detailed-syllabus/components/cta-schedule-call";
 import { CurriculumSection } from "./components/Curicullum";
 
 export default function FlagshipCoursePage() {
@@ -63,6 +64,7 @@ export default function FlagshipCoursePage() {
         <CareerTransformationCta onReserveSeat={scrollToRegistration} />
         <RegistrationSection onSuccess={handleRegistrationSuccess} />
         <InstructorsSection />
+        <CtaScheduleCall/>
         {/* <DetailedSyllabusContent /> */}
         <CurriculumSection/>
         <SyllabusSection />
