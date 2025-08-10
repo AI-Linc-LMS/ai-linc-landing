@@ -37,7 +37,10 @@ export default function WorkshopRegistration() {
   };
 
   const openPaymentPage = () => {
-    window.open("https://app.ailinc.com/flagship-program-payment?data=dv_t0rkn9_f.4759bfe8", "_blank");
+    window.open(
+      "https://app.ailinc.com/flagship-program-payment?data=dv_t0rkn9_f.4759bfe8",
+      "_blank"
+    );
   };
 
   const handleRegistrationSuccess = () => {
@@ -52,7 +55,9 @@ export default function WorkshopRegistration() {
     workshopData?.WorkshopTitle ||
     "Deploy Your First AI App: Live No-Code AI Workshop";
   const sessionNumber = workshopData?.SessionNumber || "";
-  const displayTitle = sessionNumber ? `${sessionNumber}: ${workshopTitle}` : workshopTitle;
+  const displayTitle = sessionNumber
+    ? `${sessionNumber}: ${workshopTitle}`
+    : workshopTitle;
 
   if (loading) {
     return (
@@ -145,27 +150,27 @@ export default function WorkshopRegistration() {
               />
 
               {/* Mentor Section */}
-              <MentorSection  />
+              <MentorSection />
 
               {/* Speakers */}
-              <SpeakersSection  />
+              <SpeakersSection />
 
               <WhoIsThisWorkshopForSection
                 onRegistrationClick={scrollToRegistration}
-                
               />
 
               {/* Bonus Section */}
-              <BonusSection
-                onRegistrationClick={scrollToRegistration}
-                
-              />
+              <BonusSection onRegistrationClick={scrollToRegistration} />
             </div>
           </motion.div>
         </div>
 
         {/* Registration Success Modal */}
-        <SuccessModal showModal={showModal} onClose={closeModal} workshopData={workshopData} />
+        <SuccessModal
+          showModal={showModal}
+          onClose={closeModal}
+          workshopData={workshopData}
+        />
 
         {/* Sticky Bottom Bar */}
         <StickyBottomBar
@@ -173,8 +178,7 @@ export default function WorkshopRegistration() {
           seatsLeft={seatsLeft}
           workshopData={workshopData}
         />
-
-        <StickyCtaButtons onReserveSeat={openPaymentPage}/>
+        {/*<StickyCtaButtons onReserveSeat={openPaymentPage}/> */}
 
         <Footer />
 
