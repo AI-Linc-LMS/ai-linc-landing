@@ -35,7 +35,7 @@ export function RegistrationForm({
     email: "",
     phone_number: "+91 ", // Start with India's country code
     workshop_name: "Practical implementation of Agentic AI",
-    session_number: "Session-06",
+    session_number: "Session-07",
     referal_code: "",
     currentProfile: "",
     educationalQualification: "",
