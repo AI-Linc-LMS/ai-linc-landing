@@ -1,44 +1,45 @@
-import React from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { CheckCircle, ChevronRight } from "lucide-react"
-import { talentJourney } from "./data"
+import React from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, ChevronRight } from "lucide-react";
+import { talentJourney } from "./data";
+import { useRouter } from "next/navigation";
 
 interface TalentJourneyStepsProps {
-  activeProcess: number
-  onProcessClick: (index: number) => void
-  onWebinarOpen: () => void
-  onContactModalOpen: () => void  // New prop for opening contact modal
+  activeProcess: number;
+  onProgramModelOpen: () => void;
+  onProcessClick: (index: number) => void;
+  onHireTalent: () => void;
 }
 
 export function TalentJourneySteps({
   activeProcess,
+  onProgramModelOpen,
   onProcessClick,
-  onWebinarOpen,
-  onContactModalOpen  // Add to destructured props
+  onHireTalent,
 }: TalentJourneyStepsProps) {
+  const router = useRouter();
   const handleStepClick = (step: any, index: number) => {
-    onProcessClick(index)
+    onProcessClick(index);
 
     // Handle navigation based on step
-    if (step.action) {
-      step.action()
-    } else if (step.id === 0) {
-      onWebinarOpen()
-    } else if (step.id === 2) {  // Assuming the "Get Hired" step is index 2
-      window.open("https://app.ailinc.com/jobs", "_blank")
-      // onContactModalOpen() - disabled
+    if (step.id === 0) {
+      onProgramModelOpen();
+    } else if (step.id === 2) {
+      onHireTalent();
     } else if (step.id === 1) {
-      window.open("/assessment", "_blank")
+      router.push("/contact-us");
+    } else if (step.action) {
+      step.action();
     }
-  }
+  };
 
   return (
     <div className="space-y-4 mb-6">
       {talentJourney.map((step, index) => {
-        const Icon = step.icon
-        const isActive = activeProcess === index
-        const isCompleted = activeProcess > index
+        const Icon = step.icon;
+        const isActive = activeProcess === index;
+        const isCompleted = activeProcess > index;
 
         return (
           <motion.div
@@ -47,8 +48,8 @@ export function TalentJourneySteps({
               isActive
                 ? `${step.bgColor} border-white/30 scale-105 shadow-lg`
                 : isCompleted
-                ? 'bg-green-500/10 border-green-500/30'
-                : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'
+                ? "bg-green-500/10 border-green-500/30"
+                : "bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10"
             }`}
             onClick={() => handleStepClick(step, index)}
             whileHover={{ scale: 1.02 }}
@@ -68,16 +69,20 @@ export function TalentJourneySteps({
               <div
                 className={`relative flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${
                   isActive
-                    ? 'bg-white/20 shadow-lg'
+                    ? "bg-white/20 shadow-lg"
                     : isCompleted
-                    ? 'bg-green-500/20'
-                    : 'bg-white/10'
+                    ? "bg-green-500/20"
+                    : "bg-white/10"
                 }`}
               >
                 {isCompleted ? (
                   <CheckCircle className="w-7 h-7 text-green-400" />
                 ) : (
-                  <Icon className={`w-7 h-7 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+                  <Icon
+                    className={`w-7 h-7 ${
+                      isActive ? "text-white" : "text-gray-400"
+                    }`}
+                  />
                 )}
                 {isActive && (
                   <motion.div
@@ -93,10 +98,10 @@ export function TalentJourneySteps({
                   <div
                     className={`text-lg font-semibold ${
                       isActive
-                        ? 'text-white'
+                        ? "text-white"
                         : isCompleted
-                        ? 'text-green-400'
-                        : 'text-gray-400'
+                        ? "text-green-400"
+                        : "text-gray-400"
                     }`}
                   >
                     {step.title}
@@ -112,47 +117,24 @@ export function TalentJourneySteps({
                 >
                   {step.description}
                 </div>
-                {isActive && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    className="text-xs text-gray-400 mb-2"
-                  >
-                    <ul className="list-disc list-inside space-y-1">
-                      {step.details.split('\n').map((detail, index) => (
-                        <li key={index}>{detail}</li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
                 <div className="flex items-center justify-between">
-                  <div className="text-xs text-[#0BC5EA] font-medium">
-                    {step.metrics}
-                  </div>
                   <Button
                     size="sm"
-                    className={`${
-                      isActive 
+                    className={`${isActive 
                         ? 'bg-[#0BC5EA] hover:bg-[#0BC5EA]/80 text-white' 
-                        : 'bg-white/10 hover:bg-white/20 text-gray-300'
+                        : 'bg-white/10 text-gray-300'
                     } h-7 px-3 text-xs relative z-10`}
                     onClick={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      if (step.id === 1) {
-                        window.open(
-                          "/assessment",
-                          "_blank"
-                        )
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (step.id === 0) {
+                        onProgramModelOpen();
+                      } else if (step.id === 1) {
+                        onHireTalent();
                       } else if (step.id === 2) {
-                        window.open(
-                          "https://app.ailinc.com/jobs",
-                          "_blank"
-                        )
+                        router.push("/contact-us");
                       } else if (step.action) {
-                        step.action()
-                      } else {
-                        onWebinarOpen()
+                        step.action();
                       }
                     }}
                   >
@@ -162,8 +144,8 @@ export function TalentJourneySteps({
               </div>
             </div>
           </motion.div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

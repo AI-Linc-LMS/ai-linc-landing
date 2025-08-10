@@ -22,11 +22,22 @@ import { StickyCtaButtons } from "./components/sticky-cta-buttons";
 import { RegistrationSection } from "@/components/registration-section";
 import { useState } from "react";
 import { SuccessModal } from "../workshop-registration/components/SuccessModal";
+import { CurriculumSection } from "./components/Curicullum";
 
 export default function FlagshipCoursePage() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const handleRegistrationSuccess = () => {
     setShowSuccessModal(true);
+  };
+
+  const scrollToRegistration = () => {
+    const registrationElement = document.getElementById("registration-form");
+    if (registrationElement) {
+      registrationElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
@@ -45,15 +56,16 @@ export default function FlagshipCoursePage() {
         <ProjectsPortfolioSection />
         <AiToolsMasterySection />
         <TangibleOutcomesSection />
-        <CareerTransformationCta />
+        <CareerTransformationCta onReserveSeat={scrollToRegistration} />
         <RegistrationSection onSuccess={handleRegistrationSuccess} />
         <InstructorsSection />
-        <DetailedSyllabusContent />
+        {/* <DetailedSyllabusContent /> */}
+        <CurriculumSection/>
         <SyllabusSection />
         <PlatformPreview />
         {/* <CareerTransformation /> */}
 
-        <StickyCtaButtons />
+        <StickyCtaButtons onReserveSeat={scrollToRegistration} />
         <Footer />
       </main>
     </ThemeProvider>
