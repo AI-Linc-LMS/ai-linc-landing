@@ -36,6 +36,10 @@ export default function WorkshopRegistration() {
     }
   };
 
+  const openPaymentPage = () => {
+    window.open("https://app.ailinc.com/flagship-program-payment?data=dv_t0rkn9_f.4759bfe8", "_blank");
+  };
+
   const handleRegistrationSuccess = () => {
     setShowModal(true);
   };
@@ -170,7 +174,7 @@ export default function WorkshopRegistration() {
           workshopData={workshopData}
         />
 
-        <StickyCtaButtons onReserveSeat={scrollToRegistration}/>
+        <StickyCtaButtons onReserveSeat={openPaymentPage}/>
 
         <Footer />
 

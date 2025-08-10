@@ -38,6 +38,10 @@ export default function FlagshipCoursePage() {
       });
     }
   };
+
+  const openPaymentPage = () => {
+    window.open("https://app.ailinc.com/flagship-program-payment?data=dv_t0rkn9_f.4759bfe8", "_blank");
+  };
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
       {showSuccessModal && (
@@ -63,7 +67,7 @@ export default function FlagshipCoursePage() {
         <PlatformPreview />
         {/* <CareerTransformation /> */}
 
-        <StickyCtaButtons onReserveSeat={scrollToRegistration} />
+        <StickyCtaButtons onReserveSeat={openPaymentPage} />
         <Footer />
       </main>
     </ThemeProvider>
