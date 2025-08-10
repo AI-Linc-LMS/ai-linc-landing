@@ -404,12 +404,6 @@ export function SyllabusSection() {
     <section className="py-16 md:py-20 px-4" ref={sectionRef}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 px-2">
-            🤖 16-Week AI-Powered Development Journey
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-2">
-            From AI Product Creation in 21 Days to Industry Work Experience with MAANG Leaders
-          </p>
           <div className="flex items-center justify-center gap-4 mt-6">
             <Badge className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 text-lg">
               111 Days of AI Mastery

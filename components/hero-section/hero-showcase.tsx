@@ -1,19 +1,21 @@
-import React from "react"
-import { motion } from "framer-motion"
-import { Progress } from "@/components/ui/progress"
-import { Network } from "lucide-react"
-import { MetricsHighlight } from "./metrics-highlight"
-import { TalentJourneySteps } from "./talent-journey-steps"
-import { LiveActivityFeed } from "./live-activity-feed"
-import { FloatingElements } from "./floating-elements"
+import React from "react";
+import { motion } from "framer-motion";
+import { Progress } from "@/components/ui/progress";
+import { Network } from "lucide-react";
+import { MetricsHighlight } from "./metrics-highlight";
+import { TalentJourneySteps } from "./talent-journey-steps";
+import { LiveActivityFeed } from "./live-activity-feed";
+import { FloatingElements } from "./floating-elements";
+import { ProgramsModal } from "../programs-modal";
+import { HireTalentModal } from "../hire-talent-modal";
 
 interface HeroShowcaseProps {
-  progressValue: number
-  currentMetric: number
-  activeProcess: number
-  onProcessClick: (index: number) => void
-  onWebinarOpen: () => void
-  onContactModalOpen: () => void
+  progressValue: number;
+  currentMetric: number;
+  activeProcess: number;
+  onProcessClick: (index: number) => void;
+  onWebinarOpen: () => void;
+  onContactModalOpen: () => void;
 }
 
 export function HeroShowcase({
@@ -22,8 +24,18 @@ export function HeroShowcase({
   activeProcess,
   onProcessClick,
   onWebinarOpen,
-  onContactModalOpen
+  onContactModalOpen,
 }: HeroShowcaseProps) {
+  const [isProgramsModalOpen, setIsProgramsModalOpen] = React.useState(false);
+  const [isHireTalentModalOpen, setIsHireTalentModalOpen] =
+    React.useState(false);
+  const handleProgramModelOpen = () => {
+    setIsProgramsModalOpen(true);
+  };
+
+  const handleHireTalent = () => {
+    setIsHireTalentModalOpen(true);
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -43,7 +55,9 @@ export function HeroShowcase({
                 <h3 className="text-lg font-semibold text-white">
                   AI Talent Pipeline
                 </h3>
-                <p className="text-sm text-gray-400">From Learning to Earning</p>
+                <p className="text-sm text-gray-400">
+                  From Learning to Earning
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-2 text-sm text-green-400">
@@ -67,18 +81,28 @@ export function HeroShowcase({
           {/* Talent Journey Steps */}
           <TalentJourneySteps
             activeProcess={activeProcess}
+            onProgramModelOpen={handleProgramModelOpen}
             onProcessClick={onProcessClick}
-            onWebinarOpen={onWebinarOpen}
-            onContactModalOpen={onContactModalOpen}
+            onHireTalent={handleHireTalent}
           />
 
           {/* Live Activity Feed */}
           {/* <LiveActivityFeed onWebinarOpen={onWebinarOpen} /> */}
+
+          <ProgramsModal
+            isOpen={isProgramsModalOpen}
+            onClose={() => setIsProgramsModalOpen(false)}
+          />
+
+          <HireTalentModal
+            open={isHireTalentModalOpen}
+            onOpenChange={setIsHireTalentModalOpen}
+          />
         </div>
 
         {/* Floating Elements */}
         <FloatingElements onWebinarOpen={onWebinarOpen} />
       </div>
     </motion.div>
-  )
-} 
+  );
+}

@@ -12,42 +12,40 @@ import { TalentJourneyStep, KeyMetric, LiveActivity, SuccessStory } from "./type
 export const talentJourney: TalentJourneyStep[] = [
   {
     id: 0,
-    title: " Deploy Your First AI App: Live No-Code AI Workshop",
-    description: "",
+    title: "AI Programs",
+    description: "Industry-ready AI Powered Programs & bootcamps to master AI tools, automation & real-world applications.",
     icon: Video,
     color: "from-blue-500 to-cyan-500",
     bgColor: "bg-blue-500/10",
-    metrics: "5K+ attendees",
-    details: "Includes: Certificate and access to AI resources for FREE ",
-    duration: "60 min",
-    nextStep: "Register Now",
-    action: () => window.location.href = "/workshop-registration"
+    metrics: "",
+    details: "",
+    duration: "",
+    nextStep: "Join the Program",
+    // action intentionally omitted; handled by parent for modal open
   },
   {
     id: 1,
-    title: "Access placement eligibility",
-    description: "AI-powered skill evaluation & matching",
+    title: "AI Deployment",
+    description: "Hire from our trained AI talent pool – ready to work on your projects from Day 1.",
     icon: FileText,
     color: "from-purple-500 to-pink-500",
     bgColor: "bg-purple-500/10",
-    metrics: "Quality for industry referrals",
-    details: "Get certificate \n LinkedIn profile review\nQualify for industry referrals",
-    duration: "30 min",
-    nextStep: "Take Test",
-    action: () => window.location.href = "/assessment"
+    metrics: "",
+    details: "",
+    duration: "",
+    nextStep: "Hire AI Talent"
   },
   {
     id: 2,
-    title: "Get Hired",
-    description: "Match with high-impact roles and direct placement in top companies",
+    title: "AI Products & Services",
+    description: "We make AI tools, custom solutions & consulting to power your business growth.",
     icon: Rocket,
     color: "from-green-500 to-emerald-500",
     bgColor: "bg-green-500/10",
-    metrics: "< 48hr match",
-    details: "Schedule a 1-1 call with industry expert to understand gaps and plan of action",
-    duration: "Ongoing",
-    nextStep: "Get Hired",
-    action: () => window.location.href = "https://app.ailinc.com/jobs"
+    metrics: "",
+    details: "",
+    duration: "",
+    nextStep: "products and services",
   }
 ]
 
