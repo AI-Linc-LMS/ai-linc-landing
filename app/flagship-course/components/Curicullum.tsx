@@ -7,10 +7,39 @@ import { useState } from "react"
 export function CurriculumSection() {
     const [hoveredModule, setHoveredModule] = useState<number | null>(null)
     const [hoveredStat, setHoveredStat] = useState<number | null>(null)
+    const [isDownloading, setIsDownloading] = useState(false)
 
-    const handleDownloadBrochure = () => {
-        // Add your brochure download logic here
-        console.log("Downloading brochure...")
+    const handleDownloadBrochure = async () => {
+        try {
+            setIsDownloading(true)
+            
+            // First check if file exists
+            const response = await fetch('/Brochure/ai-linc-curriculum-brochure.pdf', { method: 'HEAD' })
+            
+            if (!response.ok) {
+                // If PDF doesn't exist, create a temporary fallback or show message
+                alert("Brochure is being prepared. Please contact us directly for curriculum details.")
+                return
+            }
+
+            // Create a link element and trigger download
+            const link = document.createElement('a')
+            link.href = '/brochure/ai-linc-curriculum-brochure.pdf'
+            link.download = 'AI-LINC-Curriculum-Brochure.pdf'
+            
+            // Append to body, click, and remove
+            document.body.appendChild(link)
+            link.click()
+            document.body.removeChild(link)
+            
+            console.log("Brochure download initiated...")
+        } catch (error) {
+            console.error("Download failed:", error)
+            // Fallback: redirect to contact or show form
+            alert("Download temporarily unavailable. Please contact us at info@ai-linc.com for the brochure.")
+        } finally {
+            setIsDownloading(false)
+        }
     }
 
     const stats = [
@@ -197,7 +226,7 @@ export function CurriculumSection() {
 
 
             </div>
-           
+
 
             {/* Certifications Preview */}
             <div className="text-center mb-16">
@@ -222,7 +251,7 @@ export function CurriculumSection() {
             <div className="relative mb-16">
                 {/* Bottom fade overlay for teaser effect */}
                 <div className="absolute bottom-0 left-0 right-0 h-[140px] bg-gradient-to-t from-gray-900 via-gray-900/100 to-transparent pointer-events-none z-10"></div>
-                
+
                 {/* Teaser text overlay */}
                 <div className="absolute bottom-8 left-0 right-0 text-center z-20 pointer-events-none">
                     <p className="text-gray-400 text-sm mb-2 animate-pulse">
@@ -248,11 +277,12 @@ export function CurriculumSection() {
                         </p>
                         <Button
                             onClick={handleDownloadBrochure}
-                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 group relative overflow-hidden"
+                            disabled={isDownloading}
+                            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                         >
                             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                            Download Full Brochure
+                            <Download className={`w-5 h-5 mr-2 ${isDownloading ? 'animate-spin' : 'group-hover:animate-bounce'}`} />
+                            {isDownloading ? 'Downloading...' : 'Download Full Brochure'}
                         </Button>
                         <p className="text-sm text-gray-500 mt-6 animate-fade-in">
                             Complete curriculum details • Pricing • Success stories • And more
