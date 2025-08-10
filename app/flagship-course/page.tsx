@@ -22,6 +22,7 @@ import { StickyCtaButtons } from "./components/sticky-cta-buttons";
 import { RegistrationSection } from "@/components/registration-section";
 import { useState } from "react";
 import { SuccessModal } from "../workshop-registration/components/SuccessModal";
+import { CtaScheduleCall } from "../courses/detailed-syllabus/components/cta-schedule-call";
 
 export default function FlagshipCoursePage() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -63,6 +64,7 @@ export default function FlagshipCoursePage() {
         <RegistrationSection onSuccess={handleRegistrationSuccess} />
         <InstructorsSection />
         <DetailedSyllabusContent />
+        <CtaScheduleCall/>
         <SyllabusSection />
         <PlatformPreview />
         {/* <CareerTransformation /> */}
