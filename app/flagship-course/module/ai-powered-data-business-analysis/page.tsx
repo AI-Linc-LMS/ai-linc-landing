@@ -1,792 +1,1006 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import {
   BarChart3,
   Database,
-  LineChart,
-  PieChart,
   TrendingUp,
-  Brain,
-  Zap,
-  Target,
-  DollarSign,
-  Clock,
-  Users,
-  Award,
-  ChevronRight,
-  Sparkles,
-  Building2,
-  Cpu,
-  Globe,
-  Briefcase,
   Eye,
-  Settings,
   Activity,
+  PieChart,
+  LineChart,
+  Zap,
+  ChevronLeft,
+  ChevronRight,
+  Building2,
+  Award,
+  Target,
+  ArrowUpRight,
+  Users,
+  Clock,
+  Layers,
+  Brain,
   Search,
-  GitBranch,
+  Globe,
+  Cpu,
+  Settings,
+  Gauge,
+  Lightbulb,
+  Hexagon,
+  BarChart,
+  TrendingDown,
+  MousePointer,
 } from "lucide-react";
 
-interface DataTool {
+interface DataAnalysisTool {
   id: string;
   name: string;
   icon: React.ComponentType<{ className?: string }>;
   category: string;
-  businessValue: string;
-  roiImpact: string;
-  marketGrowth: string;
-  urgency: string;
-  color: string;
-  bgGradient: string;
-  realWorldImpact: {
+  subtitle: string;
+  description: string;
+  caseStudy: {
     company: string;
-    sector: string;
-    challenge: string;
-    result: string;
-    metric: string;
-    businessOutcome: string;
+    industry: string;
+    implementation: string;
+    outcome: string;
+    metrics: {
+      improvement: string;
+      impact: string;
+      category: string;
+    };
   };
+  color: string;
+  hexPattern: string;
+  features: string[];
+  dataConnections: number[];
 }
 
-const dataTools: DataTool[] = [
+const dataAnalysisTools: DataAnalysisTool[] = [
   {
     id: "fabi-ai",
     name: "Fabi.ai",
     icon: Database,
-    category: "SQL Automation & Data Viz",
-    businessValue: "Automate complex SQL queries instantly",
-    roiImpact: "50% reduction in analysis time",
-    marketGrowth: "380% demand for SQL automation skills",
-    urgency: "Critical for data analyst roles",
-    color: "#3B82F6",
-    bgGradient: "from-[#3B82F6]/10 to-[#3B82F6]/5",
-    realWorldImpact: {
+    category: "Automated SQL & Data Visualization",
+    subtitle: "Intelligent Query Automation",
+    description:
+      "Advanced AI platform that automates SQL queries and data visualization, transforming complex data analysis into intuitive insights for business intelligence.",
+    caseStudy: {
       company: "Walmart",
-      sector: "Retail Giant",
-      challenge: "Manual SQL queries for inventory analysis",
-      result: "Automated SQL queries and data visualization",
-      metric: "50% faster analysis",
-      businessOutcome: "Improved supply chain efficiency",
+      industry: "Retail & Supply Chain",
+      implementation:
+        "Walmart implemented Fabi.ai to automate SQL queries and data visualization for inventory and sales analysis. This reduced manual analysis time by 50% and provided better insights into stock replenishment.",
+      outcome: "Faster data analysis and improved supply chain management.",
+      metrics: {
+        improvement: "50%",
+        impact: "Analysis Time",
+        category: "Data Automation",
+      },
     },
+    color: "#10B981",
+    hexPattern: "from-emerald-500/30 via-green-400/20 to-teal-500/10",
+    features: [
+      "SQL Automation",
+      "Data Visualization",
+      "Inventory Analysis",
+      "Supply Chain Insights",
+    ],
+    dataConnections: [0, 60, 120, 180, 240, 300],
   },
   {
     id: "julius-ai",
     name: "Julius AI",
     icon: Search,
     category: "Exploratory Data Analysis",
-    businessValue: "AI-powered data exploration & insights",
-    roiImpact: "30% faster data exploration",
-    marketGrowth: "290% growth in EDA specialist roles",
-    urgency: "Essential for data science careers",
-    color: "#8B5CF6",
-    bgGradient: "from-[#8B5CF6]/10 to-[#8B5CF6]/5",
-    realWorldImpact: {
+    subtitle: "Intelligent Data Exploration",
+    description:
+      "Powerful EDA platform that accelerates data exploration and pattern discovery, enabling rapid insights into complex datasets and user behavior analysis.",
+    caseStudy: {
       company: "Netflix",
-      sector: "Streaming Media",
-      challenge: "Understanding viewer behavior patterns",
-      result: "Automated exploratory data analysis",
-      metric: "30% time reduction",
-      businessOutcome: "Enhanced personalized recommendations",
+      industry: "Entertainment & Streaming",
+      implementation:
+        "Netflix used Julius AI for exploratory data analysis (EDA) to understand viewer behaviors and preferences. This tool reduced time spent on data exploration by 30% and enabled personalized content recommendations.",
+      outcome: "Improved content recommendations and user experience.",
+      metrics: {
+        improvement: "30%",
+        impact: "Exploration Time",
+        category: "Data Discovery",
+      },
     },
+    color: "#F59E0B",
+    hexPattern: "from-amber-500/30 via-orange-400/20 to-yellow-500/10",
+    features: [
+      "Data Exploration",
+      "Behavior Analysis",
+      "Pattern Discovery",
+      "Content Personalization",
+    ],
+    dataConnections: [30, 90, 150, 210, 270, 330],
   },
   {
     id: "power-bi-copilot",
     name: "Power BI (with Copilot)",
     icon: BarChart3,
-    category: "Business Intelligence",
-    businessValue: "AI-enhanced business reporting",
-    roiImpact: "35% faster reporting cycles",
-    marketGrowth: "Microsoft BI skills = $95K average salary",
-    urgency: "Standard requirement for analysts",
-    color: "#F59E0B",
-    bgGradient: "from-[#F59E0B]/10 to-[#F59E0B]/5",
-    realWorldImpact: {
+    category: "Business Intelligence & Reporting",
+    subtitle: "AI-Enhanced Analytics Platform",
+    description:
+      "Microsoft's enterprise BI platform enhanced with AI Copilot for automated reporting, real-time analytics, and intelligent business insights.",
+    caseStudy: {
       company: "Coca-Cola",
-      sector: "Global Beverage",
-      challenge: "Manual reporting across sales teams",
-      result: "Automated reporting with AI insights",
-      metric: "35% faster decisions",
-      businessOutcome: "Streamlined business intelligence",
+      industry: "Consumer Beverages",
+      implementation:
+        "Coca-Cola implemented Power BI with Copilot to automate reporting across sales and marketing teams. This enhanced decision-making speed and reduced reporting time by 35%.",
+      outcome:
+        "Streamlined business intelligence operations and better decision-making.",
+      metrics: {
+        improvement: "35%",
+        impact: "Reporting Speed",
+        category: "Business Intelligence",
+      },
     },
+    color: "#3B82F6",
+    hexPattern: "from-blue-500/30 via-indigo-400/20 to-cyan-500/10",
+    features: [
+      "Automated Reporting",
+      "Real-time Analytics",
+      "Sales Intelligence",
+      "Marketing Insights",
+    ],
+    dataConnections: [45, 105, 165, 225, 285, 345],
   },
   {
     id: "tableau-ai",
     name: "Tableau (with AI features)",
-    icon: LineChart,
+    icon: PieChart,
     category: "Advanced Data Visualization",
-    businessValue: "Real-time dashboards with AI insights",
-    roiImpact: "25% operational cost reduction",
-    marketGrowth: "Tableau expertise = $110K median salary",
-    urgency: "Top visualization skill in demand",
-    color: "#EF4444",
-    bgGradient: "from-[#EF4444]/10 to-[#EF4444]/5",
-    realWorldImpact: {
+    subtitle: "AI-Powered Visual Analytics",
+    description:
+      "Leading data visualization platform enhanced with AI capabilities for predictive analytics, automated insights, and intelligent dashboard creation.",
+    caseStudy: {
       company: "UPS",
-      sector: "Logistics",
-      challenge: "Route optimization and fleet management",
-      result: "Real-time AI-powered dashboards",
-      metric: "25% fuel cost savings",
-      businessOutcome: "Optimized delivery operations",
+      industry: "Logistics & Transportation",
+      implementation:
+        "UPS used Tableau with AI features to create real-time dashboards for route optimization and fleet management. This led to a 25% reduction in fuel costs by optimizing delivery routes.",
+      outcome: "Reduced operational costs and improved delivery efficiency.",
+      metrics: {
+        improvement: "25%",
+        impact: "Cost Reduction",
+        category: "Operations Analytics",
+      },
     },
+    color: "#8B5CF6",
+    hexPattern: "from-purple-500/30 via-violet-400/20 to-indigo-500/10",
+    features: [
+      "Route Optimization",
+      "Fleet Management",
+      "Real-time Dashboards",
+      "Predictive Analytics",
+    ],
+    dataConnections: [15, 75, 135, 195, 255, 315],
   },
   {
     id: "quadratic-ai",
     name: "Quadratic AI",
-    icon: Activity,
+    icon: Layers,
     category: "Business Data Automation",
-    businessValue: "Automated data aggregation & reporting",
-    roiImpact: "40% reduction in manual work",
-    marketGrowth: "350% increase in automation roles",
-    urgency: "Future of business analytics",
-    color: "#10B981",
-    bgGradient: "from-[#10B981]/10 to-[#10B981]/5",
-    realWorldImpact: {
+    subtitle: "Intelligent Data Processing",
+    description:
+      "Comprehensive business analytics platform that automates data aggregation, processing, and reporting for enhanced operational efficiency.",
+    caseStudy: {
       company: "Accenture",
-      sector: "Consulting",
-      challenge: "Manual data aggregation workflows",
-      result: "Automated business reporting",
-      metric: "40% time savings",
-      businessOutcome: "Enhanced consulting efficiency",
+      industry: "Professional Consulting",
+      implementation:
+        "Accenture leveraged Quadratic AI for business data reporting and automation. This reduced the time spent on manual data aggregation and reporting by 40%.",
+      outcome: "Improved efficiency in reporting and business intelligence.",
+      metrics: {
+        improvement: "40%",
+        impact: "Data Processing",
+        category: "Automation Efficiency",
+      },
     },
+    color: "#EF4444",
+    hexPattern: "from-red-500/30 via-pink-400/20 to-rose-500/10",
+    features: [
+      "Data Aggregation",
+      "Report Automation",
+      "Business Intelligence",
+      "Process Optimization",
+    ],
+    dataConnections: [22, 82, 142, 202, 262, 322],
   },
   {
     id: "polynomial-tools",
-    name: "Polynomial Tools (Domo, Sisense)",
-    icon: PieChart,
-    category: "Predictive Analytics",
-    businessValue: "AI-powered market trend prediction",
-    roiImpact: "50% improvement in forecasting accuracy",
-    marketGrowth: "420% demand for predictive analytics",
-    urgency: "Critical for strategic roles",
-    color: "#06B6D4",
-    bgGradient: "from-[#06B6D4]/10 to-[#06B6D4]/5",
-    realWorldImpact: {
+    name: "Polynomial Tools (Domo, Sisense, MonkeyLearn)",
+    icon: TrendingUp,
+    category: "Predictive Analytics Suite",
+    subtitle: "AI-Driven Market Intelligence",
+    description:
+      "Integrated suite of predictive analytics tools combining market analysis, machine learning, and business intelligence for accurate forecasting.",
+    caseStudy: {
       company: "Zillow",
-      sector: "Real Estate",
-      challenge: "Property price trend forecasting",
-      result: "AI-powered predictive analytics",
-      metric: "50% forecasting accuracy",
-      businessOutcome: "Better market predictions",
+      industry: "Real Estate Technology",
+      implementation:
+        "Zillow used Domo to analyze real estate market trends with AI-powered predictive analytics. This allowed them to forecast property price changes more accurately, improving decision-making for both buyers and sellers.",
+      outcome: "Increased forecasting accuracy by 50%.",
+      metrics: {
+        improvement: "50%",
+        impact: "Forecasting Accuracy",
+        category: "Predictive Analytics",
+      },
     },
+    color: "#06B6D4",
+    hexPattern: "from-cyan-500/30 via-teal-400/20 to-blue-500/10",
+    features: [
+      "Market Analysis",
+      "Price Forecasting",
+      "Predictive Models",
+      "Decision Intelligence",
+    ],
+    dataConnections: [37, 97, 157, 217, 277, 337],
   },
   {
     id: "bigquery-vertex",
     name: "BigQuery + Vertex AI",
     icon: Cpu,
-    category: "Cloud Data Analytics",
-    businessValue: "Real-time big data processing",
-    roiImpact: "Enhanced user satisfaction metrics",
-    marketGrowth: "Google Cloud skills = $130K salary",
-    urgency: "Cloud analytics is the future",
-    color: "#F97316",
-    bgGradient: "from-[#F97316]/10 to-[#F97316]/5",
-    realWorldImpact: {
+    category: "Cloud Data & ML Platform",
+    subtitle: "Enterprise-Scale AI Analytics",
+    description:
+      "Google's integrated cloud platform combining massive-scale data warehousing with advanced machine learning for real-time analytics and predictive insights.",
+    caseStudy: {
       company: "Spotify",
-      sector: "Music Streaming",
-      challenge: "Real-time user behavior analysis",
-      result: "Predictive listening trend analysis",
-      metric: "Improved personalization",
-      businessOutcome: "Enhanced user experience",
+      industry: "Music Streaming & AI",
+      implementation:
+        "Spotify used Google BigQuery and Vertex AI for real-time user data analysis. This combination helped them predict trends in user listening behavior, improving playlist recommendations.",
+      outcome: "Enhanced user satisfaction with personalized playlists.",
+      metrics: {
+        improvement: "35%",
+        impact: "User Satisfaction",
+        category: "Personalization AI",
+      },
     },
-  },
-  {
-    id: "databricks-automl",
-    name: "Databricks (with AutoML)",
-    icon: Brain,
-    category: "Machine Learning Automation",
-    businessValue: "Automated predictive maintenance",
-    roiImpact: "30% reduction in maintenance costs",
-    marketGrowth: "500% growth in AutoML positions",
-    urgency: "ML automation is mandatory",
     color: "#EC4899",
-    bgGradient: "from-[#EC4899]/10 to-[#EC4899]/5",
-    realWorldImpact: {
-      company: "Shell",
-      sector: "Energy",
-      challenge: "Equipment failure prediction",
-      result: "Predictive maintenance with AutoML",
-      metric: "30% cost reduction",
-      businessOutcome: "Reduced equipment downtime",
-    },
-  },
-  {
-    id: "knime",
-    name: "KNIME",
-    icon: GitBranch,
-    category: "Data Processing Workflows",
-    businessValue: "Visual data pipeline automation",
-    roiImpact: "40% faster research analysis",
-    marketGrowth: "280% demand for workflow automation",
-    urgency: "Essential for data engineers",
-    color: "#14B8A6",
-    bgGradient: "from-[#14B8A6]/10 to-[#14B8A6]/5",
-    realWorldImpact: {
-      company: "Bayer",
-      sector: "Pharmaceutical",
-      challenge: "Complex agricultural research data",
-      result: "Automated data processing workflows",
-      metric: "40% faster analysis",
-      businessOutcome: "Accelerated research timelines",
-    },
-  },
-  {
-    id: "deepnote",
-    name: "Deepnote",
-    icon: Users,
-    category: "Collaborative Data Science",
-    businessValue: "Team-based data science projects",
-    roiImpact: "25% faster model development",
-    marketGrowth: "340% growth in collaborative analytics",
-    urgency: "Future of team data science",
-    color: "#A855F7",
-    bgGradient: "from-[#A855F7]/10 to-[#A855F7]/5",
-    realWorldImpact: {
-      company: "Airbnb",
-      sector: "Travel Tech",
-      challenge: "Cross-team data science collaboration",
-      result: "Real-time collaborative analytics",
-      metric: "25% faster development",
-      businessOutcome: "Improved pricing algorithms",
-    },
+    hexPattern: "from-pink-500/30 via-rose-400/20 to-purple-500/10",
+    features: [
+      "Real-time Analytics",
+      "User Behavior Prediction",
+      "Playlist Intelligence",
+      "Cloud ML",
+    ],
+    dataConnections: [52, 112, 172, 232, 292, 352],
   },
 ];
 
 export default function AIPoweredDataBusinessAnalysis() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  const [hoveredTool, setHoveredTool] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+  const categories = [
+    { id: "all", name: "All Tools", icon: BarChart3 },
+    { id: "automation", name: "Data Automation", icon: Database },
+    { id: "visualization", name: "Visualization", icon: PieChart },
+    { id: "predictive", name: "Predictive Analytics", icon: TrendingUp },
+    { id: "cloud", name: "Cloud Analytics", icon: Cpu },
+  ];
+
+  const filteredTools = React.useMemo(() => {
+    if (activeCategory === "all") return dataAnalysisTools;
+
+    switch (activeCategory) {
+      case "automation":
+        return dataAnalysisTools.filter((tool) =>
+          [
+            "Automated SQL & Data Visualization",
+            "Business Data Automation",
+          ].includes(tool.category)
+        );
+      case "visualization":
+        return dataAnalysisTools.filter((tool) =>
+          [
+            "Business Intelligence & Reporting",
+            "Advanced Data Visualization",
+          ].includes(tool.category)
+        );
+      case "predictive":
+        return dataAnalysisTools.filter((tool) =>
+          ["Exploratory Data Analysis", "Predictive Analytics Suite"].includes(
+            tool.category
+          )
+        );
+      case "cloud":
+        return dataAnalysisTools.filter((tool) =>
+          ["Cloud Data & ML Platform"].includes(tool.category)
+        );
+      default:
+        return dataAnalysisTools;
+    }
+  }, [activeCategory]);
+
+  const handleHover = React.useCallback((index: number | null) => {
+    setHoveredTool(index);
+  }, []);
+
+  const handleCategoryChange = React.useCallback((categoryId: string) => {
+    setActiveCategory(categoryId);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0F172A] to-[#1E293B] text-white">
-      {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
+    <div className="min-h-screen w-full bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950 text-white relative overflow-hidden">
+      {/* Navigation Links - Rounded Data Flow Style */}
+      <div className="fixed top-6 left-6 right-6 z-50 flex justify-between items-center">
+        <Link
+          href="/flagship-course/module/foundations-of-ai-everyday-productivity"
+          className="group flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-slate-800/90 to-blue-800/30 backdrop-blur-md rounded-2xl border border-blue-500/30 text-gray-300 hover:text-white hover:from-slate-700/90 hover:to-blue-700/40 transition-all duration-300 shadow-lg"
+        >
+          <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
+          <span className="text-sm font-medium hidden sm:block">Module 1</span>
+        </Link>
+
+        <Badge className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border-blue-400/30 text-blue-900 text-sm font-medium px-8 py-3 shadow-lg backdrop-blur-sm rounded-2xl">
+          Module 2 • AI‑Powered Data & Business Analysis
+        </Badge>
+
+        <Link
+          href="/flagship-course/module/ai-powered-software-development-testing"
+          className="group flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-slate-800/90 to-blue-800/30 backdrop-blur-md rounded-2xl border border-blue-500/30 text-gray-300 hover:text-white hover:from-slate-700/90 hover:to-blue-700/40 transition-all duration-300 shadow-lg"
+        >
+          <span className="text-sm font-medium hidden sm:block">Module 3</span>
+          <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+        </Link>
+      </div>
+
+      {/* Hero Section - Hexagonal Data Theme */}
+      <section className="relative py-20 sm:py-24 lg:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            transition={{ duration: 1.2 }}
+            className="text-center mb-20"
           >
-            <Badge className="mb-6 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-blue-500/30 text-blue-400 text-sm font-medium px-4 py-2">
-              Module 2 • AI-Powered Data & Business Analysis
-            </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Turn Data Into <br />
-              <span className="text-green-400">Million-Dollar Decisions</span>
+            {/* Data Hub Symbol - Rounded */}
+            <div className="flex justify-center mb-12">
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="relative"
+              >
+                <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br from-blue-500/30 to-cyan-500/20 border border-blue-400/30 flex items-center justify-center backdrop-blur-sm rounded-3xl">
+                  <BarChart3 className="w-12 h-12 sm:w-14 sm:h-14 text-blue-400" />
+                </div>
+
+                {/* Data flow nodes */}
+                {[0, 60, 120, 180, 240, 300].map((angle, index) => (
+                  <motion.div
+                    key={index}
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.4, 0.8, 0.4],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      delay: index * 0.7,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <div
+                      className="absolute w-3 h-3 bg-blue-400/80 rounded-full"
+                      style={{
+                        transform: `rotate(${angle}deg) translateY(-45px)`,
+                      }}
+                    />
+                  </motion.div>
+                ))}
+
+                {/* Data flow connections */}
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 25,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute inset-0 border border-dashed border-cyan-400/20 rounded-full scale-150"
+                />
+              </motion.div>
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                AI-Powered Data &
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                Business Analysis
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
-              Master AI-powered analytics tools that Fortune 500 companies use
-              to make <br />
-              <span className="text-blue-400 font-semibold">
-                billion-dollar strategic decisions
+
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-5xl mx-auto mb-12 leading-relaxed">
+              Transform raw data into actionable business insights with
+              intelligent analytics platforms and automated reporting systems.
+              <br className="hidden sm:block" />
+              <span className="text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text font-semibold">
+                From SQL automation to predictive analytics and enterprise-scale
+                business intelligence.
               </span>
             </p>
 
-            {/* Business Impact Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-12">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-gradient-to-r from-blue-600/10 to-blue-700/10 border border-blue-500/30 rounded-xl p-4"
-              >
-                <div className="text-2xl font-bold text-blue-400 mb-1">
-                  $2.3T
-                </div>
-                <div className="text-white text-sm font-medium">
-                  Global data analytics market
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-gradient-to-r from-green-500/10 to-green-600/10 border border-green-500/30 rounded-xl p-4"
-              >
-                <div className="text-2xl font-bold text-green-400 mb-1">
-                  73%
-                </div>
-                <div className="text-white text-sm font-medium">
-                  of companies are data-driven
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="bg-gradient-to-r from-purple-500/10 to-purple-600/10 border border-purple-500/30 rounded-xl p-4"
-              >
-                <div className="text-2xl font-bold text-purple-400 mb-1">
-                  +65%
-                </div>
-                <div className="text-white text-sm font-medium">
-                  salary boost for data skills
-                </div>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-500/30 rounded-xl p-4"
-              >
-                <div className="text-2xl font-bold text-orange-400 mb-1">
-                  5.2M
-                </div>
-                <div className="text-white text-sm font-medium">
-                  data analytics jobs available
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Data Flow Visual */}
-            <div className="relative max-w-6xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.7 }}
-                className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-3xl p-8 border border-gray-700/50 backdrop-blur-sm"
-              >
-                <div className="grid grid-cols-3 md:grid-cols-5 gap-6">
-                  {[Database, BarChart3, Brain, TrendingUp, Target].map(
-                    (Icon, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
-                        className="flex flex-col items-center relative"
-                      >
-                        <div className="w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mb-3">
-                          <Icon className="w-7 h-7 text-white" />
-                        </div>
-                        {index < 4 && (
-                          <div className="absolute top-7 left-full w-6 h-0.5 bg-gradient-to-r from-blue-500/50 to-purple-500/50 hidden md:block"></div>
-                        )}
-                        <div className="w-10 h-1 bg-gradient-to-r from-blue-500/50 to-purple-500/50 rounded-full"></div>
-                      </motion.div>
-                    )
-                  )}
-                </div>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.4 }}
-                  className="text-center mt-6"
-                >
-                  <div className="text-sm text-gray-400 mb-2">
-                    Data Pipeline Flow
-                  </div>
-                  <div className="text-white font-medium">
-                    Raw Data → Analysis → AI Insights → Business Decisions → ROI
-                  </div>
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Background Effects */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl"></div>
-      </section>
-
-      {/* Market Demand Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-r from-slate-900/50 to-slate-800/50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              Why Data Analytics Skills Are{" "}
-              <span className="text-green-400">Worth Their Weight in Gold</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12">
-              Every business decision today is backed by data. Companies are
-              desperately seeking professionals who can turn raw data into
-              actionable insights.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {/* Data Metrics - Rounded */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
               {[
                 {
-                  icon: Building2,
-                  stat: "$150K",
-                  label: "Senior Data Analyst Salary",
-                  color: "text-green-400",
-                  desc: "Average compensation for experienced professionals",
-                },
-                {
-                  icon: Globe,
-                  stat: "94%",
-                  label: "Fortune 500 Use Analytics",
+                  icon: Database,
+                  label: "Data Tools",
+                  value: "7 Essential",
                   color: "text-blue-400",
-                  desc: "Major corporations rely on data-driven decisions",
                 },
                 {
                   icon: TrendingUp,
-                  stat: "23%",
-                  label: "Annual Job Growth",
-                  color: "text-purple-400",
-                  desc: "Fastest growing career field globally",
+                  label: "Efficiency",
+                  value: "+50%",
+                  color: "text-cyan-400",
                 },
                 {
-                  icon: Zap,
-                  stat: "2-3x",
-                  label: "Career Acceleration",
-                  color: "text-orange-400",
-                  desc: "Faster promotions with analytics skills",
+                  icon: Building2,
+                  label: "Enterprise",
+                  value: "Fortune 500",
+                  color: "text-purple-400",
                 },
-              ].map((item, index) => (
+                {
+                  icon: Eye,
+                  label: "Analytics",
+                  value: "Real-time",
+                  color: "text-indigo-400",
+                },
+              ].map((metric, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-gradient-to-b from-slate-800/80 to-slate-900/80 rounded-xl p-6 border border-slate-700/50 hover:border-blue-500/30 transition-colors"
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                  className="group relative"
                 >
-                  <item.icon
-                    className={`w-12 h-12 ${item.color} mx-auto mb-4`}
-                  />
-                  <div className={`text-3xl font-bold ${item.color} mb-2`}>
-                    {item.stat}
+                  <div className="relative p-4 sm:p-6">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-800/30 to-gray-900/30 border border-blue-600/40 backdrop-blur-sm rounded-2xl group-hover:border-blue-500/60 transition-all duration-300" />
+
+                    <div className="relative z-10 text-center">
+                      <metric.icon
+                        className={`w-6 h-6 sm:w-8 sm:h-8 ${metric.color} mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}
+                      />
+                      <div className="text-lg sm:text-xl font-bold text-white mb-1">
+                        {metric.value}
+                      </div>
+                      <div className="text-xs sm:text-sm text-gray-400">
+                        {metric.label}
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-white font-medium mb-2">
-                    {item.label}
-                  </div>
-                  <div className="text-gray-400 text-sm">{item.desc}</div>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
+
+        {/* Rounded Background Patterns */}
+        <div className="absolute top-20 left-16 opacity-5">
+          <motion.div
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="w-20 h-20 border-2 border-blue-400/20 rounded-2xl"
+          />
+        </div>
+        <div className="absolute top-32 right-20 opacity-5">
+          <motion.div
+            animate={{
+              y: [0, -25, 0],
+              x: [0, 20, 0],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            className="w-16 h-16 bg-gradient-to-br from-cyan-500/15 to-blue-500/10 rounded-3xl"
+          />
+        </div>
+        <div className="absolute bottom-40 left-24 opacity-5">
+          <motion.div
+            animate={{
+              scale: [1, 1.4, 1],
+              opacity: [0.3, 0.6, 0.3],
+            }}
+            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+            className="w-12 h-12 border border-purple-400/20 rounded-xl"
+          />
+        </div>
+
+        {/* Background Gradients */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
       </section>
 
-      {/* Tools Grid */}
-      <section className="py-16 sm:py-20 relative">
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Tool Category Filter */}
+      <section className="py-8 sm:py-12 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-400 to-purple-500 bg-clip-text text-transparent">
-              10 Data Analytics Tools That <br />
-              <span className="text-green-400">Run Fortune 500 Companies</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Data Analytics Categories
             </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
-              These are the exact platforms that Netflix, Walmart, Spotify, and
-              other giants use to analyze billions of data points and make
-              strategic decisions worth millions.
+            <p className="text-gray-400 text-lg">
+              Explore intelligent data analysis and business intelligence
+              platforms
             </p>
-            <Badge className="bg-gradient-to-r from-green-500/20 to-blue-500/20 border-green-500/30 text-green-400 text-sm font-medium px-4 py-2">
-              🚀 Enterprise-Grade • Battle-Tested • Revenue-Generating
-            </Badge>
           </motion.div>
 
-          {/* Interactive Tool Showcase */}
-          <div className="space-y-8">
-            {dataTools.map((tool, index) => (
+          {/* Rounded Category Pills */}
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-16">
+            {categories.map((category, index) => (
+              <motion.button
+                key={category.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                onClick={() => handleCategoryChange(category.id)}
+                className={`group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl transition-all duration-300 ${
+                  activeCategory === category.id
+                    ? "bg-gradient-to-r from-blue-500/30 to-cyan-500/20 border-blue-400/50"
+                    : "bg-gray-800/40 border-gray-600/30 hover:bg-blue-700/20"
+                } border backdrop-blur-sm`}
+              >
+                <category.icon className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+                <span className="text-sm sm:text-base font-medium text-white">
+                  {category.name}
+                </span>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Data Analysis Tools Hexagonal Layout */}
+      <section className="py-16 sm:py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              7 Essential Data Analytics Tools
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-400 max-w-4xl mx-auto">
+              Enterprise-grade platforms transforming data into actionable
+              business intelligence
+            </p>
+          </motion.div>
+
+          {/* Hexagonal Tools Grid */}
+          <div className="space-y-12 sm:space-y-16">
+            {filteredTools.map((tool, index) => (
               <motion.div
                 key={tool.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`flex flex-col lg:flex-row items-center gap-8 ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: (index % 2) * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="group relative"
+                onMouseEnter={() => handleHover(index)}
+                onMouseLeave={() => handleHover(null)}
               >
-                {/* Tool Info Side */}
-                <div className="flex-1 space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div
-                      className="p-6 rounded-2xl"
-                      style={{
-                        background: `linear-gradient(135deg, ${tool.color}30, ${tool.color}10)`,
-                        border: `2px solid ${tool.color}40`,
+                {/* Hexagonal Connection Line */}
+                {index < filteredTools.length - 1 && (
+                  <motion.div
+                    initial={{ scaleY: 0 }}
+                    whileInView={{ scaleY: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="absolute left-1/2 -bottom-8 w-px h-8 bg-gradient-to-b from-blue-400/30 to-transparent transform -translate-x-1/2 z-0"
+                  />
+                )}
+
+                <div className="relative bg-gradient-to-br from-gray-900/60 to-blue-900/20 rounded-3xl border border-blue-600/30 backdrop-blur-sm group-hover:border-blue-500/50 transition-all duration-500 overflow-hidden">
+                  {/* Hexagonal Pattern Background */}
+                  <div className="absolute inset-0 opacity-5">
+                    <motion.div
+                      animate={{
+                        rotate: [0, 360],
                       }}
-                    >
-                      <tool.icon
-                        className="w-12 h-12"
-                      />
-                    </div>
-                    <div>
-                      <Badge className="mb-2 bg-gradient-to-r from-slate-600/50 to-slate-700/50 border-slate-600/50 text-slate-300 text-xs">
-                        {tool.category}
-                      </Badge>
-                      <h3 className="text-2xl lg:text-3xl font-bold text-white">
-                        {tool.name}
-                      </h3>
-                    </div>
+                      transition={{
+                        duration: 50,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="w-full h-full"
+                      style={{
+                        background: `radial-gradient(circle at 25% 25%, ${tool.color}25 0%, transparent 40%), radial-gradient(circle at 75% 75%, ${tool.color}15 0%, transparent 40%)`,
+                      }}
+                    />
                   </div>
 
-                  <p className="text-lg text-gray-300 leading-relaxed">
-                    {tool.businessValue}
-                  </p>
-
-                  {/* Metrics Row */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-gradient-to-r from-green-500/10 to-green-600/10 border border-green-500/30 rounded-xl p-4">
-                      <div className="flex items-center mb-2">
-                        <DollarSign className="w-5 h-5 mr-2 text-green-400" />
-                        <span className="text-green-400 font-semibold text-sm">
-                          ROI Impact
-                        </span>
-                      </div>
-                      <div className="text-white font-bold">
-                        {tool.roiImpact}
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-r from-blue-500/10 to-blue-600/10 border border-blue-500/30 rounded-xl p-4">
-                      <div className="flex items-center mb-2">
-                        <TrendingUp className="w-5 h-5 mr-2 text-blue-400" />
-                        <span className="text-blue-400 font-semibold text-sm">
-                          Market Growth
-                        </span>
-                      </div>
-                      <div className="text-white font-bold text-sm">
-                        {tool.marketGrowth}
-                      </div>
-                    </div>
-                    <div className="bg-gradient-to-r from-purple-500/10 to-purple-600/10 border border-purple-500/30 rounded-xl p-4">
-                      <div className="flex items-center mb-2">
-                        <Clock className="w-5 h-5 mr-2 text-purple-400" />
-                        <span className="text-purple-400 font-semibold text-sm">
-                          Urgency
-                        </span>
-                      </div>
-                      <div className="text-white font-bold text-sm">
-                        {tool.urgency}
-                      </div>
-                    </div>
-                  </div>
-
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold px-8 py-4 text-lg w-full md:w-auto">
-                    <Sparkles className="w-5 h-5 mr-2" />
-                    Master {tool.name}
-                    <ChevronRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </div>
-
-                {/* Interactive Visual Side */}
-                <div className="flex-1 relative">
-                  <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-3xl p-8 border border-slate-700/50 backdrop-blur-sm">
-                    {/* Company Showcase */}
-                    <div className="text-center mb-6">
-                      <Badge className="mb-4 bg-gradient-to-r from-slate-700/50 to-slate-800/50 border-slate-600/50 text-slate-300 text-sm px-4 py-2">
-                        Real-World Success Story
-                      </Badge>
-                      <div className="flex items-center justify-center mb-4">
-                        <div className="w-16 h-16 bg-white rounded-xl flex items-center justify-center mr-4">
-                          <Building2 className="w-10 h-10 text-slate-800" />
-                        </div>
-                        <div className="text-left">
-                          <div className="text-xl font-bold text-white">
-                            {tool.realWorldImpact.company}
-                          </div>
-                          <div className="text-sm text-gray-400">
-                            {tool.realWorldImpact.sector}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Challenge → Solution Flow */}
-                    <div className="space-y-6">
-                      {/* Challenge */}
-                      <div className="bg-gradient-to-r from-red-500/10 to-red-600/10 border border-red-500/30 rounded-xl p-4">
-                        <div className="flex items-center mb-2">
-                          <Target className="w-4 h-4 mr-2 text-red-400" />
-                          <span className="text-red-400 font-semibold text-sm">
-                            Challenge
-                          </span>
-                        </div>
-                        <div className="text-gray-300 text-sm">
-                          {tool.realWorldImpact.challenge}
-                        </div>
-                      </div>
-
-                      {/* Arrow */}
-                      <div className="flex justify-center">
-                        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                          <ChevronRight className="w-5 h-5 text-white" />
-                        </div>
-                      </div>
-
-                      {/* Solution */}
-                      <div
-                        className="border border-l-4 rounded-xl p-4"
-                        style={{
-                          backgroundColor: `${tool.color}10`,
-                          borderColor: tool.color,
-                          borderLeftColor: tool.color,
-                        }}
-                      >
-                        <div className="flex items-center mb-2">
-                          <Zap
-                            className="w-4 h-4 mr-2"
-                            style={{ color: tool.color }}
-                          />
-                          <span
-                            className="font-semibold text-sm"
-                            style={{ color: tool.color }}
+                  <div className="relative z-10 p-8 sm:p-12">
+                    {/* Tool Header */}
+                    <div className="flex flex-col lg:flex-row lg:items-start gap-8 mb-8">
+                      {/* Hexagonal Icon Section */}
+                      <div className="flex-shrink-0">
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          className="relative"
+                        >
+                          <div
+                            className="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center border border-blue-500/30 backdrop-blur-sm group-hover:scale-105 transition-all duration-500 rounded-3xl"
+                            style={{
+                              background: `radial-gradient(circle, ${tool.color}40, ${tool.color}10)`,
+                              boxShadow: `0 20px 40px ${tool.color}25`,
+                            }}
                           >
-                            Solution
-                          </span>
-                        </div>
-                        <div className="text-gray-300 text-sm mb-3">
-                          {tool.realWorldImpact.result}
+                            <tool.icon
+                              className="w-12 h-12 sm:w-14 sm:h-14 transition-all duration-500"
+                           
+                            />
+                          </div>
+
+                          {/* Data flow indicators */}
+                          {tool.dataConnections.map((angle, connIndex) => (
+                            <motion.div
+                              key={connIndex}
+                              animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.3, 0.7, 0.3],
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                delay: connIndex * 0.5,
+                                ease: "easeInOut",
+                              }}
+                              className="absolute w-1.5 h-1.5 rounded-full"
+                              style={{
+                                backgroundColor: tool.color,
+                                top: "50%",
+                                left: "50%",
+                                transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-40px)`,
+                              }}
+                            />
+                          ))}
+
+                          {/* Category badge */}
+                          <div className="absolute -top-2 -right-2">
+                            <Badge className="bg-blue-900/80 border-blue-500/50 text-blue-200 hover:text-black px-2 py-1 text-xs backdrop-blur-md">
+                              {tool.category}
+                            </Badge>
+                          </div>
+                        </motion.div>
+                      </div>
+
+                      {/* Content Section */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-300">
+                          {tool.name}
+                        </h3>
+                        <p
+                          className="text-xl sm:text-2xl font-medium mb-6"
+                          style={{ color: tool.color }}
+                        >
+                          {tool.subtitle}
+                        </p>
+                        <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-4xl">
+                          {tool.description}
+                        </p>
+
+                        {/* Features Hexagonal Layout */}
+                        <div className="flex flex-wrap gap-3 mb-8">
+                          {tool.features.map((feature, featureIndex) => (
+                            <div
+                              key={featureIndex}
+                              className="flex items-center gap-2 px-4 py-2 bg-blue-800/20 border border-blue-600/30 hover:bg-blue-700/30 transition-colors duration-300 rounded-2xl"
+                            >
+                              <div
+                                className="w-2 h-2 rounded-full"
+                                style={{
+                                  backgroundColor: tool.color,
+                                }}
+                              />
+                              <span className="text-gray-300 text-sm font-medium">
+                                {feature}
+                              </span>
+                            </div>
+                          ))}
                         </div>
 
-                        {/* Result Metric */}
-                        <div className="bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-500/30 rounded-lg p-3">
-                          <div className="flex items-center justify-between">
-                            <span className="text-green-400 font-semibold text-sm">
-                              Result
+                        {/* Impact Metric */}
+                        <div className="flex items-center gap-6 p-6 bg-blue-800/20 border border-blue-600/30 rounded-2xl">
+                          <div className="flex items-center gap-3">
+                            <TrendingUp
+                              className="w-6 h-6"
+                              style={{ color: tool.color }}
+                            />
+                            <span className="text-gray-400">
+                              Enterprise Impact:
                             </span>
-                            <div className="text-green-400 font-bold">
-                              {tool.realWorldImpact.metric}
+                          </div>
+                          <div className="flex items-center gap-4">
+                            <div
+                              className="text-3xl font-bold"
+                              style={{ color: tool.color }}
+                            >
+                              {tool.caseStudy.metrics.improvement}
+                            </div>
+                            <div className="text-gray-300">
+                              {tool.caseStudy.metrics.impact}
                             </div>
                           </div>
-                          <div className="text-gray-300 text-xs mt-1">
-                            {tool.realWorldImpact.businessOutcome}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Case Study Section */}
+                    <div className="grid lg:grid-cols-2 gap-8">
+                      {/* Company Info */}
+                      <div className="p-6 bg-blue-800/20 border border-blue-600/30 rounded-2xl">
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="w-14 h-14 bg-blue-700/30 border border-blue-500/30 flex items-center justify-center rounded-3xl">
+                            <Building2
+                              className="w-7 h-7"
+                              style={{ color: tool.color }}
+                            />
+                          </div>
+                          <div>
+                            <h4 className="text-2xl font-bold text-white">
+                              {tool.caseStudy.company}
+                            </h4>
+                            <p className="text-gray-400 font-medium">
+                              {tool.caseStudy.industry}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4">
+                          <div>
+                            <h5 className="text-white font-semibold mb-2 flex items-center">
+                              <Database
+                                className="w-4 h-4 mr-2"
+                                style={{ color: tool.color }}
+                              />
+                              Implementation
+                            </h5>
+                            <p className="text-gray-300 text-sm leading-relaxed">
+                              {tool.caseStudy.implementation}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Results */}
+                      <div className="p-6 bg-blue-800/20 border border-blue-600/30 rounded-2xl">
+                        <div className="mb-6">
+                          <h5 className="text-white font-semibold mb-4 flex items-center">
+                            <Award className="w-5 h-5 mr-2 text-emerald-400" />
+                            Business Outcome
+                          </h5>
+                          <p className="text-emerald-300 font-medium leading-relaxed">
+                            {tool.caseStudy.outcome}
+                          </p>
+                        </div>
+
+                        {/* Success Metric Visualization */}
+                        <div className="p-6 bg-gradient-to-r from-blue-800/30 to-gray-700/20 border border-blue-500/30 rounded-2xl">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <div className="text-gray-400 text-sm mb-1">
+                                {tool.caseStudy.metrics.category}
+                              </div>
+                              <div
+                                className="text-4xl font-bold"
+                                style={{ color: tool.color }}
+                              >
+                                {tool.caseStudy.metrics.improvement}
+                              </div>
+                            </div>
+                            <div
+                              className="w-16 h-16 border-2 border-dashed flex items-center justify-center opacity-60 rounded-3xl"
+                              style={{
+                                borderColor: tool.color,
+                              }}
+                            >
+                              <Target
+                                className="w-8 h-8"
+                                style={{ color: tool.color }}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Animated Progress Indicator */}
-                    <div className="mt-6">
-                      <div className="flex justify-between text-xs text-gray-400 mb-2">
-                        <span>Implementation Progress</span>
-                        <span>100%</span>
-                      </div>
-                      <div className="w-full bg-slate-700 rounded-full h-2">
-                        <motion.div
-                          className="h-2 rounded-full"
+                    {/* Hover Effect */}
+                    {hoveredTool === index && (
+                      <motion.div
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="absolute top-6 right-6 z-20"
+                      >
+                        <div
+                          className="w-12 h-12 flex items-center justify-center backdrop-blur-sm border border-blue-500/40 rounded-3xl"
                           style={{
-                            background: `linear-gradient(90deg, ${tool.color}, ${tool.color}80)`,
+                            background: `${tool.color}20`,
                           }}
-                          initial={{ width: 0 }}
-                          whileInView={{ width: "100%" }}
-                          transition={{ duration: 2, delay: index * 0.2 }}
-                          viewport={{ once: true }}
-                        />
-                      </div>
-                    </div>
+                        >
+                          <ArrowUpRight
+                            className="w-6 h-6"
+                            style={{ color: tool.color }}
+                          />
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
-
-                  {/* Floating Elements */}
-                  <motion.div
-                    className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center"
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Sparkles className="w-4 h-4 text-white" />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute -bottom-4 -left-4 w-6 h-6 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: tool.color }}
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                  >
-                    <Target className="w-3 h-3 text-white" />
-                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
-
-        {/* Background Effects */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/3 rounded-full blur-3xl"></div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-r from-blue-600/10 to-purple-600/10">
-        <div className="container mx-auto px-4 text-center">
+      {/* Footer Section with Navigation CTAs */}
+      <footer className="py-16 sm:py-20 bg-gradient-to-r from-blue-900/30 via-slate-900/40 to-blue-900/30 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-              Start Making Data-Driven Decisions Like{" "}
-              <span className="text-green-400">Industry Leaders</span>
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Every day you delay, competitors are getting better at turning
-              data into profits. Join the ranks of analysts who shape business
-              strategy at the highest level.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold px-8 py-4 text-lg"
+            <div className="flex justify-center mb-8">
+              <div
+                className="w-16 h-16 bg-gradient-to-br from-blue-500/30 to-cyan-500/20 border border-blue-400/30 flex items-center justify-center backdrop-blur-sm"
+                style={{
+                  clipPath:
+                    "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)",
+                }}
               >
-                <Sparkles className="w-5 h-5 mr-2" />
-                Start Your Analytics Journey
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-slate-600 text-slate-300 hover:bg-slate-800 px-8 py-4 text-lg"
-              >
-                <Eye className="w-5 h-5 mr-2" />
-                Preview Course Content
-              </Button>
+                <BarChart3 className="w-8 h-8 text-blue-400" />
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-gray-400">
-              <div className="flex items-center justify-center">
-                <Users className="w-4 h-4 mr-1" />
-                75,000+ Analysts Trained
-              </div>
-              <div className="flex items-center justify-center">
-                <Award className="w-4 h-4 mr-1" />
-                Fortune 500 Approved
-              </div>
-              <div className="flex items-center justify-center">
-                <Clock className="w-4 h-4 mr-1" />
-                8-Week Mastery Program
-              </div>
-              <div className="flex items-center justify-center">
-                <Briefcase className="w-4 h-4 mr-1" />
-                Job Placement Support
-              </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-white">
+              Transform Data into Business Intelligence
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-300 mb-12 leading-relaxed">
+              You've explored the essential platforms that turn raw data into
+              actionable business insights and competitive advantages.
+              <br className="hidden sm:block" />
+              <span className="text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text font-semibold">
+                Ready to accelerate software development with AI? Continue your
+                transformation journey.
+              </span>
+            </p>
+
+            {/* Hexagonal Success Stats */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
+              {[
+                {
+                  label: "Analytics Tools",
+                  value: "7 Essential",
+                  icon: Database,
+                  color: "text-blue-400",
+                },
+                {
+                  label: "Enterprise Success",
+                  value: "Fortune 500",
+                  icon: Building2,
+                  color: "text-cyan-400",
+                },
+                {
+                  label: "Efficiency Gain",
+                  value: "25-50%",
+                  icon: TrendingUp,
+                  color: "text-purple-400",
+                },
+                {
+                  label: "Data Intelligence",
+                  value: "Real-time",
+                  icon: Eye,
+                  color: "text-indigo-400",
+                },
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <div
+                    className="p-6 bg-blue-800/30 border border-blue-600/30 backdrop-blur-sm group-hover:scale-105 group-hover:border-blue-500/50 transition-all duration-300"
+                    style={{
+                      clipPath: "polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%)",
+                    }}
+                  >
+                    <stat.icon
+                      className={`w-8 h-8 ${stat.color} mx-auto mb-3 group-hover:animate-pulse`}
+                    />
+                    <div className="text-2xl font-bold text-white mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-400">{stat.label}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Navigation CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Link
+                  href="/flagship-course/module/foundations-of-ai-everyday-productivity"
+                  className="group flex items-center gap-4 px-8 py-6 bg-gradient-to-r from-gray-800/60 to-blue-700/30 border border-blue-500/30 text-white hover:from-gray-700/60 hover:to-blue-600/40 hover:border-blue-400/40 transition-all duration-300 backdrop-blur-sm"
+                  style={{
+                    clipPath: "polygon(0% 0%, 90% 0%, 100% 85%, 10% 100%)",
+                  }}
+                >
+                  <ChevronLeft className="w-6 h-6 text-gray-400 group-hover:-translate-x-1 transition-transform duration-300" />
+                  <div className="text-left">
+                    <div className="text-lg font-bold">Previous Module</div>
+                    <div className="text-sm text-gray-300">
+                      AI Foundations & Productivity
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <Link
+                  href="/flagship-course/module/ai-powered-software-development-testing"
+                  className="group flex items-center gap-4 px-8 py-6 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 text-white hover:from-blue-500/30 hover:to-cyan-500/30 hover:border-blue-400/50 transition-all duration-300 backdrop-blur-sm"
+                  style={{
+                    clipPath: "polygon(10% 0%, 100% 0%, 90% 100%, 0% 85%)",
+                  }}
+                >
+                  <div className="text-left">
+                    <div className="text-lg font-bold">
+                      Continue to Module 3
+                    </div>
+                    <div className="text-sm text-gray-300">
+                      Software Development & Testing
+                    </div>
+                  </div>
+                  <ChevronRight className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </div>
-      </section>
+
+        {/* Hexagonal Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl"></div>
+      </footer>
     </div>
   );
 }
