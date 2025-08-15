@@ -78,18 +78,34 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
     },
   ];
 
-  const workshops = [
+  const flagshipModules = [
     {
-      id: 1,
-      title: "Build a Website in Minutes with AI",
-      mentor: "Shubham Lal",
-      duration: "90 mins",
+      title: "Module 1: Foundations of AI & Everyday Productivity",
+      slug: "foundations-of-ai-everyday-productivity",
     },
     {
-      id: 2,
-      title: "Deploy your first AI Product Bootcamp",
-      mentor: "Shubham Lal",
-      duration: "90 mins",
+      title: "Module 2: AI‑Powered Data & Business Analysis",
+      slug: "ai-powered-data-business-analysis",
+    },
+    {
+      title: "Module 3: AI‑Powered Software Development & Testing",
+      slug: "ai-powered-software-development-testing",
+    },
+    {
+      title: "Module 4: Agentic AI & Automation Strategies",
+      slug: "agentic-ai-automation-strategies",
+    },
+    {
+      title: "Module 5: Core Data Science & Generative AI Skills",
+      slug: "core-data-science-generative-ai-skills",
+    },
+    {
+      title: "Module 6: Business Applications of AI",
+      slug: "business-applications-of-ai",
+    },
+    {
+      title: "Module 7: AI‑Powered Career Advancement Strategies",
+      slug: "ai-powered-career-advancement-strategies",
     },
   ];
 
@@ -290,46 +306,41 @@ export function ProgramsModal({ isOpen, onClose }: ProgramsModalProps) {
                 </div>
               </div>
 
-              {/* Workshops Section */}
+              {/* Flagship Modules Section */}
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <h3 className="text-xl font-semibold text-white">
-                    Workshops
+                    Flagship Modules
                   </h3>
                   <Badge
                     variant="outline"
                     className="bg-[#6B46C1]/10 text-[#6B46C1] border-[#6B46C1]/30"
                   >
-                    Focused Learning
+                    Course Modules
                   </Badge>
                 </div>
 
                 <div className="grid gap-3 grid-cols-1">
-                  {workshops.map((workshop) => (
-                    <div
-                      key={workshop.id}
-                      className="bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-3 hover:border-[#6B46C1]/50 transition-all duration-300 group cursor-pointer"
+                  {flagshipModules.map((module, index) => (
+                    <Link
+                      key={index}
+                      href={`/flagship-course/module/${module.slug}`}
+                      className="bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-3 hover:border-[#6B46C1]/50 transition-all duration-300 group cursor-pointer block"
                     >
                       <div className="flex items-start gap-3">
                         <div className="w-12 h-12 bg-gradient-to-br from-[#6B46C1]/20 to-[#0BC5EA]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Users className="w-6 h-6 text-[#6B46C1]" />
+                          <span className="text-[#6B46C1] font-bold text-sm">
+                            {index + 1}
+                          </span>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-white mb-1 group-hover:text-[#6B46C1] transition-colors text-sm">
-                            {workshop.title}
+                          <h4 className="font-semibold text-white mb-1 group-hover:text-[#6B46C1] transition-colors text-sm leading-tight">
+                            {module.title}
                           </h4>
-                          <p className="text-xs text-gray-400 mb-2 truncate">
-                            {workshop.mentor}
-                          </p>
-                          <div className="flex flex-wrap gap-1 mb-2">
-                            <Badge variant="outline" className="text-xs">
-                              {workshop.duration}
-                            </Badge>
                           </div>
-                        </div>
                         <ArrowRight className="w-3 h-3 text-gray-500 group-hover:text-[#6B46C1] transition-colors flex-shrink-0" />
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>

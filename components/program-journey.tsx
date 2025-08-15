@@ -123,13 +123,16 @@ export function ProgramJourney() {
         </motion.div>
 
         {/* Interactive Timeline */}
-        <div className="relative mb-16">
+        <div
+          className="relative mb-16 overflow-x-auto scrollbar-none"
+          style={{ msOverflowStyle: "none", scrollbarWidth: "none" }}
+        >
           {/* Timeline connector line */}
-          <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] transform -translate-y-1/2 opacity-30"></div>
+          <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] transform -translate-y-1/2 opacity-30 min-w-[700px] md:min-w-0"></div>
 
           {/* Animated progress line */}
           <motion.div
-            className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] transform -translate-y-1/2"
+            className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] transform -translate-y-1/2 min-w-[700px] md:min-w-0"
             initial={{ width: "0%" }}
             whileInView={{
               width: `${Math.min((activeStep + 1) * (100 / 7), 100)}%`,
@@ -139,7 +142,7 @@ export function ProgramJourney() {
           />
 
           {/* Timeline nodes */}
-          <div className="grid grid-cols-7 gap-x-1 md:gap-2 relative">
+          <div className="grid grid-cols-7 gap-x-1 md:gap-2 relative min-w-[700px] md:min-w-0">
             {journeySteps.map((step, index) => (
               <motion.div
                 key={step.id}
@@ -264,7 +267,7 @@ export function ProgramJourney() {
             <div className="relative mt-16 md:mt-0 h-[300px] md:h-auto">
               {/* Floating UI cards showing student progress metrics */}
               <motion.div
-                className="absolute md:top-0 md:right-0 md:-right-4 top-0 right-0 w-40 sm:w-48"
+                className="absolute md:top-0 md:-right-4 top-0 right-0 w-40 sm:w-48"
                 initial={{ opacity: 0, y: 20, x: 0 }}
                 animate={{ opacity: 1, y: 0, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -292,7 +295,7 @@ export function ProgramJourney() {
               </motion.div>
 
               <motion.div
-                className="absolute md:top-1/3 md:left-0 md:-left-4 top-1/3 left-0 w-40 sm:w-48"
+                className="absolute md:top-1/3 md:-left-4 top-1/3 left-0 w-40 sm:w-48"
                 initial={{ opacity: 0, y: 20, x: 0 }}
                 animate={{ opacity: 1, y: 0, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}

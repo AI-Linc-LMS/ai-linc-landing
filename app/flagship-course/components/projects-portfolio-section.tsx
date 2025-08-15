@@ -5,52 +5,55 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  Code, 
-  Brain, 
-  Database, 
-  Globe, 
-  Smartphone, 
-  BarChart, 
-  Users, 
+import {
+  Code,
+  Brain,
+  Database,
+  Globe,
+  Smartphone,
+  BarChart,
+  Users,
   Zap,
   ChevronRight,
   ExternalLink,
   Star,
   Trophy,
-  Target
+  Target,
 } from "lucide-react";
 
 const individualProjects = [
   {
     id: 1,
     title: "AI-Powered Product Ideation Tool",
-    description: "Create a no-code application that generates innovative product concepts using AI prompts",
+    description:
+      "Create a no-code application that generates innovative product concepts using AI prompts",
     module: "Natural Language Processing",
     difficulty: "Beginner",
     duration: "2-3 days",
     skills: ["Tana", "MidJourney", "ChatGPT"],
     icon: Brain,
-    color: "from-blue-500 to-cyan-500"
+    color: "from-blue-500 to-cyan-500",
   },
   {
     id: 2,
     title: "Automated Workflow Builder",
-    description: "Design a multi-tool integration platform that connects Zapier, Airtable, and AI assistants",
+    description:
+      "Design a multi-tool integration platform that connects Zapier, Airtable, and AI assistants",
     module: "Workflow Automation",
     difficulty: "Intermediate",
     duration: "3-4 days",
     skills: ["Zapier", "Airtable", "Claude"],
     icon: Zap,
-    color: "from-green-500 to-emerald-500"
-  }
+    color: "from-green-500 to-emerald-500",
+  },
 ];
 
 const capstoneProjects = [
   {
     id: 1,
     title: "AI-Powered E-commerce Platform",
-    description: "Full-stack e-commerce solution with AI recommendations, chatbot support, and dynamic pricing",
+    description:
+      "Full-stack e-commerce solution with AI recommendations, chatbot support, and dynamic pricing",
     duration: "4-6 weeks",
     teamSize: "3-4 members",
     technologies: ["React", "Node.js", "Python", "MongoDB", "AWS"],
@@ -59,15 +62,16 @@ const capstoneProjects = [
       "AI chatbot for customer support",
       "Dynamic pricing algorithm",
       "Inventory management system",
-      "Real-time analytics dashboard"
+      "Real-time analytics dashboard",
     ],
     icon: Globe,
-    color: "from-blue-600 to-purple-600"
+    color: "from-blue-600 to-purple-600",
   },
   {
     id: 2,
     title: "Healthcare AI Diagnostic System",
-    description: "Medical image analysis platform for disease detection and patient monitoring",
+    description:
+      "Medical image analysis platform for disease detection and patient monitoring",
     duration: "5-7 weeks",
     teamSize: "4-5 members",
     technologies: ["Python", "TensorFlow", "React", "Flask", "PostgreSQL"],
@@ -76,15 +80,16 @@ const capstoneProjects = [
       "Patient data management",
       "Diagnostic report generation",
       "Doctor-patient portal",
-      "Appointment scheduling system"
+      "Appointment scheduling system",
     ],
     icon: Users,
-    color: "from-green-600 to-teal-600"
+    color: "from-green-600 to-teal-600",
   },
   {
     id: 3,
     title: "Smart City IoT Analytics",
-    description: "IoT data processing platform for smart city management and optimization",
+    description:
+      "IoT data processing platform for smart city management and optimization",
     duration: "6-8 weeks",
     teamSize: "4-6 members",
     technologies: ["Python", "Apache Kafka", "React", "InfluxDB", "Docker"],
@@ -93,15 +98,16 @@ const capstoneProjects = [
       "Traffic optimization algorithms",
       "Environmental monitoring",
       "Predictive maintenance",
-      "Citizen engagement platform"
+      "Citizen engagement platform",
     ],
     icon: BarChart,
-    color: "from-orange-600 to-red-600"
+    color: "from-orange-600 to-red-600",
   },
   {
     id: 4,
     title: "AI Financial Trading Bot",
-    description: "Automated trading system with risk management and portfolio optimization",
+    description:
+      "Automated trading system with risk management and portfolio optimization",
     duration: "5-7 weeks",
     teamSize: "3-4 members",
     technologies: ["Python", "Django", "React", "Redis", "PostgreSQL"],
@@ -110,15 +116,16 @@ const capstoneProjects = [
       "Risk assessment models",
       "Portfolio optimization",
       "Real-time market analysis",
-      "Performance tracking dashboard"
+      "Performance tracking dashboard",
     ],
     icon: Target,
-    color: "from-purple-600 to-pink-600"
+    color: "from-purple-600 to-pink-600",
   },
   {
     id: 5,
     title: "AI Content Creation Studio",
-    description: "Multi-modal AI platform for content generation, editing, and optimization",
+    description:
+      "Multi-modal AI platform for content generation, editing, and optimization",
     duration: "6-8 weeks",
     teamSize: "4-5 members",
     technologies: ["Python", "FastAPI", "React", "MongoDB", "AWS S3"],
@@ -127,22 +134,40 @@ const capstoneProjects = [
       "Content optimization tools",
       "Brand voice consistency",
       "Multi-platform publishing",
-      "Analytics and insights"
+      "Analytics and insights",
     ],
     icon: Zap,
-    color: "from-cyan-600 to-blue-600"
-  }
+    color: "from-cyan-600 to-blue-600",
+  },
 ];
 
 const collaborationCompanies = [
-  { name: "Replit", logo: "https://vectorseek.com/wp-content/uploads/2023/08/Replit-Logo-Vector.svg-.png", link: "https://replit.com" },
-  { name: "OpenAI", logo: "https://freelogopng.com/images/all_img/1681142315open-ai-logo.png", link: "https://openai.com" },
-  { name: "Notion", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", link: "https://notion.so" },
-  { name: "Zapier", logo: "https://1000logos.net/wp-content/uploads/2022/09/Zapier-Logo-1536x864.png", link: "https://zapier.com" }
+  {
+    name: "Replit",
+    logo: "https://vectorseek.com/wp-content/uploads/2023/08/Replit-Logo-Vector.svg-.png",
+    link: "https://replit.com",
+  },
+  {
+    name: "OpenAI",
+    logo: "https://freelogopng.com/images/all_img/1681142315open-ai-logo.png",
+    link: "https://openai.com",
+  },
+  {
+    name: "Notion",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png",
+    link: "https://notion.so",
+  },
+  {
+    name: "Zapier",
+    logo: "https://1000logos.net/wp-content/uploads/2022/09/Zapier-Logo-1536x864.png",
+    link: "https://zapier.com",
+  },
 ];
 
 export function ProjectsPortfolioSection() {
-  const [activeTab, setActiveTab] = useState<"individual" | "capstone">("individual");
+  const [activeTab, setActiveTab] = useState<"individual" | "capstone">(
+    "individual"
+  );
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const container = {
@@ -162,7 +187,10 @@ export function ProjectsPortfolioSection() {
   };
 
   return (
-    <section id="projects-portfolio" className="py-16 sm:py-20 relative overflow-hidden">
+    <section
+      id="projects-portfolio"
+      className="py-16 sm:py-20 relative overflow-hidden"
+    >
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
@@ -176,35 +204,43 @@ export function ProjectsPortfolioSection() {
             Build Your AI Portfolio
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Complete <span className="text-[#0BC5EA] font-semibold">36 individual projects</span> after each major skill module and <span className="text-[#6B46C1] font-semibold">5 capstone projects</span> for a real-world AI portfolio
+            Complete{" "}
+            <span className="text-[#0BC5EA] font-semibold">
+              36 individual projects
+            </span>{" "}
+            after each major skill module and{" "}
+            <span className="text-[#6B46C1] font-semibold">
+              5 capstone projects
+            </span>{" "}
+            for a real-world AI portfolio
           </p>
 
           {/* Tab Navigation */}
-          <div className="flex justify-center mb-8">
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-1">
+          <div className="flex justify-center mb-8 w-full">
+            <div className="bg-gray-800/50 flex flex-row items-center justify-center gap-3 backdrop-blur-sm border border-gray-700 rounded-xl p-2 w-full max-w-xl mx-auto overflow-x-auto scrollbar-none whitespace-nowrap">
               <Button
                 onClick={() => setActiveTab("individual")}
                 variant={activeTab === "individual" ? "default" : "ghost"}
-                className={`px-6 py-3 rounded-lg transition-all duration-300 ${
+                className={`min-w-[120px] max-w-[220px] flex-shrink px-4 py-3 rounded-lg transition-all duration-300 text-sm md:text-base text-ellipsis overflow-hidden ${
                   activeTab === "individual"
                     ? "bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] text-white"
                     : "text-gray-300 hover:text-white"
                 }`}
               >
-                <Code className="w-4 h-4 mr-2" />
+                <Code className="w-4 h-4 mr-2 hidden md:block" />
                 36 Individual Projects
               </Button>
               <Button
                 onClick={() => setActiveTab("capstone")}
                 variant={activeTab === "capstone" ? "default" : "ghost"}
-                className={`px-6 py-3 rounded-lg transition-all duration-300 ${
+                className={`min-w-[120px] max-w-[220px] flex-shrink px-4 py-3 rounded-lg transition-all duration-300 text-base text-ellipsis overflow-hidden ${
                   activeTab === "capstone"
                     ? "bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] text-white"
                     : "text-gray-300 hover:text-white"
                 }`}
               >
-                <Trophy className="w-4 h-4 mr-2" />
-                5 Capstone Projects
+                <Trophy className="w-4 h-4 mr-2 hidden md:block" />5 Capstone
+                Projects
               </Button>
             </div>
           </div>
@@ -225,14 +261,16 @@ export function ProjectsPortfolioSection() {
                   <Card className="bg-gradient-to-b from-gray-800/50 to-gray-900/50 backdrop-blur-sm border-gray-700/50 hover:border-[#0BC5EA]/50 transition-all duration-300 h-full group">
                     <CardContent className="p-6 h-full flex flex-col">
                       <div className="flex items-center mb-4">
-                        <div className={`p-3 rounded-lg bg-gradient-to-r ${project.color} mr-4`}>
+                        <div
+                          className={`p-3 rounded-lg bg-gradient-to-r ${project.color} mr-4`}
+                        >
                           <project.icon className="w-6 h-6 text-white" />
                         </div>
                         <div className="flex-1">
-                          <Badge 
-                            variant="outline" 
+                          <Badge
+                            variant="outline"
                             className={`mb-2 ${
-                              project.difficulty === "Beginner" 
+                              project.difficulty === "Beginner"
                                 ? "border-green-500/50 text-green-400"
                                 : project.difficulty === "Intermediate"
                                 ? "border-yellow-500/50 text-yellow-400"
@@ -262,7 +300,11 @@ export function ProjectsPortfolioSection() {
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {project.skills.map((skill, skillIndex) => (
-                            <Badge key={skillIndex} variant="secondary" className="bg-gray-700/50 text-gray-300">
+                            <Badge
+                              key={skillIndex}
+                              variant="secondary"
+                              className="bg-gray-700/50 text-gray-300"
+                            >
                               {skill}
                             </Badge>
                           ))}
@@ -274,12 +316,13 @@ export function ProjectsPortfolioSection() {
               ))}
             </div>
 
-            <motion.div 
-              variants={item}
-              className="text-center mt-8"
-            >
+            <motion.div variants={item} className="text-center mt-8">
               <p className="text-gray-400 text-lg">
-                + 34 more projects covering <span className="text-[#0BC5EA]">Advanced AI</span>, <span className="text-[#6B46C1]">MLOps</span>, <span className="text-[#0BC5EA]">Deep Learning</span>, and more...
+                + 34 more projects covering{" "}
+                <span className="text-[#0BC5EA]">Advanced AI</span>,{" "}
+                <span className="text-[#6B46C1]">MLOps</span>,{" "}
+                <span className="text-[#0BC5EA]">Deep Learning</span>, and
+                more...
               </p>
             </motion.div>
           </motion.div>
@@ -299,81 +342,118 @@ export function ProjectsPortfolioSection() {
               <Card className="bg-gradient-to-r from-gray-800/50 to-gray-900/50 backdrop-blur-sm border-gray-700/50 p-8">
                 <CardContent className="p-0">
                   <div className="flex items-center justify-center mb-6">
-                    <div className="p-4 rounded-xl bg-gradient-to-r from-[#6B46C1] to-[#0BC5EA] mr-4">
+                    <div className="p-4 rounded-xl bg-gradient-to-r from-[#6B46C1] to-[#0BC5EA] mr-4 hidden md:block">
                       <Trophy className="w-8 h-8 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2">
+                      <h3 className="text-lg md:text-2xl font-bold text-white mb-2">
                         Industry-Level Capstone Projects
                       </h3>
-                      <p className="text-gray-400">Build production-ready solutions that employers want to see</p>
+                      <p className="text-gray-400">
+                        Build production-ready solutions that employers want to
+                        see
+                      </p>
                     </div>
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+
+                  <div className="grid grid-cols-3 gap-6 mb-8">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#0BC5EA] mb-2">5</div>
+                      <div className="text-3xl font-bold text-[#0BC5EA] mb-2">
+                        5
+                      </div>
                       <div className="text-gray-300">Capstone Projects</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#6B46C1] mb-2">4-8 weeks</div>
+                      <div className="text-3xl font-bold text-[#6B46C1] mb-2">
+                        4-8 weeks
+                      </div>
                       <div className="text-gray-300">Project Duration</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#0BC5EA] mb-2">3-6</div>
+                      <div className="text-3xl font-bold text-[#0BC5EA] mb-2">
+                        3-6
+                      </div>
                       <div className="text-gray-300">Team Members</div>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-4">What You'll Build:</h4>
+                      <h4 className="text-lg font-semibold text-white mb-4">
+                        What You'll Build:
+                      </h4>
                       <div className="space-y-3">
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#0BC5EA] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">AI-Powered E-commerce Platform with recommendation engine</span>
+                          <span className="text-gray-300">
+                            AI-Powered E-commerce Platform with recommendation
+                            engine
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#0BC5EA] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">Healthcare AI Diagnostic System for medical imaging</span>
+                          <span className="text-gray-300">
+                            Healthcare AI Diagnostic System for medical imaging
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#0BC5EA] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">Smart City IoT Analytics for urban optimization</span>
+                          <span className="text-gray-300">
+                            Smart City IoT Analytics for urban optimization
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#0BC5EA] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">AI Financial Trading Bot with risk management</span>
+                          <span className="text-gray-300">
+                            AI Financial Trading Bot with risk management
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#0BC5EA] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">AI Content Creation Studio for multi-modal generation</span>
+                          <span className="text-gray-300">
+                            AI Content Creation Studio for multi-modal
+                            generation
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-4">Why Capstone Projects Matter:</h4>
+                      <h4 className="text-lg font-semibold text-white mb-4">
+                        Why Capstone Projects Matter:
+                      </h4>
                       <div className="space-y-3">
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#6B46C1] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">Real-world complexity that mirrors actual job responsibilities</span>
+                          <span className="text-gray-300">
+                            Real-world complexity that mirrors actual job
+                            responsibilities
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#6B46C1] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">Team collaboration experience valued by employers</span>
+                          <span className="text-gray-300">
+                            Team collaboration experience valued by employers
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#6B46C1] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">Portfolio pieces that demonstrate end-to-end capabilities</span>
+                          <span className="text-gray-300">
+                            Portfolio pieces that demonstrate end-to-end
+                            capabilities
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#6B46C1] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">Industry mentorship throughout development process</span>
+                          <span className="text-gray-300">
+                            Industry mentorship throughout development process
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <ChevronRight className="w-4 h-4 text-[#6B46C1] mr-3 flex-shrink-0" />
-                          <span className="text-gray-300">Deployment experience on production platforms</span>
+                          <span className="text-gray-300">
+                            Deployment experience on production platforms
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -381,8 +461,15 @@ export function ProjectsPortfolioSection() {
 
                   <div className="mt-8 p-6 bg-gradient-to-r from-[#0BC5EA]/10 to-[#6B46C1]/10 rounded-lg border border-[#0BC5EA]/20">
                     <p className="text-center text-gray-300 text-lg">
-                      <span className="text-[#0BC5EA] font-semibold">100% of our capstone graduates</span> receive portfolio feedback from industry professionals, 
-                      and <span className="text-[#6B46C1] font-semibold">85% secure interviews</span> within 3 months of completion.
+                      <span className="text-[#0BC5EA] font-semibold">
+                        100% of our capstone graduates
+                      </span>{" "}
+                      receive portfolio feedback from industry professionals,
+                      and{" "}
+                      <span className="text-[#6B46C1] font-semibold">
+                        85% secure interviews
+                      </span>{" "}
+                      within 3 months of completion.
                     </p>
                   </div>
                 </CardContent>
