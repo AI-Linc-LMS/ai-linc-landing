@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { TimeLeft } from "../types"
 import { talentJourney, keyMetrics } from "../data"
 
-const WEBINAR_DATE = new Date("2025-08-10T12:30:00+05:30"); // IST timezone
+const WEBINAR_DATE = new Date("2025-08-17T12:30:00+05:30"); // IST timezone
 
 export function useHeroTimers() {
   const [activeProcess, setActiveProcess] = useState(0)
