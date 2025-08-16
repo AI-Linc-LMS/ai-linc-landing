@@ -121,14 +121,6 @@ export function StickyCtaButtons({
     setIsContactModalOpen(true);
   };
 
-  const handleReserveSubmit = () => {
-    try {
-      router.push("/contact-us");
-    } catch (error) {
-      console.error("Router navigation failed:", error);
-      window.location.href = "/contact-us";
-    }
-  };
 
   const handleCloseCta = () => {
     setIsDismissed(true);
@@ -138,7 +130,7 @@ export function StickyCtaButtons({
   return (
     <>
       {/* Notification Popup */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showNotification && currentNotification && (
           <motion.div
             initial={{ x: 300, opacity: 0 }}
@@ -174,7 +166,7 @@ export function StickyCtaButtons({
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       {/* Sticky CTA Buttons */}
       <AnimatePresence>
