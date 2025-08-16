@@ -63,7 +63,7 @@ export function StickyBottomBar({ onRegistrationClick, seatsLeft, workshopData }
             </div>
             
             {/* Stats */}
-            <div className="flex items-center gap-4 text-sm">
+            {/* <div className="flex items-center gap-4 text-sm">
               <div className="flex items-center gap-1 text-orange-400">
                 <Clock className="w-4 h-4" />
                 <span>{workshopDateTime}</span>
@@ -72,7 +72,7 @@ export function StickyBottomBar({ onRegistrationClick, seatsLeft, workshopData }
                 <Users className="w-4 h-4" />
                 <span>{seatsLeft} seats left</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Side - Registration Button */}

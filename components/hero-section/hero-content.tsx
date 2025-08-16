@@ -34,14 +34,14 @@ export function HeroContent({ timeLeft, onHireTalent, onJoinWebinar }: HeroConte
       animate="show"
       className="md:col-span-5 text-center md:text-left"
     >
-      <motion.div variants={item}>
+      {/* <motion.div variants={item}>
         <Badge
           variant="outline"
           className="px-3 py-1 mb-6 bg-background/80 border-[#0BC5EA]/30 text-[#0BC5EA] text-sm font-medium"
         >
           Next Webinar:  {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
         </Badge>
-      </motion.div>
+      </motion.div> */}
 
       <motion.h1
         variants={item}

@@ -168,7 +168,7 @@ export function WhatYouWillLearnSection({
             </span>
             <span className="text-lg text-[#0BC5EA] ml-2">100% OFF</span>
           </div>
-          <p className="text-gray-300">Deadline 9 August 2025</p>
+          {/* <p className="text-gray-300">Deadline 9 August 2025</p> */}
         </div>
 
         <div className="flex items-center gap-4">

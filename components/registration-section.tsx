@@ -180,8 +180,8 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
           {/* Center Column - Registration Form */}
           <div className="lg:col-span-1">
             {/* Workshop Date and Timer */}
-            <div className="mb-8 p-6 bg-gradient-to-br from-[#0BC5EA]/10 via-[#6B46C1]/10 to-[#0BC5EA]/5 rounded-2xl border border-[#0BC5EA]/20 backdrop-blur-sm relative overflow-hidden">
-              {/* Animated background elements */}
+            {/* <div className="mb-8 p-6 bg-gradient-to-br from-[#0BC5EA]/10 via-[#6B46C1]/10 to-[#0BC5EA]/5 rounded-2xl border border-[#0BC5EA]/20 backdrop-blur-sm relative overflow-hidden">
+              
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#0BC5EA]/10 rounded-full blur-2xl animate-pulse"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#6B46C1]/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s' }}></div>
 
@@ -218,7 +218,7 @@ export function RegistrationSection({ onSuccess }: RegistrationSectionProps) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Registration Form */}
             <div className="bg-gradient-to-br from-white/5 to-[#0BC5EA]/5 rounded-2xl p-6 border border-white/10 backdrop-blur-sm">
