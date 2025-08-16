@@ -80,7 +80,7 @@ export function BonusSection({ onRegistrationClick }: BonusSectionProps) {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <div className="text-sm text-gray-400">Deadline 9 Aug 2025</div>
+            {/* <div className="text-sm text-gray-400">Deadline 9 Aug 2025</div> */}
             <Button
               onClick={onRegistrationClick}
               className="bg-gradient-to-r from-[#0BC5EA] to-[#6B46C1] hover:from-[#0BC5EA]/90 hover:to-[#6B46C1]/90 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full"
