@@ -116,7 +116,7 @@ export default function WorkshopRegistration() {
               </div>
 
               {/* Countdown Timer */}
-              <CountdownTimer workshopData={workshopData} />
+              {/* <CountdownTimer workshopData={workshopData} /> */}
 
               {/* YouTube Video */}
               <div className="mb-12">
