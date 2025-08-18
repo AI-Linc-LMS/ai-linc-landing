@@ -78,7 +78,7 @@ export function WebinarModal() {
             </div>
             {/* <div className="text-xs sm:text-sm text-yellow-400 font-semibold text-center">{displayDate}</div> */}
             <div className="text-xs sm:text-3xl text-yellow-400 font-semibold text-center">
-              Comming Soon
+              Coming Soon
             </div>
             {/* Registration Count */}
             <div className="my-2 sm:my-3">
