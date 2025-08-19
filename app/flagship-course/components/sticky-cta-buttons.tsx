@@ -35,38 +35,42 @@ export function StickyCtaButtons({
   const [showNotification, setShowNotification] = useState(false);
   const [currentNotification, setCurrentNotification] = useState({
     name: "",
+    message: "",
     seatsLeft: 5,
+    showSeatsLeft: false,
   });
   const [seatsRemaining, setSeatsRemaining] = useState(5);
   const [isDismissed, setIsDismissed] = useState(false);
+  const [recentlyUsed, setRecentlyUsed] = useState<string[]>([]);
   const router = useRouter();
 
-  // Random names for notifications
+  // Expanded list of names
   const randomNames = [
-    "Rahul",
-    "Priya",
-    "Amit",
-    "Sneha",
-    "Vikash",
-    "Ananya",
-    "Rohan",
-    "Kavya",
-    "Arjun",
-    "Divya",
-    "Karan",
-    "Pooja",
-    "Siddharth",
-    "Nisha",
-    "Raj",
-    "Meera",
-    "Abhishek",
-    "Riya",
-    "Nikhil",
-    "Shreya",
-    "Akash",
-    "Tanvi",
-    "Varun",
-    "Isha",
+    "Rahul", "Priya", "Amit", "Sneha", "Vikash", "Ananya", "Rohan", "Kavya",
+    "Arjun", "Divya", "Karan", "Pooja", "Siddharth", "Nisha", "Raj", "Meera",
+    "Abhishek", "Riya", "Nikhil", "Shreya", "Akash", "Tanvi", "Varun", "Isha",
+    "Taniya", "Harsh", "Aisha", "Manish", "Deepika", "Rohit", "Sakshi", "Gaurav",
+    "Neha", "Vikas", "Preeti", "Ajay", "Swati", "Suresh", "Kritika", "Naveen",
+    "Shweta", "Ravi", "Anjali", "Vishal", "Madhuri", "Sandeep", "Pallavi", "Ashish",
+    "Sunita", "Ramesh", "Komal", "Yogesh", "Vandana", "Mahesh", "Richa", "Rajesh",
+    "Geeta", "Sunil", "Rekha", "Dinesh", "Kavita", "Mukesh", "Sonia", "Pankaj",
+    "Archana", "Vinod", "Shilpa", "Anil", "Babita", "Deepak", "Sapna", "Manoj",
+    "Urmila", "Vijay", "Kiran", "Subhash", "Mala", "Prakash", "Seema", "Lalit",
+    "Bharti", "Arun", "Sushma", "Jitendra", "Lata", "Bharat", "Usha", "Narayan"
+  ];
+
+  // Varied notification messages
+  const notificationMessages = [
+    "just signed up on the platform",
+    "just booked a seat",
+    "just joined the course",
+    "just reserved their spot",
+    "just enrolled in the program",
+    "just completed registration",
+    "just secured their seat",
+    "just applied for the course",
+    "just confirmed their enrollment",
+    "just joined the waiting list"
   ];
 
   useEffect(() => {
@@ -84,16 +88,28 @@ export function StickyCtaButtons({
   useEffect(() => {
     const showRandomNotification = () => {
       if (seatsRemaining > 0) {
-        const randomName =
-          randomNames[Math.floor(Math.random() * randomNames.length)];
+        // Get available names (not recently used)
+        const availableNames = randomNames.filter(name => !recentlyUsed.includes(name));
+        const namesToUse = availableNames.length > 0 ? availableNames : randomNames;
+        
+        const randomName = namesToUse[Math.floor(Math.random() * namesToUse.length)];
+        const randomMessage = notificationMessages[Math.floor(Math.random() * notificationMessages.length)];
         const newSeatsLeft = Math.max(1, seatsRemaining - 1);
 
         setCurrentNotification({
           name: randomName,
+          message: randomMessage,
           seatsLeft: 5,
+          showSeatsLeft: randomMessage === "just booked a seat",
         });
         setSeatsRemaining(5);
         setShowNotification(true);
+
+        // Update recently used names (keep last 10)
+        setRecentlyUsed(prev => {
+          const updated = [randomName, ...prev];
+          return updated.slice(0, Math.min(10, Math.floor(randomNames.length / 3)));
+        });
 
         // Hide notification after 4 seconds
         setTimeout(() => {
@@ -115,7 +131,7 @@ export function StickyCtaButtons({
       clearTimeout(initialTimer);
       clearInterval(intervalTimer);
     };
-  }, [seatsRemaining, randomNames]);
+  }, [seatsRemaining, randomNames, notificationMessages, recentlyUsed]);
 
   const handleApplyNow = () => {
     setIsContactModalOpen(true);
@@ -157,11 +173,13 @@ export function StickyCtaButtons({
               </div>
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900">
-                  {currentNotification.name} just booked a seat!
+                  {currentNotification.name} {currentNotification.message}!
                 </p>
-                <p className="text-xs text-red-600 font-semibold">
-                  Only {currentNotification.seatsLeft} seats remaining
-                </p>
+                {currentNotification.showSeatsLeft && (
+                  <p className="text-xs text-red-600 font-semibold">
+                    Only {currentNotification.seatsLeft} seats remaining
+                  </p>
+                )}
               </div>
             </div>
           </motion.div>
