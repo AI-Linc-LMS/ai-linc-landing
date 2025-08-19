@@ -146,7 +146,7 @@ export function StickyCtaButtons({
   return (
     <>
       {/* Notification Popup */}
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {showNotification && currentNotification && (
           <motion.div
             initial={{ x: 300, opacity: 0 }}
@@ -184,7 +184,7 @@ export function StickyCtaButtons({
             </div>
           </motion.div>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
 
       {/* Sticky CTA Buttons */}
       <AnimatePresence>
