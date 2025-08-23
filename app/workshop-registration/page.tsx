@@ -56,7 +56,7 @@ export default function WorkshopRegistration() {
     "Deploy Your First AI App: Live No-Code AI Workshop";
   const sessionNumber = workshopData?.SessionNumber || "";
   const displayTitle = sessionNumber
-    ? `${sessionNumber}: ${workshopTitle}`
+    ? ` ${workshopTitle}`
     : workshopTitle;
 
   if (loading) {
@@ -140,13 +140,13 @@ export default function WorkshopRegistration() {
                 onRegistrationSuccess={handleRegistrationSuccess}
                 seatsLeft={seatsLeft}
                 setSeatsLeft={setSeatsLeft}
-                // workshopData={workshopData}
+              // workshopData={workshopData}
               />
 
               {/* What You Will Learn Section */}
               <WhatYouWillLearnSection
                 scrollToRegistration={scrollToRegistration}
-                // workshopData={workshopData}
+              // workshopData={workshopData}
               />
 
               {/* Mentor Section */}
