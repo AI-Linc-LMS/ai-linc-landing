@@ -91,7 +91,7 @@ export function StickyCtaButtons({
         // Get available names (not recently used)
         const availableNames = randomNames.filter(name => !recentlyUsed.includes(name));
         const namesToUse = availableNames.length > 0 ? availableNames : randomNames;
-        
+
         const randomName = namesToUse[Math.floor(Math.random() * namesToUse.length)];
         const randomMessage = notificationMessages[Math.floor(Math.random() * notificationMessages.length)];
         const newSeatsLeft = Math.max(1, seatsRemaining - 1);
